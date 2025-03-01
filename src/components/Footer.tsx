@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -15,7 +14,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="mt-4 text-gray-600 dark:text-gray-400 text-pretty max-w-md">
-              Creating beautiful memories through photography and videography.
+              Professional recording, booking, and marketing services to help artists succeed in their musical journey.
             </p>
           </div>
 
@@ -34,13 +33,19 @@ const Footer = () => {
                 to="/appointments"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
-                Appointments
+                Book a Session
+              </Link>
+              <Link
+                to="/featured-artists"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Featured Artists
               </Link>
               <Link
                 to="/contact"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
-                Contact
+                Contact Us
               </Link>
             </div>
           </div>
@@ -57,10 +62,10 @@ const Footer = () => {
                 info@801familystudios.com
               </a>
               <a
-                href="tel:+18015555555"
+                href="tel:+18019185690"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
-                (801) 555-5555
+                (801) 918-5690
               </a>
             </div>
           </div>

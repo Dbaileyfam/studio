@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Card, CardContent } from "@/components/ui/card";
@@ -124,19 +123,11 @@ const Contact = () => {
                       <p>
                         <span className="font-semibold block">Phone:</span>
                         <a
-                          href="tel:+18015555555"
+                          href="tel:+18019185690"
                           className="hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
-                          (801) 555-5555
+                          (801) 918-5690
                         </a>
-                      </p>
-                      <p>
-                        <span className="font-semibold block">Hours:</span>
-                        Monday - Friday: 9am - 5pm
-                        <br />
-                        Saturday: 10am - 3pm
-                        <br />
-                        Sunday: Closed
                       </p>
                     </div>
                   </div>
@@ -144,13 +135,13 @@ const Contact = () => {
                   <div>
                     <h2 className="text-xl font-bold mb-4">Studio Location</h2>
                     <p className="text-gray-600 dark:text-gray-400 mb-4">
-                      801 Main Street, Suite 205
+                      1836 E Tramway Drive
                       <br />
-                      Salt Lake City, UT 84101
+                      Sandy, UT 84092
                     </p>
                     <div className="aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193446.95923508738!2d-112.05768938255617!3d40.77626899065486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87523d9488d131ed%3A0x5b53b7a0484d31ca!2sSalt%20Lake%20City%2C%20UT%2C%20USA!5e0!3m2!1sen!2sau!4v1643414519259!5m2!1sen!2sau"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.7990261294387!2d-111.84137548459513!3d40.57637957934631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x875262d0e9c2f0c9%3A0x7f3a08c3a5f5b8e0!2s1836%20E%20Tramway%20Dr%2C%20Sandy%2C%20UT%2084092!5e0!3m2!1sen!2sus!4v1629308000000!5m2!1sen!2sus"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}

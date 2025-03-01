@@ -1,8 +1,8 @@
-
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import logo from "@/assets/801-family-studios-logo.png";
 
 const Index = () => {
   const fadeIn = {
@@ -20,7 +20,7 @@ const Index = () => {
         <div className="page-content">
           <div className="container-inner flex flex-col items-center">
             {/* Hero Section */}
-            <section className="w-full py-20 md:py-32 flex flex-col items-center">
+            <section className="w-full pt-0 pb-2 md:pb-4 flex flex-col items-center">
               <motion.div
                 className="text-center max-w-3xl mx-auto px-4"
                 variants={fadeIn}
@@ -29,19 +29,41 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={0}
               >
-                <span className="inline-block py-1 px-3 mb-6 text-sm font-medium bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
-                  Welcome to 801 Family Studios
-                </span>
+                <motion.div
+                  className="text-center mb-4 relative"
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  custom={0}
+                >
+                </motion.div>
+                <motion.div
+                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-4"
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  custom={0.2}
+                >
+                  <img
+                    src={logo}
+                    alt="801 Family Studios Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </motion.div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance">
-                  Capturing your family's most precious moments
+                  Your home for all your music management needs
                 </h1>
                 <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto text-pretty">
-                  Professional photography and videography services specializing in
-                  family portraits, weddings, and special events.
+                  Professional music management services to help you organize, produce, and succeed in your musical journey.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="rounded-full">
-                    <Link to="/appointments">Book an Appointment</Link>
+                    <Link to="/appointments">Book a Session</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="rounded-full">
+                    <Link to="/featured-artists">Featured Artists</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="rounded-full">
                     <Link to="/contact">Contact Us</Link>
@@ -58,8 +80,8 @@ const Index = () => {
                 custom={1}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                  alt="Family Photography Session"
+                  src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Live Band Performance"
                   className="w-full h-full object-cover transition-image"
                   loading="lazy"
                   width={1920}
@@ -78,30 +100,30 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={0}
               >
-                <span className="inline-block py-1 px-3 mb-4 text-sm font-medium bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
+                <span className="inline-block py-2 px-6 mb-4 text-lg font-bold bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
                   Our Services
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-balance">
-                  Professional photography services for every occasion
+                  Recording and management services in one convenient location
                 </h2>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                 {[
                   {
-                    title: "Family Portraits",
+                    title: "Recording Services",
                     description:
-                      "Capture beautiful family moments in stunning indoor or outdoor settings.",
+                      "Professional studio recording with state-of-the-art equipment and experienced sound engineers to bring your music to life.",
                   },
                   {
-                    title: "Wedding Photography",
+                    title: "Booking Services",
                     description:
-                      "Preserve the magic of your special day with our professional wedding photography services.",
+                      "Connect with top venues and events across the region. We handle the negotiations and logistics to get your music on the right stages.",
                   },
                   {
-                    title: "Special Events",
+                    title: "Marketing Services",
                     description:
-                      "From birthdays to anniversaries, we document all your important life events.",
+                      "Build your brand and grow your audience with strategic social media management, content creation, and digital marketing campaigns.",
                   },
                 ].map((service, index) => (
                   <motion.div
@@ -133,56 +155,6 @@ const Index = () => {
               >
                 <Button asChild size="lg" className="rounded-full">
                   <Link to="/appointments">Book a Session</Link>
-                </Button>
-              </motion.div>
-            </section>
-
-            {/* About Section */}
-            <section className="w-full py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl"
-                variants={fadeIn}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                custom={0}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                  alt="Professional camera equipment"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  width={800}
-                  height={600}
-                />
-              </motion.div>
-
-              <motion.div
-                variants={fadeIn}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                custom={0.4}
-              >
-                <span className="inline-block py-1 px-3 mb-4 text-sm font-medium bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
-                  About Us
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
-                  Professional photographers with a passion for capturing moments
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 text-pretty">
-                  At 801 Family Studios, we believe that every moment tells a story
-                  worth preserving. Our team of dedicated photographers and
-                  videographers are committed to capturing your most precious
-                  memories with unmatched quality and attention to detail.
-                </p>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 text-pretty">
-                  With years of experience and state-of-the-art equipment, we
-                  specialize in creating stunning visuals that you'll treasure for
-                  generations to come.
-                </p>
-                <Button asChild size="lg" variant="outline" className="rounded-full">
-                  <Link to="/contact">Get In Touch</Link>
                 </Button>
               </motion.div>
             </section>

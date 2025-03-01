@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,17 +25,17 @@ const Appointments = () => {
     
     // Add Square Appointments script
     const script = document.createElement("script");
-    script.src = "https://square.site/appointments/buyer/widget/8q4rhmw1bnvchj/L3QG4BB7F9DBZ.js";
+    script.src = 'https://square.site/appointments/buyer/widget/f2jmuw61r6hxxb/LGA2NRWSCSKXR.js';
     script.async = true;
     script.onload = () => {
       toast({
-        title: "Appointment system loaded",
-        description: "You can now book your session with us.",
+        title: "Booking system loaded",
+        description: "You can now book your recording session with us.",
       });
     };
     script.onerror = () => {
       toast({
-        title: "Unable to load appointment system",
+        title: "Unable to load booking system",
         description: "Please refresh the page or try again later.",
         variant: "destructive",
       });
@@ -63,15 +62,12 @@ const Appointments = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <span className="inline-block py-1 px-3 mb-4 text-sm font-medium bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
-                Schedule a Session
-              </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance">
-                Book Your Appointment
+                Book a Recording Session
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 text-pretty">
-                Use our online scheduling system to book your photography session.
-                Choose the service, date, and time that works best for you.
+                Use our online scheduling system to book your recording session.
+                Choose your preferred date and time, and let's create something amazing together.
               </p>
             </motion.div>
 
@@ -89,7 +85,7 @@ const Appointments = () => {
                       <div className="flex flex-col items-center">
                         <div className="h-12 w-12 rounded-full border-4 border-gray-200 border-t-gray-800 animate-spin"></div>
                         <p className="mt-4 text-gray-600 dark:text-gray-400">
-                          Loading appointment system...
+                          Loading booking system...
                         </p>
                       </div>
                     </div>
@@ -102,14 +98,14 @@ const Appointments = () => {
                       <noscript>
                         <div className="p-8 text-center">
                           <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            To book an appointment, please enable JavaScript or
+                            To book a recording session, please enable JavaScript or
                             contact us directly.
                           </p>
                           <a
-                            href="tel:+18015555555"
+                            href="tel:+18019185690"
                             className="text-blue-600 dark:text-blue-400 underline"
                           >
-                            (801) 555-5555
+                            (801) 918-5690
                           </a>
                         </div>
                       </noscript>
@@ -127,20 +123,20 @@ const Appointments = () => {
               viewport={{ once: true }}
               custom={0.6}
             >
-              <h2 className="text-2xl font-bold mb-6">Appointment Information</h2>
+              <h2 className="text-2xl font-bold mb-6">Session Information</h2>
               <div className="space-y-6 text-gray-600 dark:text-gray-400">
                 <p className="text-pretty">
-                  Please arrive 10-15 minutes before your scheduled appointment
-                  time. This allows us to prepare and make the most of our session
+                  Please arrive 10-15 minutes before your scheduled session
+                  time. This allows us to set up and make the most of our recording
                   time together.
                 </p>
                 <p className="text-pretty">
-                  If you need to reschedule or cancel your appointment, please do
+                  If you need to reschedule or cancel your session, please do
                   so at least 24 hours in advance.
                 </p>
                 <p className="text-pretty">
-                  For any questions regarding your appointment, please contact us
-                  at (801) 555-5555 or email us at info@801familystudios.com.
+                  For any questions regarding your recording session, please contact us
+                  at (801) 918-5690 or email us at info@801familystudios.com.
                 </p>
               </div>
             </motion.div>
