@@ -41,9 +41,6 @@ const Contact = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <span className="inline-block py-1 px-3 mb-4 text-sm font-medium bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
-                Get In Touch
-              </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance">
                 Contact Us
               </h1>
@@ -62,8 +59,8 @@ const Contact = () => {
                 viewport={{ once: true }}
                 custom={0.4}
               >
-                <Card className="shadow-lg border-gray-200 dark:border-gray-800 overflow-hidden">
-                  <CardContent className="p-0">
+                {/* <Card className="shadow-lg border-gray-200 dark:border-gray-800 overflow-hidden">
+                  <CardContent className="p-0"> */}
                     {isLoading ? (
                       <div className="h-[600px] flex items-center justify-center">
                         <div className="flex flex-col items-center">
@@ -74,29 +71,20 @@ const Contact = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="min-h-[600px] h-full">
+                      <div className="h-full w-full">
                         <iframe
-                          src="https://docs.google.com/forms/d/e/1FAIpQLSeyUUGrW2-WD69I6EMBfp0OIkOG6W2KZxnmSc3NICNRJr_eqw/viewform?embedded=true"
-                          width="100%"
-                          height="700"
-                          frameBorder="0"
-                          marginHeight={0}
-                          marginWidth={0}
-                          title="Contact Form"
-                          className="w-full h-full"
-                          onLoad={() => {
-                            toast({
-                              title: "Contact form loaded",
-                              description: "You can now send us your message.",
-                            });
-                          }}
+                          src="https://docs.google.com/forms/d/e/1FAIpQLSeIYE9qbS0N7ni-7Lf1WL50p7gxSvwCXrUzG30HvmFpy0itEQ/viewform?embedded=true"
+                          width="800px"
+                          height="100%"
+                          className="w-full h-full overflow-hidden"
+                          style={{ border: 'none' }}
                         >
                           Loading contact form...
                         </iframe>
                       </div>
                     )}
-                  </CardContent>
-                </Card>
+                  {/* </CardContent>
+                </Card> */}
               </motion.div>
 
               <motion.div
