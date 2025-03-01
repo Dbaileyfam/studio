@@ -20,19 +20,14 @@ const Appointments = () => {
   useEffect(() => {
     // Simulate loading
     const timer = setTimeout(() => {
-      setIsLoading(false);
+      setIsLoading(true);
     }, 800);
     
     // Add Square Appointments script
     const script = document.createElement("script");
     script.src = 'https://square.site/appointments/buyer/widget/f2jmuw61r6hxxb/LGA2NRWSCSKXR.js';
     script.async = true;
-    script.onload = () => {
-      toast({
-        title: "Booking system loaded",
-        description: "You can now book your recording session with us.",
-      });
-    };
+    script.onload = () => {};
     script.onerror = () => {
       toast({
         title: "Unable to load booking system",
