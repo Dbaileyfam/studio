@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
 
+// Add type declaration at the top of the file
+declare global {
+  interface Window {
+    handleSquareError: () => void;
+  }
+}
+
 const Appointments = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
   
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -20,27 +28,39 @@ const Appointments = () => {
   useEffect(() => {
     // Simulate loading
     const timer = setTimeout(() => {
-      setIsLoading(true);
+      setIsLoading(false);
     }, 800);
     
     // Add Square Appointments script
     const script = document.createElement("script");
-    script.src = 'https://square.site/appointments/buyer/widget/f2jmuw61r6hxxb/LGA2NRWSCSKXR.js';
+    script.src = 'https://squareup.com/appointments/buyer/widget/f2jmuw61r6hxxb/LGA2NRWSCSKXR';
     script.async = true;
-    script.onload = () => {};
-    script.onerror = () => {
-      toast({
-        title: "Unable to load booking system",
-        description: "Please refresh the page or try again later.",
-        variant: "destructive",
-      });
+    
+    // Create a function in the window object for the error handler
+    window.handleSquareError = () => {
+      // toast({
+      //   title: "Unable to load booking system",
+      //   description: "Please refresh the page or try again later.",
+      //   variant: "destructive",
+      // });
     };
     
-    document.body.appendChild(script);
+    script.setAttribute('onerror', 'handleSquareError()');
+    document.head.appendChild(script);
     
     return () => {
       clearTimeout(timer);
-      document.body.removeChild(script);
+      // Remove script from head
+      if (script.parentNode === document.head) {
+        document.head.removeChild(script);
+      }
+      // Clean up any Square elements that might have been created
+      const squareElements = document.querySelectorAll('[class*="square-"]');
+      squareElements.forEach(element => {
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
     };
   }, [toast]);
 
@@ -85,11 +105,15 @@ const Appointments = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="min-h-[600px]">
-                      {/* Square Appointments Widget */}
-                      <div id="square-appointments-js"></div>
+                    <div className="min-h-[600px] relative">
+                      <iframe 
+                        src="https://square.site/appointments/buyer/widget/f2jmuw61r6hxxb/LGA2NRWSCSKXR"
+                        style={{ width: '100%', height: '600px', border: 'none' }}
+                        title="Square Appointments Scheduling"
+                        allow="payment"
+                      />
                       
-                      {/* Fallback in case script doesn't load */}
+                      {/* Fallback in case iframe doesn't load */}
                       <noscript>
                         <div className="p-8 text-center">
                           <p className="text-gray-600 dark:text-gray-400 mb-4">
