@@ -45,7 +45,7 @@ const Contact = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 text-pretty">
+              <p className="text-lg text-white mb-8 text-pretty">
                 Have questions or want to learn more about our services? Fill out
                 the form below and we'll get back to you as soon as possible.
               </p>
@@ -69,7 +69,7 @@ const Contact = () => {
                   
                   <div className="w-full overflow-hidden" style={{ minHeight: "500px" }}>
                     <iframe 
-                      src="https://docs.google.com/forms/d/e/1FAIpQLSeIYE9qbS0N7ni-7Lf1WL50p7gxSvwCXrUzG30HvmFpy0itEQ/viewform?embedded=true" 
+                      src="https://docs.google.com/forms/d/e/1FAIpQLSeIYE9qbS0N7ni-7Lf1WL50p7gxSvwCXrUzG30HvmFpy0itEQ/viewform?embedded=true&usp=pp_url" 
                       title="Contact Form"
                       width="100%" 
                       height="1000" 
@@ -78,6 +78,9 @@ const Contact = () => {
                       marginWidth={0}
                       onLoad={() => setIframeLoaded(true)}
                       className="w-full -mt-8 -ml-2"
+                      sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
                     >
                       Loading…
                     </iframe>
@@ -98,26 +101,22 @@ const Contact = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-medium mb-1">Email</h4>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        info@studiomanagement.com
+                      <p className="text-white">
+                        info@801familystudios.com
                       </p>
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Location</h4>
-                      <p className="text-gray-600 dark:text-gray-400">
+                      <p className="text-white">
                         1836 E Tramway Dr
                         <br />
                         Sandy, UT
                       </p>
                     </div>
                     <div>
-                      <h4 className="font-medium mb-1">Hours</h4>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Monday - Friday: 9am - 6pm PST
-                        <br />
-                        Saturday: By appointment
-                        <br />
-                        Sunday: Closed
+                      <h4 className="font-medium mb-1">Phone</h4>
+                      <p className="text-white">
+                        8019186782
                       </p>
                     </div>
                   </div>

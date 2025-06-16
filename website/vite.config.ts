@@ -5,11 +5,12 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'development' ? 'http://localhost:5173/' : './',
+  base: '/',
   server: {
     host: "::",
-    port: 5173,
+    port: 3000,
     strictPort: true,
+    open: true,
   },
   preview: {
     port: 5173,
@@ -24,5 +25,19 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
   },
 }));

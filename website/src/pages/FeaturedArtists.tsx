@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Music } from "lucide-react";
+import tribeImage from "@/assets/Tribeof1.jpg";
+import swaggerImage from "@/assets/swagger1.jpg";
+import loomImage from "@/assets/loom1.png";
+import fngImage from "@/assets/fng2.jpg";
+import dubnectarImage from "@/assets/dub-nectar-band.jpg";
 
 const FeaturedArtists = () => {
   const fadeIn = {
@@ -19,69 +24,57 @@ const FeaturedArtists = () => {
       name: "Funk & Gonzo",
       genre: "Rock/Ska/Funk",
       description: "A high-energy fusion of rock power, ska rhythms, and funky bass lines. Their explosive performances blend punchy horns with groovy rhythms, creating an irresistible sound that keeps the crowd dancing.",
-      image: "https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
+      image: fngImage,
       social: {
-        instagram: "https://instagram.com/funkandgonzo",
-        facebook: "https://facebook.com/funkandgonzo",
-        youtube: "https://youtube.com/@funkandgonzo",
-        music: "https://open.spotify.com/artist/funkandgonzo"
+        instagram: "https://www.instagram.com/funkandgonzo/",
+        facebook: "https://www.facebook.com/funkandgonzo",
+        youtube: "https://www.youtube.com/@funkandgonzo",
+        music: "https://open.spotify.com/artist/61KvymSakWx4OhkTCNrSwq"
       }
     },
     {
       name: "Dubnectar",
       genre: "Reggae/Funk",
       description: "Blending smooth reggae rhythms with infectious funk grooves, Dubnectar creates an uplifting musical experience that gets everyone moving. Their vibrant performances combine island vibes with soulful funk elements.",
-      image: "https://placecats.com/1080/720",
+      image: dubnectarImage,
       social: {
-        instagram: "https://instagram.com/dubnectar",
-        facebook: "https://facebook.com/dubnectar",
-        youtube: "https://youtube.com/@dubnectar",
-        music: "https://open.spotify.com/artist/dubnectar"
+        instagram: "https://www.instagram.com/dubnectar/",
+        facebook: "https://www.facebook.com/dubnectar",
+        youtube: "https://www.youtube.com/@dubnectar",
+        music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO"
       }
     },
     {
       name: "Tribe of I",
       genre: "Reggae/Rock",
       description: "Blending reggae rhythms with rock energy for a unique island sound. Their music carries messages of unity, love, and positive vibrations through powerful performances.",
-      image: "https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
+      image: tribeImage,
       social: {
-        instagram: "https://instagram.com/tribeofi",
-        facebook: "https://facebook.com/tribeofi",
-        youtube: "https://youtube.com/@tribeofi",
-        music: "https://open.spotify.com/artist/tribeofi"
+        instagram: "https://www.instagram.com/tribeofi/",
+        facebook: "https://www.facebook.com/tribeofi",
+        youtube: "https://www.youtube.com/@tribeofi",
+        music: "https://open.spotify.com/artist/5Tar1xOfXyy1tPlUYIAzwt"
       }
     },
     {
       name: "Swagger",
       genre: "Celtic Rock",
       description: "A dynamic Celtic rock band that fuses traditional Irish melodies with powerful rock elements. Their energetic performances feature driving rhythms and a soaring fiddle that creates an unforgettable Celtic rock experience.",
-      image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
+      image: swaggerImage,
       social: {
-        instagram: "https://instagram.com/swagger",
-        facebook: "https://facebook.com/swagger",
-        youtube: "https://youtube.com/@swagger",
-        music: "https://open.spotify.com/artist/swagger"
+        instagram: "https://www.instagram.com/swaggertheband/",
+        facebook: "https://www.facebook.com/swaggertheband",
+        youtube: "https://www.youtube.com/@swaggertheband",
+        music: "https://open.spotify.com/artist/7tPoZvl7OYT2rQDdzCQpfR"
       }
-    },
-    {
-      name: "Dublime",
-      genre: "Reggae/Rock",
-      description: "A fresh take on reggae rock that combines smooth island grooves with powerful guitar riffs. Their music creates a laid-back atmosphere while keeping the energy high with catchy hooks and dynamic performances.",
-      image: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
-      social: {
-        instagram: "https://instagram.com/dublime",
-        facebook: "https://facebook.com/dublime",
-        youtube: "https://youtube.com/@dublime",
-        music: "https://open.spotify.com/artist/dublime"
-      }
-    },
+    }
   ];
 
   return (
     <AnimatedPageTransition>
-      <div className="page-container">
-        <div className="page-content">
-          <div className="container-inner">
+      <div className="page-container min-h-screen overflow-y-auto" style={{ backgroundColor: '#7851A9' }}>
+        <div className="page-content py-8">
+          <div className="container-inner max-w-7xl mx-auto px-4">
             <motion.div
               className="max-w-3xl mx-auto text-center mb-12"
               variants={fadeIn}
@@ -90,16 +83,18 @@ const FeaturedArtists = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance">
-                Featured Artists
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance text-white">
+                Featured Local Artists
               </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 text-pretty">
-                Discover the talented artists who have worked with 801 Family Studios.
-                Each brings their unique style and energy to create amazing music.
+              <p className="text-lg text-gray-200 mb-4 text-pretty">
+                Discover local talent that drive the Utah music scene. Each artist brings their unique style and energy to create amazing music.
+              </p>
+              <p className="text-lg text-gray-200 mb-8 text-pretty">
+                To learn more or to book, please click on any of their links.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 justify-center justify-items-center">
               {artists.map((artist, index) => (
                 <motion.div
                   key={artist.name}
@@ -110,11 +105,12 @@ const FeaturedArtists = () => {
                   custom={index * 0.2 + 0.4}
                   className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
                 >
-                  <div className="aspect-[16/9] overflow-hidden">
+                  <div className="aspect-[3/2] overflow-hidden relative">
                     <img
                       src={artist.image}
                       alt={artist.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      style={{ pointerEvents: 'auto' }}
                     />
                   </div>
                   <div className="p-6">

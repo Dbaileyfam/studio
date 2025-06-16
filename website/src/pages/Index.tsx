@@ -2,7 +2,7 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "@/assets/801-family-studios-logo.png";
+import logo from "@/assets/locologo.png";
 
 const Index = () => {
   const fadeIn = {
@@ -39,7 +39,7 @@ const Index = () => {
                 >
                 </motion.div>
                 <motion.div
-                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-4"
+                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-4 bg-[#3f51b5] rounded-2xl flex items-center justify-center"
                   variants={fadeIn}
                   initial="initial"
                   whileInView="animate"
@@ -55,7 +55,7 @@ const Index = () => {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance">
                   Your home for all your music management needs
                 </h1>
-                <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto text-pretty">
+                <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto text-pretty">
                   Professional music management services to help you organize, produce, and succeed in your musical journey.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -110,12 +110,12 @@ const Index = () => {
                   {
                     title: "Recording Services",
                     description:
-                      "Professional studio recording with state-of-the-art equipment and experienced sound engineers to bring your music to life.",
+                      "Affordable and professional studio recording with dedicated sound engineers to help bring your music to life.",
                   },
                   {
                     title: "Booking Services",
                     description:
-                      "Connect with top venues and events across the region. We handle the negotiations and logistics to get your music on the right stages.",
+                      "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
                   },
                   {
                     title: "Marketing Services",
@@ -141,19 +141,6 @@ const Index = () => {
                   </motion.div>
                 ))}
               </div>
-
-              <motion.div
-                className="mt-16 text-center"
-                variants={fadeIn}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                custom={2}
-              >
-                <Button asChild size="lg" className="rounded-full">
-                  <Link to="/appointments">Book a Session</Link>
-                </Button>
-              </motion.div>
             </section>
           </div>
         </div>
