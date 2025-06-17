@@ -100,8 +100,8 @@ const Navbar = () => {
                   to={link.path}
                   className={`text-lg font-medium transition-colors duration-300 ${
                     location.pathname === link.path
-                      ? "text-black dark:text-white"
-                      : "text-white"
+                      ? "text-[#3f51b5] dark:text-blue-400 font-semibold"
+                      : "text-gray-700 dark:text-gray-300 hover:text-[#3f51b5] dark:hover:text-blue-400"
                   }`}
                 >
                   {link.name}
