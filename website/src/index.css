@@ -161,7 +161,7 @@
   background: rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(1, 0, 0, 0.1);
 }
 
 /* Smooth scrolling */
