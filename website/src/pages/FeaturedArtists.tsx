@@ -8,6 +8,7 @@ import swaggerImage from "@/assets/swagger1.jpg";
 import loomImage from "@/assets/loom1.png";
 import fngImage from "@/assets/fng2.jpg";
 import dubnectarImage from "@/assets/dub-nectar-band.jpg";
+import brennanWestImage from "@/assets/801-family-studios-logo.jpg";
 
 const FeaturedArtists = () => {
   const fadeIn = {
@@ -72,7 +73,7 @@ const FeaturedArtists = () => {
       name: "Brennan West Band",
       genre: "Country/Rock",
       description: "A dynamic country rock band that blends traditional country storytelling with modern rock energy. Their powerful performances feature heartfelt lyrics and driving rhythms that create an authentic American music experience.",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: brennanWestImage,
       social: {
         instagram: "https://www.instagram.com/brennanwestband/",
         facebook: "https://www.facebook.com/brennanwestband",
