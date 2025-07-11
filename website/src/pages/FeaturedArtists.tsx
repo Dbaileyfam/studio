@@ -8,7 +8,7 @@ import swaggerImage from "@/assets/swagger1.jpg";
 import loomImage from "@/assets/loom1.png";
 import fngImage from "@/assets/fng2.jpg";
 import dubnectarImage from "@/assets/dub-nectar-band.jpg";
-import brennanWestImage from "@/assets/801-family-studios-logo.jpg";
+import brennanWestImage from "@/assets/Brennan-west-band.jpg";
 
 const FeaturedArtists = () => {
   const fadeIn = {
