@@ -9,6 +9,10 @@ import loomImage from "@/assets/loom1.png";
 import fngImage from "@/assets/fng2.jpg";
 import dubnectarImage from "@/assets/dub-nectar-band.jpg";
 import brennanWestImage from "@/assets/Brennan-west-band.jpg";
+import c1trusImage from "@/assets/C1trus.JPG";
+import alleyKatsImage from "@/assets/TheAlleyKats.jpeg";
+import fearAndLoathingImage from "@/assets/Fearandloathing.JPEG";
+
 
 const FeaturedArtists = () => {
   const fadeIn = {
@@ -72,7 +76,7 @@ const FeaturedArtists = () => {
     {
       name: "Brennan West Band",
       genre: "Country/Rock",
-      description: "A dynamic country rock band that blends traditional country storytelling with modern rock energy. Their powerful performances feature heartfelt lyrics and driving rhythms that create an authentic American music experience.",
+      description: "A dynamic country rock band that blends traditional country storytelling with modern rock energy. Their powerful performances feature heartfelt lyrics, driving rhythms, and Brennan's exceptional brass playing. Known for delivering flawless covers and original compositions that showcase their musical versatility and authentic American sound.",
       image: brennanWestImage,
       social: {
         instagram: "https://www.instagram.com/brennanwestband/",
@@ -80,8 +84,47 @@ const FeaturedArtists = () => {
         youtube: "https://www.youtube.com/@brennanwestband",
         music: "https://open.spotify.com/artist/brennanwestband"
       }
+    },
+    {
+      name: "C1trus",
+      genre: "Electronic",
+      description: "A dynamic electronic band that blends cutting-edge electronic production with powerful vocal performances. Their innovative sound combines pulsating beats, atmospheric synths, and compelling vocals to create an immersive electronic music experience that pushes the boundaries of the genre.",
+      image: c1trusImage,
+      social: {
+        instagram: "https://www.instagram.com/c1trus_official_/",
+        facebook: "https://facebook.com/benjamin.michael.wells",
+        youtube: "",
+        music: "https://open.spotify.com/track/6vtu4sWylmea1lrgOIpTd3?si=d1a798f19f0d4520"
+      }
+    },
+    {
+      name: "The Alley Kats",
+      genre: "Reggae",
+      description: "Multi-talented Wyoming Reggae band. The Alley Kats takes pride in being genuine to others and are a class act. Spreading the message of love and positive vibrations is an everyday mission. Front man Austin Taylor views this unique sound as a form of medicine for the soul.",
+      image: alleyKatsImage,
+      social: {
+        instagram: "https://www.instagram.com/the_alley_kats/",
+        facebook: "https://www.facebook.com/groups/alleykatsofficial/",
+        youtube: "https://www.youtube.com/channel/UC2PH9AtEi2_BSlQSkaKYPcQ",
+        music: "https://open.spotify.com/artist/5zu4Hxw96i76KQ6ffhFaCj?si=IiuWvU1EQkKCcm6Nh7QbpA"
+      }
+    },
+    {
+      name: "Fear and Loathing",
+      genre: "Alternative Rock",
+      description: "Salt Lake City three-piece creating punk, rock, reggae music psychedelically fused together for your listening pleasure. The band's self-produced 2018 debut EP set the stage for their sound, followed by their latest release, Two Tone - produced at Aggressive Audio. Fear and Loathing has brought their music to stages across SLC, playing venues like Kilby Court, Soundwell, Ice House, and the Hog Wallow Pub. Eventually taking their sound to Southern Utah and even as far as Iowa for Farm Fresh Reggae Festival!",
+      image: fearAndLoathingImage,
+      social: {
+        instagram: "https://www.instagram.com/fearandloathing_slc/",
+        facebook: "https://www.facebook.com/profile.php?id=100046384759113",
+        youtube: "https://youtube.com/@fearloathingslc5577?si=tD6B7DkETJRhlzPf",
+        music: "https://open.spotify.com/artist/36q7AdiQMhhLhnZJsxuYMT?si=x4t3uCi3QbCm0rSkWWx7_A"
+      }
     }
   ];
+
+  console.log("FeaturedArtists component rendering...");
+  console.log("Artists data:", artists);
 
   return (
     <AnimatedPageTransition>
@@ -100,9 +143,6 @@ const FeaturedArtists = () => {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance text-white">
                 Featured Artists
               </h1>
-
-
-
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 justify-center justify-items-center">
@@ -116,7 +156,7 @@ const FeaturedArtists = () => {
                   custom={index * 0.2 + 0.4}
                   className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
                 >
-                  <div className="aspect-[3/2] overflow-hidden relative">
+                  <div className="aspect-[3/2] overflow-hidden relative bg-black">
                     <img
                       src={artist.image}
                       alt={artist.name}
@@ -131,42 +171,50 @@ const FeaturedArtists = () => {
                       {artist.description}
                     </p>
                     <div className="flex items-center justify-center gap-4">
-                      <a
-                        href={artist.social.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-pink-600 dark:text-gray-400 dark:hover:text-pink-400 transition-colors"
-                        aria-label={`${artist.name} on Instagram`}
-                      >
-                        <Instagram className="h-5 w-5" />
-                      </a>
-                      <a
-                        href={artist.social.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                        aria-label={`${artist.name} on Facebook`}
-                      >
-                        <Facebook className="h-5 w-5" />
-                      </a>
-                      <a
-                        href={artist.social.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
-                        aria-label={`${artist.name} on YouTube`}
-                      >
-                        <Youtube className="h-5 w-5" />
-                      </a>
-                      <a
-                        href={artist.social.music}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
-                        aria-label={`${artist.name} on Spotify`}
-                      >
-                        <Music className="h-5 w-5" />
-                      </a>
+                      {artist.social.instagram && (
+                        <a
+                          href={artist.social.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-pink-600 dark:text-gray-400 dark:hover:text-pink-400 transition-colors"
+                          aria-label={`${artist.name} on Instagram`}
+                        >
+                          <Instagram className="h-5 w-5" />
+                        </a>
+                      )}
+                      {artist.social.facebook && (
+                        <a
+                          href={artist.social.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
+                          aria-label={`${artist.name} on Facebook`}
+                        >
+                          <Facebook className="h-5 w-5" />
+                        </a>
+                      )}
+                      {artist.social.youtube && (
+                        <a
+                          href={artist.social.youtube}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
+                          aria-label={`${artist.name} on YouTube`}
+                        >
+                          <Youtube className="h-5 w-5" />
+                        </a>
+                      )}
+                      {artist.social.music && (
+                        <a
+                          href={artist.social.music}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
+                          aria-label={`${artist.name} on Spotify`}
+                        >
+                          <Music className="h-5 w-5" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>

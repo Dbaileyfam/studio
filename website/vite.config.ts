@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     strictPort: true,
   },
+  assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.JPG', '**/*.JPEG', '**/*.png', '**/*.PNG'],
   plugins: [
     react(),
     mode === 'development' &&
