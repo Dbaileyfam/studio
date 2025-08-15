@@ -11,6 +11,7 @@ import dubnectarImage from "@/assets/dub-nectar-band.jpg";
 import brennanWestImage from "@/assets/Brennan-west-band.jpg";
 
 const FeaturedArtists = () => {
+  console.log("FeaturedArtists component is rendering!");
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: (custom: number) => ({
@@ -86,6 +87,9 @@ const FeaturedArtists = () => {
   return (
     <AnimatedPageTransition>
       <div className="page-container min-h-screen overflow-y-auto" style={{ backgroundColor: '#7851A9' }}>
+        <div style={{ backgroundColor: 'red', color: 'white', padding: '20px', textAlign: 'center', fontSize: '24px', fontWeight: 'bold' }}>
+          🚨 TEST ELEMENT - IF YOU SEE THIS, THE PAGE IS WORKING! 🚨
+        </div>
         <div className="page-content py-8">
           <div className="container-inner max-w-7xl mx-auto px-4">
             <motion.div
@@ -97,7 +101,7 @@ const FeaturedArtists = () => {
               custom={0}
             >
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance text-white">
-                Featured Local Artists
+                Featured Local Artists - TEST VERSION
               </h1>
               <p className="text-lg text-gray-200 mb-4 text-pretty">
                 Discover local talent that drive the Utah music scene. Each artist brings their unique style and energy to create amazing music.
@@ -105,6 +109,23 @@ const FeaturedArtists = () => {
               <p className="text-lg text-gray-200 mb-8 text-pretty">
                 To learn more or to book, please click on any of their links.
               </p>
+              <p className="text-lg text-red-400 mb-4 text-center font-bold">
+                *** DEBUG: This text should be visible ***
+              </p>
+              <div className="text-center mb-8">
+                <Link 
+                  to="/contact" 
+                  className="inline-flex items-center px-6 py-3 bg-white text-purple-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl"
+                >
+                  To book these bands, click here
+                </Link>
+              </div>
+              {/* Debug: Button should be visible above */}
+              <div className="text-center mb-4">
+                <button className="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg">
+                  TEST BUTTON - Can you see this?
+                </button>
+              </div>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 justify-center justify-items-center">
