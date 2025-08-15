@@ -101,14 +101,7 @@ const FeaturedArtists = () => {
                 Featured Artists
               </h1>
 
-              <div className="text-center mb-8">
-                <Link 
-                  to="/contact" 
-                  className="inline-flex items-center px-6 py-3 bg-white text-purple-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl"
-                >
-                  To book these bands, click here
-                </Link>
-              </div>
+
 
             </motion.div>
 
@@ -178,6 +171,16 @@ const FeaturedArtists = () => {
                   </div>
                 </motion.div>
               ))}
+            </div>
+            
+            {/* Booking Button at Bottom */}
+            <div className="text-center mt-16 mb-8">
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center px-8 py-4 bg-white text-purple-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl text-lg"
+              >
+                Book an Artist
+              </Link>
             </div>
           </div>
         </div>
