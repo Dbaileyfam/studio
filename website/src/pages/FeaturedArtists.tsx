@@ -98,14 +98,8 @@ const FeaturedArtists = () => {
               custom={0}
             >
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance text-white">
-                Featured Local Artists
+                Featured Artists
               </h1>
-              <p className="text-lg text-gray-200 mb-4 text-pretty">
-                Discover local talent that drive the Utah music scene. Each artist brings their unique style and energy to create amazing music.
-              </p>
-              <p className="text-lg text-gray-200 mb-8 text-pretty">
-                To learn more or to book, please click on any of their links.
-              </p>
 
               <div className="text-center mb-8">
                 <Link 
