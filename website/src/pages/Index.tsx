@@ -53,7 +53,7 @@ const Index = () => {
                   />
                 </motion.div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance">
-                  Your home for all your music management needs - TEST VERSION
+                  Your home for all your music management needs
                 </h1>
                 <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto text-pretty">
                   Professional music management services to help you organize, produce, and succeed in your musical journey.
