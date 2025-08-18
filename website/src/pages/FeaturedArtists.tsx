@@ -17,6 +17,8 @@ import stealThisBandImage from "@/assets/Stealthisband.jpeg";
 
 
 const FeaturedArtists = () => {
+  console.log('FeaturedArtists component rendered!');
+  
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: (custom: number) => ({

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import logo from "@/assets/locologo.png";
 
 const Index = () => {
+  console.log('Index component rendered!');
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: (custom: number) => ({
