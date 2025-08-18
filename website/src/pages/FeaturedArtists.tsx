@@ -154,107 +154,150 @@ const FeaturedArtists = () => {
 
   return (
     <AnimatedPageTransition>
-      <div className="page-container min-h-screen overflow-y-auto" style={{ backgroundColor: '#7851A9' }}>
-
-        <div className="page-content py-8">
-          <div className="container-inner max-w-7xl mx-auto px-4">
+      <div className="page-container">
+        <div className="page-content">
+          <div className="container-inner">
+            {/* Header Section */}
             <motion.div
-              className="max-w-3xl mx-auto text-center mb-12"
+              className="text-center mb-20"
               variants={fadeIn}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
               custom={0}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 text-balance text-white">
-                Featured Artists
+              <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full border border-white/20 backdrop-blur-sm">
+                Local Talent
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                Featured Local Artists
               </h1>
+              <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed mb-8">
+                Discover local talent that drives the Utah music scene. Each artist brings their unique style and energy to create amazing music.
+              </p>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                To learn more or to book, please click on any of their links.
+              </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 justify-center justify-items-center">
+            {/* Artists Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               {artists.map((artist, index) => (
                 <motion.div
                   key={artist.name}
+                  className="group relative"
                   variants={fadeIn}
                   initial="initial"
                   whileInView="animate"
                   viewport={{ once: true }}
-                  custom={index * 0.2 + 0.4}
-                  className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
+                  custom={index}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="aspect-[3/2] overflow-hidden relative bg-black">
-                    <img
-                      src={artist.image}
-                      alt={artist.name}
-                      className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      style={{ pointerEvents: 'auto' }}
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{artist.name}</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{artist.genre}</p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6 text-pretty">
-                      {artist.description}
-                    </p>
-                    <div className="flex items-center justify-center gap-4">
-                      {artist.social.instagram && (
-                        <a
-                          href={artist.social.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-600 hover:text-pink-600 dark:text-gray-400 dark:hover:text-pink-400 transition-colors"
-                          aria-label={`${artist.name} on Instagram`}
-                        >
-                          <Instagram className="h-5 w-5" />
-                        </a>
-                      )}
-                      {artist.social.facebook && (
-                        <a
-                          href={artist.social.facebook}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                          aria-label={`${artist.name} on Facebook`}
-                        >
-                          <Facebook className="h-5 w-5" />
-                        </a>
-                      )}
-                      {artist.social.youtube && (
-                        <a
-                          href={artist.social.youtube}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-600 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
-                          aria-label={`${artist.name} on YouTube`}
-                        >
-                          <Youtube className="h-5 w-5" />
-                        </a>
-                      )}
-                      {artist.social.music && (
-                        <a
-                          href={artist.social.music}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-600 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
-                          aria-label={`${artist.name} on Spotify`}
-                        >
-                          <Music className="h-5 w-5" />
-                        </a>
-                      )}
+                  {/* Card Background Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Artist Card */}
+                  <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 h-full flex flex-col">
+                    {/* Image Container */}
+                    <div className="relative aspect-[3/2] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
+                      <img
+                        src={artist.image}
+                        alt={`${artist.name} performing`}
+                        className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-110"
+                        style={{ pointerEvents: 'auto' }}
+                        onError={(e) => {
+                          console.log('Image failed to load:', artist.name);
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                      
+                      {/* Image Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Genre Badge */}
+                      <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium border border-white/30">
+                        {artist.genre}
+                      </div>
                     </div>
+
+                    {/* Content */}
+                    <div className="p-6 flex-grow flex flex-col">
+                      {/* Artist Name */}
+                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300">
+                        {artist.name}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-gray-200 leading-relaxed mb-6 flex-grow group-hover:text-gray-100 transition-colors duration-300">
+                        {artist.description}
+                      </p>
+
+                      {/* Social Media Links */}
+                      <div className="flex flex-wrap gap-3 justify-center">
+                        {artist.social.instagram && (
+                          <motion.a
+                            href={artist.social.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Instagram size={16} />
+                            Instagram
+                          </motion.a>
+                        )}
+                        
+                        {artist.social.facebook && (
+                          <motion.a
+                            href={artist.social.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Facebook size={16} />
+                            Facebook
+                          </motion.a>
+                        )}
+                        
+                        {artist.social.youtube && (
+                          <motion.a
+                            href={artist.social.youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Youtube size={16} />
+                            YouTube
+                          </motion.a>
+                        )}
+                        
+                        {artist.social.music && (
+                          <motion.a
+                            href={artist.social.music}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Music size={16} />
+                            Music
+                          </motion.a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Hover Effect Line */}
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
                   </div>
                 </motion.div>
               ))}
-            </div>
-            
-            {/* Booking Button at Bottom */}
-            <div className="text-center mt-16 mb-8">
-              <Link 
-                to="/contact" 
-                className="inline-flex items-center px-8 py-4 bg-white text-purple-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl text-lg"
-              >
-                Book an Artist
-              </Link>
             </div>
           </div>
         </div>

@@ -20,9 +20,9 @@ const Index = () => {
         <div className="page-content">
           <div className="container-inner flex flex-col items-center">
             {/* Hero Section */}
-            <section className="w-full pt-0 pb-2 md:pb-4 flex flex-col items-center">
+            <section className="w-full pt-0 pb-2 md:pb-4 flex flex-col items-center relative">
               <motion.div
-                className="text-center max-w-3xl mx-auto px-4"
+                className="text-center max-w-3xl mx-auto px-4 relative z-10"
                 variants={fadeIn}
                 initial="initial"
                 whileInView="animate"
@@ -39,105 +39,176 @@ const Index = () => {
                 >
                 </motion.div>
                 <motion.div
-                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-4 bg-[#3f51b5] rounded-2xl flex items-center justify-center"
+                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8 bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] rounded-3xl flex items-center justify-center shadow-2xl border border-white/10 backdrop-blur-sm"
                   variants={fadeIn}
                   initial="initial"
                   whileInView="animate"
                   viewport={{ once: true }}
                   custom={0.2}
+                  whileHover={{ 
+                    scale: 1.02,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   <img
                     src={logo}
                     alt="801 Family Studios Logo"
-                    className="w-full h-full object-contain"
+                    className="w-4/5 h-4/5 object-contain drop-shadow-lg"
                   />
                 </motion.div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance">
+                <motion.h1 
+                  className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent"
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  custom={0.3}
+                >
                   Your home for all your music management needs
-                </h1>
-                <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto text-pretty">
+                </motion.h1>
+                <motion.p 
+                  className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto text-pretty leading-relaxed"
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  custom={0.4}
+                >
                   Professional music management services to help you organize, produce, and succeed in your musical journey.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" variant="outline" className="rounded-full">
+                </motion.p>
+                <motion.div 
+                  className="flex flex-col sm:flex-row gap-6 justify-center"
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  custom={0.5}
+                >
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  >
                     <Link to="/featured-artists">Featured Artists</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="rounded-full">
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  >
                     <Link to="/contact">Contact Us</Link>
                   </Button>
-                </div>
+                </motion.div>
               </motion.div>
 
               <motion.div
-                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-2xl"
+                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-2xl relative group"
                 variants={fadeIn}
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
                 custom={1}
               >
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 group-hover:from-black/60 transition-all duration-500"></div>
+                
                 <img
                   src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                   alt="Live Band Performance"
-                  className="w-full h-full object-cover transition-image"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                   loading="lazy"
                   width={1920}
                   height={1080}
                 />
+                
+                {/* Floating Content Overlay */}
+                <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">Live Music Experience</h3>
+                  <p className="text-lg opacity-90 drop-shadow-lg">Capturing the energy and passion of live performances</p>
+                </div>
               </motion.div>
             </section>
 
             {/* Services Section */}
             <section className="w-full py-24">
               <motion.div
-                className="text-center mb-16"
+                className="text-center mb-20"
                 variants={fadeIn}
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
                 custom={0}
               >
-                <span className="inline-block py-2 px-6 mb-4 text-lg font-bold bg-gray-100 dark:bg-gray-800 rounded-full text-gray-800 dark:text-gray-200">
+                <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full border border-white/20 backdrop-blur-sm">
                   Our Services
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-balance">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-white mb-6">
                   Recording and management services in one convenient location
                 </h2>
+                <p className="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                  Comprehensive music services designed to elevate your sound and career
+                </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                 {[
                   {
                     title: "Recording Services",
-                    description:
-                      "Affordable and professional studio recording with dedicated sound engineers to help bring your music to life.",
+                    description: "Affordable and professional studio recording with dedicated sound engineers to help bring your music to life.",
+                    icon: "🎙️",
+                    gradient: "from-blue-500/20 to-purple-500/20",
+                    borderColor: "border-blue-400/30"
                   },
                   {
                     title: "Booking Services",
-                    description:
-                      "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
+                    description: "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
+                    icon: "🎭",
+                    gradient: "from-green-500/20 to-teal-500/20",
+                    borderColor: "border-green-400/30"
                   },
                   {
-                    title: "Marketing Services",
-                    description:
-                      "Build your brand and grow your audience with strategic social media management, content creation, and digital marketing campaigns.",
-                  },
+                    title: "Artist Management",
+                    description: "Professional guidance to help you navigate the music industry, build your brand, and achieve your musical goals.",
+                    icon: "🎯",
+                    gradient: "from-orange-500/20 to-red-500/20",
+                    borderColor: "border-orange-400/30"
+                  }
                 ].map((service, index) => (
                   <motion.div
-                    key={index}
+                    key={service.title}
+                    className="group relative"
                     variants={fadeIn}
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
-                    custom={index * 0.2 + 1}
-                    className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-md transition-all group"
+                    custom={index * 0.2}
+                    whileHover={{ y: -8 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <h3 className="text-xl font-semibold mb-4 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-pretty">
-                      {service.description}
-                    </p>
+                    {/* Card Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                    
+                    {/* Card Content */}
+                    <div className={`relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 transition-all duration-500 h-full flex flex-col`}>
+                      {/* Icon */}
+                      <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
+                        {service.icon}
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-gray-100 transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
+                        {service.description}
+                      </p>
+                      
+                      {/* Hover Effect Line */}
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
