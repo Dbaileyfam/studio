@@ -151,7 +151,7 @@ const Index = () => {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12">
                 {[
                   {
                     title: "Recording Services",
@@ -170,9 +170,16 @@ const Index = () => {
                   {
                     title: "Artist Management",
                     description: "Professional guidance to help you navigate the music industry, build your brand, and achieve your musical goals.",
-                    icon: "🎯",
+                    icon: "🎵",
                     gradient: "from-orange-500/20 to-red-500/20",
                     borderColor: "border-orange-400/30"
+                  },
+                  {
+                    title: "Advanced Drum Lessons",
+                    description: "Take your drumming to the next level with personalized instruction from experienced professionals. Learn advanced techniques, timing, and musical theory.",
+                    icon: "🥁",
+                    gradient: "from-indigo-500/20 to-purple-500/20",
+                    borderColor: "border-indigo-400/30"
                   }
                 ].map((service, index) => (
                   <motion.div
