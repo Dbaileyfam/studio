@@ -163,7 +163,7 @@ const Index = () => {
                   {
                     title: "Booking Services",
                     description: "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
-                    icon: "🥁",
+                    icon: "🎸",
                     gradient: "from-green-500/20 to-teal-500/20",
                     borderColor: "border-green-400/30"
                   },
