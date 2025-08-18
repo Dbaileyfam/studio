@@ -3,22 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>801 Family Studios</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages with BrowserRouter
-      // This script handles client-side routing for React Router
-      (function(){
-        let redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect != location.href) {
-          history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
   </head>
   <body>
     <script>
-      // Redirect to index.html for client-side routing
-      window.location.href = '/index.html';
+      // Simple redirect to root for client-side routing
+      // This prevents redirect loops and handles all routes properly
+      const path = window.location.pathname;
+      if (path !== '/' && path !== '/index.html') {
+        window.location.href = '/';
+      }
     </script>
     Redirecting...
   </body>
