@@ -56,10 +56,10 @@ const Footer = () => {
                 info@801familystudios.com
               </a>
               <a
-                href="tel:+18019185690"
+                href="tel:+18019186782"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
-                (801) 918-5690
+                (801) 918-6782
               </a>
             </div>
           </div>

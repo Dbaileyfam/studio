@@ -12,6 +12,8 @@ import brennanWestImage from "@/assets/Brennan-west-band.jpg";
 import c1trusImage from "@/assets/C1trus.JPG";
 import alleyKatsImage from "@/assets/TheAlleyKats.jpeg";
 import fearAndLoathingImage from "@/assets/Fearandloathing.JPEG";
+import benBrintonImage from "@/assets/BenBrinton.PNG";
+import stealThisBandImage from "@/assets/Stealthisband.jpeg";
 
 
 const FeaturedArtists = () => {
@@ -119,6 +121,30 @@ const FeaturedArtists = () => {
         facebook: "https://www.facebook.com/profile.php?id=100046384759113",
         youtube: "https://youtube.com/@fearloathingslc5577?si=tD6B7DkETJRhlzPf",
         music: "https://open.spotify.com/artist/36q7AdiQMhhLhnZJsxuYMT?si=x4t3uCi3QbCm0rSkWWx7_A"
+      }
+    },
+    {
+      name: "Ben Brinton",
+      genre: "Acoustic/Singer-Songwriter",
+      description: "Ben delivers a rich and captivating musical experience, blending a curated mix of beloved classics and rare gems through the shimmer of his 12-string acoustic guitar and masterful use of a looper pedal. With a velvety voice that draws listeners in, his original songs unfold like intimate stories—equally at home beside a crackling campfire, a chic cocktail lounge, or a private celebration under the stars. As a seasoned songwriter and producer, Ben crafts original music with depth and soul, bringing a personal touch that elevates each performance beyond the expected. Backed by over 20 years of live performance, Ben ensures a seamless, professional setup with high-quality sound tailored to the space. His compact, self-contained rig fits elegantly into any environment, offering a refined, flexible, and tasteful presence for discerning hosts and audiences alike.",
+      image: benBrintonImage,
+      social: {
+        instagram: "https://www.instagram.com/benbrintonmusic/",
+        facebook: "https://www.facebook.com/btbrinton",
+        youtube: "https://www.youtube.com/@ddamionmusic1921",
+        music: "https://open.spotify.com/album/4EkkVXuongVMH1mtwYCKSL?si=Ddy9m7YiSSGgmU2FkRJwwA"
+      }
+    },
+    {
+      name: "Steal This Band",
+      genre: "Nu Metal Covers",
+      description: "A powerhouse nu metal cover band that brings the raw energy and aggressive sound of the late 90s and early 2000s back to life. With crushing guitar riffs, thunderous bass lines, and intense vocals, they deliver authentic renditions of nu metal classics from bands like Korn, Limp Bizkit, Linkin Park, and System of a Down. Their high-octane performances capture the essence of the nu metal era, complete with the signature blend of heavy metal, hip-hop, and industrial elements that defined the genre. Perfect for venues looking to recreate that explosive nu metal atmosphere and give audiences an authentic throwback experience.",
+      image: stealThisBandImage,
+      social: {
+        instagram: "https://www.instagram.com/reel/DMyZuYpuef2/?utm_source=ig_web_copy_link&igsh=dGhlZGhyYnhhY242",
+        facebook: "",
+        youtube: "",
+        music: ""
       }
     }
   ];
