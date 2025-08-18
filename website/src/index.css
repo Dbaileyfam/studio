@@ -102,13 +102,15 @@
   }
 
   .text-balance {
-    text-wrap: balance;
+    /* text-wrap: balance; */
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   .text-pretty {
-    text-wrap: pretty;
+    /* text-wrap: pretty; */
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 }
 
