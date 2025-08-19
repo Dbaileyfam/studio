@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "@/assets/locologo.png";
+import studioImage from "@/assets/studio2.jpg";
 
 const Index = () => {
 
@@ -117,7 +118,7 @@ const Index = () => {
                 {/* Studio Image */}
                 <div className="relative w-full h-full rounded-3xl overflow-hidden">
                   <img
-                    src="/studio2.jpg"
+                    src={studioImage}
                     alt="801 Family Studios Recording Studio"
                     className="w-full h-full object-cover"
                   />
