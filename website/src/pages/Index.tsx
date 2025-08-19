@@ -1,12 +1,33 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect } from "react";
 import logo from "@/assets/locologo.png";
 
 const Index = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const isVideoInView = useInView(videoContainerRef, { once: false, amount: 0.3 });
+
+  // Auto-play video when it comes into view
+  useEffect(() => {
+    if (isVideoInView && videoRef.current) {
+      console.log('Video in view - attempting to play');
+      const playPromise = videoRef.current.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('Video auto-played successfully');
+          })
+          .catch((error) => {
+            console.log('Auto-play failed:', error);
+            // Auto-play failed, but video is still visible and user can click play
+          });
+      }
+    }
+  }, [isVideoInView]);
   
 
   
@@ -116,7 +137,7 @@ const Index = () => {
                 custom={1}
               >
                 {/* Video Container */}
-                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden">
+                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden" ref={videoContainerRef}>
                   {/* MP4 Video Element */}
                   <video
                     ref={videoRef}
@@ -124,6 +145,8 @@ const Index = () => {
                     controls
                     preload="metadata"
                     crossOrigin="anonymous"
+                    muted
+                    playsInline
                     onLoadedMetadata={(e) => {
                       console.log('Video loaded successfully');
                       console.log('Video duration:', e.currentTarget.duration);
@@ -147,6 +170,18 @@ const Index = () => {
                   
                   {/* Video Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Auto-play Indicator */}
+                  {isVideoInView && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="absolute top-4 right-4 bg-green-500/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm"
+                    >
+                      Auto-playing
+                    </motion.div>
+                  )}
                   
                   {/* Floating Content Overlay */}
                   <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
