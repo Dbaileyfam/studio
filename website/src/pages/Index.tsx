@@ -110,22 +110,43 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={1}
               >
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 group-hover:from-black/60 transition-all duration-500"></div>
-                
-                <img
-                  src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                  alt="Live Band Performance"
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  width={1920}
-                  height={1080}
-                />
+                {/* Video Container */}
+                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden">
+                  <video
+                    className="w-full h-full object-cover"
+                    controls
+                    preload="metadata"
+                    poster="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                    onLoadedMetadata={(e) => {
+                      // Video is ready to play
+                      console.log('Video loaded successfully');
+                    }}
+                    onError={(e) => {
+                      console.error('Video failed to load:', e);
+                    }}
+                  >
+                                         <source src="/801famstudiosvid.MOV" type="video/quicktime" />
+                     <source src="/801famstudiosvid.MOV" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  
+                  {/* Video Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                        <div className="w-0 h-0 border-l-[12px] border-l-[#3f51b5] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
                 {/* Floating Content Overlay */}
                 <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">Live Music Experience</h3>
-                  <p className="text-lg opacity-90 drop-shadow-lg">Capturing the energy and passion of live performances</p>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
+                  <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
                 </div>
               </motion.div>
             </section>

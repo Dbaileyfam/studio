@@ -29,15 +29,9 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "8019186782",
+      value: "(801) 918-6782",
       link: "tel:8019186782",
       color: "from-purple-500 to-purple-600"
-    },
-    {
-      icon: Clock,
-      title: "Hours",
-      value: "Mon-Fri: 9AM-6PM",
-      color: "from-orange-500 to-orange-600"
     }
   ];
 
