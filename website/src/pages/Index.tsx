@@ -204,6 +204,9 @@ const Index = () => {
                   ];
                   console.log('Services array:', services);
                   console.log('Number of services:', services.length);
+                  services.forEach((service, index) => {
+                    console.log(`Service ${index + 1}: ${service.title} - ${service.icon}`);
+                  });
                   return services;
                 })().map((service, index) => (
                   <motion.div
