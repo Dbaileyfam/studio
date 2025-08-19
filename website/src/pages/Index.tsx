@@ -112,22 +112,48 @@ const Index = () => {
               >
                 {/* Video Container */}
                 <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden">
+                  {/* Video Element */}
                   <video
                     className="w-full h-full object-cover"
                     controls
                     preload="metadata"
+                    crossOrigin="anonymous"
                     onLoadedMetadata={(e) => {
-                      // Video is ready to play
                       console.log('Video loaded successfully');
                     }}
                     onError={(e) => {
                       console.error('Video failed to load:', e);
                     }}
+                    onLoadStart={() => {
+                      console.log('Video loading started');
+                    }}
                   >
                     <source src="801famstudiosvid.MOV" type="video/quicktime" />
                     <source src="801famstudiosvid.MOV" type="video/mp4" />
+                    <source src="801famstudiosvid.MOV" type="video/x-msvideo" />
+                    <source src="801famstudiosvid.MOV" type="video/*" />
                     Your browser does not support the video tag.
                   </video>
+                  
+                  {/* Browser Compatibility Message */}
+                  <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
+                    <span className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+                      .MOV Format
+                    </span>
+                  </div>
+                  
+                  {/* Download Button */}
+                  <div className="absolute top-4 left-4">
+                    <a 
+                      href="801famstudiosvid.MOV" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full border border-white/30 transition-all duration-300 backdrop-blur-sm"
+                    >
+                      📥 Download
+                    </a>
+                  </div>
                   
                   {/* Video Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
