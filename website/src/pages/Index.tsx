@@ -2,9 +2,14 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import logo from "@/assets/locologo.png";
 
 const Index = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+
+  
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: (custom: number) => ({
@@ -112,17 +117,56 @@ const Index = () => {
               >
                 {/* Video Container */}
                 <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden">
-                  {/* Video Element */}
+                  {/* Fallback Content - Always visible for now */}
+                  <div className="video-fallback absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl flex flex-col items-center justify-center text-white p-8">
+                    <div className="text-center max-w-md">
+                      <div className="text-6xl mb-6">🎬</div>
+                      <h3 className="text-2xl font-bold mb-4">801 Family Studios</h3>
+                      <p className="text-gray-200 mb-6 leading-relaxed">
+                        Watch our promotional video to see the energy and passion we bring to every project.
+                      </p>
+                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a 
+                          href="801famstudiosvid.MOV" 
+                          download="801-family-studios-promo.mov"
+                          className="inline-block bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-full border border-white/30 transition-all duration-300 backdrop-blur-sm"
+                        >
+                          📥 Download Video
+                        </a>
+                        <a 
+                          href="https://www.youtube.com" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full transition-all duration-300"
+                        >
+                          🎥 Watch on YouTube
+                        </a>
+                      </div>
+                      <p className="text-sm text-gray-400 mt-4">
+                        .MOV format - best viewed in Safari or download to watch
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Hidden Video Element for browsers that support it */}
                   <video
-                    className="w-full h-full object-cover"
+                    ref={videoRef}
+                    className="w-full h-full object-cover opacity-0"
                     controls
                     preload="metadata"
                     crossOrigin="anonymous"
                     onLoadedMetadata={(e) => {
                       console.log('Video loaded successfully');
+                                             // If video loads, show it and hide fallback
+                       e.currentTarget.style.opacity = '1';
+                       const fallback = document.querySelector('.video-fallback') as HTMLElement;
+                       if (fallback) {
+                         fallback.style.opacity = '0';
+                       }
                     }}
                     onError={(e) => {
                       console.error('Video failed to load:', e);
+                      // Keep fallback visible
                     }}
                     onLoadStart={() => {
                       console.log('Video loading started');
@@ -134,29 +178,6 @@ const Index = () => {
                     <source src="801famstudiosvid.MOV" type="video/*" />
                     Your browser does not support the video tag.
                   </video>
-                  
-                  {/* Browser Compatibility Message */}
-                  <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
-                      .MOV Format
-                    </span>
-                  </div>
-                  
-                  {/* Download Button */}
-                  <div className="absolute top-4 left-4">
-                    <a 
-                      href="801famstudiosvid.MOV" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-block bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full border border-white/30 transition-all duration-300 backdrop-blur-sm"
-                    >
-                      📥 Download
-                    </a>
-                  </div>
-                  
-                  {/* Video Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   {/* Floating Content Overlay */}
                   <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
