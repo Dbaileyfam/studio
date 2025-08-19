@@ -136,17 +136,16 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={1}
               >
-                {/* Video Container */}
-                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden flex items-center justify-center" ref={videoContainerRef}>
+                                  {/* Video Container */}
+                  <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden flex items-center justify-center p-4" ref={videoContainerRef}>
                   {/* MP4 Video Element */}
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-contain"
+                    className="max-w-full max-h-full object-contain"
                     controls
                     preload="metadata"
                     crossOrigin="anonymous"
-                    muted
-                    playsInline
+                                          playsInline
                     onLoadedMetadata={(e) => {
                       console.log('Video loaded successfully');
                       console.log('Video duration:', e.currentTarget.duration);
