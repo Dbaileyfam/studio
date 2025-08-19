@@ -1,33 +1,11 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import logo from "@/assets/locologo.png";
 
 const Index = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const videoContainerRef = useRef<HTMLDivElement>(null);
-  const isVideoInView = useInView(videoContainerRef, { once: false, amount: 0.3 });
 
-  // Auto-play video when it comes into view
-  useEffect(() => {
-    if (isVideoInView && videoRef.current) {
-      console.log('Video in view - attempting to play');
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('Video auto-played successfully');
-          })
-          .catch((error) => {
-            console.log('Auto-play failed:', error);
-            // Auto-play failed, but video is still visible and user can click play
-          });
-      }
-    }
-  }, [isVideoInView]);
   
 
   
@@ -136,59 +114,36 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={1}
               >
-                                  {/* Video Container */}
-                  <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden flex items-center justify-center p-4" ref={videoContainerRef}>
-                  {/* MP4 Video Element */}
-                  <video
-                    ref={videoRef}
-                    className="max-w-full max-h-full object-contain"
-                    controls
-                    preload="metadata"
-                    crossOrigin="anonymous"
-                                          playsInline
-                    onLoadedMetadata={(e) => {
-                      console.log('Video loaded successfully');
-                      console.log('Video duration:', e.currentTarget.duration);
-                      console.log('Video ready state:', e.currentTarget.readyState);
-                    }}
-                    onError={(e) => {
-                      console.error('Video failed to load:', e);
-                      console.error('Video error details:', e.currentTarget.error);
-                      console.error('Video network state:', e.currentTarget.networkState);
-                    }}
-                    onLoadStart={() => {
-                      console.log('Video loading started');
-                    }}
-                    onCanPlay={() => {
-                      console.log('Video can start playing');
-                    }}
-                  >
-                    <source src="801-family-studios.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  
-                  {/* Video Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                  {/* Auto-play Indicator */}
-                  {isVideoInView && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      className="absolute top-4 right-4 bg-green-500/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm"
-                    >
-                      Auto-playing
-                    </motion.div>
-                  )}
-                  
-                  {/* Floating Content Overlay */}
-                  <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
-                    <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
+                {/* Studio Placeholder */}
+                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden flex items-center justify-center">
+                  {/* Musical Icons Background */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                    <div className="grid grid-cols-4 gap-8 text-6xl md:text-8xl text-white">
+                      <span>🎸</span>
+                      <span>🥁</span>
+                      <span>🎙️</span>
+                      <span>🎵</span>
+                    </div>
                   </div>
+                  
+                  {/* Main Content */}
+                  <div className="relative z-10 text-center text-white">
+                    <div className="text-6xl md:text-8xl mb-6">🎼</div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4">Professional Recording Studio</h3>
+                    <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+                      State-of-the-art equipment and experienced engineers ready to bring your musical vision to life
+                    </p>
+                  </div>
+
+                  {/* Hover Effect Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
-                
+
+                {/* Floating Content Overlay */}
+                <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
+                  <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
+                </div>
               </motion.div>
             </section>
 
