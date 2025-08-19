@@ -114,29 +114,16 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={1}
               >
-                {/* Studio Placeholder */}
-                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden flex items-center justify-center">
-                  {/* Musical Icons Background */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                    <div className="grid grid-cols-4 gap-8 text-6xl md:text-8xl text-white">
-                      <span>🎸</span>
-                      <span>🥁</span>
-                      <span>🎙️</span>
-                      <span>🎵</span>
-                    </div>
-                  </div>
+                {/* Studio Image */}
+                <div className="relative w-full h-full rounded-3xl overflow-hidden">
+                  <img
+                    src="/studio2.jpg"
+                    alt="801 Family Studios Recording Studio"
+                    className="w-full h-full object-cover"
+                  />
                   
-                  {/* Main Content */}
-                  <div className="relative z-10 text-center text-white">
-                    <div className="text-6xl md:text-8xl mb-6">🎼</div>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4">Professional Recording Studio</h3>
-                    <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
-                      State-of-the-art equipment and experienced engineers ready to bring your musical vision to life
-                    </p>
-                  </div>
-
-                  {/* Hover Effect Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* Image Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
 
                 {/* Floating Content Overlay */}
