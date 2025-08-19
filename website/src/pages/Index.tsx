@@ -157,43 +157,48 @@ const Index = () => {
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-                {[
-                  {
-                    title: "Recording Services",
-                    description: "Affordable and professional studio recording with dedicated sound engineers to help bring your music to life.",
-                    icon: "🎙️",
-                    gradient: "from-blue-500/20 to-purple-500/20",
-                    borderColor: "border-blue-400/30"
-                  },
-                  {
-                    title: "Booking Services",
-                    description: "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
-                    icon: "🎸",
-                    gradient: "from-green-500/20 to-teal-500/20",
-                    borderColor: "border-green-400/30"
-                  },
-                  {
-                    title: "Artist Management",
-                    description: "Professional guidance to help you navigate the music industry, build your brand, and achieve your musical goals.",
-                    icon: "🎵",
-                    gradient: "from-orange-500/20 to-red-500/20",
-                    borderColor: "border-orange-400/30"
-                  },
-                  {
-                    title: "Advanced Drum Lessons",
-                    description: "Take your drumming to the next level with personalized instruction from experienced professionals. Learn advanced techniques, timing, and musical theory.",
-                    icon: "🥁",
-                    gradient: "from-indigo-500/20 to-purple-500/20",
-                    borderColor: "border-indigo-400/30"
-                  },
-                  {
-                    title: "Musician for Hire",
-                    description: "Professional session musicians available to fill in for gigs, recordings, or performances. Experienced players ready to step in and deliver quality performances when you need them most.",
-                    icon: "🎺",
-                    gradient: "from-yellow-500/20 to-orange-500/20",
-                    borderColor: "border-yellow-400/30"
-                  }
-                ].map((service, index) => (
+                {(() => {
+                  const services = [
+                    {
+                      title: "Recording Services",
+                      description: "Affordable and professional studio recording with dedicated sound engineers to help bring your music to life.",
+                      icon: "🎙️",
+                      gradient: "from-blue-500/20 to-purple-500/20",
+                      borderColor: "border-blue-400/30"
+                    },
+                    {
+                      title: "Booking Services",
+                      description: "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
+                      icon: "🎸",
+                      gradient: "from-green-500/20 to-teal-500/20",
+                      borderColor: "border-green-400/30"
+                    },
+                    {
+                      title: "Artist Management",
+                      description: "Professional guidance to help you navigate the music industry, build your brand, and achieve your musical goals.",
+                      icon: "🎵",
+                      gradient: "from-orange-500/20 to-red-500/20",
+                      borderColor: "border-orange-400/30"
+                    },
+                    {
+                      title: "Advanced Drum Lessons",
+                      description: "Take your drumming to the next level with personalized instruction from experienced professionals. Learn advanced techniques, timing, and musical theory.",
+                      icon: "🥁",
+                      gradient: "from-indigo-500/20 to-purple-500/20",
+                      borderColor: "border-indigo-400/30"
+                    },
+                    {
+                      title: "Musician for Hire",
+                      description: "Professional session musicians available to fill in for gigs, recordings, or performances. Experienced players ready to step in and deliver quality performances when you need them most.",
+                      icon: "🎺",
+                      gradient: "from-yellow-500/20 to-orange-500/20",
+                      borderColor: "border-yellow-400/30"
+                    }
+                  ];
+                  console.log('Services array:', services);
+                  console.log('Number of services:', services.length);
+                  return services;
+                })().map((service, index) => (
                   <motion.div
                     key={service.title}
                     className="group relative"
