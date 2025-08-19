@@ -137,11 +137,11 @@ const Index = () => {
                 custom={1}
               >
                 {/* Video Container */}
-                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden" ref={videoContainerRef}>
+                <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden flex items-center justify-center" ref={videoContainerRef}>
                   {/* MP4 Video Element */}
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     controls
                     preload="metadata"
                     crossOrigin="anonymous"
