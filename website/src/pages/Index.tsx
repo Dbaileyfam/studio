@@ -193,6 +193,13 @@ const Index = () => {
                       icon: "🎺",
                       gradient: "from-yellow-500/20 to-orange-500/20",
                       borderColor: "border-yellow-400/30"
+                    },
+                    {
+                      title: "Marketing",
+                      description: "Comprehensive social media management and website development to boost your online presence. From content creation to digital strategy, we help you connect with your audience and grow your fanbase.",
+                      icon: "💻",
+                      gradient: "from-cyan-500/20 to-blue-500/20",
+                      borderColor: "border-cyan-400/30"
                     }
                   ];
                   console.log('Services array:', services);
