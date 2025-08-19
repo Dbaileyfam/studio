@@ -126,15 +126,22 @@ const Index = () => {
                     crossOrigin="anonymous"
                     onLoadedMetadata={(e) => {
                       console.log('Video loaded successfully');
+                      console.log('Video duration:', e.currentTarget.duration);
+                      console.log('Video ready state:', e.currentTarget.readyState);
                     }}
                     onError={(e) => {
                       console.error('Video failed to load:', e);
+                      console.error('Video error details:', e.currentTarget.error);
+                      console.error('Video network state:', e.currentTarget.networkState);
                     }}
                     onLoadStart={() => {
                       console.log('Video loading started');
                     }}
+                    onCanPlay={() => {
+                      console.log('Video can start playing');
+                    }}
                   >
-                    <source src="801 Family Studios.mp4" type="video/mp4" />
+                    <source src="801-family-studios.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                   
