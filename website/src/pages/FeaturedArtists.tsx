@@ -84,7 +84,7 @@ const FeaturedArtists = () => {
         instagram: "https://www.instagram.com/brennanwestband/",
         facebook: "https://www.facebook.com/brennanwestband",
         youtube: "https://www.youtube.com/@brennanwestband",
-        music: "https://open.spotify.com/artist/brennanwestband"
+        music: ""
       }
     },
     {
