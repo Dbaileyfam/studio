@@ -297,7 +297,7 @@ const FeaturedArtists = () => {
               ))}
             </div>
 
-            {/* Book Now Section */}
+            {/* Book Bands Section */}
             <motion.div
               className="text-center mt-20"
               variants={fadeIn}
@@ -307,10 +307,10 @@ const FeaturedArtists = () => {
               custom={0}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Book Your Event?
+                Want to Work with These Artists?
               </h2>
               <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
-                Our featured artists are available for private events, corporate functions, weddings, and special occasions. Get in touch to discuss your needs and secure your date.
+                Our featured artists are available for studio recordings, collaborations, music projects, and other creative endeavors. Get in touch to discuss how we can help bring your musical vision to life.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -318,14 +318,14 @@ const FeaturedArtists = () => {
                   size="lg"
                   className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                  <Link to="/#/event-booking">Event Booking</Link>
+                  <Link to="/#/contact">Contact Us</Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                  <Link to="/#/contact">Contact Us</Link>
+                  <Link to="/#/event-booking">Event Booking</Link>
                 </Button>
               </div>
             </motion.div>
