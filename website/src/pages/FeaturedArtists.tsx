@@ -173,10 +173,7 @@ const FeaturedArtists = () => {
                 Featured Local Artists
               </h1>
               <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed mb-8">
-                Discover local talent that drives the Utah music scene. Each artist brings their unique style and energy to create amazing music.
-              </p>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                To learn more or to book, please click on any of their links.
+                Discover the incredible talent that makes up our local music scene. Each artist brings their unique style and passion to create unforgettable performances. From intimate acoustic sets to full-band experiences, our featured artists are available for private events, corporate functions, and special occasions.
               </p>
             </motion.div>
 
@@ -321,14 +318,14 @@ const FeaturedArtists = () => {
                   size="lg"
                   className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                  <Link to="/event-booking">Event Booking</Link>
+                  <Link to="/#/event-booking">Event Booking</Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/#/contact">Contact Us</Link>
                 </Button>
               </div>
             </motion.div>
