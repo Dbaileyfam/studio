@@ -80,56 +80,56 @@ const EventBooking = () => {
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                  <motion.div
-                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center"
-                    variants={fadeIn}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    custom={0.2}
-                    whileHover={{ y: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="text-5xl mb-4">🎵</div>
-                    <h3 className="text-xl font-bold text-white mb-4">Hire Existing Bands</h3>
-                    <p className="text-gray-200">
-                      Each band or artist can be hired individually for your event
-                    </p>
-                  </motion.div>
+                                     <motion.div
+                     className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center"
+                     variants={fadeIn}
+                     initial="initial"
+                     whileInView="animate"
+                     viewport={{ once: true }}
+                     custom={0.2}
+                     whileHover={{ y: -8 }}
+                     transition={{ type: "spring", stiffness: 300 }}
+                   >
+                     <div className="text-5xl mb-4">🎤</div>
+                     <h3 className="text-xl font-bold text-white mb-4">Hire Existing Bands</h3>
+                     <p className="text-gray-200">
+                       Each band or artist can be hired individually for your event
+                     </p>
+                   </motion.div>
 
-                  <motion.div
-                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center"
-                    variants={fadeIn}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    custom={0.4}
-                    whileHover={{ y: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="text-5xl mb-4">🎭</div>
-                    <h3 className="text-xl font-bold text-white mb-4">Custom Band Creation</h3>
-                    <p className="text-gray-200">
-                      We can piece together a band based on your musical desires
-                    </p>
-                  </motion.div>
+                   <motion.div
+                     className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center"
+                     variants={fadeIn}
+                     initial="initial"
+                     whileInView="animate"
+                     viewport={{ once: true }}
+                     custom={0.4}
+                     whileHover={{ y: -8 }}
+                     transition={{ type: "spring", stiffness: 300 }}
+                   >
+                     <div className="text-5xl mb-4">🎺</div>
+                     <h3 className="text-xl font-bold text-white mb-4">Custom Band Creation</h3>
+                     <p className="text-gray-200">
+                       We can piece together a band based on your musical desires
+                     </p>
+                   </motion.div>
 
-                  <motion.div
-                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center"
-                    variants={fadeIn}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    custom={0.6}
-                    whileHover={{ y: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="text-5xl mb-4">🎪</div>
-                    <h3 className="text-xl font-bold text-white mb-4">Build Your Own Band</h3>
-                    <p className="text-gray-200">
-                      You can even pick the musicians you want with our "build your own band" feature!
-                    </p>
-                  </motion.div>
+                   <motion.div
+                     className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center"
+                     variants={fadeIn}
+                     initial="initial"
+                     whileInView="animate"
+                     viewport={{ once: true }}
+                     custom={0.6}
+                     whileHover={{ y: -8 }}
+                     transition={{ type: "spring", stiffness: 300 }}
+                   >
+                     <div className="text-5xl mb-4">🎻</div>
+                     <h3 className="text-xl font-bold text-white mb-4">Build Your Own Band</h3>
+                     <p className="text-gray-200">
+                       You can even pick the musicians you want with our "build your own band" feature!
+                     </p>
+                   </motion.div>
                 </div>
               </motion.div>
             </section>
