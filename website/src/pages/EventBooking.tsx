@@ -250,7 +250,7 @@ const EventBooking = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    to="/#/contact"
+                    to="/contact"
                     className="inline-block bg-white text-[#3f51b5] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   >
                     Contact Us Today

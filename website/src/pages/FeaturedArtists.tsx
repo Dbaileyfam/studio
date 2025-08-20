@@ -316,14 +316,14 @@ const FeaturedArtists = () => {
                   size="lg"
                   className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                  <Link to="/#/contact">Contact Us</Link>
+                  <Link to="/contact">Contact Us</Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
-                  <Link to="/#/event-booking">Event Booking</Link>
+                  <Link to="/event-booking">Event Booking</Link>
                 </Button>
               </div>
             </motion.div>
