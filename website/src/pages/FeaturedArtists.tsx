@@ -167,13 +167,13 @@ const FeaturedArtists = () => {
               custom={0}
             >
               <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full border border-white/20 backdrop-blur-sm">
-                Local Talent
+                Featured Talent
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Featured Local Artists
+                Featured Artists
               </h1>
               <p className="text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed mb-8">
-                Discover the incredible talent that makes up our local music scene. Each artist brings their unique style and passion to create unforgettable performances. From intimate acoustic sets to full-band experiences, our featured artists are available for private events, corporate functions, and special occasions.
+                Discover the incredible talent that makes up our music scene. Each artist brings their unique style and passion to create unforgettable performances. From intimate acoustic sets to full-band experiences, our featured artists are available for private events, corporate functions, and special occasions.
               </p>
             </motion.div>
 
