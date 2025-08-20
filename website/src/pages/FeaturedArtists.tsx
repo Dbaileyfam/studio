@@ -166,9 +166,7 @@ const FeaturedArtists = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full border border-white/20 backdrop-blur-sm">
-                Featured Talent
-              </span>
+
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                 Featured Artists
               </h1>
