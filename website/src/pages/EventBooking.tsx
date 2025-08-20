@@ -1,5 +1,6 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const EventBooking = () => {
   const fadeIn = {
@@ -244,14 +245,17 @@ const EventBooking = () => {
                 <p className="text-xl text-gray-200 mb-8">
                   Contact us to discuss your specific needs and get a customized quote
                 </p>
-                <motion.a
-                  href="/contact"
-                  className="inline-block bg-white text-[#3f51b5] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Contact Us Today
-                </motion.a>
+                  <Link
+                    to="/contact"
+                    className="inline-block bg-white text-[#3f51b5] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  >
+                    Contact Us Today
+                  </Link>
+                </motion.div>
               </motion.div>
             </section>
           </div>
