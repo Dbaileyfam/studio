@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Music } from "lucide-react";
 import tribeImage from "@/assets/Tribeof1.jpg";
 import swaggerImage from "@/assets/swagger1.jpg";
-import loomImage from "@/assets/loom1.png";
+
 import fngImage from "@/assets/fng2.jpg";
 import dubnectarImage from "@/assets/dub-nectar-band.jpg";
 import brennanWestImage from "@/assets/Brennan-west-band.jpg";
@@ -33,9 +33,9 @@ const FeaturedArtists = () => {
       description: "A high-energy fusion of rock power, ska rhythms, and funky bass lines. Their explosive performances blend punchy horns with groovy rhythms, creating an irresistible sound that keeps the crowd dancing.",
       image: fngImage,
       social: {
-        instagram: "https://www.instagram.com/funkandgonzo/",
+        instagram: "https://www.instagram.com/funkandgonzoofficial/",
         facebook: "https://www.facebook.com/funkandgonzo",
-        youtube: "https://www.youtube.com/@funkandgonzo",
+        youtube: "https://www.youtube.com/@funkandgonzo801",
         music: "https://open.spotify.com/artist/61KvymSakWx4OhkTCNrSwq"
       }
     },
@@ -45,9 +45,9 @@ const FeaturedArtists = () => {
       description: "Blending smooth reggae rhythms with infectious funk grooves, Dubnectar creates an uplifting musical experience that gets everyone moving. Their vibrant performances combine island vibes with soulful funk elements.",
       image: dubnectarImage,
       social: {
-        instagram: "https://www.instagram.com/dubnectar/",
+        instagram: "https://www.instagram.com/thedubnectar/",
         facebook: "https://www.facebook.com/dubnectar",
-        youtube: "https://www.youtube.com/@dubnectar",
+        youtube: "https://www.youtube.com/@DubNectar",
         music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO"
       }
     },
@@ -57,9 +57,9 @@ const FeaturedArtists = () => {
       description: "Blending reggae rhythms with rock energy for a unique island sound. Their music carries messages of unity, love, and positive vibrations through powerful performances.",
       image: tribeImage,
       social: {
-        instagram: "https://www.instagram.com/tribeofi/",
+        instagram: "https://www.instagram.com/thetribeofi/",
         facebook: "https://www.facebook.com/tribeofi",
-        youtube: "https://www.youtube.com/@tribeofi",
+        youtube: "https://www.youtube.com/channel/UCiPafv7rtfQD9ebuW8TwmCA",
         music: "https://open.spotify.com/artist/5Tar1xOfXyy1tPlUYIAzwt"
       }
     },
@@ -69,9 +69,9 @@ const FeaturedArtists = () => {
       description: "A dynamic Celtic rock band that fuses traditional Irish melodies with powerful rock elements. Their energetic performances feature driving rhythms and a soaring fiddle that creates an unforgettable Celtic rock experience.",
       image: swaggerImage,
       social: {
-        instagram: "https://www.instagram.com/swaggertheband/",
+        instagram: "https://www.instagram.com/rockwithswagger/",
         facebook: "https://www.facebook.com/swaggertheband",
-        youtube: "https://www.youtube.com/@swaggertheband",
+        youtube: "https://www.youtube.com/@SwaggerTheBand",
         music: "https://open.spotify.com/artist/7tPoZvl7OYT2rQDdzCQpfR"
       }
     },
@@ -199,7 +199,7 @@ const FeaturedArtists = () => {
                       <img
                         src={artist.image}
                         alt={`${artist.name} performing`}
-                        className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-110"
+                        className="w-full h-full object-contain object-center transition-all duration-700 group-hover:scale-110"
                         style={{ pointerEvents: 'auto' }}
                         onError={(e) => {
                           console.log('Image failed to load:', artist.name);
