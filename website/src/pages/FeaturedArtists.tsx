@@ -46,7 +46,7 @@ const FeaturedArtists = () => {
       image: dubnectarImage,
       social: {
         instagram: "https://www.instagram.com/thedubnectar/",
-        facebook: "https://www.facebook.com/dubnectar",
+        facebook: "https://www.facebook.com/newbornslaves",
         youtube: "https://www.youtube.com/@DubNectar",
         music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO"
       }
