@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>801 Family Studios</title>
+  </head>
+  <body>
+    <script>
+      // Simple redirect to root for client-side routing
+      // This prevents redirect loops and handles all routes properly
+      const path = window.location.pathname;
+      if (path !== '/' && path !== '/index.html') {
+        window.location.href = '/';
+      }
+    </script>
+    Redirecting...
+  </body>
+</html> 
