@@ -13,10 +13,11 @@ import alleyKatsImage from "@/assets/TheAlleyKats.jpeg";
 import fearAndLoathingImage from "@/assets/Fearandloathing.JPEG";
 import benBrintonImage from "@/assets/BenBrinton.PNG";
 import stealThisBandImage from "@/assets/Stealthisband.jpeg";
-import masterKennedyImage from "@/assets/masterkennedy.jpg";
-import djNapoImage from "@/assets/djnapologo.jpg";
-import niceAndSwellImage from "@/assets/niceandswell.JPG";
-import bipolarteImage from "@/assets/bipolarte.jpg";
+// Temporarily commented out - missing image files
+// import masterKennedyImage from "@/assets/masterkennedy.jpg";
+// import djNapoImage from "@/assets/djnapologo.jpg";
+// import niceAndSwellImage from "@/assets/niceandswell.JPG";
+// import bipolarteImage from "@/assets/bipolarte.jpg";
 
 
 const FeaturedArtists = () => {
@@ -54,18 +55,19 @@ const FeaturedArtists = () => {
         music: "https://open.spotify.com/album/4EkkVXuongVMH1mtwYCKSL?si=Ddy9m7YiSSGgmU2FkRJwwA"
       }
     },
-    {
-      name: "BipolArte",
-      genre: "Horror Rock",
-      description: "BipolArte, hailing from the vibrant city of Los Angeles, California, has been making waves in the music scene since 2016. As a talented songwriter and guitarist, BipolArte has carved out a niche in the international horror rock genre, delivering electrifying performances that captivate audiences. With over 400 shows under his belt, BipolArte has rocked stages in more than 90 cities across the USA, Mexico, and Colombia. His journey through these diverse landscapes has shaped his unique sound and stage presence, making each performance a thrilling experience for his fans. In 2024, BipolArte is proud to present his third album, 'Tripolar.' This latest creation showcases his growth as an artist, drawing influences from legendary bands like Black Sabbath, Red Hot Chili Peppers, and Rob Zombie. 'Tripolar' is a testament to BipolArte's ability to blend heavy riffs, haunting melodies, and dynamic lyrics into something truly special. BipolArte's ultimate goal is to connect with his audience on a deeper level. Through his music, he aims to evoke emotions, tell compelling stories, and create an unforgettable live experience. Whether it's a small intimate venue or a large festival stage, BipolArte's passion for music and performance shines through, leaving a lasting impression on all who witness his artistry.",
-      image: bipolarteImage,
-      social: {
-        instagram: "http://www.Instagram.com/BipolArteMusic",
-        facebook: "http://www.Facebook.com/BipolArteMusic",
-        youtube: "https://www.Youtube.com/BipolArteMusic",
-        music: "https://open.spotify.com/artist/1u5Gph1zW9jnki9ZcICLdA?si=5Z6s_5pOSO2oeDRKvUjR2Q"
-      }
-    },
+    // Temporarily commented out - missing image file
+    // {
+    //   name: "BipolArte",
+    //   genre: "Horror Rock",
+    //   description: "BipolArte, hailing from the vibrant city of Los Angeles, California, has been making waves in the music scene since 2016. As a talented songwriter and guitarist, BipolArte has carved out a niche in the international horror rock genre, delivering electrifying performances that captivate audiences. With over 400 shows under his belt, BipolArte has rocked stages in more than 90 cities across the USA, Mexico, and Colombia. His journey through these diverse landscapes has shaped his unique sound and stage presence, making each performance a thrilling experience for his fans. In 2024, BipolArte is proud to present his third album, 'Tripolar.' This latest creation showcases his growth as an artist, drawing influences from legendary bands like Black Sabbath, Red Hot Chili Peppers, and Rob Zombie. 'Tripolar' is a testament to BipolArte's ability to blend heavy riffs, haunting melodies, and dynamic lyrics into something truly special. BipolArte's ultimate goal is to connect with his audience on a deeper level. Through his music, he aims to evoke emotions, tell compelling stories, and create an unforgettable live experience. Whether it's a small intimate venue or a large festival stage, BipolArte's passion for music and performance shines through, leaving a lasting impression on all who witness his artistry.",
+    //   image: bipolarteImage,
+    //   social: {
+    //     instagram: "http://www.Instagram.com/BipolArteMusic",
+    //     facebook: "http://www.Facebook.com/BipolArteMusic",
+    //     youtube: "https://www.Youtube.com/BipolArteMusic",
+    //     music: "https://open.spotify.com/artist/1u5Gph1zW9jnki9ZcICLdA?si=5Z6s_5pOSO2oeDRKvUjR2Q"
+    //   }
+    // },
     {
       name: "Brennan West Band",
       genre: "Country/Rock",
@@ -78,18 +80,19 @@ const FeaturedArtists = () => {
         music: ""
       }
     },
-    {
-      name: "DJ Napo",
-      genre: "DJ/Electronic",
-      description: "A dynamic DJ and electronic music producer known for creating high-energy mixes and innovative electronic sounds. DJ Napo brings the party to life with his unique blend of electronic beats, house music, and crowd-pleasing tracks that keep audiences dancing all night long.",
-      image: djNapoImage,
-      social: {
-        instagram: "https://www.instagram.com/djnapo_k/",
-        facebook: "https://www.facebook.com/Napo1DJ",
-        youtube: "",
-        music: ""
-      }
-    },
+    // Temporarily commented out - missing image file
+    // {
+    //   name: "DJ Napo",
+    //   genre: "DJ/Electronic",
+    //   description: "A dynamic DJ and electronic music producer known for creating high-energy mixes and innovative electronic sounds. DJ Napo brings the party to life with his unique blend of electronic beats, house music, and crowd-pleasing tracks that keep audiences dancing all night long.",
+    //   image: djNapoImage,
+    //   social: {
+    //     instagram: "https://www.instagram.com/djnapo_k/",
+    //     facebook: "https://www.facebook.com/Napo1DJ",
+    //     youtube: "",
+    //     music: ""
+    //   }
+    // },
     {
       name: "Dubnectar",
       genre: "Reggae/Funk",
@@ -126,30 +129,32 @@ const FeaturedArtists = () => {
         music: "https://open.spotify.com/artist/61KvymSakWx4OhkTCNrSwq"
       }
     },
-    {
-      name: "Master Kennedy",
-      genre: "Afrobeat/Reggae/Hip-Hop",
-      description: "Congolese producer, sound engineer, singer-songwriter, rapper, and guitarist based in Salt Lake City. Master Kennedy blends modern styles like Afrobeats, Afro Pop, Reggae, and Hip-Hop, creating a unique sound called 'AFROREGGAE'. Born to a musical family in Kinshasa, DRC, he began his career as a gospel singer and has opened for international artists like Tekno, P-Square, Diamond Platnumz, and Awilo Longomba. His dynamic performances combine traditional African rhythms with contemporary urban sounds, delivering an energetic and culturally rich musical experience.",
-      image: masterKennedyImage,
-      social: {
-        instagram: "https://www.instagram.com/master_kennedy1/",
-        facebook: "https://www.facebook.com/myster.kennedy.7", 
-        youtube: "https://www.youtube.com/channel/UCmT4d70esXH1xmz7pjCT6lA",
-        music: "https://open.spotify.com/artist/6F1ND138wm0jllEX9YB5n9"
-      }
-    },
-    {
-      name: "Nice&Swell",
-      genre: "Alternative Reggae/Punk Rock",
-      description: "An Alternative Reggae punk rock band from Huntington Beach, California, formed by two good friends who shared a passion for music. Griz and F!sh met giving surf lessons and decided to buy a drum kit on Sep 15th, 2022, that day they wrote the song 'hourglass' and Nice&Swell was born. The two continued to write and perform as a duo until they linked up with lead guitarist, John Wedner and Bassist, Brendyn Zion Quiroz who helped the music come to life and flourish. With 9,480 monthly listeners on Spotify, they bring a unique blend of reggae rhythms and punk rock energy.",
-      image: niceAndSwellImage,
-      social: {
-        instagram: "https://www.instagram.com/niceandswell/",
-        facebook: "https://www.facebook.com/niceand.swell.2025",
-        youtube: "https://www.youtube.com/@niceandswell",
-        music: "https://open.spotify.com/artist/0PgHQcMOnw6BKTTk9TkN65"
-      }
-    },
+    // Temporarily commented out - missing image file
+    // {
+    //   name: "Master Kennedy",
+    //   genre: "Afrobeat/Reggae/Hip-Hop",
+    //   description: "Congolese producer, sound engineer, singer-songwriter, rapper, and guitarist based in Salt Lake City. Master Kennedy blends modern styles like Afrobeats, Afro Pop, Reggae, and Hip-Hop, creating a unique sound called 'AFROREGGAE'. Born to a musical family in Kinshasa, DRC, he began his career as a gospel singer and has opened for international artists like Tekno, P-Square, Diamond Platnumz, and Awilo Longomba. His dynamic performances combine traditional African rhythms with contemporary urban sounds, delivering an energetic and culturally rich musical experience.",
+    //   image: masterKennedyImage,
+    //   social: {
+    //     instagram: "https://www.instagram.com/master_kennedy1/",
+    //     facebook: "https://www.facebook.com/myster.kennedy.7", 
+    //     youtube: "https://www.youtube.com/channel/UCmT4d70esXH1xmz7pjCT6lA",
+    //     music: "https://open.spotify.com/artist/6F1ND138wm0jllEX9YB5n9"
+    //   }
+    // },
+    // Temporarily commented out - missing image file
+    // {
+    //   name: "Nice&Swell",
+    //   genre: "Alternative Reggae/Punk Rock",
+    //   description: "An Alternative Reggae punk rock band from Huntington Beach, California, formed by two good friends who shared a passion for music. Griz and F!sh met giving surf lessons and decided to buy a drum kit on Sep 15th, 2022, that day they wrote the song 'hourglass' and Nice&Swell was born. The two continued to write and perform as a duo until they linked up with lead guitarist, John Wedner and Bassist, Brendyn Zion Quiroz who helped the music come to life and flourish. With 9,480 monthly listeners on Spotify, they bring a unique blend of reggae rhythms and punk rock energy.",
+    //   image: niceAndSwellImage,
+    //   social: {
+    //     instagram: "https://www.instagram.com/niceandswell/",
+    //     facebook: "https://www.facebook.com/niceand.swell.2025",
+    //     youtube: "https://www.youtube.com/@niceandswell",
+    //     music: "https://open.spotify.com/artist/0PgHQcMOnw6BKTTk9TkN65"
+    //   }
+    // },
     {
       name: "Steal This Band",
       genre: "Nu Metal Covers",
