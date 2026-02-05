@@ -48,6 +48,7 @@ const FeaturedArtists = () => {
       genre: "Roots Rock, Blues, Modern Blues Rock, Rhythm & Blues, Old Soul",
       description: "West coast rock meets dustbowl twang... with the blues in between. Kelly Bellerose is a Salt Lake City-based singer, songwriter, and recording artist borne from the effervescent brush strokes that have colored her life, offering music that digs deep into American soil to cultivate a rootsy core. Kelly's homegrown and gutsy voice is peppered with a bluesy edge, and although she's a West Coast girl, her Okie lineage echoes through every note she sings. This is the essence of the BELLEROSE BAND sound.",
       image: belleroseImage,
+      imageFit: "cover" as const,
       social: {
         instagram: "https://www.instagram.com/bellerose_music/",
         facebook: "https://www.facebook.com/kelly.bellerose.3",
@@ -348,7 +349,7 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
             <motion.img
               src={artist.image}
               alt={`${artist.name} performing`}
-              className="w-full h-full object-contain object-center transition-all duration-700"
+              className={`w-full h-full object-center transition-all duration-700 ${artist.imageFit === "cover" ? "object-cover" : "object-contain"}`}
               style={{ pointerEvents: 'auto' }}
               whileHover={{ 
                 scale: 1.1,
