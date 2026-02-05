@@ -198,6 +198,33 @@ const FeaturedArtists = () => {
               ))}
             </div>
 
+            {/* Spotify Playlist */}
+            <motion.div
+              className="mt-20"
+              variants={fadeIn}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              custom={0}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+                Listen on Spotify
+              </h2>
+              <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/20 bg-white/5 p-4 md:p-6">
+                <iframe
+                  title="801 Family Studios Featured Artists Playlist"
+                  className="rounded-xl w-full"
+                  src="https://open.spotify.com/embed/playlist/030kAPK335FET5i53afT9d?utm_source=generator"
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
+
             {/* Book Bands Section */}
                 <motion.div
               className="text-center mt-20"
