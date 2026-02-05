@@ -80,7 +80,7 @@ const Index = () => {
                   viewport={{ once: true }}
                   custom={0.4}
                 >
-                  Professional music management services to help you organize, produce, and succeed in your musical journey.
+                  Professional music management services in Salt Lake City, Utah, helping independent artists organize, produce, and succeed.
                 </motion.p>
                 <motion.div 
                   className="flex flex-col sm:flex-row gap-6 justify-center"
