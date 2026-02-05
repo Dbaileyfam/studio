@@ -23,7 +23,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Location",
-      value: "Utah, USA",
+      value: "Sandy, UT",
       color: "from-green-500 to-green-600"
     },
     {
