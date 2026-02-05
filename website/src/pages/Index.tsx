@@ -118,7 +118,7 @@ const Index = () => {
                 {/* Studio Reel Video */}
                 <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black">
                   <video
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     src="/studio.MOV"
                     poster={studioImage}
                     playsInline
