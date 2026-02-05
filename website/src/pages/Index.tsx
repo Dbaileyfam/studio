@@ -100,13 +100,6 @@ const Index = () => {
                   <Button 
                     asChild 
                     size="lg" 
-                    className="rounded-full bg-gradient-to-r from-purple-500/80 to-blue-500/80 hover:from-purple-600 hover:to-blue-600 text-white border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                  >
-                    <Link to="/event-booking">Event Booking</Link>
-                  </Button>
-                  <Button 
-                    asChild 
-                    size="lg" 
                     className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   >
                     <Link to="/contact">Contact Us</Link>
@@ -207,6 +200,20 @@ const Index = () => {
                       icon: "💻",
                       gradient: "from-cyan-500/20 to-blue-500/20",
                       borderColor: "border-cyan-400/30"
+                    },
+                    {
+                      title: "Mixing and Mastering",
+                      description: "Professional audio mixing and mastering services to polish your recordings to perfection. Our experienced engineers use industry-standard tools and techniques to ensure your music sounds its best across all platforms and formats.",
+                      icon: "🎚️",
+                      gradient: "from-pink-500/20 to-rose-500/20",
+                      borderColor: "border-pink-400/30"
+                    },
+                    {
+                      title: "Music Production",
+                      description: "Full-service music production from concept to completion. We work with you to develop your musical ideas, arrange compositions, and create professional-quality tracks that capture your unique artistic vision.",
+                      icon: "🎹",
+                      gradient: "from-emerald-500/20 to-teal-500/20",
+                      borderColor: "border-emerald-400/30"
                     }
                   ];
                   console.log('Services array:', services);

@@ -11,12 +11,13 @@ import dubnectarImage from "@/assets/dub-nectar-band.jpg";
 import brennanWestImage from "@/assets/Brennan-west-band.jpg";
 import alleyKatsImage from "@/assets/TheAlleyKats.jpeg";
 import fearAndLoathingImage from "@/assets/Fearandloathing.JPEG";
-import benBrintonImage from "@/assets/BenBrinton.PNG";
-import stealThisBandImage from "@/assets/Stealthisband.jpeg";
-import masterKennedyImage from "@/assets/masterkennedy.jpg";
-import djNapoImage from "@/assets/djnapologo.jpg";
+import stealThisBandImage from "@/assets/Stealthisband.JPEG";
+// Image imports
+import djNapoImage from "@/assets/djnapo.jpg";
 import niceAndSwellImage from "@/assets/niceandswell.JPG";
-import bipolarteImage from "@/assets/bipolarte.jpg";
+import masterKennedyImage from "@/assets/masterkennedy-qzdRC3be.jpg";
+import belleroseImage from "@/assets/IMG_0710.jpg";
+import placeholderImage from "@/assets/801-family-studios-logo.png";
 
 
 const FeaturedArtists = () => {
@@ -43,27 +44,15 @@ const FeaturedArtists = () => {
       }
     },
     {
-      name: "Ben Brinton",
-      genre: "Acoustic/Singer-Songwriter",
-      description: "Ben delivers a rich and captivating musical experience, blending a curated mix of beloved classics and rare gems through the shimmer of his 12-string acoustic guitar and masterful use of a looper pedal. With a velvety voice that draws listeners in, his original songs unfold like intimate stories—equally at home beside a crackling campfire, a chic cocktail lounge, or a private celebration under the stars. As a seasoned songwriter and producer, Ben crafts original music with depth and soul, bringing a personal touch that elevates each performance beyond the expected. Backed by over 20 years of live performance, Ben ensures a seamless, professional setup with high-quality sound tailored to the space. His compact, self-contained rig fits elegantly into any environment, offering a refined, flexible, and tasteful presence for discerning hosts and audiences alike.",
-      image: benBrintonImage,
+      name: "Bellerose",
+      genre: "Roots Rock, Blues, Modern Blues Rock, Rhythm & Blues, Old Soul",
+      description: "West coast rock meets dustbowl twang... with the blues in between. Kelly Bellerose is a Salt Lake City-based singer, songwriter, and recording artist borne from the effervescent brush strokes that have colored her life, offering music that digs deep into American soil to cultivate a rootsy core. Kelly's homegrown and gutsy voice is peppered with a bluesy edge, and although she's a West Coast girl, her Okie lineage echoes through every note she sings. This is the essence of the BELLEROSE BAND sound.",
+      image: belleroseImage,
       social: {
-        instagram: "https://www.instagram.com/benbrintonmusic/",
-        facebook: "https://www.facebook.com/btbrinton",
-        youtube: "https://www.youtube.com/@ddamionmusic1921",
-        music: "https://open.spotify.com/album/4EkkVXuongVMH1mtwYCKSL?si=Ddy9m7YiSSGgmU2FkRJwwA"
-      }
-    },
-    {
-      name: "BipolArte",
-      genre: "Horror Rock",
-      description: "BipolArte, hailing from the vibrant city of Los Angeles, California, has been making waves in the music scene since 2016. As a talented songwriter and guitarist, BipolArte has carved out a niche in the international horror rock genre, delivering electrifying performances that captivate audiences. With over 400 shows under his belt, BipolArte has rocked stages in more than 90 cities across the USA, Mexico, and Colombia. His journey through these diverse landscapes has shaped his unique sound and stage presence, making each performance a thrilling experience for his fans. In 2024, BipolArte is proud to present his third album, 'Tripolar.' This latest creation showcases his growth as an artist, drawing influences from legendary bands like Black Sabbath, Red Hot Chili Peppers, and Rob Zombie. 'Tripolar' is a testament to BipolArte's ability to blend heavy riffs, haunting melodies, and dynamic lyrics into something truly special. BipolArte's ultimate goal is to connect with his audience on a deeper level. Through his music, he aims to evoke emotions, tell compelling stories, and create an unforgettable live experience. Whether it's a small intimate venue or a large festival stage, BipolArte's passion for music and performance shines through, leaving a lasting impression on all who witness his artistry.",
-      image: bipolarteImage,
-      social: {
-        instagram: "http://www.Instagram.com/BipolArteMusic",
-        facebook: "http://www.Facebook.com/BipolArteMusic",
-        youtube: "https://www.Youtube.com/BipolArteMusic",
-        music: "https://open.spotify.com/artist/1u5Gph1zW9jnki9ZcICLdA?si=5Z6s_5pOSO2oeDRKvUjR2Q"
+        instagram: "https://www.instagram.com/bellerose_music/",
+        facebook: "https://www.facebook.com/kelly.bellerose.3",
+        youtube: "https://www.youtube.com/@kellybellerose5153",
+        music: "https://open.spotify.com/artist/4wfkMUFPjgTR80I0sCuG1S"
       }
     },
     {

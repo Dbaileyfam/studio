@@ -10,7 +10,6 @@ import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import FeaturedArtists from "./pages/FeaturedArtists";
-import EventBooking from "./pages/EventBooking";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -28,7 +27,6 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/featured-artists" element={<FeaturedArtists />} />
-        <Route path="/event-booking" element={<EventBooking />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
