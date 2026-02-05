@@ -32,7 +32,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <motion.a
-                href="https://instagram.com/801familystudios"
+                href="https://www.instagram.com/801familystudios/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 hover:scale-110"
@@ -42,7 +42,7 @@ const Footer = () => {
                 <Instagram size={20} />
               </motion.a>
               <motion.a
-                href="https://facebook.com/801familystudios"
+                href="https://www.facebook.com/profile.php?id=61573678227561"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all duration-300 hover:scale-110"
@@ -97,12 +97,24 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3 text-gray-200">
                 <MapPin size={18} className="text-white/80" />
-                <span>Utah, USA</span>
+                <span>Sandy, UT</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-200">
                 <Phone size={18} className="text-white/80" />
                 <a href="tel:8019186782" className="hover:text-white transition-colors duration-300">
                   (801) 918-6782
+                </a>
+              </li>
+              <li className="flex items-center space-x-3 text-gray-200">
+                <Facebook size={18} className="text-white/80" />
+                <a href="https://www.facebook.com/profile.php?id=61573678227561" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">
+                  Facebook
+                </a>
+              </li>
+              <li className="flex items-center space-x-3 text-gray-200">
+                <Instagram size={18} className="text-white/80" />
+                <a href="https://www.instagram.com/801familystudios/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">
+                  Instagram
                 </a>
               </li>
             </ul>

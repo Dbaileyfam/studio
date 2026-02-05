@@ -223,41 +223,42 @@ const Index = () => {
                   });
                   return services;
                 })().map((service, index) => (
-                  <motion.div
-                    key={service.title}
-                    className="group relative"
-                    variants={fadeIn}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    custom={index * 0.2}
-                    whileHover={{ y: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {/* Card Background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                    
-                    {/* Card Content */}
-                    <div className={`relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 transition-all duration-500 h-full flex flex-col`}>
-                      {/* Icon */}
-                      <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
-                        {service.icon}
+                  <Link key={service.title} to="/contact" className="block h-full">
+                    <motion.div
+                      className="group relative h-full"
+                      variants={fadeIn}
+                      initial="initial"
+                      whileInView="animate"
+                      viewport={{ once: true }}
+                      custom={index * 0.2}
+                      whileHover={{ y: -8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {/* Card Background */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                      
+                      {/* Card Content */}
+                      <div className={`relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 transition-all duration-500 h-full flex flex-col cursor-pointer`}>
+                        {/* Icon */}
+                        <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
+                          {service.icon}
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-gray-100 transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        
+                        {/* Description */}
+                        <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
+                          {service.description}
+                        </p>
+                        
+                        {/* Hover Effect Line */}
+                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
                       </div>
-                      
-                      {/* Title */}
-                      <h3 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-gray-100 transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                      
-                      {/* Description */}
-                      <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
-                        {service.description}
-                      </p>
-                      
-                      {/* Hover Effect Line */}
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </section>
