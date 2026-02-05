@@ -8,7 +8,6 @@ import swaggerImage from "@/assets/swagger1.jpg";
 
 import fngImage from "@/assets/fng2.jpg";
 import dubnectarImage from "@/assets/dub-nectar-band.jpg";
-import brennanWestImage from "@/assets/Brennan-west-band.jpg";
 import alleyKatsImage from "@/assets/TheAlleyKats.jpeg";
 import fearAndLoathingImage from "@/assets/Fearandloathing.JPEG";
 import stealThisBandImage from "@/assets/Stealthisband.JPEG";
@@ -54,18 +53,6 @@ const FeaturedArtists = () => {
         facebook: "https://www.facebook.com/kelly.bellerose.3",
         youtube: "https://www.youtube.com/@kellybellerose5153",
         music: "https://open.spotify.com/artist/4wfkMUFPjgTR80I0sCuG1S"
-      }
-    },
-    {
-      name: "Brennan West Band",
-      genre: "Country/Rock",
-      description: "A dynamic country rock band that blends traditional country storytelling with modern rock energy. Their powerful performances feature heartfelt lyrics, driving rhythms, and Brennan's exceptional brass playing. Known for delivering flawless covers and original compositions that showcase their musical versatility and authentic American sound.",
-      image: brennanWestImage,
-      social: {
-        instagram: "https://www.instagram.com/brennanwestband/",
-        facebook: "https://www.facebook.com/brennanwestband",
-        youtube: "https://www.youtube.com/@brennanwestband",
-        music: ""
       }
     },
     {
