@@ -115,22 +115,26 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={1}
               >
-                {/* Studio Image */}
-                <div className="relative w-full h-full rounded-3xl overflow-hidden">
-                  <img
-                    src={studioImage}
-                    alt="801 Family Studios Recording Studio"
+                {/* Studio Reel Video */}
+                <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black">
+                  <video
                     className="w-full h-full object-cover"
+                    src="/studio.MOV"
+                    poster={studioImage}
+                    playsInline
+                    muted
+                    loop
+                    autoPlay
+                    controls
+                    aria-label="801 Family Studios studio reel"
                   />
-                  
-                  {/* Image Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-
-                {/* Floating Content Overlay */}
-                <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
-                  <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                  {/* Floating Content Overlay */}
+                  <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
+                    <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
+                  </div>
                 </div>
               </motion.div>
             </section>
