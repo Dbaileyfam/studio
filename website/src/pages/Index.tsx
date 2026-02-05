@@ -70,7 +70,7 @@ const Index = () => {
                   viewport={{ once: true }}
                   custom={0.3}
                 >
-                  Your home for all your music management needs
+                  Where Artists Feel At Home
                 </motion.h1>
                 <motion.p 
                   className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto text-pretty leading-relaxed"
