@@ -1,6 +1,6 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Facebook, Instagram, MessageCircle } from "lucide-react";
 
 const Contact = () => {
   const fadeIn = {
@@ -32,6 +32,22 @@ const Contact = () => {
       value: "(801) 918-6782",
       link: "tel:8019186782",
       color: "from-purple-500 to-purple-600"
+    },
+    {
+      icon: Facebook,
+      title: "Facebook",
+      value: "801 Family Studios",
+      link: "https://www.facebook.com/profile.php?id=61573678227561",
+      color: "from-blue-600 to-blue-700",
+      external: true
+    },
+    {
+      icon: Instagram,
+      title: "Instagram",
+      value: "@801familystudios",
+      link: "https://www.instagram.com/801familystudios/",
+      color: "from-pink-500 to-rose-600",
+      external: true
     }
   ];
 
@@ -86,6 +102,7 @@ const Contact = () => {
                           <a
                             href={info.link}
                             className="text-gray-200 hover:text-white transition-colors duration-300 text-lg"
+                            {...(info.external && { target: "_blank", rel: "noopener noreferrer" })}
                           >
                             {info.value}
                           </a>
