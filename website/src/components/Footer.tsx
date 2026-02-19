@@ -66,6 +66,7 @@ const Footer = () => {
               {[
                 { path: "/", label: "Home" },
                 { path: "/featured-artists", label: "Featured Artists" },
+                { path: "/upcoming-shows", label: "Upcoming Shows" },
                 { path: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.path}>
