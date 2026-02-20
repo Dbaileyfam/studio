@@ -21,6 +21,13 @@ const Contact = () => {
       color: "from-blue-500 to-blue-600"
     },
     {
+      icon: Mail,
+      title: "Booking",
+      value: "booking@801familystudios.com",
+      link: "mailto:booking@801familystudios.com",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
       icon: MapPin,
       title: "Location",
       value: "Sandy, UT",

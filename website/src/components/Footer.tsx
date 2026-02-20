@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Music, Instagram, Facebook } from "lucide-react";
 
@@ -22,11 +21,11 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Link to="/" className="inline-block mb-6">
+            <a href="/" className="inline-block mb-6">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                 801FamilyStudios
               </h3>
-            </Link>
+            </a>
             <p className="text-gray-200 leading-relaxed mb-6 max-w-md">
               Your home for all your music management needs. Professional services to help you organize, produce, and succeed in your musical journey.
             </p>
@@ -70,12 +69,12 @@ const Footer = () => {
                 { path: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
+                  <a
+                    href={link.path === "/" ? "/" : `#${link.path}`}
                     className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -94,6 +93,12 @@ const Footer = () => {
                 <Mail size={18} className="text-white/80" />
                 <a href="mailto:info@801familystudios.com" className="hover:text-white transition-colors duration-300">
                   info@801familystudios.com
+                </a>
+              </li>
+              <li className="flex items-center space-x-3 text-gray-200">
+                <Mail size={18} className="text-white/80" />
+                <a href="mailto:booking@801familystudios.com" className="hover:text-white transition-colors duration-300">
+                  booking@801familystudios.com
                 </a>
               </li>
               <li className="flex items-center space-x-3 text-gray-200">
