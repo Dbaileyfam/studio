@@ -2,7 +2,7 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Music } from "lucide-react";
+import { Instagram, Facebook, Youtube, Music, Globe } from "lucide-react";
 import tribeImage from "@/assets/Tribeof1.jpg";
 import swaggerImage from "@/assets/swagger1.jpg";
 
@@ -43,7 +43,7 @@ const FeaturedArtists = () => {
       }
     },
     {
-      name: "Bellerose",
+      name: "The Bellerose Band",
       genre: "Roots Rock, Blues, Modern Blues Rock, Rhythm & Blues, Old Soul",
       description: "West coast rock meets dustbowl twang... with the blues in between. Kelly Bellerose is a Salt Lake City-based singer, songwriter, and recording artist borne from the effervescent brush strokes that have colored her life, offering music that digs deep into American soil to cultivate a rootsy core. Kelly's homegrown and gutsy voice is peppered with a bluesy edge, and although she's a West Coast girl, her Okie lineage echoes through every note she sings. This is the essence of the BELLEROSE BAND sound.",
       image: belleroseImage,
@@ -52,7 +52,8 @@ const FeaturedArtists = () => {
         instagram: "https://www.instagram.com/bellerose_music/",
         facebook: "https://www.facebook.com/kelly.bellerose.3",
         youtube: "https://www.youtube.com/@kellybellerose5153",
-        music: "https://open.spotify.com/artist/4wfkMUFPjgTR80I0sCuG1S"
+        music: "https://open.spotify.com/artist/4wfkMUFPjgTR80I0sCuG1S",
+        website: "https://bellerosemusic.com/"
       }
     },
     {
@@ -464,6 +465,20 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
                 >
                   <Music size={16} />
                   Music
+                </motion.a>
+              )}
+              
+              {artist.social.website && (
+                <motion.a
+                  href={artist.social.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Globe size={16} />
+                  Website
                 </motion.a>
               )}
             </div>
