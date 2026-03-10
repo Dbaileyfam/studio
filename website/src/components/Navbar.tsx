@@ -91,11 +91,11 @@ const Navbar = () => {
                 href={merchStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-white text-[#3f51b5] hover:bg-white/90 shadow-lg transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold bg-white text-[#3f51b5] hover:bg-white/90 shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Buy merch now
+                Buy Merch Now
               </motion.a>
             </div>
           </div>
@@ -177,7 +177,7 @@ const Navbar = () => {
                 transition={{ delay: navItems.length * 0.1 }}
                 className="flex items-center justify-center mt-3 px-4 py-3 rounded-full text-base font-semibold bg-white text-[#3f51b5] hover:bg-white/90"
               >
-                Buy merch now
+                Buy Merch Now
               </motion.a>
             </div>
           </motion.div>

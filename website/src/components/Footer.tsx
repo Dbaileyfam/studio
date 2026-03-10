@@ -84,7 +84,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
                 >
-                  Buy merch now
+                  Buy Merch Now
                 </a>
               </li>
             </ul>
