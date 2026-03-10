@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -21,6 +21,7 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/featured-artists", label: "Featured Artists" },
     { path: "/upcoming-shows", label: "Upcoming Shows" },
+    { path: "/merch", label: "Merch" },
     { path: "/contact", label: "Contact" },
   ];
 
@@ -49,14 +50,14 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <Link
-              to="/"
+            <a
+              href="/"
               className="text-2xl md:text-3xl font-bold text-white hover:text-gray-200 transition-colors duration-300"
             >
               <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                 801FamilyStudios
               </span>
-            </Link>
+            </a>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -64,8 +65,8 @@ const Navbar = () => {
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
                 <motion.div key={item.path} whileHover={{ y: -2 }}>
-                  <Link
-                    to={item.path}
+                  <a
+                    href={item.path === "/" ? "/" : `#${item.path}`}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
                       isActive(item.path)
                         ? "text-[#3f51b5] bg-white/90 shadow-lg"
@@ -80,7 +81,7 @@ const Navbar = () => {
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
                     )}
-                  </Link>
+                  </a>
                 </motion.div>
               ))}
             </div>
@@ -140,8 +141,8 @@ const Navbar = () => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Link
-                    to={item.path}
+                  <a
+                    href={item.path === "/" ? "/" : `#${item.path}`}
                     onClick={() => setIsOpen(false)}
                     className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${
                       isActive(item.path)
@@ -150,7 +151,7 @@ const Navbar = () => {
                     }`}
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </motion.div>
               ))}
             </div>

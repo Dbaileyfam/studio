@@ -46,6 +46,14 @@
   </head>
 
   <body>
+    <script>
+      (function() {
+        var path = location.pathname.replace(/^\//, '').replace(/\/$/, '');
+        if (path && path !== 'index.html' && !location.hash) {
+          location.replace(location.origin + '/#/' + path);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
