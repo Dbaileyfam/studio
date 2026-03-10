@@ -21,9 +21,10 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/featured-artists", label: "Featured Artists" },
     { path: "/upcoming-shows", label: "Upcoming Shows" },
-    { path: "/merch", label: "Merch" },
     { path: "/contact", label: "Contact" },
   ];
+
+  const merchStoreUrl = "https://801familymerch.myshopify.com";
 
   const isActive = (path: string) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -62,28 +63,40 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <motion.div key={item.path} whileHover={{ y: -2 }}>
-                  <a
-                    href={item.path === "/" ? "/" : `#${item.path}`}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
-                      isActive(item.path)
-                        ? "text-[#3f51b5] bg-white/90 shadow-lg"
-                        : "text-white hover:text-gray-200"
-                    }`}
-                  >
-                    {item.label}
-                    {isActive(item.path) && (
-                      <motion.div
-                        className="absolute inset-0 bg-white/90 rounded-md -z-10"
-                        layoutId="activeTab"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                  </a>
-                </motion.div>
-              ))}
+            <div className="ml-10 flex items-center gap-6">
+              <div className="flex items-baseline space-x-8">
+                {navItems.map((item) => (
+                  <motion.div key={item.path} whileHover={{ y: -2 }}>
+                    <a
+                      href={item.path === "/" ? "/" : `#${item.path}`}
+                      className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
+                        isActive(item.path)
+                          ? "text-[#3f51b5] bg-white/90 shadow-lg"
+                          : "text-white hover:text-gray-200"
+                      }`}
+                    >
+                      {item.label}
+                      {isActive(item.path) && (
+                        <motion.div
+                          className="absolute inset-0 bg-white/90 rounded-md -z-10"
+                          layoutId="activeTab"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.a
+                href={merchStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-white text-[#3f51b5] hover:bg-white/90 shadow-lg transition-all duration-300 hover:scale-105"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Buy merch now
+              </motion.a>
             </div>
           </div>
 
@@ -154,6 +167,18 @@ const Navbar = () => {
                   </a>
                 </motion.div>
               ))}
+              <motion.a
+                href={merchStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                className="flex items-center justify-center mt-3 px-4 py-3 rounded-full text-base font-semibold bg-white text-[#3f51b5] hover:bg-white/90"
+              >
+                Buy merch now
+              </motion.a>
             </div>
           </motion.div>
         )}
