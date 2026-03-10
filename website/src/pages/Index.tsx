@@ -26,6 +26,11 @@ const Index = () => {
           <div className="container-inner flex flex-col items-center">
             {/* Hero Section */}
             <section className="w-full pt-0 pb-2 md:pb-4 flex flex-col items-center relative">
+              {/* Decorative blurs */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+                <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-amber-400/20 blur-[100px]" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+              </div>
               <motion.div
                 className="text-center max-w-3xl mx-auto px-4 relative z-10"
                 variants={fadeIn}
@@ -35,35 +40,28 @@ const Index = () => {
                 custom={0}
               >
                 <motion.div
-                  className="text-center mb-4 relative"
-                  variants={fadeIn}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  custom={0}
-                >
-                </motion.div>
-                <motion.div
-                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8 bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] rounded-3xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm ring-2 ring-white/10 ring-offset-4 ring-offset-transparent"
+                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8"
                   variants={fadeIn}
                   initial="initial"
                   whileInView="animate"
                   viewport={{ once: true }}
                   custom={0.2}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
-                    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.3), 0 0 40px -10px rgba(255,255,255,0.15)"
+                    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.3), 0 0 40px -10px rgba(255,255,255,0.15)",
                   }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <img
-                    src={logo}
-                    alt="801 Family Studios Logo"
-                    className="w-4/5 h-4/5 object-contain drop-shadow-lg"
-                  />
+                  <div className="w-full h-full bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] rounded-3xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm ring-2 ring-white/10 ring-offset-4 ring-offset-transparent">
+                    <img
+                      src={logo}
+                      alt="801 Family Studios Logo"
+                      className="w-4/5 h-4/5 object-contain drop-shadow-lg"
+                    />
+                  </div>
                 </motion.div>
                 <motion.h1 
-                  className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 text-balance bg-gradient-to-r from-white via-gray-100 to-amber-100/90 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
                   variants={fadeIn}
                   initial="initial"
                   whileInView="animate"
@@ -72,6 +70,14 @@ const Index = () => {
                 >
                   Where Artists Feel At Home
                 </motion.h1>
+                <motion.div
+                  className="mx-auto mb-10 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-[var(--accent-warm)] to-transparent"
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  custom={0.35}
+                />
                 <motion.p 
                   className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto text-pretty leading-relaxed"
                   variants={fadeIn}
@@ -100,7 +106,7 @@ const Index = () => {
                   <Button 
                     asChild 
                     size="lg" 
-                    className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/10"
+                    className="rounded-full bg-[var(--accent-warm)] text-[#1f2937] hover:bg-amber-400 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[var(--accent-warm-soft)]"
                   >
                     <Link to="/contact">Contact Us</Link>
                   </Button>
@@ -108,7 +114,7 @@ const Index = () => {
               </motion.div>
 
               <motion.div
-                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-2xl relative group"
+                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-2xl relative group ring-2 ring-white/10 ring-offset-4 ring-offset-transparent"
                 variants={fadeIn}
                 initial="initial"
                 whileInView="animate"
@@ -139,17 +145,22 @@ const Index = () => {
               </motion.div>
             </section>
 
+            {/* Section divider */}
+            <div className="w-full max-w-2xl mx-auto py-8" aria-hidden>
+              <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            </div>
+
             {/* Services Section */}
-            <section className="w-full py-24">
+            <section className="w-full py-16 md:py-24">
               <motion.div
-                className="text-center mb-20"
+                className="text-center mb-16 md:mb-20"
                 variants={fadeIn}
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
                 custom={0}
               >
-                <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-white/15 text-white rounded-full border border-white/25 backdrop-blur-sm shadow-lg shadow-black/10">
+                <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-white/15 text-white rounded-full border border-white/25 backdrop-blur-sm shadow-lg shadow-black/10 ring-1 ring-[var(--accent-warm)]/30">
                   Our Services
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-white mb-6">
@@ -237,7 +248,9 @@ const Index = () => {
                       <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                       
                       {/* Card Content */}
-                      <div className={`relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/10 transition-all duration-500 h-full flex flex-col cursor-pointer`}>
+                      <div className={`relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/15 transition-all duration-500 h-full flex flex-col cursor-pointer overflow-hidden`}>
+                        {/* Top shine */}
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                         {/* Icon */}
                         <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
                           {service.icon}
