@@ -64,12 +64,12 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center gap-6">
-              <div className="flex items-baseline space-x-8">
+              <div className="flex items-center space-x-8">
                 {navItems.map((item) => (
-                  <motion.div key={item.path} whileHover={{ y: -2 }}>
+                  <motion.div key={item.path} className="flex items-center" whileHover={{ y: -2 }}>
                     <a
                       href={item.path === "/" ? "/" : `#${item.path}`}
-                      className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
+                      className={`inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
                         isActive(item.path)
                           ? "text-[#3f51b5] bg-white/90 shadow-lg"
                           : "text-white hover:text-gray-200"
