@@ -44,7 +44,7 @@ const Index = () => {
                 >
                 </motion.div>
                 <motion.div
-                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8 bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] rounded-3xl flex items-center justify-center shadow-2xl border border-white/10 backdrop-blur-sm"
+                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8 bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] rounded-3xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm ring-2 ring-white/10 ring-offset-4 ring-offset-transparent"
                   variants={fadeIn}
                   initial="initial"
                   whileInView="animate"
@@ -52,7 +52,7 @@ const Index = () => {
                   custom={0.2}
                   whileHover={{ 
                     scale: 1.02,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.3), 0 0 40px -10px rgba(255,255,255,0.15)"
                   }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -93,17 +93,17 @@ const Index = () => {
                   <Button 
                     asChild 
                     size="lg" 
-                    className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    className="rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/25 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/15"
                   >
                     <Link to="/featured-artists">Featured Artists</Link>
                   </Button>
                   <Button 
                     asChild 
                     size="lg" 
-                    className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    className="rounded-full bg-white text-[#3f51b5] hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/10"
                   >
                     <Link to="/contact">Contact Us</Link>
-                </Button>
+                  </Button>
                 </motion.div>
               </motion.div>
 
@@ -149,7 +149,7 @@ const Index = () => {
                 viewport={{ once: true }}
                 custom={0}
               >
-                <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-gradient-to-r from-white/20 to-white/10 text-white rounded-full border border-white/20 backdrop-blur-sm">
+                <span className="inline-block py-3 px-8 mb-6 text-lg font-bold bg-white/15 text-white rounded-full border border-white/25 backdrop-blur-sm shadow-lg shadow-black/10">
                   Our Services
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-white mb-6">
@@ -220,11 +220,6 @@ const Index = () => {
                       borderColor: "border-emerald-400/30"
                     }
                   ];
-                  console.log('Services array:', services);
-                  console.log('Number of services:', services.length);
-                  services.forEach((service, index) => {
-                    console.log(`Service ${index + 1}: ${service.title} - ${service.icon}`);
-                  });
                   return services;
                 })().map((service, index) => (
                   <Link key={service.title} to="/contact" className="block h-full">
@@ -242,7 +237,7 @@ const Index = () => {
                       <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                       
                       {/* Card Content */}
-                      <div className={`relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 transition-all duration-500 h-full flex flex-col cursor-pointer`}>
+                      <div className={`relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/10 transition-all duration-500 h-full flex flex-col cursor-pointer`}>
                         {/* Icon */}
                         <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
                           {service.icon}

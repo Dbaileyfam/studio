@@ -112,8 +112,8 @@ export default {
 				'slide-down': 'slide-down 0.5s ease-out'
 			},
 			fontFamily: {
-				sans: ['Inter var', 'sans-serif'],
-				display: ['SF Pro Display', 'Inter var', 'sans-serif']
+				sans: ['Inter', 'Inter var', 'sans-serif'],
+				display: ['Outfit', 'SF Pro Display', 'Inter', 'sans-serif']
 			}
 		}
 	},
