@@ -12,6 +12,7 @@ try {
       <App />
     </ErrorBoundary>
   );
+  document.getElementById("load-marker")?.remove();
 } catch (err) {
   rootEl.innerHTML = `
     <div style="padding:2rem;font-family:sans-serif;color:#991b1b;max-width:600px;margin:2rem auto;">
