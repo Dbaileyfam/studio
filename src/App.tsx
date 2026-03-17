@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import Appointments from "./pages/Appointments";
 import NotFound from "./pages/NotFound";
 import FeaturedArtists from "./pages/FeaturedArtists";
+import UpcomingShows from "./pages/UpcomingShows";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -33,6 +34,7 @@ const App = () => (
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/appointments" element={<Appointments />} />
                 <Route path="/featured-artists" element={<FeaturedArtists />} />
+                <Route path="/upcoming-shows" element={<UpcomingShows />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

@@ -10,6 +10,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Upcoming Shows", path: "/upcoming-shows" },
     { name: "Book a Session", path: "/appointments" },
     { name: "Featured Artists", path: "/featured-artists" },
     { name: "Contact", path: "/contact" },
