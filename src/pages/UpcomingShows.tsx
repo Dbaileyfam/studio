@@ -26,10 +26,10 @@ const UpcomingShows = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6 text-balance bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
                 Upcoming Shows
               </h1>
-              <p className="text-lg text-gray-200/80 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-700 max-w-2xl mx-auto">
                 Stay in the loop with live events and performances connected with 801 Family Studios.
               </p>
             </motion.div>
