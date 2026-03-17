@@ -5,8 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Custom domain is served from the root
-  base: "/",
+  // Relative base so the same build works on both:
+  // - GitHub Pages: .../studio/  →  ./assets/  resolves to .../studio/assets/
+  // - Custom domain (root)       →  ./assets/  resolves to .../assets/
+  base: "./",
   server: {
     host: "::",
     port: 8080,
