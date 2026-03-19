@@ -7,7 +7,7 @@ import tribeImage from "@/assets/Tribeof1.jpg";
 import swaggerImage from "@/assets/swagger1.jpg";
 
 import fngImage from "@/assets/fng2.jpg";
-import dubnectarImage from "@/assets/dub-nectar-band.jpg";
+import dubNectarLogo from "@/assets/dub-nectar-logo.png";
 import alleyKatsImage from "@/assets/TheAlleyKats.jpeg";
 import fearAndLoathingImage from "@/assets/Fearandloathing.JPEG";
 import stealThisBandImage from "@/assets/Stealthisband.JPEG";
@@ -69,15 +69,17 @@ const FeaturedArtists = () => {
       }
     },
     {
-      name: "Dubnectar",
+      name: "Dub Nectar",
       genre: "Reggae/Funk",
-      description: "Blending smooth reggae rhythms with infectious funk grooves, Dubnectar creates an uplifting musical experience that gets everyone moving. Their vibrant performances combine island vibes with soulful funk elements.",
-      image: dubnectarImage,
+      description: "Blending smooth reggae rhythms with infectious funk grooves, Dub Nectar creates an uplifting musical experience that gets everyone moving. Their vibrant performances combine island vibes with soulful funk elements.",
+      image: dubNectarLogo,
+      imageFit: "contain" as const,
       social: {
         instagram: "https://www.instagram.com/thedubnectar/",
         facebook: "https://www.facebook.com/newbornslaves",
         youtube: "https://www.youtube.com/@DubNectar",
-        music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO"
+        music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO",
+        website: "https://dubnectar.com"
       }
     },
     {

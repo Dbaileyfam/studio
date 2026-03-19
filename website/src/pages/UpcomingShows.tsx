@@ -126,6 +126,68 @@ const UpcomingShows = () => {
                 </div>
               </motion.div>
 
+              {/* BELLEROSE @ A Bar Named Sue */}
+              <motion.div
+                className="max-w-3xl mx-auto"
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                custom={0.2}
+              >
+                <div className="bg-gradient-to-br from-amber-900/80 via-stone-900/90 to-yellow-900/60 backdrop-blur-sm rounded-3xl border border-white/20 overflow-hidden shadow-2xl">
+                  <div className="p-8 md:p-10 border-b border-white/15">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 leading-tight">
+                      🎸 Bellerose @ A Bar Named Sue
+                    </h2>
+                    <p className="text-center text-sm uppercase tracking-[0.15em] text-amber-200 mb-4">
+                      West Coast Rock Meets Dust Bowl Twang with The Blues In Between
+                    </p>
+                    <p className="text-lg text-gray-100 text-center leading-relaxed">
+                      Catch <span className="font-semibold text-white">Bellerose</span> live on State St. — rock, twang, and blues in one night.
+                    </p>
+                  </div>
+                  <div className="p-8 md:p-10 space-y-6">
+                    <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start sm:items-center p-6 rounded-2xl bg-white/5 border border-white/10">
+                      <div className="flex items-center gap-3 shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center">
+                          <MapPin className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-300 uppercase tracking-wider">Venue</p>
+                          <p className="text-xl font-bold text-white">A Bar Named Sue – State St.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-6 sm:gap-10 justify-center pt-2 border-t border-white/15">
+                      <div className="flex items-center gap-3">
+                        <Clock className="w-5 h-5 text-gray-200" />
+                        <p className="text-gray-100">
+                          <span className="font-semibold text-white">9:30 PM</span>
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <DollarSign className="w-5 h-5 text-gray-200" />
+                        <p className="text-gray-100">
+                          <span className="font-semibold text-white">Free event</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex justify-center pt-4">
+                      <a
+                        href="https://fb.me/e/4aRXL4KEL"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/40 text-white text-sm font-medium hover:bg-white/10 transition-colors"
+                      >
+                        View Facebook Event
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* NYAHMIDI - May 9 */}
               <motion.div
                 className="max-w-3xl mx-auto"
@@ -187,6 +249,17 @@ const UpcomingShows = () => {
                       Come early, grab a drink, and lock in your spot — it&apos;s going to be a lion-hearted
                       celebration of music and unity.
                     </p>
+                    <div className="flex justify-center pt-4">
+                      <a
+                        href="https://www.facebook.com/share/15cqDxRBmWw/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/40 text-white text-sm font-medium hover:bg-white/10 transition-colors"
+                      >
+                        View Facebook Event
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.div>

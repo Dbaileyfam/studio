@@ -2,7 +2,7 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Music } from "lucide-react";
+import { Instagram, Facebook, Youtube, Music, Globe } from "lucide-react";
 
 const FeaturedArtists = () => {
   const fadeIn = {
@@ -28,15 +28,17 @@ const FeaturedArtists = () => {
       }
     },
     {
-      name: "Dubnectar",
+      name: "Dub Nectar",
       genre: "Reggae/Funk",
-      description: "Blending smooth reggae rhythms with infectious funk grooves, Dubnectar creates an uplifting musical experience that gets everyone moving. Their vibrant performances combine island vibes with soulful funk elements.",
-      image: "/images/dubnectar-collage.jpg",
+      description: "Blending smooth reggae rhythms with infectious funk grooves, Dub Nectar creates an uplifting musical experience that gets everyone moving. Their vibrant performances combine island vibes with soulful funk elements.",
+      image: "/images/dub-nectar-logo.png",
+      imageClass: "object-contain bg-black",
       social: {
-        instagram: "https://instagram.com/dubnectar",
-        facebook: "https://facebook.com/dubnectar",
-        youtube: "https://youtube.com/@dubnectar",
-        music: "https://open.spotify.com/artist/dubnectar"
+        instagram: "https://www.instagram.com/thedubnectar/",
+        facebook: "https://www.facebook.com/newbornslaves",
+        youtube: "https://www.youtube.com/@DubNectar",
+        music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO",
+        website: "https://dubnectar.com"
       }
     },
     {
@@ -90,7 +92,9 @@ const FeaturedArtists = () => {
                     <img
                       src={artist.image}
                       alt={artist.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+                        "imageClass" in artist && artist.imageClass ? artist.imageClass : "object-cover"
+                      }`}
                     />
                   </div>
                   <div className="p-6">
@@ -136,6 +140,17 @@ const FeaturedArtists = () => {
                       >
                         <Music className="h-5 w-5" />
                       </a>
+                      {"website" in artist.social && artist.social.website && (
+                        <a
+                          href={artist.social.website as string}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-slate-800 dark:text-gray-400 dark:hover:text-white transition-colors"
+                          aria-label={`${artist.name} website`}
+                        >
+                          <Globe className="h-5 w-5" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>
