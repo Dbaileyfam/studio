@@ -42,6 +42,21 @@ const FeaturedArtists = () => {
       }
     },
     {
+      name: "The Unaffected",
+      genre: "Rock / Hard Rock / Alternative",
+      description:
+        "High-energy rock from Salt Lake City blending hard rock and metal power, pop-rock melody, blues soul, and grunge attitude. A unique sonic identity from intimate rooms to stages like Whisky A Go Go.",
+      image:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
+      social: {
+        instagram: "",
+        facebook: "",
+        youtube: "",
+        music: "",
+        website: "https://dbaileyfam.github.io/theunaffectedepk/",
+      },
+    },
+    {
       name: "Tribe of I",
       genre: "Reggae/Rock",
       description: "Blending reggae rhythms with rock energy for a unique island sound. Their music carries messages of unity, love, and positive vibrations through powerful performances.",

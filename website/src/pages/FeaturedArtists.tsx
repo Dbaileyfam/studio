@@ -16,9 +16,6 @@ import djNapoImage from "@/assets/djnapo.jpg";
 import niceAndSwellImage from "@/assets/niceandswell.JPG";
 import masterKennedyImage from "@/assets/masterkennedy-qzdRC3be.jpg";
 import belleroseImage from "@/assets/IMG_0710.jpg";
-import placeholderImage from "@/assets/801-family-studios-logo.png";
-
-
 const FeaturedArtists = () => {
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -153,6 +150,21 @@ const FeaturedArtists = () => {
         youtube: "https://www.youtube.com/@SwaggerTheBand",
         music: "https://open.spotify.com/artist/7tPoZvl7OYT2rQDdzCQpfR"
       }
+    },
+    {
+      name: "The Unaffected",
+      genre: "Rock / Hard Rock / Alternative",
+      description:
+        "High-energy rock from Salt Lake City blending hard rock and metal power, pop-rock melody, blues soul, and grunge attitude. The Unaffected fearlessly mixes diverse sounds into a unique sonic identity that defies categorization — from intimate rooms to stages like Whisky A Go Go.",
+      image:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
+      social: {
+        instagram: "",
+        facebook: "",
+        youtube: "",
+        music: "",
+        website: "https://dbaileyfam.github.io/theunaffectedepk/",
+      },
     },
     {
       name: "Tribe of I",

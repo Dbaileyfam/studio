@@ -65,6 +65,9 @@ const UpcomingShows = () => {
                         SALT LAKE&apos;S OWN: STEAL THIS BAND
                       </span>{" "}
                       – by Funk and Gonzo covering Korn, Deftones, RATM, Incubus, Slipknot &amp; more.
+                      {" "}
+                      With supporting act{" "}
+                      <span className="font-semibold text-white">Just 4 The Record</span>.
                     </p>
                   </div>
                   <div className="p-8 md:p-10 space-y-6">
