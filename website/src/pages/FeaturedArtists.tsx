@@ -36,7 +36,9 @@ const FeaturedArtists = () => {
         instagram: "https://www.instagram.com/the_alley_kats/",
         facebook: "https://www.facebook.com/groups/alleykatsofficial/",
         youtube: "https://www.youtube.com/channel/UC2PH9AtEi2_BSlQSkaKYPcQ",
-        music: "https://open.spotify.com/artist/5zu4Hxw96i76KQ6ffhFaCj?si=IiuWvU1EQkKCcm6Nh7QbpA"
+        music: "https://open.spotify.com/artist/5zu4Hxw96i76KQ6ffhFaCj?si=IiuWvU1EQkKCcm6Nh7QbpA",
+        website: "https://www.thealleykatsvibe.com/index.html",
+        epk: "https://www.thealleykatsvibe.com/epk.html"
       }
     },
     {
@@ -50,7 +52,8 @@ const FeaturedArtists = () => {
         facebook: "https://www.facebook.com/kelly.bellerose.3",
         youtube: "https://www.youtube.com/@kellybellerose5153",
         music: "https://open.spotify.com/artist/4wfkMUFPjgTR80I0sCuG1S",
-        website: "https://bellerosemusic.com/"
+        website: "https://bellerosemusic.com/",
+        epk: "https://kellybellerosethebelleroseband.bandzoogle.com/home"
       }
     },
     {
