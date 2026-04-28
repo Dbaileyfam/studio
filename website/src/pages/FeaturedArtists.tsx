@@ -168,6 +168,7 @@ const FeaturedArtists = () => {
         youtube: "",
         music: "",
         website: "https://dbaileyfam.github.io/theunaffectedepk/",
+        epk: "https://dbaileyfam.github.io/theunaffectedepk/",
       },
     },
     {
