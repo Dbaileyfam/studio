@@ -76,7 +76,8 @@ const FeaturedArtists = () => {
         facebook: "https://www.facebook.com/newbornslaves",
         youtube: "https://www.youtube.com/@DubNectar",
         music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO",
-        website: "https://dubnectar.com"
+        website: "https://www.dubnectar.com",
+        epk: "https://www.dubnectar.com/epk.html"
       }
     },
     {
@@ -493,6 +494,20 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
                 >
                   <Globe size={16} />
                   Website
+                </motion.a>
+              )}
+
+              {artist.social.epk && (
+                <motion.a
+                  href={artist.social.epk}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-700 hover:to-orange-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Globe size={16} />
+                  EPK
                 </motion.a>
               )}
             </div>

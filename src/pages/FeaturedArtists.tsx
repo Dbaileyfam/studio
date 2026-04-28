@@ -38,7 +38,8 @@ const FeaturedArtists = () => {
         facebook: "https://www.facebook.com/newbornslaves",
         youtube: "https://www.youtube.com/@DubNectar",
         music: "https://open.spotify.com/artist/3VOB8pqczKq08vAJYIXmeO",
-        website: "https://dubnectar.com"
+        website: "https://www.dubnectar.com",
+        epk: "https://www.dubnectar.com/epk.html",
       }
     },
     {
@@ -118,7 +119,7 @@ const FeaturedArtists = () => {
                     <p className="text-gray-600 dark:text-gray-300 mb-6 text-pretty">
                       {artist.description}
                     </p>
-                    <div className="flex items-center justify-center gap-4">
+                    <div className="flex flex-wrap items-center justify-center gap-3">
                       <a
                         href={artist.social.instagram}
                         target="_blank"
@@ -160,10 +161,35 @@ const FeaturedArtists = () => {
                           href={artist.social.website as string}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-600 hover:text-slate-800 dark:text-gray-400 dark:hover:text-white transition-colors"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-gray-300 dark:border-gray-700 px-2.5 py-1 text-xs text-gray-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                           aria-label={`${artist.name} website`}
                         >
-                          <Globe className="h-5 w-5" />
+                          <Globe className="h-4 w-4" />
+                          Website
+                        </a>
+                      )}
+                      {"epk" in artist.social && artist.social.epk && (
+                        <a
+                          href={artist.social.epk as string}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-gray-300 dark:border-gray-700 px-2.5 py-1 text-xs text-gray-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                          aria-label={`${artist.name} EPK`}
+                        >
+                          <Globe className="h-4 w-4" />
+                          EPK
+                        </a>
+                      )}
+                      {artist.name === "Dub Nectar" && !("epk" in artist.social) && (
+                        <a
+                          href="https://www.dubnectar.com/epk.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-gray-300 dark:border-gray-700 px-2.5 py-1 text-xs text-gray-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                          aria-label={`${artist.name} EPK`}
+                        >
+                          <Globe className="h-4 w-4" />
+                          EPK
                         </a>
                       )}
                     </div>
