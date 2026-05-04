@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 node_modules
 .DS_Store
+
+# One Heart Orchestra — standalone repo (github.com/Dbaileyfam/OneHeartOrchestra)
+OneHeartOrchestra/
