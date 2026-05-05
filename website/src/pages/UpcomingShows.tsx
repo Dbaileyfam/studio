@@ -44,6 +44,10 @@ const UpcomingShows = () => {
                   title: "Vana Liya at Soundwell",
                   link: "https://fb.me/e/5OADAGbMw",
                 },
+                {
+                  title: "NYAHMIDI Live at Redemption Bar & Grill",
+                  link: "https://www.facebook.com/share/15cqDxRBmWw/",
+                },
               ].map((event, index) => (
                 <motion.div
                   key={event.link}
