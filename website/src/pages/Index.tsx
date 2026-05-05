@@ -171,6 +171,9 @@ const Index = () => {
                 <p className="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
                   Comprehensive music services designed to elevate your sound and career
                 </p>
+                <p className="text-sm md:text-base text-gray-300 mt-4">
+                  Click a service card to view pricing
+                </p>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
@@ -283,11 +286,7 @@ const Index = () => {
                               </span>
                             </div>
                           </>
-                        ) : (
-                          <p className="text-gray-300 text-center flex-grow">
-                            Click to view pricing
-                          </p>
-                        )}
+                        ) : <div className="flex-grow" />}
                         
                         {/* Hover Effect Line */}
                         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
