@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Music, Instagram, Facebook } from "lucide-react";
 
 const Footer = () => {
@@ -21,11 +22,11 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <a href="/" className="inline-block mb-6">
+            <Link to="/" className="inline-block mb-6">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                 801FamilyStudios
               </h3>
-            </a>
+            </Link>
             <p className="text-gray-200 leading-relaxed mb-6 max-w-md">
               Your home for all your music management needs. Professional services to help you organize, produce, and succeed in your musical journey.
             </p>
@@ -69,12 +70,12 @@ const Footer = () => {
                 { path: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.path}>
-                  <a
-                    href={link.path === "/" ? "/" : `#${link.path}`}
+                  <Link
+                    to={link.path}
                     className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li>
