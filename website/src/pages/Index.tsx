@@ -203,7 +203,7 @@ const Index = () => {
                     {
                       title: "EPK Services",
                       description: "Basic EPK: $150. Full EPK: $250. One Sheet (PDF): $75.",
-                      icon: "🗂️",
+                      icon: "📄",
                       gradient: "from-indigo-500/20 to-purple-500/20",
                       borderColor: "border-indigo-400/30"
                     },
