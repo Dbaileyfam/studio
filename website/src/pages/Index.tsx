@@ -2,10 +2,12 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
 const Index = () => {
+  const [expandedService, setExpandedService] = useState<string | null>(null);
 
   
 
@@ -233,7 +235,16 @@ const Index = () => {
                   ];
                   return services;
                 })().map((service, index) => (
-                  <Link key={service.title} to="/contact" className="block h-full">
+                  <button
+                    key={service.title}
+                    type="button"
+                    onClick={() =>
+                      setExpandedService((current) =>
+                        current === service.title ? null : service.title
+                      )
+                    }
+                    className="block h-full text-left"
+                  >
                     <motion.div
                       className="group relative h-full"
                       variants={fadeIn}
@@ -261,16 +272,28 @@ const Index = () => {
                           {service.title}
                         </h3>
                         
-                        {/* Description */}
-                        <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
-                          {service.description}
-                        </p>
+                        {expandedService === service.title ? (
+                          <>
+                            <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
+                              {service.description}
+                            </p>
+                            <div className="mt-6 flex justify-center">
+                              <span className="inline-flex items-center rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white border border-white/25">
+                                Click Contact Us to Book
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <p className="text-gray-300 text-center flex-grow">
+                            Click to view pricing
+                          </p>
+                        )}
                         
                         {/* Hover Effect Line */}
                         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
                       </div>
                     </motion.div>
-                  </Link>
+                  </button>
                 ))}
               </div>
               <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-12 leading-relaxed">
