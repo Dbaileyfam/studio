@@ -175,58 +175,58 @@ const Index = () => {
                 {(() => {
                   const services = [
                     {
-                      title: "Recording Services",
-                      description: "Affordable and professional studio recording with dedicated sound engineers to help bring your music to life.",
+                      title: "Recording",
+                      description: "$60/hr. Half Day (4 hrs): $200. Full Day (8 hrs): $400. Vocal, instrument, podcast, overdub, demo, or full band sessions.",
                       icon: "🎙️",
                       gradient: "from-blue-500/20 to-purple-500/20",
                       borderColor: "border-blue-400/30"
                     },
                     {
-                      title: "Booking Services",
-                      description: "We'll help you find the perfect local venues and events for your music. Our team manages all the details, from negotiations to logistics, so you can focus on performing.",
-                      icon: "🎸",
+                      title: "Mixing & Mastering",
+                      description: "All services include 2 revisions. Mix: $150/song. Mastering: $50/song. Mix + Master: $175/song.",
+                      icon: "🎚️",
                       gradient: "from-green-500/20 to-teal-500/20",
                       borderColor: "border-green-400/30"
                     },
                     {
-                      title: "Artist Management",
-                      description: "Professional guidance to help you navigate the music industry, build your brand, and achieve your musical goals.",
-                      icon: "🎵",
+                      title: "Website Services",
+                      description: "Basic Band Website: $250. Full Band Website: $400. Website Updates & Maintenance: $40/month.",
+                      icon: "💻",
                       gradient: "from-orange-500/20 to-red-500/20",
                       borderColor: "border-orange-400/30"
                     },
                     {
-                      title: "Advanced Drum Lessons",
-                      description: "Take your drumming to the next level with personalized instruction from experienced professionals. Learn advanced techniques, timing, and musical theory.",
-                      icon: "🥁",
+                      title: "EPK Services",
+                      description: "Basic EPK: $150. Full EPK: $250. One Sheet (PDF): $75.",
+                      icon: "🗂️",
                       gradient: "from-indigo-500/20 to-purple-500/20",
                       borderColor: "border-indigo-400/30"
                     },
                     {
-                      title: "Musician for Hire",
-                      description: "Professional session musicians available to fill in for gigs, recordings, or performances. Experienced players ready to step in and deliver quality performances when you need them most.",
-                      icon: "🎺",
+                      title: "Booking & Management",
+                      description: "Booking: 10% of gig income. Management: 20% of total artist revenue. Requires exclusivity agreement + in-person consultation.",
+                      icon: "🎵",
                       gradient: "from-yellow-500/20 to-orange-500/20",
                       borderColor: "border-yellow-400/30"
                     },
                     {
-                      title: "Marketing",
-                      description: "Comprehensive social media management and website development to boost your online presence. From content creation to digital strategy, we help you connect with your audience and grow your fanbase.",
-                      icon: "💻",
+                      title: "Studio Rental & Rehearsal",
+                      description: "$25/hr (3-hour minimum). Includes rehearsal space, basic setup help, and basic rehearsal mix support. Add-ons: Sound Tech Support $25/hr, Rehearsal Recording $50/hr.",
+                      icon: "🎛️",
                       gradient: "from-cyan-500/20 to-blue-500/20",
                       borderColor: "border-cyan-400/30"
                     },
                     {
-                      title: "Mixing and Mastering",
-                      description: "Professional audio mixing and mastering services to polish your recordings to perfection. Our experienced engineers use industry-standard tools and techniques to ensure your music sounds its best across all platforms and formats.",
-                      icon: "🎚️",
+                      title: "Drum Lessons",
+                      description: "$120/month. Two 1-hour lessons per month.",
+                      icon: "🥁",
                       gradient: "from-pink-500/20 to-rose-500/20",
                       borderColor: "border-pink-400/30"
                     },
                     {
-                      title: "Music Production",
-                      description: "Full-service music production from concept to completion. We work with you to develop your musical ideas, arrange compositions, and create professional-quality tracks that capture your unique artistic vision.",
-                      icon: "🎹",
+                      title: "Social Media & Promotion",
+                      description: "Monthly Content Push Support: $150/month (you make the content, we market it). Artist Growth Package: $500/month (12 posts from your media, content support and push, FB + Instagram engagement).",
+                      icon: "📣",
                       gradient: "from-emerald-500/20 to-teal-500/20",
                       borderColor: "border-emerald-400/30"
                     }
@@ -273,6 +273,9 @@ const Index = () => {
                   </Link>
                 ))}
               </div>
+              <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-12 leading-relaxed">
+                Policies: Deposits may be required for booking. Cancellations may incur fees. Custom projects available upon consultation.
+              </p>
             </section>
           </div>
         </div>

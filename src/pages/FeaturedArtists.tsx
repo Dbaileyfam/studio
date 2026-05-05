@@ -50,7 +50,7 @@ const FeaturedArtists = () => {
       image:
         "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
       social: {
-        instagram: "",
+        instagram: "https://www.instagram.com/the_unaffected_/",
         facebook: "",
         youtube: "",
         music: "",
