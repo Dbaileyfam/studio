@@ -14,20 +14,6 @@ const UpcomingShows = () => {
 
   const events = [
     {
-      title: "Vana Liya — Summer Soul Tour 2026",
-      subtitle: "With Herban Empire • Salt Lake City, UT • Soundwell • 21+",
-      imageSrc: "/images/upcoming/vana-liya-june10-soundwell.png",
-      imageAlt: "Flyer: Vana Liya Summer Soul Tour 2026 with Herban Empire at Soundwell, Salt Lake City on June 10",
-      date: "Tuesday, June 10, 2026",
-      venue: "Soundwell",
-      address: "Salt Lake City, UT",
-      time: "See flyer for set times",
-      note: "Presented by Reggae Rise Up. Tickets available at reggaeriseup.com.",
-      accent: "from-cyan-500/20 to-emerald-500/20",
-      primaryCta: { label: "Tickets", href: "https://reggaeriseup.com", icon: "ticket" as const },
-      secondaryCta: { label: "Facebook Event", href: "https://fb.me/e/5OADAGbMw", icon: "external" as const },
-    },
-    {
       title: "The Bellerose Band",
       subtitle: "With Unseen Corners & The Beer Pressure • Liquid Joe's • 21+",
       imageSrc: "/images/upcoming/bellerose-may8-liquid-joes.png",
@@ -52,6 +38,20 @@ const UpcomingShows = () => {
       note: "$10 tickets. Roots-forward live night — details on the flyer.",
       accent: "from-amber-500/20 to-emerald-500/20",
       primaryCta: { label: "Facebook Event", href: "https://www.facebook.com/share/15cqDxRBmWw/", icon: "external" as const },
+    },
+    {
+      title: "Vana Liya — Summer Soul Tour 2026",
+      subtitle: "With Herban Empire • Salt Lake City, UT • Soundwell • 21+",
+      imageSrc: "/images/upcoming/vana-liya-june10-soundwell.png",
+      imageAlt: "Flyer: Vana Liya Summer Soul Tour 2026 with Herban Empire at Soundwell, Salt Lake City on June 10",
+      date: "Tuesday, June 10, 2026",
+      venue: "Soundwell",
+      address: "Salt Lake City, UT",
+      time: "See flyer for set times",
+      note: "Presented by Reggae Rise Up. Tickets available at reggaeriseup.com.",
+      accent: "from-cyan-500/20 to-emerald-500/20",
+      primaryCta: { label: "Tickets", href: "https://reggaeriseup.com", icon: "ticket" as const },
+      secondaryCta: { label: "Facebook Event", href: "https://fb.me/e/5OADAGbMw", icon: "external" as const },
     },
   ];
 
