@@ -68,10 +68,12 @@ const UpcomingShows = () => {
                           href={event.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/40 text-white text-sm font-medium hover:bg-white/10 transition-colors"
+                          className="group inline-flex items-center gap-3 px-7 py-3 rounded-full bg-gradient-to-r from-[#3f51b5] via-[#5c6bc0] to-[#7e8ce0] text-white text-sm font-semibold tracking-wide border border-white/30 shadow-lg shadow-indigo-900/40 hover:shadow-xl hover:shadow-indigo-700/50 hover:scale-105 hover:from-[#4b60d4] hover:to-[#8c99f0] transition-all duration-300"
                         >
-                          View Facebook Event
-                          <ExternalLink className="w-4 h-4" />
+                          <span className="uppercase">View Facebook Event</span>
+                          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </span>
                         </a>
                       </div>
                     </div>
