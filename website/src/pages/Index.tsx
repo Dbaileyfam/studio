@@ -10,8 +10,10 @@ import {
 } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useRef, useState } from "react";
+import InstagramReelEmbed from "@/components/InstagramReelEmbed";
 import logo from "@/assets/locologo.png";
-import studioImage from "@/assets/studio2.jpg";
+
+const STUDIO_REEL_URL = "https://www.instagram.com/reel/DThFbL2jipM/";
 
 const WEB_PORTFOLIO_URL = "https://dbaileyfam.github.io/801familywebsiteportfolio/";
 const HEADLINE = "Where Artists Feel At Home";
@@ -165,7 +167,7 @@ const Index = () => {
               </motion.div>
 
               <motion.div
-                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-visible rounded-3xl relative will-change-transform"
+                className="w-full mt-16 md:mt-24 max-w-5xl mx-auto overflow-visible rounded-3xl relative will-change-transform"
                 style={
                   reduceMotion
                     ? undefined
@@ -179,28 +181,19 @@ const Index = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <motion.div className="w-full h-full aspect-[16/9] overflow-hidden rounded-3xl shadow-2xl relative group ring-2 ring-white/10 ring-offset-4 ring-offset-transparent">
-                {/* Studio Reel Video */}
-                <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black">
-                  <video
-                    className="w-full h-full object-contain"
-                    src="/studio.MOV"
-                    poster={studioImage}
-                    playsInline
-                    muted
-                    loop
-                    autoPlay
-                    controls
-                    aria-label="801 Family Studios studio reel"
-                  />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                  {/* Floating Content Overlay */}
-                  <motion.div className="absolute bottom-6 left-6 right-6 z-20 text-white">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
-                    <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
-                  </motion.div>
-                </div>
+                <motion.div className="w-full overflow-hidden rounded-3xl shadow-2xl ring-2 ring-white/10 ring-offset-4 ring-offset-transparent bg-black/40 px-4 py-6 md:px-8 md:py-8">
+                  <p className="text-center text-sm text-gray-300 mb-4 md:mb-6">
+                    Studio reel from{" "}
+                    <a
+                      href={STUDIO_REEL_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-300 hover:text-teal-200 underline-offset-2 hover:underline"
+                    >
+                      @801familystudios
+                    </a>
+                  </p>
+                  <InstagramReelEmbed permalink={STUDIO_REEL_URL} />
                 </motion.div>
               </motion.div>
             </section>
