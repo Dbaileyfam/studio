@@ -14,44 +14,60 @@ const UpcomingShows = () => {
 
   const events = [
     {
-      title: "The Bellerose Band",
-      subtitle: "With Unseen Corners & The Beer Pressure • Liquid Joe's • 21+",
-      imageSrc: "/images/upcoming/bellerose-may8-liquid-joes.png",
-      imageAlt: "Flyer: The Bellerose Band with Unseen Corners and The Beer Pressure at Liquid Joe's on Friday, May 8",
-      date: "Friday, May 8, 2026",
-      venue: "Liquid Joe's",
-      address: "1249 E 3300 S, Salt Lake City, UT",
-      time: "Doors 7 PM • Music 7:30 PM",
-      note: "$10 cover. One night, three bands.",
-      accent: "from-slate-500/30 to-teal-500/30",
-      primaryCta: { label: "Facebook Event", href: "https://fb.me/e/7PnCoqubx", icon: "external" as const },
-    },
-    {
-      title: "NYAHMIDI",
-      subtitle: "With Sun Divide • Redemption Bar & Grill",
-      imageSrc: "/images/upcoming/nyahmidi-may9-redemption.png",
-      imageAlt: "Flyer: NYAHMIDI with Sun Divide at Redemption Bar & Grill on Saturday, May 9 at 9 PM",
-      date: "Saturday, May 9, 2026",
+      id: "random-precision-may30",
+      title: "Random Precision",
+      subtitle: "A Pink Floyd Tribute • Redemption Bar & Grill",
+      imageSrc: "/images/upcoming/random-precision-may30-redemption.png",
+      imageAlt:
+        "Flyer: Random Precision, a Pink Floyd tribute, at Redemption Bar & Grill on Saturday, May 30 — $10 tickets",
+      date: "Saturday, May 30, 2026",
       venue: "Redemption Bar & Grill",
-      address: "See venue for address",
-      time: "9 PM",
-      note: "$10 tickets. Roots-forward live night — details on the flyer.",
-      accent: "from-amber-500/30 to-emerald-500/30",
-      primaryCta: { label: "Facebook Event", href: "https://www.facebook.com/share/15cqDxRBmWw/", icon: "external" as const },
+      address: "Salt Lake City, UT",
+      time: "See flyer for show time",
+      note: "$10 tickets. Prism-era tribute night — details on the flyer.",
+      accent: "from-indigo-500/30 to-amber-500/30",
     },
     {
-      title: "Vana Liya — Summer Soul Tour 2026",
-      subtitle: "With Herban Empire • Salt Lake City, UT • Soundwell • 21+",
-      imageSrc: "/images/upcoming/vana-liya-june10-soundwell.png",
-      imageAlt: "Flyer: Vana Liya Summer Soul Tour 2026 with Herban Empire at Soundwell, Salt Lake City on June 10",
-      date: "Tuesday, June 10, 2026",
-      venue: "Soundwell",
+      id: "tribe-alleykats-june4",
+      title: "Tribe of I & The Alley Kats",
+      subtitle: "Hog Wallow Pub • Salt Lake City, UT",
+      imageSrc: "/images/upcoming/tribe-alleykats-june4-hog-wallow.png",
+      imageAlt:
+        "Flyer: Tribe of I and The Alley Kats at Hog Wallow Pub on June 4, 2026 in Salt Lake City",
+      date: "Thursday, June 4, 2026",
+      venue: "Hog Wallow Pub",
       address: "Salt Lake City, UT",
-      time: "See flyer for set times",
-      note: "Presented by Reggae Rise Up. Tickets available at reggaeriseup.com.",
-      accent: "from-cyan-500/30 to-emerald-500/30",
-      primaryCta: { label: "Tickets", href: "https://reggaeriseup.com", icon: "ticket" as const },
-      secondaryCta: { label: "Facebook Event", href: "https://fb.me/e/5OADAGbMw", icon: "external" as const },
+      time: "See flyer for show time",
+      note: "Live reggae night — full lineup and times on the flyer.",
+      accent: "from-orange-500/30 to-teal-500/30",
+    },
+    {
+      id: "tribe-alleykats-june5",
+      title: "Tribe of I & The Alley Kats",
+      subtitle: "A Bar Named Sue • Salt Lake City, UT",
+      imageSrc: "/images/upcoming/tribe-alleykats-june5-bar-named-sue.png",
+      imageAlt:
+        "Flyer: Tribe of I and The Alley Kats at A Bar Named Sue on June 5, 2026 in Salt Lake City",
+      date: "Friday, June 5, 2026",
+      venue: "A Bar Named Sue",
+      address: "Salt Lake City, UT",
+      time: "See flyer for show time",
+      note: "Second stop on the June run — details on the flyer.",
+      accent: "from-rose-500/25 to-amber-500/30",
+    },
+    {
+      id: "tribe-alleykats-june6",
+      title: "Tribe of I & The Alley Kats",
+      subtitle: "Redemption Bar & Grill • Salt Lake City, UT",
+      imageSrc: "/images/upcoming/tribe-alleykats-june6-redemption.png",
+      imageAlt:
+        "Flyer: Tribe of I and The Alley Kats at Redemption Bar & Grill on June 6, 2026 in Salt Lake City",
+      date: "Saturday, June 6, 2026",
+      venue: "Redemption Bar & Grill",
+      address: "Salt Lake City, UT",
+      time: "See flyer for show time",
+      note: "Closing night of the June trio — see the flyer for full info.",
+      accent: "from-teal-500/30 to-orange-500/30",
     },
   ];
 
@@ -80,7 +96,7 @@ const UpcomingShows = () => {
             <div className="space-y-12 max-w-5xl mx-auto">
               {events.map((event, index) => (
                 <motion.div
-                  key={event.title}
+                  key={event.id}
                   className="max-w-3xl mx-auto"
                   variants={fadeIn}
                   initial="initial"
@@ -134,35 +150,37 @@ const UpcomingShows = () => {
 
                         <p className="text-gray-100 text-center leading-relaxed">{event.note}</p>
 
-                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                          <a
-                            href={event.primaryCta.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group btn-brand inline-flex items-center justify-center gap-2 px-7 py-3 hover:scale-105"
-                          >
-                            <span className="uppercase">{event.primaryCta.label}</span>
-                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
-                              {event.primaryCta.icon === "ticket" ? (
-                                <Ticket className="w-3.5 h-3.5" />
-                              ) : (
-                                <ExternalLink className="w-3.5 h-3.5" />
-                              )}
-                            </span>
-                          </a>
-
-                          {"secondaryCta" in event && event.secondaryCta && (
+                        {"primaryCta" in event && event.primaryCta && (
+                          <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <a
-                              href={event.secondaryCta.href}
+                              href={event.primaryCta.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
+                              className="group btn-brand inline-flex items-center justify-center gap-2 px-7 py-3 hover:scale-105"
                             >
-                              <span className="uppercase">{event.secondaryCta.label}</span>
-                              <ExternalLink className="w-4 h-4" />
+                              <span className="uppercase">{event.primaryCta.label}</span>
+                              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
+                                {event.primaryCta.icon === "ticket" ? (
+                                  <Ticket className="w-3.5 h-3.5" />
+                                ) : (
+                                  <ExternalLink className="w-3.5 h-3.5" />
+                                )}
+                              </span>
                             </a>
-                          )}
-                        </div>
+
+                            {"secondaryCta" in event && event.secondaryCta && (
+                              <a
+                                href={event.secondaryCta.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
+                              >
+                                <span className="uppercase">{event.secondaryCta.label}</span>
+                                <ExternalLink className="w-4 h-4" />
+                              </a>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
