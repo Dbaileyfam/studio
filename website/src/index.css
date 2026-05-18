@@ -171,8 +171,39 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Cursor musical notes — same pop motion as oneheartorchestra.com glitter */
+@keyframes note-glitter-pop {
+  0% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(0.35) rotate(0deg);
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.65) rotate(var(--note-rotate, 48deg));
+  }
+}
+
+.cursor-note-glitter {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity;
+  line-height: 1;
+  user-select: none;
+  animation: note-glitter-pop 0.56s ease-out forwards;
+  text-shadow:
+    0 0 12px currentColor,
+    0 0 4px rgba(255, 255, 255, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .cursor-note-glitter {
+    animation: none;
   }
 }

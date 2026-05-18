@@ -1,17 +1,42 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
+import RevealWords from "@/components/RevealWords";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import { useRef, useState } from "react";
 import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
+const WEB_PORTFOLIO_URL = "https://dbaileyfam.github.io/801familywebsiteportfolio/";
+const HEADLINE = "Where Artists Feel At Home";
+const HEADLINE_STAGGER = 0.07;
+const HEADLINE_REVEAL_END =
+  HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
+
 const Index = () => {
   const [expandedService, setExpandedService] = useState<string | null>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
 
-  
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
 
-  
+  const logoScale = useTransform(scrollYProgress, [0, 0.65], [1, 0.78]);
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+  const logoY = useTransform(scrollYProgress, [0, 0.65], [0, -48]);
+  const heroCopyOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0.55]);
+  const heroCopyY = useTransform(scrollYProgress, [0, 0.5], [0, -20]);
+  const videoY = useTransform(scrollYProgress, [0, 1], [32, -96]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: (custom: number) => ({
@@ -26,8 +51,11 @@ const Index = () => {
       <div className="page-container">
         <div className="page-content">
           <div className="container-inner flex flex-col items-center">
-            {/* Hero Section */}
-            <section className="w-full pt-0 pb-2 md:pb-4 flex flex-col items-center relative">
+            {/* Hero Section — scroll-driven stage depth */}
+            <section
+              ref={heroRef}
+              className="w-full pt-0 pb-2 md:pb-4 flex flex-col items-center relative"
+            >
               {/* Decorative blurs */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
                 <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-amber-400/20 blur-[100px]" />
@@ -35,26 +63,35 @@ const Index = () => {
               </div>
               <motion.div
                 className="text-center max-w-3xl mx-auto px-4 relative z-10"
-                variants={fadeIn}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                custom={0}
               >
                 <motion.div
-                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8"
-                  variants={fadeIn}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  custom={0.2}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.3), 0 0 40px -10px rgba(255,255,255,0.15)",
-                  }}
+                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8 origin-center"
+                  style={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          scale: logoScale,
+                          opacity: logoOpacity,
+                          y: logoY,
+                        }
+                  }
+                  whileHover={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          scale: 1.02,
+                          boxShadow:
+                            "0 25px 50px -12px rgba(0,0,0,0.3), 0 0 40px -10px rgba(255,255,255,0.15)",
+                        }
+                  }
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <motion.div className="w-full h-full surface-glass rounded-3xl flex items-center justify-center shadow-2xl ring-2 ring-teal-400/30 ring-offset-4 ring-offset-[var(--bg-base)]">
+                  <motion.div
+                    className="w-full h-full surface-glass rounded-3xl flex items-center justify-center shadow-2xl ring-2 ring-teal-400/30 ring-offset-4 ring-offset-[var(--bg-base)]"
+                    initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  >
                     <img
                       src={logo}
                       alt="801 Family Studios Logo"
@@ -62,42 +99,53 @@ const Index = () => {
                     />
                   </motion.div>
                 </motion.div>
-                <motion.h1 
-                  className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 text-balance bg-gradient-to-r from-white via-gray-100 to-amber-100/90 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
-                  variants={fadeIn}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  custom={0.3}
-                >
-                  Where Artists Feel At Home
-                </motion.h1>
+
                 <motion.div
-                  className="mx-auto mb-10 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-[var(--accent-warm)] to-transparent"
-                  variants={fadeIn}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  custom={0.35}
-                />
-                <motion.p 
-                  className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto text-pretty leading-relaxed"
-                  variants={fadeIn}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  custom={0.4}
+                  style={
+                    reduceMotion
+                      ? undefined
+                      : { opacity: heroCopyOpacity, y: heroCopyY }
+                  }
                 >
-                  Professional music management services in Salt Lake City, Utah, helping independent artists organize, produce, and succeed.
-                </motion.p>
-                <motion.div 
-                  className="flex flex-col sm:flex-row gap-6 justify-center"
-                  variants={fadeIn}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  custom={0.5}
-                >
+                  <RevealWords
+                    text={HEADLINE}
+                    as="h1"
+                    className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 text-balance drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                    wordClassName="bg-gradient-to-r from-white via-gray-100 to-amber-100/90 bg-clip-text text-transparent"
+                    stagger={HEADLINE_STAGGER}
+                  />
+                  <motion.div
+                    className="mx-auto mb-10 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-[var(--accent-warm)] to-transparent origin-center"
+                    initial={reduceMotion ? false : { opacity: 0, scaleX: 0 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    transition={{
+                      delay: HEADLINE_REVEAL_END,
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  />
+                  <motion.p
+                    className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto text-pretty leading-relaxed"
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: HEADLINE_REVEAL_END + 0.12,
+                      duration: 0.65,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    Professional music management services in Salt Lake City, Utah, helping independent artists organize, produce, and succeed.
+                  </motion.p>
+                  <motion.div
+                    className="flex flex-col sm:flex-row gap-6 justify-center"
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: HEADLINE_REVEAL_END + 0.22,
+                      duration: 0.65,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
                   <Button 
                     asChild 
                     size="lg" 
@@ -112,17 +160,26 @@ const Index = () => {
                   >
                     <Link to="/contact">Contact Us</Link>
                   </Button>
+                  </motion.div>
                 </motion.div>
               </motion.div>
 
               <motion.div
-                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-2xl relative group ring-2 ring-white/10 ring-offset-4 ring-offset-transparent"
-                variants={fadeIn}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                custom={1}
+                className="w-full mt-16 md:mt-24 aspect-[16/9] max-w-5xl mx-auto overflow-visible rounded-3xl relative will-change-transform"
+                style={
+                  reduceMotion
+                    ? undefined
+                    : { y: videoY, scale: videoScale }
+                }
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  delay: HEADLINE_REVEAL_END + 0.35,
+                  duration: 0.85,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
+                <motion.div className="w-full h-full aspect-[16/9] overflow-hidden rounded-3xl shadow-2xl relative group ring-2 ring-white/10 ring-offset-4 ring-offset-transparent">
                 {/* Studio Reel Video */}
                 <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black">
                   <video
@@ -139,11 +196,12 @@ const Index = () => {
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                   {/* Floating Content Overlay */}
-                  <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
+                  <motion.div className="absolute bottom-6 left-6 right-6 z-20 text-white">
                     <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">801 Family Studios</h3>
                     <p className="text-lg opacity-90 drop-shadow-lg">Experience the energy and passion of live music</p>
-                  </div>
+                  </motion.div>
                 </div>
+                </motion.div>
               </motion.div>
             </section>
 
@@ -197,6 +255,8 @@ const Index = () => {
                       title: "Website Services",
                       description:
                         "Band Website: $300 — one complete site with everything your band needs (bio, music, photos, shows, contact, and links). Simple edits are included free. More complex changes are $20 per edit.",
+                      portfolioUrl: WEB_PORTFOLIO_URL,
+                      portfolioLabel: "View website portfolio",
                       icon: "💻",
                       gradient: "from-orange-500/20 to-red-500/20",
                       borderColor: "border-orange-400/30"
@@ -205,6 +265,8 @@ const Index = () => {
                       title: "EPK Services",
                       description:
                         "Band EPK: $150 — press-ready electronic press kit with bio, photos, music/video, and booking info. Simple edits are included free. More complex changes are $20 per edit.",
+                      portfolioUrl: WEB_PORTFOLIO_URL,
+                      portfolioLabel: "View EPK & website samples",
                       icon: "📄",
                       gradient: "from-amber-500/15 to-teal-500/20",
                       borderColor: "border-amber-400/30"
@@ -240,15 +302,14 @@ const Index = () => {
                   ];
                   return services;
                 })().map((service, index) => (
-                  <button
+                  <motion.div
                     key={service.title}
-                    type="button"
                     onClick={() =>
                       setExpandedService((current) =>
                         current === service.title ? null : service.title
                       )
                     }
-                    className="block h-full text-left"
+                    className="block h-full text-left cursor-pointer rounded-3xl"
                   >
                     <motion.div
                       className="group relative h-full"
@@ -282,10 +343,28 @@ const Index = () => {
                             <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
                               {service.description}
                             </p>
-                            <div className="mt-6 flex justify-center">
-                              <span className="inline-flex items-center rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white border border-white/25">
-                                Click Contact Us to Book
-                              </span>
+                            <div
+                              className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3 justify-center"
+                              onClick={(event) => event.stopPropagation()}
+                              onKeyDown={(event) => event.stopPropagation()}
+                            >
+                              {"portfolioUrl" in service && service.portfolioUrl && (
+                                <a
+                                  href={service.portfolioUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                                >
+                                  {service.portfolioLabel ?? "View portfolio"}
+                                  <ExternalLink className="h-4 w-4" />
+                                </a>
+                              )}
+                              <Link
+                                to="/contact"
+                                className="inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400 transition-colors"
+                              >
+                                Contact Us to Book
+                              </Link>
                             </div>
                           </>
                         ) : <div className="flex-grow" />}
@@ -294,7 +373,7 @@ const Index = () => {
                         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
                       </div>
                     </motion.div>
-                  </button>
+                  </motion.div>
                 ))}
               </div>
               <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-12 leading-relaxed">
