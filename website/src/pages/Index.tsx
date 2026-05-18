@@ -10,10 +10,10 @@ import {
 } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useRef, useState } from "react";
-import InstagramReelEmbed from "@/components/InstagramReelEmbed";
 import logo from "@/assets/locologo.png";
+import studioImage from "@/assets/studio2.jpg";
 
-const STUDIO_REEL_URL = "https://www.instagram.com/reel/DThFbL2jipM/";
+const STUDIO_REEL_SRC = "/studio.MOV";
 
 const WEB_PORTFOLIO_URL = "https://dbaileyfam.github.io/801familywebsiteportfolio/";
 const HEADLINE = "Where Artists Feel At Home";
@@ -181,20 +181,30 @@ const Index = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <motion.div className="w-full overflow-hidden rounded-3xl shadow-2xl ring-2 ring-white/10 ring-offset-4 ring-offset-transparent bg-black/40 px-4 py-6 md:px-8 md:py-8">
-                  <p className="text-center text-sm text-gray-300 mb-4 md:mb-6">
-                    Studio reel from{" "}
-                    <a
-                      href={STUDIO_REEL_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal-300 hover:text-teal-200 underline-offset-2 hover:underline"
-                    >
-                      @801familystudios
-                    </a>
-                  </p>
-                  <InstagramReelEmbed permalink={STUDIO_REEL_URL} />
-                </motion.div>
+                <div className="w-full aspect-[16/9] overflow-hidden rounded-3xl shadow-2xl ring-2 ring-white/10 ring-offset-4 ring-offset-transparent">
+                  <div className="relative w-full h-full bg-black">
+                    <video
+                      className="w-full h-full object-contain"
+                      src={STUDIO_REEL_SRC}
+                      poster={studioImage}
+                      playsInline
+                      muted
+                      loop
+                      autoPlay
+                      controls
+                      aria-label="801 Family Studios studio reel"
+                    />
+                    <motion.div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                      <h3 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">
+                        801 Family Studios
+                      </h3>
+                      <p className="text-lg opacity-90 drop-shadow-lg">
+                        Experience the energy and passion of live music
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             </section>
 
