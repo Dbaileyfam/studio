@@ -296,13 +296,13 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
         whileHover={{ y: -8, scale: 1.02 }}
     >
       {/* Enhanced Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-purple-500/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-teal-500/15 via-amber-500/10 to-slate-500/15 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
       
       {/* Morphing Background Shapes */}
       <div className="absolute inset-0 overflow-hidden rounded-3xl">
         {/* Morphing Circle */}
         <motion.div
-          className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-purple-400/20 to-blue-400/20 rounded-full"
+          className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-teal-400/25 to-amber-400/15 rounded-full"
           animate={{
             scale: [1, 1.3, 1],
             borderRadius: ["50%", "30%", "50%"],
@@ -317,7 +317,7 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
         
         {/* Morphing Triangle */}
         <motion.div
-          className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-pink-400/20 to-purple-400/20"
+          className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-amber-400/20 to-teal-400/20"
           style={{
             clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)"
           }}
@@ -359,19 +359,19 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
       <motion.div 
         className="relative bg-white/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 h-full flex flex-col"
         whileHover={{
-          boxShadow: "0 25px 50px -12px rgba(139, 92, 246, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)"
+          boxShadow: "0 25px 50px -12px rgba(20, 184, 166, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.08)"
         }}
       >
         {/* Animated Gradient Border */}
         <div className="absolute inset-0 rounded-3xl p-[2px]">
           <motion.div
-            className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            className="absolute inset-0 rounded-3xl bg-gradient-to-r from-teal-500 via-amber-500 to-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             animate={{
               background: [
-                "linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)",
-                "linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)",
-                "linear-gradient(45deg, #ec4899, #3b82f6, #8b5cf6)",
-                "linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)",
+                "linear-gradient(45deg, #14b8a6, #f59e0b, #64748b)",
+                "linear-gradient(45deg, #64748b, #14b8a6, #f59e0b)",
+                "linear-gradient(45deg, #f59e0b, #64748b, #14b8a6)",
+                "linear-gradient(45deg, #14b8a6, #f59e0b, #64748b)",
               ],
             }}
             transition={{
@@ -383,7 +383,7 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
                   </div>
         
         {/* Card Content */}
-        <div className="relative bg-[#3f51b5]/20 backdrop-blur-sm rounded-3xl overflow-hidden h-full flex flex-col z-10">
+        <div className="relative bg-[var(--glass-surface)] backdrop-blur-md rounded-3xl overflow-hidden h-full flex flex-col z-10 border border-white/5">
           {/* Image Container with Enhanced Effects */}
           <div className="relative aspect-[3/2] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
             <motion.img
@@ -520,7 +520,7 @@ const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) =
 
           {/* Enhanced Hover Effect Line */}
           <motion.div 
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent rounded-full"
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent rounded-full"
             initial={{ width: 0 }}
             whileHover={{ width: "75%" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}

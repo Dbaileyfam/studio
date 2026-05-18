@@ -16,6 +16,7 @@ import UpcomingShows from "./pages/UpcomingShows";
 // Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import InteractiveBackground from "./components/InteractiveBackground";
 
 const queryClient = new QueryClient();
 
@@ -39,12 +40,13 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <HashRouter>
-        <div className="flex flex-col min-h-screen">
+        <InteractiveBackground />
+        <div className="flex flex-col min-h-screen relative z-[1]">
           <Navbar />
           <main className="flex-grow">
             <AnimatedRoutes />

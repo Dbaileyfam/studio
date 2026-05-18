@@ -139,7 +139,7 @@ const UpcomingShows = () => {
                             href={event.primaryCta.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#3f51b5] via-[#5c6bc0] to-[#7e8ce0] text-white text-sm font-semibold tracking-wide border border-white/30 shadow-lg shadow-indigo-900/40 hover:shadow-xl hover:shadow-indigo-700/50 hover:scale-105 hover:from-[#4b60d4] hover:to-[#8c99f0] transition-all duration-300"
+                            className="group btn-brand inline-flex items-center justify-center gap-2 px-7 py-3 hover:scale-105"
                           >
                             <span className="uppercase">{event.primaryCta.label}</span>
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-colors duration-300">

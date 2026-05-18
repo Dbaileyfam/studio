@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-[var(--footer-from)] to-[var(--footer-to)] text-white relative overflow-hidden border-t border-white/10">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>

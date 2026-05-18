@@ -31,7 +31,7 @@ const Index = () => {
               {/* Decorative blurs */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
                 <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-amber-400/20 blur-[100px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-teal-500/15 blur-[120px]" />
               </div>
               <motion.div
                 className="text-center max-w-3xl mx-auto px-4 relative z-10"
@@ -54,13 +54,13 @@ const Index = () => {
                   }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-[#3f51b5] to-[#5c6bc0] rounded-3xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm ring-2 ring-white/10 ring-offset-4 ring-offset-transparent">
+                  <motion.div className="w-full h-full surface-glass rounded-3xl flex items-center justify-center shadow-2xl ring-2 ring-teal-400/30 ring-offset-4 ring-offset-[var(--bg-base)]">
                     <img
                       src={logo}
                       alt="801 Family Studios Logo"
                       className="w-4/5 h-4/5 object-contain drop-shadow-lg"
                     />
-                  </div>
+                  </motion.div>
                 </motion.div>
                 <motion.h1 
                   className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 text-balance bg-gradient-to-r from-white via-gray-100 to-amber-100/90 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
@@ -183,8 +183,8 @@ const Index = () => {
                       title: "Recording",
                       description: "$60/hr. Half Day (4 hrs): $200. Full Day (8 hrs): $400. Vocal, instrument, podcast, overdub, demo, or full band sessions.",
                       icon: "🎙️",
-                      gradient: "from-blue-500/20 to-purple-500/20",
-                      borderColor: "border-blue-400/30"
+                      gradient: "from-teal-500/20 to-slate-500/20",
+                      borderColor: "border-teal-400/30"
                     },
                     {
                       title: "Mixing & Mastering",
@@ -195,17 +195,19 @@ const Index = () => {
                     },
                     {
                       title: "Website Services",
-                      description: "Basic Band Website: $250. Full Band Website: $400. Website Updates & Maintenance: $40/month.",
+                      description:
+                        "Band Website: $300 — one complete site with everything your band needs (bio, music, photos, shows, contact, and links). Simple edits are included free. More complex changes are $20 per edit.",
                       icon: "💻",
                       gradient: "from-orange-500/20 to-red-500/20",
                       borderColor: "border-orange-400/30"
                     },
                     {
                       title: "EPK Services",
-                      description: "Basic EPK: $150. Full EPK: $250. One Sheet (PDF): $75.",
+                      description:
+                        "Band EPK: $150 — press-ready electronic press kit with bio, photos, music/video, and booking info. Simple edits are included free. More complex changes are $20 per edit.",
                       icon: "📄",
-                      gradient: "from-indigo-500/20 to-purple-500/20",
-                      borderColor: "border-indigo-400/30"
+                      gradient: "from-amber-500/15 to-teal-500/20",
+                      borderColor: "border-amber-400/30"
                     },
                     {
                       title: "Booking & Management",
