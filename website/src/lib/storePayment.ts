@@ -10,14 +10,13 @@ export type StripeBuyButtonConfig = {
 
 /**
  * Stripe Buy Button IDs from the Stripe Dashboard (Payment Links → Buy button).
- * Website and EPK should each have their own button in Stripe — update `epk` when you have it.
  */
 export const STRIPE_BUY_BUTTONS: Record<StoreProductId, StripeBuyButtonConfig> = {
   website: {
-    buyButtonId: "buy_btn_1TYeAO33fWEaCkVCwSJcbuNE",
+    /** Add your $300 Band Website buy button ID from Stripe */
+    buyButtonId: "",
   },
   epk: {
-    // Replace with your $150 EPK buy button ID when created in Stripe
     buyButtonId: "buy_btn_1TYeAO33fWEaCkVCwSJcbuNE",
   },
 };

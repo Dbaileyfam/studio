@@ -36,6 +36,8 @@ const StripeBuyButton = ({ buyButtonId }: StripeBuyButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!buyButtonId.trim()) return;
+
     let cancelled = false;
 
     loadStripeBuyButtonScript()

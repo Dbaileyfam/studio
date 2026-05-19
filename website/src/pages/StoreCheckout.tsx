@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CreditCard, ArrowLeft } from "lucide-react";
+import { CreditCard, ArrowLeft, Mail } from "lucide-react";
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import StripeBuyButton from "@/components/StripeBuyButton";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ const StoreCheckout = () => {
   const productId = parseProduct(searchParams.get("product"));
   const pending = useMemo(() => loadPendingStoreOrder(), []);
   const stripeButton = STRIPE_BUY_BUTTONS[productId];
+  const hasStripeButton = Boolean(stripeButton.buyButtonId.trim());
 
   useEffect(() => {
     if (!pending || pending.productId !== productId) {
@@ -71,7 +72,28 @@ const StoreCheckout = () => {
                 </p>
               </motion.div>
 
-              <StripeBuyButton buyButtonId={stripeButton.buyButtonId} />
+              {hasStripeButton ? (
+                <StripeBuyButton buyButtonId={stripeButton.buyButtonId} />
+              ) : (
+                <motion.div className="space-y-4">
+                  <p className="text-sm text-gray-300 leading-relaxed text-center">
+                    Stripe checkout for {pending.productName} is being connected. We have your
+                    project details — email us to complete payment for now.
+                  </p>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full rounded-full border-white/30 text-white hover:bg-white/10"
+                  >
+                    <a
+                      href={`mailto:${STORE_FORM_EMAIL}?subject=${encodeURIComponent(`Payment: ${pending.productName} — ${pending.artistOrBandName}`)}&body=${encodeURIComponent(`Hi,\n\nI'd like to pay $${pending.price} for ${pending.productName} (${pending.artistOrBandName}).\n\nThanks!`)}`}
+                    >
+                      <Mail className="mr-2 h-5 w-5" />
+                      Email to pay ${pending.price}
+                    </a>
+                  </Button>
+                </motion.div>
+              )}
 
               <p className="text-xs text-gray-400 mt-6 text-center">
                 Questions?{" "}
