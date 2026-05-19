@@ -43,7 +43,7 @@ export function buildStoreOrderEmailFields(
       Genre: form.genre.trim() || "—",
       "Social links": form.socialLinks.trim() || "—",
       "Music links": form.musicLinks.trim() || "—",
-      "Photos & assets (how you'll send them)": form.photosAndAssets.trim() || "—",
+      "Photos & assets link": form.photosAndAssets.trim() || "—",
       "Shows & events": form.showsAndEvents.trim() || "—",
       "Design / color preferences": form.designNotes.trim() || "—",
       "Domain notes": form.domainNotes.trim() || "—",
@@ -58,7 +58,7 @@ export function buildStoreOrderEmailFields(
       "Booking contact": form.bookingContact.trim() || form.email.trim(),
       "Social links": form.socialLinks.trim() || "—",
       "Music & video links": form.musicLinks.trim() || form.videoLinks.trim() || "—",
-      "Photos & assets (how you'll send them)": form.photosAndAssets.trim() || "—",
+      "Photos & assets link": form.photosAndAssets.trim() || "—",
       "Shows & press notes": form.showsAndEvents.trim() || "—",
     });
   }

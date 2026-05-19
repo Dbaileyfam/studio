@@ -125,7 +125,7 @@ const StoreOrderForm = () => {
       return;
     }
     if (!form.photosAndAssets.trim()) {
-      toast.error("Please tell us how you'll send photos and assets.");
+      toast.error("Please add a photos & assets link (Google Drive, social media, etc.).");
       focusField("photosAndAssets");
       return;
     }
@@ -375,15 +375,18 @@ const StoreOrderForm = () => {
         )}
 
         <motion.div className="space-y-2">
-          <Label htmlFor="photosAndAssets">Photos & assets *</Label>
+          <Label htmlFor="photosAndAssets">Photos & assets link *</Label>
           <Textarea
             id="photosAndAssets"
             rows={3}
             value={form.photosAndAssets}
             onChange={(e) => update("photosAndAssets", e.target.value)}
-            placeholder="How will you send logos, photos, and files? (Google Drive, Dropbox, email, etc.)"
+            placeholder="Paste links to your photos and assets — Google Drive, Dropbox, Instagram, Facebook, etc."
             className={fieldClass}
           />
+          <p className="text-xs text-gray-400">
+            Share one or more links where we can view or download your logos, photos, and files.
+          </p>
         </motion.div>
 
         <motion.div className="space-y-2">
