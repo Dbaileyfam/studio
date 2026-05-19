@@ -67,6 +67,7 @@ const Footer = () => {
                 { path: "/", label: "Home" },
                 { path: "/featured-artists", label: "Featured Artists" },
                 { path: "/upcoming-shows", label: "Upcoming Shows" },
+                { path: "/store", label: "Store" },
                 { path: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.path}>
@@ -78,16 +79,6 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href="https://801familymerch.myshopify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
-                >
-                  Buy Merch Now
-                </a>
-              </li>
             </ul>
           </motion.div>
 

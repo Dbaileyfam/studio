@@ -21,10 +21,9 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/featured-artists", label: "Featured Artists" },
     { path: "/upcoming-shows", label: "Upcoming Shows" },
+    { path: "/store", label: "Store" },
     { path: "/contact", label: "Contact" },
   ];
-
-  const merchStoreUrl = "https://801familymerch.myshopify.com";
 
   const isActive = (path: string) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -87,16 +86,14 @@ const Navbar = () => {
                   </motion.div>
                 ))}
               </div>
-              <motion.a
-                href={merchStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 shadow-lg shadow-amber-900/30 transition-all duration-300 hover:scale-105 whitespace-nowrap"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Buy Merch Now
-              </motion.a>
+              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/store"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 shadow-lg shadow-amber-900/30 transition-all duration-300 whitespace-nowrap"
+                >
+                  Order Site / EPK
+                </Link>
+              </motion.div>
             </div>
           </div>
 
@@ -167,18 +164,19 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
-              <motion.a
-                href={merchStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
+              <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: navItems.length * 0.1 }}
-                className="flex items-center justify-center mt-3 px-4 py-3 rounded-full text-base font-semibold bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400"
               >
-                Buy Merch Now
-              </motion.a>
+                <Link
+                  to="/store"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center mt-3 px-4 py-3 rounded-full text-base font-semibold bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400"
+                >
+                  Order Site / EPK
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}

@@ -362,12 +362,27 @@ const Index = () => {
                                   <ExternalLink className="h-4 w-4" />
                                 </a>
                               )}
-                              <Link
-                                to="/contact"
-                                className="inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400 transition-colors"
-                              >
-                                Contact Us to Book
-                              </Link>
+                              {"portfolioUrl" in service &&
+                              (service.title === "Website Services" ||
+                                service.title === "EPK Services") ? (
+                                <Link
+                                  to={
+                                    service.title === "Website Services"
+                                      ? "/store?product=website#order-form"
+                                      : "/store?product=epk#order-form"
+                                  }
+                                  className="inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400 transition-colors"
+                                >
+                                  Order Now
+                                </Link>
+                              ) : (
+                                <Link
+                                  to="/contact"
+                                  className="inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400 transition-colors"
+                                >
+                                  Contact Us to Book
+                                </Link>
+                              )}
                             </div>
                           </>
                         ) : <div className="flex-grow" />}
