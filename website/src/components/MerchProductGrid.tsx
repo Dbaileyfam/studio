@@ -92,7 +92,7 @@ const MerchProductGrid = () => {
           rel="noopener noreferrer"
           className="text-sm text-teal-300 hover:text-teal-200 inline-flex items-center gap-1 shrink-0"
         >
-          Full merch store
+          Full Merch store
           <ExternalLink className="h-4 w-4" />
         </a>
       </div>

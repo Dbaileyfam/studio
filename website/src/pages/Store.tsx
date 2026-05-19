@@ -34,7 +34,7 @@ const Store = () => {
                 801 Family Studios Store
               </span>
               <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 text-balance">
-                Websites, EPKs & merch
+                Websites, EPKs & Merch
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
                 Order a custom band Website or press kit below, or shop studio apparel on
