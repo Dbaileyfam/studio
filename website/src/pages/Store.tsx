@@ -2,7 +2,7 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import MerchProductGrid from "@/components/MerchProductGrid";
 import StoreOrderForm from "@/components/StoreOrderForm";
 import { motion } from "framer-motion";
-import { ExternalLink, ShoppingBag } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ORDER_DELIVERY_NOTE, STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 
@@ -29,10 +29,6 @@ const Store = () => {
               viewport={{ once: true }}
               custom={0}
             >
-              <span className="inline-flex items-center gap-2 py-3 px-6 mb-6 text-sm font-bold bg-white/15 text-white rounded-full border border-white/25 backdrop-blur-sm ring-1 ring-teal-400/30">
-                <ShoppingBag className="h-4 w-4" />
-                801 Family Studios Store
-              </span>
               <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 text-balance">
                 Websites, EPKs & Merch
               </h1>
