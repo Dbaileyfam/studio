@@ -13,8 +13,7 @@ export type StripeBuyButtonConfig = {
  */
 export const STRIPE_BUY_BUTTONS: Record<StoreProductId, StripeBuyButtonConfig> = {
   website: {
-    /** Add your $300 Band Website buy button ID from Stripe */
-    buyButtonId: "",
+    buyButtonId: "buy_btn_1TYeC633fWEaCkVCcHnGnFWT",
   },
   epk: {
     buyButtonId: "buy_btn_1TYeAO33fWEaCkVCwSJcbuNE",
