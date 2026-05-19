@@ -59,7 +59,10 @@ const MerchProductGrid = () => {
   const items = products ?? MERCH_PRODUCTS.map((p) => ({ ...p, shopUrl: productUrl(p.handle) }));
 
   return (
-    <section className="mb-16 md:mb-20" aria-labelledby="merch-heading">
+    <section
+      className="border-t border-white/15 pt-14 md:pt-16 mb-16 md:mb-20"
+      aria-labelledby="merch-heading"
+    >
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}

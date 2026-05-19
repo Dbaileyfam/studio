@@ -34,11 +34,11 @@ const Store = () => {
                 801 Family Studios Store
               </span>
               <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 text-balance">
-                Merch, websites & EPKs
+                Websites, EPKs & merch
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Shop studio apparel on Shopify, or order a custom band website or press kit
-                through the form below.
+                Order a custom band Website or press kit below, or shop studio apparel on
+                Shopify.
               </p>
               <a
                 href={WEB_PORTFOLIO_URL}
@@ -51,10 +51,8 @@ const Store = () => {
               </a>
             </motion.div>
 
-            <MerchProductGrid />
-
             <motion.div
-              className="border-t border-white/15 pt-14 md:pt-16 mb-12"
+              className="mb-12"
               variants={fadeIn}
               initial="initial"
               whileInView="animate"
@@ -62,7 +60,7 @@ const Store = () => {
               custom={1}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center">
-                Band website & EPK
+                Band Website & EPK
               </h2>
               <p className="text-gray-300 text-center text-sm md:text-base mb-3 max-w-xl mx-auto">
                 Pick a package, send your project brief, then complete payment on the next
@@ -108,6 +106,8 @@ const Store = () => {
             </motion.div>
 
             <StoreOrderForm />
+
+            <MerchProductGrid />
 
             <motion.p
               className="text-center text-sm text-gray-400 mt-10"
