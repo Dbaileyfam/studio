@@ -1,24 +1,24 @@
 import type { StoreProductId } from "@/lib/storeProducts";
 
-/**
- * Payment links for each package. Paste your Square, Stripe, or PayPal checkout URL
- * when ready — the checkout page will show a "Pay now" button for that URL.
- */
-export type StorePaymentConfig = {
-  /** Label shown on the pay button, e.g. "Square" */
-  providerLabel: string;
-  /** Leave empty until you add a payment link from your provider */
-  paymentUrl: string;
+/** Stripe publishable key (safe to use in the browser). */
+export const STRIPE_PUBLISHABLE_KEY =
+  "pk_live_51TYdlt33fWEaCkVCA8K0XNczLwzwmrjQjvuWKCitcZmM0B8IcBLkyHXuUuzQh9knJbkrchEwAiPiv0q9H6mNjpQM00nu5GXqVq";
+
+export type StripeBuyButtonConfig = {
+  buyButtonId: string;
 };
 
-export const STORE_PAYMENT: Record<StoreProductId, StorePaymentConfig> = {
+/**
+ * Stripe Buy Button IDs from the Stripe Dashboard (Payment Links → Buy button).
+ * Website and EPK should each have their own button in Stripe — update `epk` when you have it.
+ */
+export const STRIPE_BUY_BUTTONS: Record<StoreProductId, StripeBuyButtonConfig> = {
   website: {
-    providerLabel: "Square",
-    paymentUrl: "",
+    buyButtonId: "buy_btn_1TYeAO33fWEaCkVCwSJcbuNE",
   },
   epk: {
-    providerLabel: "Square",
-    paymentUrl: "",
+    // Replace with your $150 EPK buy button ID when created in Stripe
+    buyButtonId: "buy_btn_1TYeAO33fWEaCkVCwSJcbuNE",
   },
 };
 
