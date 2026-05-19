@@ -13,7 +13,11 @@ import {
   type PendingStoreOrder,
 } from "@/lib/storeOrderSession";
 import { submitStoreOrderEmail } from "@/lib/submitStoreOrderEmail";
-import { STORE_PRODUCTS, type StoreProductId } from "@/lib/storeProducts";
+import {
+  ORDER_DELIVERY_NOTE,
+  STORE_PRODUCTS,
+  type StoreProductId,
+} from "@/lib/storeProducts";
 
 const parseProduct = (value: string | null): StoreProductId => {
   if (value === "epk" || value === "website") return value;
@@ -197,6 +201,7 @@ const StoreOrderForm = () => {
           After your brief, you&apos;ll go to checkout to pay. Simple edits are free;
           complex changes are $20 per edit.
         </p>
+        <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>
 
       <motion.div
@@ -448,6 +453,13 @@ const StoreOrderForm = () => {
             className={fieldClass}
           />
         </motion.div>
+      </motion.div>
+
+      <motion.div
+        className="rounded-2xl border border-teal-400/25 bg-teal-500/10 px-5 py-4 text-sm text-gray-200 leading-relaxed"
+        role="note"
+      >
+        {ORDER_DELIVERY_NOTE}
       </motion.div>
 
       <motion.div className="flex flex-col sm:flex-row gap-4 items-center justify-between">

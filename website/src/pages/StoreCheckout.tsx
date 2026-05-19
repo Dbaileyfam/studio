@@ -5,7 +5,11 @@ import { CreditCard, ArrowLeft, Mail } from "lucide-react";
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import StripeBuyButton from "@/components/StripeBuyButton";
 import { Button } from "@/components/ui/button";
-import { STORE_FORM_EMAIL, type StoreProductId } from "@/lib/storeProducts";
+import {
+  ORDER_DELIVERY_NOTE,
+  STORE_FORM_EMAIL,
+  type StoreProductId,
+} from "@/lib/storeProducts";
 import {
   clearPendingStoreOrder,
   loadPendingStoreOrder,
@@ -98,8 +102,9 @@ const StoreCheckout = () => {
                   <span className="text-2xl font-bold text-teal-300">${pending.price}</span>
                 </motion.div>
                 <p className="text-xs text-gray-400 mt-2">
-                  Receipt will go to {pending.email}
+                  Receipt and delivery will go to {pending.email}
                 </p>
+                <p className="text-xs text-teal-200/90 mt-3 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
               </motion.div>
 
               {hasStripeButton ? (

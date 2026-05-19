@@ -1,5 +1,9 @@
 export type StoreProductId = "website" | "epk";
 
+/** Shown on website/EPK order forms and checkout. */
+export const ORDER_DELIVERY_NOTE =
+  "Your finished website or EPK is delivered by email. Please allow 3–5 days after payment and your completed brief.";
+
 export type StoreProduct = {
   id: StoreProductId;
   name: string;

@@ -4,7 +4,7 @@ import StoreOrderForm from "@/components/StoreOrderForm";
 import { motion } from "framer-motion";
 import { ExternalLink, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
+import { ORDER_DELIVERY_NOTE, STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -64,9 +64,12 @@ const Store = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center">
                 Band website & EPK
               </h2>
-              <p className="text-gray-300 text-center text-sm md:text-base mb-8 max-w-xl mx-auto">
+              <p className="text-gray-300 text-center text-sm md:text-base mb-3 max-w-xl mx-auto">
                 Pick a package, send your project brief, then complete payment on the next
                 screen.
+              </p>
+              <p className="text-teal-200/90 text-center text-sm mb-8 max-w-xl mx-auto leading-relaxed">
+                {ORDER_DELIVERY_NOTE}
               </p>
               <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {STORE_PRODUCTS.map((item) => (
