@@ -29,3 +29,15 @@ export function loadPendingStoreOrder(): PendingStoreOrder | null {
 export function clearPendingStoreOrder(): void {
   sessionStorage.removeItem(STORAGE_KEY);
 }
+
+export type StoreCheckoutLocationState = {
+  order?: PendingStoreOrder;
+};
+
+export function readPendingOrderFromLocation(
+  state: unknown
+): PendingStoreOrder | null {
+  const order = (state as StoreCheckoutLocationState | null)?.order;
+  if (!order?.productId || !order.email) return null;
+  return order;
+}

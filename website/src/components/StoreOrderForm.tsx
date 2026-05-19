@@ -8,8 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { buildStoreOrderEmailFields } from "@/lib/buildStoreOrderEmail";
-import { checkoutPath } from "@/lib/storePayment";
-import { savePendingStoreOrder } from "@/lib/storeOrderSession";
+import {
+  savePendingStoreOrder,
+  type PendingStoreOrder,
+} from "@/lib/storeOrderSession";
 import { submitStoreOrderEmail } from "@/lib/submitStoreOrderEmail";
 import { STORE_PRODUCTS, type StoreProductId } from "@/lib/storeProducts";
 
@@ -91,25 +93,46 @@ const StoreOrderForm = () => {
     setForm((current) => ({ ...current, [key]: value }));
   };
 
+  const focusField = (fieldId: string) => {
+    const el = document.getElementById(fieldId);
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (el && "focus" in el) {
+      (el as HTMLElement).focus();
+    }
+  };
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    if (!form.artistOrBandName.trim() || !form.contactName.trim() || !form.email.trim()) {
-      toast.error("Please fill in band name, your name, and email.");
+    if (!form.artistOrBandName.trim()) {
+      toast.error("Please enter your artist / band name.");
+      focusField("artistOrBandName");
       return;
     }
-
+    if (!form.contactName.trim()) {
+      toast.error("Please enter your name.");
+      focusField("contactName");
+      return;
+    }
+    if (!form.email.trim()) {
+      toast.error("Please enter your email.");
+      focusField("email");
+      return;
+    }
+    if (!form.bio.trim()) {
+      toast.error("Please add your band bio.");
+      focusField("bio");
+      return;
+    }
     if (!form.photosAndAssets.trim()) {
       toast.error("Please tell us how you'll send photos and assets.");
+      focusField("photosAndAssets");
       return;
     }
 
     setSubmitting(true);
 
-    const emailFields = buildStoreOrderEmailFields(product, selected, form);
-    submitStoreOrderEmail(emailFields);
-
-    savePendingStoreOrder({
+    const order: PendingStoreOrder = {
       productId: product,
       productName: selected.name,
       price: selected.price,
@@ -117,15 +140,30 @@ const StoreOrderForm = () => {
       contactName: form.contactName.trim(),
       email: form.email.trim(),
       submittedAt: new Date().toISOString(),
-    });
+    };
 
+    const emailFields = buildStoreOrderEmailFields(product, selected, form);
+
+    savePendingStoreOrder(order);
     setForm(emptyForm);
-    setSubmitting(false);
-    navigate(checkoutPath(product));
+
+    navigate(
+      { pathname: "/store/checkout", search: `?product=${product}` },
+      { state: { order } }
+    );
+
+    window.setTimeout(() => {
+      try {
+        submitStoreOrderEmail(emailFields);
+      } catch {
+        /* checkout still proceeds; email is best-effort */
+      }
+      setSubmitting(false);
+    }, 0);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8" id="order-form">
+    <form onSubmit={handleSubmit} noValidate className="space-y-8" id="order-form">
       <motion.div
         {...sectionMotion}
         className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8"
@@ -174,7 +212,6 @@ const StoreOrderForm = () => {
             <Label htmlFor="artistOrBandName">Artist / band name *</Label>
             <Input
               id="artistOrBandName"
-              required
               value={form.artistOrBandName}
               onChange={(e) => update("artistOrBandName", e.target.value)}
               className={fieldClass}
@@ -184,7 +221,6 @@ const StoreOrderForm = () => {
             <Label htmlFor="contactName">Your name *</Label>
             <Input
               id="contactName"
-              required
               value={form.contactName}
               onChange={(e) => update("contactName", e.target.value)}
               className={fieldClass}
@@ -195,7 +231,6 @@ const StoreOrderForm = () => {
             <Input
               id="email"
               type="email"
-              required
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
               className={fieldClass}
@@ -256,7 +291,6 @@ const StoreOrderForm = () => {
           </Label>
           <Textarea
             id="bio"
-            required
             rows={5}
             value={form.bio}
             onChange={(e) => update("bio", e.target.value)}
@@ -344,7 +378,6 @@ const StoreOrderForm = () => {
           <Label htmlFor="photosAndAssets">Photos & assets *</Label>
           <Textarea
             id="photosAndAssets"
-            required
             rows={3}
             value={form.photosAndAssets}
             onChange={(e) => update("photosAndAssets", e.target.value)}

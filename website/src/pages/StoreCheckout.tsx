@@ -1,12 +1,18 @@
-import { useEffect, useMemo } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CreditCard, ArrowLeft, Mail } from "lucide-react";
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import StripeBuyButton from "@/components/StripeBuyButton";
 import { Button } from "@/components/ui/button";
 import { STORE_FORM_EMAIL, type StoreProductId } from "@/lib/storeProducts";
-import { loadPendingStoreOrder, clearPendingStoreOrder } from "@/lib/storeOrderSession";
+import {
+  clearPendingStoreOrder,
+  loadPendingStoreOrder,
+  readPendingOrderFromLocation,
+  savePendingStoreOrder,
+  type PendingStoreOrder,
+} from "@/lib/storeOrderSession";
 import { STRIPE_BUY_BUTTONS } from "@/lib/storePayment";
 
 const parseProduct = (value: string | null): StoreProductId => {
@@ -16,19 +22,43 @@ const parseProduct = (value: string | null): StoreProductId => {
 
 const StoreCheckout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const productId = parseProduct(searchParams.get("product"));
-  const pending = useMemo(() => loadPendingStoreOrder(), []);
+  const [pending, setPending] = useState<PendingStoreOrder | null>(null);
+  const [checked, setChecked] = useState(false);
+
   const stripeButton = STRIPE_BUY_BUTTONS[productId];
   const hasStripeButton = Boolean(stripeButton.buyButtonId.trim());
 
   useEffect(() => {
-    if (!pending || pending.productId !== productId) {
-      navigate("/store#order-form", { replace: true });
-    }
-  }, [pending, productId, navigate]);
+    const fromNav = readPendingOrderFromLocation(location.state);
+    const fromStorage = loadPendingStoreOrder();
+    const order = fromNav ?? fromStorage;
 
-  if (!pending || pending.productId !== productId) {
+    if (order?.productId === productId) {
+      if (fromNav) savePendingStoreOrder(order);
+      setPending(order);
+    } else {
+      setPending(null);
+    }
+    setChecked(true);
+  }, [location.key, location.state, productId]);
+
+  useEffect(() => {
+    if (!checked) return;
+    if (!pending) {
+      navigate("/store", { replace: true });
+    }
+  }, [checked, pending, navigate]);
+
+  useEffect(() => {
+    if (pending) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [pending]);
+
+  if (!checked || !pending) {
     return null;
   }
 
