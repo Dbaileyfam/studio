@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import FeaturedArtists from "./pages/FeaturedArtists";
 import UpcomingShows from "./pages/UpcomingShows";
 import Store from "./pages/Store";
+import StoreCheckout from "./pages/StoreCheckout";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -34,6 +35,7 @@ const AnimatedRoutes = () => {
         <Route path="/featured-artists" element={<FeaturedArtists />} />
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/store/checkout" element={<StoreCheckout />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

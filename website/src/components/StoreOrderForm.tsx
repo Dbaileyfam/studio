@@ -1,17 +1,17 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Loader2, Send } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  STORE_FORM_EMAIL,
-  STORE_PRODUCTS,
-  type StoreProductId,
-} from "@/lib/storeProducts";
+import { buildStoreOrderEmailFields } from "@/lib/buildStoreOrderEmail";
+import { checkoutPath } from "@/lib/storePayment";
+import { savePendingStoreOrder } from "@/lib/storeOrderSession";
+import { submitStoreOrderEmail } from "@/lib/submitStoreOrderEmail";
+import { STORE_PRODUCTS, type StoreProductId } from "@/lib/storeProducts";
 
 const parseProduct = (value: string | null): StoreProductId => {
   if (value === "epk" || value === "website") return value;
@@ -72,6 +72,7 @@ const sectionMotion = {
 };
 
 const StoreOrderForm = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [product, setProduct] = useState<StoreProductId>(
     parseProduct(searchParams.get("product"))
@@ -83,7 +84,6 @@ const StoreOrderForm = () => {
 
   const [form, setForm] = useState<FormState>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const selected = STORE_PRODUCTS.find((item) => item.id === product)!;
 
@@ -91,7 +91,7 @@ const StoreOrderForm = () => {
     setForm((current) => ({ ...current, [key]: value }));
   };
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     if (!form.artistOrBandName.trim() || !form.contactName.trim() || !form.email.trim()) {
@@ -99,99 +99,30 @@ const StoreOrderForm = () => {
       return;
     }
 
+    if (!form.photosAndAssets.trim()) {
+      toast.error("Please tell us how you'll send photos and assets.");
+      return;
+    }
+
     setSubmitting(true);
 
-    const payload: Record<string, string> = {
-      _subject: `Store order: ${selected.name} — ${form.artistOrBandName.trim()}`,
-      _template: "table",
-      Product: `${selected.name} ($${selected.price})`,
-      "Artist / band name": form.artistOrBandName.trim(),
-      "Contact name": form.contactName.trim(),
-      Email: form.email.trim(),
-      Phone: form.phone.trim() || "—",
-      Location: form.location.trim() || "—",
-    };
+    const emailFields = buildStoreOrderEmailFields(product, selected, form);
+    submitStoreOrderEmail(emailFields);
 
-    if (product === "website") {
-      Object.assign(payload, {
-        Bio: form.bio.trim() || "—",
-        Genre: form.genre.trim() || "—",
-        "Social links": form.socialLinks.trim() || "—",
-        "Music links": form.musicLinks.trim() || "—",
-        "Photos & assets (how you'll send them)": form.photosAndAssets.trim() || "—",
-        "Shows & events": form.showsAndEvents.trim() || "—",
-        "Design / color preferences": form.designNotes.trim() || "—",
-        "Domain notes": form.domainNotes.trim() || "—",
-        "Reference sites": form.referenceSites.trim() || "—",
-      });
-    } else {
-      Object.assign(payload, {
-        "Short bio": form.shortBio.trim() || form.bio.trim() || "—",
-        "Full bio": form.bio.trim() || "—",
-        Genre: form.genre.trim() || "—",
-        "Press contact": form.pressContact.trim() || "—",
-        "Booking contact": form.bookingContact.trim() || form.email.trim(),
-        "Social links": form.socialLinks.trim() || "—",
-        "Music & video links": form.musicLinks.trim() || form.videoLinks.trim() || "—",
-        "Photos & assets (how you'll send them)": form.photosAndAssets.trim() || "—",
-        "Shows & press notes": form.showsAndEvents.trim() || "—",
-      });
-    }
+    savePendingStoreOrder({
+      productId: product,
+      productName: selected.name,
+      price: selected.price,
+      artistOrBandName: form.artistOrBandName.trim(),
+      contactName: form.contactName.trim(),
+      email: form.email.trim(),
+      submittedAt: new Date().toISOString(),
+    });
 
-    payload["Additional notes"] = form.additionalNotes.trim() || "—";
-
-    try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(STORE_FORM_EMAIL)}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Submission failed");
-      }
-
-      setSubmitted(true);
-      setForm(emptyForm);
-      toast.success("Order received! We'll email you within 24 hours.");
-    } catch {
-      toast.error(
-        "Something went wrong sending your order. Email info@801familystudios.com and we'll help."
-      );
-    } finally {
-      setSubmitting(false);
-    }
+    setForm(emptyForm);
+    setSubmitting(false);
+    navigate(checkoutPath(product));
   };
-
-  if (submitted) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-3xl border border-teal-400/30 bg-teal-500/10 p-8 md:p-10 text-center"
-      >
-        <h3 className="text-2xl font-bold text-white mb-3">Thank you!</h3>
-        <p className="text-gray-200 max-w-lg mx-auto leading-relaxed">
-          We received your {selected.name} order request. Watch your inbox for payment
-          details and next steps — usually within 24 hours.
-        </p>
-        <Button
-          type="button"
-          variant="outline"
-          className="mt-6 border-white/25 text-white hover:bg-white/10"
-          onClick={() => setSubmitted(false)}
-        >
-          Submit another order
-        </Button>
-      </motion.div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8" id="order-form">
@@ -225,8 +156,8 @@ const StoreOrderForm = () => {
           ))}
         </motion.div>
         <p className="mt-6 text-sm text-gray-400">
-          After you submit, we'll email payment instructions and confirm your project
-          timeline. Simple edits are free; complex changes are $20 per edit.
+          After your brief, you&apos;ll go to checkout to pay. Simple edits are free;
+          complex changes are $20 per edit.
         </p>
       </motion.div>
 
@@ -496,12 +427,12 @@ const StoreOrderForm = () => {
           {submitting ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Sending…
+              Continuing…
             </>
           ) : (
             <>
-              <Send className="mr-2 h-5 w-5" />
-              Submit order — ${selected.price}
+              Continue to payment — ${selected.price}
+              <ArrowRight className="ml-2 h-5 w-5" />
             </>
           )}
         </Button>

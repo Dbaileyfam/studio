@@ -65,8 +65,8 @@ const Store = () => {
                 Band website & EPK
               </h2>
               <p className="text-gray-300 text-center text-sm md:text-base mb-8 max-w-xl mx-auto">
-                Pick a package and send your project brief — we&apos;ll follow up with payment
-                and timeline within 24 hours.
+                Pick a package, send your project brief, then complete payment on the next
+                screen.
               </p>
               <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {STORE_PRODUCTS.map((item) => (
