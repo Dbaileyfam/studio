@@ -381,7 +381,7 @@ const StoreOrderForm = () => {
             rows={3}
             value={form.photosAndAssets}
             onChange={(e) => update("photosAndAssets", e.target.value)}
-            placeholder="Paste links to your photos and assets — Google Drive, Dropbox, Instagram, Facebook, etc."
+            placeholder="Paste links to your photos and assets — Google Drive, Instagram, Facebook, etc."
             className={fieldClass}
           />
           <p className="text-xs text-gray-400">
