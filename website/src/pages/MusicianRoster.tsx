@@ -1,13 +1,12 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
-import StripeBuyButton from "@/components/StripeBuyButton";
+import { Button } from "@/components/ui/button";
 import {
   ROSTER_NO_COMMISSION,
-  ROSTER_STRIPE_BUY_BUTTON_ID,
-  ROSTER_STRIPE_URL,
+  ROSTER_PROFILE_FORM_PATH,
 } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
-import { BadgePercent, Music2, Users } from "lucide-react";
+import { ArrowRight, BadgePercent, Music2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const fadeIn = {
@@ -23,7 +22,7 @@ const perks = [
   "Listed for fill-in gigs, solo shows, studio sessions, and private events",
   "Visible to bookers and venues searching the 801 roster",
   "Keep 100% of your gig pay — 801 Family Studios does not take commission on roster gigs",
-  "Complete your profile after subscribing so we can review and publish you",
+  "Create your profile, then subscribe — your listing goes live automatically after payment",
 ];
 
 const MusicianRoster = () => {
@@ -81,24 +80,22 @@ const MusicianRoster = () => {
                   of what you earn from shows, sessions, or private events.
                 </p>
               </motion.div>
-              <div className="mt-10 max-w-sm mx-auto w-full rounded-2xl border border-white/15 bg-white/5 p-6">
-                <StripeBuyButton buyButtonId={ROSTER_STRIPE_BUY_BUTTON_ID} />
-              </div>
-              <p className="mt-6 text-sm text-gray-400 max-w-md mx-auto">
-                Secure checkout on Stripe — $9/month. After payment you will be
-                redirected to complete your musician profile.
-              </p>
-              <p className="mt-3 text-xs text-gray-500">
-                Button not loading?{" "}
-                <a
-                  href={ROSTER_STRIPE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-teal-400 hover:text-teal-300 underline"
+              <div className="mt-10 flex flex-col items-center gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white font-semibold px-10 text-lg shadow-lg"
                 >
-                  Open checkout in a new tab
-                </a>
-              </p>
+                  <Link to={ROSTER_PROFILE_FORM_PATH}>
+                    Create your profile
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <p className="text-sm text-gray-400 max-w-md">
+                  Step 1: profile · Step 2: $9/month on Stripe · Listing activates
+                  automatically after payment
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -131,12 +128,12 @@ const MusicianRoster = () => {
               custom={2}
               className="text-center text-gray-400 text-sm mt-10"
             >
-              Already subscribed?{" "}
+              Already started?{" "}
               <Link
-                to="/musician-profile-form"
+                to={ROSTER_PROFILE_FORM_PATH}
                 className="text-teal-300 hover:text-teal-200 font-medium"
               >
-                Complete your profile
+                Continue your profile
               </Link>
             </motion.p>
           </motion.div>

@@ -2,7 +2,7 @@ import ArtistProfileCard, { type ArtistProfileCardData } from "@/components/Arti
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -31,8 +31,10 @@ import {
   CONTACT_PREFERENCE_OPTIONS,
   GENRE_OPTIONS,
   PHONE_VISIBILITY_OPTIONS,
+  ROSTER_STRIPE_URL,
   TRAVEL_OPTIONS,
 } from "@/lib/musicianRoster";
+import { createRosterCheckout, isRosterApiConfigured } from "@/lib/rosterApi";
 import { submitMusicianProfileEmail } from "@/lib/submitMusicianProfileEmail";
 
 const fieldClass =
@@ -102,6 +104,8 @@ const MusicianProfileForm = () => {
   const [submitted, setSubmitted] = useState(submittedFromRedirect);
   const [previewCard, setPreviewCard] = useState<ArtistProfileCardData | null>(null);
   const [previewImageRevoke, setPreviewImageRevoke] = useState<string | undefined>();
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [usedLegacySubmit, setUsedLegacySubmit] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -135,7 +139,7 @@ const MusicianProfileForm = () => {
     publicContactPreference,
   });
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     if (!fullName.trim()) {
@@ -185,7 +189,6 @@ const MusicianProfileForm = () => {
 
     setSubmitting(true);
     const snapshot = getFormSnapshot();
-    const fields = buildMusicianProfileEmailFields(snapshot);
     const photoFile = profilePhoto ?? fileInputRef.current?.files?.[0] ?? null;
     const { url: imageUrl, revoke } = resolveRosterProfileImage(
       photoFile,
@@ -197,11 +200,28 @@ const MusicianProfileForm = () => {
 
     setPreviewCard(buildRosterProfilePreview(snapshot, imageUrl));
 
-    submitMusicianProfileEmail(fields, photoFile);
+    try {
+      if (isRosterApiConfigured()) {
+        const { checkoutUrl: url } = await createRosterCheckout(snapshot);
+        setCheckoutUrl(url);
+        setUsedLegacySubmit(false);
+        setSubmitted(true);
+        toast.success("Profile saved — subscribe to publish your listing.");
+      } else {
+        throw new Error("API not configured");
+      }
+    } catch {
+      const fields = buildMusicianProfileEmailFields(snapshot, null);
+      submitMusicianProfileEmail(fields, photoFile);
+      setCheckoutUrl(ROSTER_STRIPE_URL);
+      setUsedLegacySubmit(true);
+      setSubmitted(true);
+      toast.message(
+        "Profile emailed to 801 — use the button below to subscribe on Stripe."
+      );
+    }
 
-    setSubmitted(true);
     setSubmitting(false);
-    toast.success("Profile submitted — we'll review it soon.");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -214,21 +234,32 @@ const MusicianProfileForm = () => {
       >
         <div className="text-center max-w-2xl mx-auto">
           <p className="inline-block rounded-full border border-teal-500/40 bg-teal-950/40 px-4 py-1.5 text-sm font-medium text-teal-200 mb-4">
-            Profile submitted — pending review
+            {usedLegacySubmit ? "Step 2 — subscribe on Stripe" : "Step 2 — activate your listing"}
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Thanks for joining the 801 Musician Roster
+            Profile saved
           </h2>
           <p className="text-gray-200 leading-relaxed">
-            Your subscription is active and your profile is on its way in. We
-            will review your details before adding you to the public roster. If
-            we need anything else, we will reach out at{" "}
-            <span className="text-white font-medium">
-              {email || "the email you provided"}
-            </span>
-            .
+            {usedLegacySubmit
+              ? "Your profile was sent to 801 Family Studios. Subscribe below to join the roster."
+              : "Subscribe for $9/month to publish your listing. Payment is verified automatically — no manual approval step."}
           </p>
         </div>
+
+        {checkoutUrl && (
+          <div className="text-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white font-semibold px-10 py-6 text-lg shadow-lg"
+            >
+              <a href={checkoutUrl}>
+                Subscribe $9/month — publish my listing
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+          </div>
+        )}
 
         {previewCard ? (
           <div className="space-y-4">
@@ -249,7 +280,11 @@ const MusicianProfileForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form
+      id="roster-profile-form"
+      onSubmit={handleSubmit}
+      className="space-y-8 scroll-mt-28"
+    >
       <section className={sectionClass}>
         <h3 className="text-lg font-bold text-white">Basic info</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -274,7 +309,7 @@ const MusicianProfileForm = () => {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email used at checkout *</Label>
+            <Label htmlFor="email">Email *</Label>
             <Input
               id="email"
               type="email"

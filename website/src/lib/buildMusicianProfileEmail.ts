@@ -23,7 +23,8 @@ export type MusicianProfileFormData = {
 };
 
 export function buildMusicianProfileEmailFields(
-  data: MusicianProfileFormData
+  data: MusicianProfileFormData,
+  stripeCheckoutSessionId?: string | null
 ): Record<string, string> {
   const city =
     data.cityArea === "Other Utah" && data.cityAreaOther.trim()
@@ -35,6 +36,8 @@ export function buildMusicianProfileEmailFields(
     "Full name": data.fullName.trim(),
     "Stage / band name": data.stageName.trim() || "—",
     "Checkout email": data.email.trim(),
+    "Stripe checkout session (verify in Dashboard)":
+      stripeCheckoutSessionId?.trim() || "— missing — verify subscription manually",
     Phone: data.phone.trim() || "—",
     "Phone on roster": data.phoneVisibility,
     "City / area": city,

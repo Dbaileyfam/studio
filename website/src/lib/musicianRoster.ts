@@ -13,9 +13,21 @@ export const ROSTER_FORM_EMAIL = "info@801familystudios.com";
 
 export const ROSTER_PROFILE_FORM_PATH = "/musician-profile-form";
 
-/** Use this URL in Stripe's after-payment redirect (hash URL still works via site migration). */
+export const ROSTER_THANK_YOU_PATH = "/musician-roster/thank-you";
+
+/**
+ * Set this as the Payment Link “After payment” URL in Stripe Dashboard
+ * (Payment Links → your roster link → After payment → Redirect to your website).
+ * Stripe replaces {CHECKOUT_SESSION_ID} with the real checkout session id.
+ */
 export const ROSTER_STRIPE_SUCCESS_URL =
-  "https://www.801familystudios.com/musician-profile-form";
+  "https://www.801familystudios.com/musician-roster/thank-you?session_id={CHECKOUT_SESSION_ID}";
+
+/** Query params Stripe may append after checkout (Payment Link / Checkout). */
+export const isRosterPaymentReturn = (params: URLSearchParams): boolean =>
+  params.has("session_id") ||
+  params.get("redirect_status") === "succeeded" ||
+  params.get("payment") === "success";
 
 export const AREA_OPTIONS = [
   "Sandy",
