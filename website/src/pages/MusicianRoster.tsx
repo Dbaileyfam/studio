@@ -3,6 +3,7 @@ import PageSEO from "@/components/PageSEO";
 import { Button } from "@/components/ui/button";
 import {
   ROSTER_NO_COMMISSION,
+  ROSTER_BROWSE_PATH,
   ROSTER_PROFILE_FORM_PATH,
 } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
@@ -80,7 +81,7 @@ const MusicianRoster = () => {
                   of what you earn from shows, sessions, or private events.
                 </p>
               </motion.div>
-              <div className="mt-10 flex flex-col items-center gap-4">
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
                   asChild
                   size="lg"
@@ -91,11 +92,19 @@ const MusicianRoster = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <p className="text-sm text-gray-400 max-w-md">
-                  Step 1: profile · Step 2: $9/month on Stripe · Listing activates
-                  automatically after payment
-                </p>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/25 text-white hover:bg-white/10 px-8"
+                >
+                  <Link to={ROSTER_BROWSE_PATH}>Browse musicians</Link>
+                </Button>
               </div>
+              <p className="mt-4 text-sm text-gray-400 max-w-md text-center">
+                Step 1: profile · Step 2: $9/month on Stripe · Listing activates
+                automatically after payment
+              </p>
             </motion.div>
 
             <motion.div

@@ -43,6 +43,12 @@ You do **not** need a Payment Link redirect URL anymore; Checkout is created by 
 
 Or deploy everything on Vercel and use the custom domain there instead of gh-pages.
 
+## Public roster page
+
+- URL: `/musician-roster/browse`
+- API: `GET /api/roster/list` returns profiles with `status = active`
+- Cards use the same layout as Featured Artists (no email/phone exposed publicly)
+
 ## Fallback
 
 If the API is not configured, the form falls back to email via FormSubmit and the Stripe Payment Link on the roster page.

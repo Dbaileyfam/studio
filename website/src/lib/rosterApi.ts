@@ -47,6 +47,19 @@ export async function createRosterCheckout(
   return parseJson<CreateRosterCheckoutResult>(res);
 }
 
+export type PublicRosterProfile = {
+  id: string;
+  fullName: string;
+  profile: Record<string, unknown>;
+};
+
+export async function fetchPublicRoster(): Promise<PublicRosterProfile[]> {
+  const url = apiBase ? `${apiBase}/api/roster/list` : "/api/roster/list";
+  const res = await fetch(url);
+  const data = await parseJson<{ profiles: PublicRosterProfile[] }>(res);
+  return data.profiles ?? [];
+}
+
 export async function fetchRosterProfileStatus(
   profileId: string
 ): Promise<RosterProfileStatus> {
