@@ -2,6 +2,9 @@
 export const ROSTER_STRIPE_URL =
   "https://buy.stripe.com/00wfZa1iF3MM1V5bHobZe05";
 
+/** Stripe Buy Button embed (Dashboard → Payment Links → Buy button) */
+export const ROSTER_STRIPE_BUY_BUTTON_ID = "buy_btn_1Ta0pw33fWEaCkVCioYO1a4L";
+
 export const ROSTER_FORM_EMAIL = "info@801familystudios.com";
 
 export const ROSTER_PROFILE_FORM_PATH = "/musician-profile-form";

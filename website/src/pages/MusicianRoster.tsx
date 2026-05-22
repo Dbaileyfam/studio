@@ -1,9 +1,9 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
-import { Button } from "@/components/ui/button";
-import { ROSTER_STRIPE_URL } from "@/lib/musicianRoster";
+import StripeBuyButton from "@/components/StripeBuyButton";
+import { ROSTER_STRIPE_BUY_BUTTON_ID, ROSTER_STRIPE_URL } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
-import { ArrowRight, Music2, Users } from "lucide-react";
+import { Music2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const fadeIn = {
@@ -58,25 +58,23 @@ const MusicianRoster = () => {
                 studio work, private events, and booking opportunities. Members keep
                 100% of their gig pay — 801 Family Studios does not take commission.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white font-semibold px-8 shadow-lg"
-                >
-                  <a
-                    href={ROSTER_STRIPE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Join the Roster — $9/month
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
+              <div className="mt-10 max-w-sm mx-auto w-full rounded-2xl border border-white/15 bg-white/5 p-6">
+                <StripeBuyButton buyButtonId={ROSTER_STRIPE_BUY_BUTTON_ID} />
               </div>
               <p className="mt-6 text-sm text-gray-400 max-w-md mx-auto">
-                Secure checkout on Stripe. After payment you will be redirected to
-                complete your musician profile.
+                Secure checkout on Stripe — $9/month. After payment you will be
+                redirected to complete your musician profile.
+              </p>
+              <p className="mt-3 text-xs text-gray-500">
+                Button not loading?{" "}
+                <a
+                  href={ROSTER_STRIPE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-teal-400 hover:text-teal-300 underline"
+                >
+                  Open checkout in a new tab
+                </a>
               </p>
             </motion.div>
 
