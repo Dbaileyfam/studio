@@ -1,11 +1,9 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import MerchProductGrid from "@/components/MerchProductGrid";
 import StoreOrderForm from "@/components/StoreOrderForm";
-import StripeBuyButton from "@/components/StripeBuyButton";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import { STRIPE_BUY_BUTTONS } from "@/lib/storePayment";
 import { STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 
 const fadeIn = {
@@ -66,21 +64,27 @@ const Store = () => {
                     <motion.div
                       className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-50 pointer-events-none`}
                     />
-                    <motion.div className="relative flex flex-col h-full">
-                      <h3 className="text-xl font-bold text-white">{item.name}</h3>
-                      <p className="text-2xl font-bold text-teal-300 mt-1">${item.price}</p>
-                      <p className="text-gray-300 mt-2 text-sm leading-relaxed">{item.tagline}</p>
-                      <div className="mt-5 flex-1 flex flex-col justify-end">
-                        <StripeBuyButton
-                          buyButtonId={STRIPE_BUY_BUTTONS[item.id].buyButtonId}
-                        />
-                        <Link
-                          to={`/store?product=${item.id}#order-form`}
-                          className="mt-3 inline-flex text-xs text-center justify-center text-gray-400 hover:text-teal-300 underline-offset-4 hover:underline"
-                        >
-                          Submit project brief first →
-                        </Link>
-                      </div>
+                    <motion.div className="relative">
+                      <span className="text-4xl">{item.icon}</span>
+                      <h3 className="text-2xl font-bold text-white mt-4">{item.name}</h3>
+                      <p className="text-3xl font-bold text-teal-300 mt-2">${item.price}</p>
+                      <p className="text-gray-300 mt-3 text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                      <ul className="mt-5 space-y-2 text-sm text-gray-200">
+                        {item.includes.map((line) => (
+                          <li key={line} className="flex gap-2">
+                            <span className="text-teal-400">✓</span>
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link
+                        to={`/store?product=${item.id}#order-form`}
+                        className="mt-6 inline-flex text-sm font-semibold text-teal-300 hover:text-teal-200 underline-offset-4 hover:underline"
+                      >
+                        Start order →
+                      </Link>
                     </motion.div>
                   </motion.div>
                 ))}

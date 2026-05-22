@@ -176,7 +176,7 @@ const StoreOrderForm = () => {
         <p className="text-gray-300 text-sm mb-6">
           Select what you want to order, then complete the project brief below.
         </p>
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {STORE_PRODUCTS.map((item) => (
             <motion.button
               key={item.id}
