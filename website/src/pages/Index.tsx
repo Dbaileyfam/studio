@@ -243,7 +243,7 @@ const Index = () => {
                   Comprehensive music services designed to elevate your sound and career
                 </p>
                 <p className="text-sm md:text-base text-gray-300 mt-4">
-                  Open a card to learn more about each service
+                  Each service has its own page — use the <strong className="text-white font-medium">Services</strong> menu above or the links below
                 </p>
               </motion.div>
 
@@ -258,40 +258,36 @@ const Index = () => {
                     viewport={{ once: true }}
                     custom={index * 0.2}
                   >
-                    <Link
-                      to={getServicePath(service.slug)}
-                      className="group relative h-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded-3xl"
+                    <motion.div
+                      className="group relative h-full rounded-3xl"
+                      whileHover={{ y: -8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <motion.div
-                        className="h-full"
-                        whileHover={{ y: -8 }}
-                        transition={{ type: "spring", stiffness: 300 }}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                        aria-hidden
+                      />
+                      <div
+                        className={`relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/15 transition-all duration-500 h-full flex flex-col overflow-hidden`}
                       >
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                          aria-hidden
-                        />
-                        <div
-                          className={`relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/15 transition-all duration-500 h-full flex flex-col overflow-hidden`}
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                        <div className="text-6xl mb-6 text-center">{service.icon}</div>
+                        <h3 className="text-2xl font-bold text-white mb-4 text-center">
+                          {service.cardTitle}
+                        </h3>
+                        <p className="text-gray-200 leading-relaxed text-center flex-grow text-sm md:text-base">
+                          {service.cardDescription}
+                        </p>
+                        <Link
+                          to={getServicePath(service.slug)}
+                          className="mt-6 inline-flex items-center justify-center rounded-full border border-teal-400/40 bg-teal-500/15 px-5 py-2.5 text-sm font-semibold text-teal-300 hover:bg-teal-500/25 hover:text-teal-200 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                         >
-                          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                          <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
-                            {service.icon}
-                          </div>
-                          <h3 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-gray-100 transition-colors duration-300">
-                            {service.cardTitle}
-                          </h3>
-                          <p className="text-gray-200 leading-relaxed text-center flex-grow text-sm md:text-base">
-                            {service.cardDescription}
-                          </p>
-                          <span className="mt-6 inline-flex items-center justify-center text-sm font-semibold text-teal-300 group-hover:text-teal-200">
-                            Learn more
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                          </span>
-                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full" />
-                        </div>
-                      </motion.div>
-                    </Link>
+                          {service.navLabel} page
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full" />
+                      </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </div>

@@ -91,11 +91,11 @@ const ServiceDetail = () => {
               custom={0}
             >
               <Link
-                to="/#our-services"
+                to="/"
                 className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-8"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back to services
+                Home
               </Link>
             </motion.div>
 

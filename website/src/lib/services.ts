@@ -31,6 +31,8 @@ export type Service = {
   slug: ServiceSlug;
   title: string;
   cardTitle: string;
+  /** Shorter label for the top navigation menu. */
+  navLabel: string;
   metaDescription: string;
   keywords: string[];
   icon: string;
@@ -54,6 +56,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "recording",
     cardTitle: "Recording",
+    navLabel: "Recording",
     title: "Studio Recording in Salt Lake City",
     metaDescription:
       "Professional studio recording in Sandy, Utah — vocals, bands, podcasts, and demos. Half-day and full-day session rates at 801 Family Studios.",
@@ -114,6 +117,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "mixing-mastering",
     cardTitle: "Mixing & Mastering",
+    navLabel: "Mix & Master",
     title: "Mixing & Mastering Services",
     metaDescription:
       "Professional mixing and mastering in Utah — $150/song mix, $50/song master, or $175 combined. Two revisions included at 801 Family Studios.",
@@ -178,6 +182,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "websites",
     cardTitle: "Website Services",
+    navLabel: "Websites",
     title: "Custom Band & Artist Websites",
     metaDescription:
       "Custom websites for musicians, bands, and creatives in Utah — bio, music, photos, shows, and booking. Professional band sites from $300 at 801 Family Studios.",
@@ -265,6 +270,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "epk",
     cardTitle: "EPK Services",
+    navLabel: "EPK",
     title: "Electronic Press Kits (EPK) for Artists",
     metaDescription:
       "Professional band EPK design in Utah — press-ready bio, photos, music, video, and booking info. Band EPK from $150 at 801 Family Studios.",
@@ -341,6 +347,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "booking-management",
     cardTitle: "Booking & Management",
+    navLabel: "Booking",
     title: "Artist Booking & Management",
     metaDescription:
       "Artist booking and music management in Utah — gig booking and career management with transparent commission structure at 801 Family Studios.",
@@ -401,6 +408,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "studio-rental",
     cardTitle: "Studio Rental & Rehearsal",
+    navLabel: "Studio Rental",
     title: "Studio Rental & Rehearsal Space",
     metaDescription:
       "Affordable rehearsal and studio rental in Sandy, Utah — $25/hr with 3-hour minimum. Basic setup help and optional recording at 801 Family Studios.",
@@ -458,6 +466,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "drum-lessons",
     cardTitle: "Drum Lessons",
+    navLabel: "Drum Lessons",
     title: "Drum Lessons in Sandy, Utah",
     metaDescription:
       "Private drum lessons in Sandy, UT — $120/month for two 1-hour lessons. Learn technique, timing, and musicality at 801 Family Studios.",
@@ -503,6 +512,7 @@ const ALL_SERVICES: Service[] = [
   {
     slug: "social-media",
     cardTitle: "Social Media & Promotion",
+    navLabel: "Social Media",
     title: "Social Media & Artist Promotion",
     metaDescription:
       "Music marketing and social media support for Utah artists — content push from $150/mo or full artist growth package at $500/mo from 801 Family Studios.",
