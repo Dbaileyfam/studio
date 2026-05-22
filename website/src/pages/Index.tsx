@@ -16,7 +16,7 @@ import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
-const HEADLINE = "Where Artists Feel At Home";
+const HEADLINE = "Recording, Websites, EPKs & Artist Support in Sandy, Utah";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -51,7 +51,7 @@ const Index = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="801 Family Studios"
-        description="801 Family Studios in Salt Lake City, Utah — recording, mixing, mastering, custom band websites, EPKs, booking, rehearsal space, and artist services."
+        description="801 Family Studios in Sandy, Utah — recording, mixing, mastering, custom websites, EPKs, booking support, studio rental, drum lessons, and artist services."
         path="/"
         keywords={[
           "801 Family Studios",
@@ -137,7 +137,7 @@ const Index = () => {
                     }}
                   />
                   <motion.p
-                    className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto text-pretty leading-relaxed"
+                    className="text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto text-pretty leading-relaxed"
                     initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -146,10 +146,13 @@ const Index = () => {
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
-                    Professional music management services in Salt Lake City, Utah, helping independent artists organize, produce, and succeed.
+                    801 Family Studios helps musicians, bands, creatives, and small businesses
+                    build their sound, brand, and online presence through recording, mixing,
+                    mastering, custom websites, electronic press kits, booking support, studio
+                    rental, and drum lessons.
                   </motion.p>
                   <motion.div
-                    className="flex flex-col sm:flex-row gap-6 justify-center"
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
                     initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -158,20 +161,23 @@ const Index = () => {
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
-                  <Button 
-                    asChild 
-                    size="lg" 
-                    className="rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/25 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/15"
-                  >
-                    <Link to="/featured-artists">Featured Artists</Link>
-                  </Button>
-                  <Button 
-                    asChild 
-                    size="lg" 
-                    className="rounded-full bg-[var(--accent-warm)] text-[#1f2937] hover:bg-amber-400 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[var(--accent-warm-soft)]"
-                  >
-                    <Link to="/contact">Contact Us</Link>
-                  </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 border-0 px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[var(--accent-warm-soft)] w-full sm:w-auto"
+                    >
+                      <Link to="/#our-services">Choose a Service</Link>
+                    </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    >
+                      <Link to="/store?product=bundle#order-form">
+                        I need a Website / EPK
+                      </Link>
+                    </Button>
                   </motion.div>
                 </motion.div>
               </motion.div>
