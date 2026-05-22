@@ -14,8 +14,8 @@ import {
 } from "@/lib/storeOrderSession";
 import { submitStoreOrderEmail } from "@/lib/submitStoreOrderEmail";
 import {
-  getStoreProductsInDisplayOrder,
   ORDER_DELIVERY_NOTE,
+  STORE_PACKAGE_PICKER_ORDER,
   STORE_PRODUCTS,
   type StoreProduct,
   type StoreProductId,
@@ -119,7 +119,9 @@ const StoreOrderForm = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const selected = STORE_PRODUCTS.find((item) => item.id === product)!;
-  const [bundleProduct, websiteProduct, epkProduct] = getStoreProductsInDisplayOrder();
+  const packagePickerProducts = STORE_PACKAGE_PICKER_ORDER.map(
+    (id) => STORE_PRODUCTS.find((item) => item.id === id)!
+  );
 
   const update = (key: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -204,26 +206,15 @@ const StoreOrderForm = () => {
         <p className="text-gray-300 text-sm mb-6">
           Select what you want to order, then complete the project brief below.
         </p>
-        <motion.div className="flex flex-col items-center gap-4 max-w-3xl mx-auto">
-          <div className="w-full max-w-xs">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          {packagePickerProducts.map((item) => (
             <PackageOption
-              item={bundleProduct}
-              selected={product === bundleProduct.id}
+              key={item.id}
+              item={item}
+              selected={product === item.id}
               onSelect={setProduct}
             />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-            <PackageOption
-              item={websiteProduct}
-              selected={product === websiteProduct.id}
-              onSelect={setProduct}
-            />
-            <PackageOption
-              item={epkProduct}
-              selected={product === epkProduct.id}
-              onSelect={setProduct}
-            />
-          </div>
+          ))}
         </motion.div>
         <p className="mt-6 text-sm text-gray-400">
           After your brief, you&apos;ll go to checkout to pay. Simple edits are free;

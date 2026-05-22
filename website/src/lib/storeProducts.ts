@@ -70,17 +70,12 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   },
 ];
 
-/** Store page & order form: bundle on top, website and EPK centered below. */
-export const STORE_PRODUCT_DISPLAY_ORDER: StoreProductId[] = [
-  "bundle",
+/** Order form package picker: website & EPK on top row, bundle below. */
+export const STORE_PACKAGE_PICKER_ORDER: StoreProductId[] = [
   "website",
   "epk",
+  "bundle",
 ];
-
-export const getStoreProductsInDisplayOrder = (): StoreProduct[] =>
-  STORE_PRODUCT_DISPLAY_ORDER.map(
-    (id) => STORE_PRODUCTS.find((item) => item.id === id)!
-  );
 
 export const WEB_PORTFOLIO_URL =
   "https://dbaileyfam.github.io/801familywebsiteportfolio/";
