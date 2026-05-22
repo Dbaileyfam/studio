@@ -6,13 +6,42 @@ const normalizeUrl = (value: string): string | undefined => {
   const trimmed = value.trim();
   if (!trimmed) return undefined;
   if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  if (trimmed.startsWith("@")) {
-    return `https://www.instagram.com/${trimmed.slice(1).replace(/\//g, "")}`;
-  }
   if (trimmed.includes(".") && !trimmed.includes(" ")) {
     return `https://${trimmed}`;
   }
   return trimmed;
+};
+
+const normalizeInstagram = (value: string): string | undefined => {
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (trimmed.startsWith("@")) {
+    return `https://www.instagram.com/${trimmed.slice(1).replace(/\//g, "")}`;
+  }
+  return normalizeUrl(trimmed);
+};
+
+const normalizeTiktok = (value: string): string | undefined => {
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (trimmed.startsWith("@")) {
+    return `https://www.tiktok.com/@${trimmed.slice(1).replace(/\//g, "")}`;
+  }
+  if (/tiktok\.com/i.test(trimmed)) return normalizeUrl(trimmed);
+  const handle = trimmed.replace(/^@/, "").replace(/\//g, "");
+  return handle ? `https://www.tiktok.com/@${handle}` : undefined;
+};
+
+const normalizeFacebook = (value: string): string | undefined => {
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (trimmed.startsWith("@")) {
+    return `https://www.facebook.com/${trimmed.slice(1).replace(/\//g, "")}`;
+  }
+  return normalizeUrl(trimmed) ?? `https://www.facebook.com/${trimmed}`;
 };
 
 export function buildRosterProfilePreview(
@@ -50,7 +79,9 @@ export function buildRosterProfilePreview(
     image: imageUrl || rosterPlaceholder,
     imageFit: "cover",
     social: {
-      instagram: normalizeUrl(data.instagram),
+      instagram: normalizeInstagram(data.instagram),
+      facebook: normalizeFacebook(data.facebook),
+      tiktok: normalizeTiktok(data.tiktok),
       youtube: normalizeUrl(data.youtube),
       music: normalizeUrl(data.spotify),
       website: normalizeUrl(data.website),

@@ -29,7 +29,7 @@ const MusicianProfileFormPage = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="Musician Roster Profile"
-        description="Create your 801 Musician Roster profile, then subscribe to publish your listing automatically."
+        description="Create your 801 Musician Roster profile, then subscribe to appear on the public roster automatically."
         path="/musician-profile-form"
         keywords={["musician roster profile", "801 musician roster"]}
       />
@@ -51,9 +51,9 @@ const MusicianProfileFormPage = () => {
                 Musician roster profile
               </h1>
               <p className="text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto">
-                Fill out your profile first. After you submit, you&apos;ll subscribe for
-                $9/month on Stripe — payment activates your listing automatically (no
-                manual approval step).
+                Fill out your profile first. After you submit, subscribe for $9/month on
+                Stripe — everyone who pays is added to the public musician roster
+                automatically.
               </p>
               <p className="mt-4 text-sm text-teal-200/90 max-w-xl mx-auto">
                 {ROSTER_NO_COMMISSION} You keep 100% of what you earn from roster gigs.

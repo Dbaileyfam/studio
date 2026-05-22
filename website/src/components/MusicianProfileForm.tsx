@@ -30,7 +30,6 @@ import {
   AVAILABLE_FOR_OPTIONS,
   CONTACT_PREFERENCE_OPTIONS,
   GENRE_OPTIONS,
-  PHONE_VISIBILITY_OPTIONS,
   ROSTER_STRIPE_URL,
   TRAVEL_OPTIONS,
 } from "@/lib/musicianRoster";
@@ -82,7 +81,6 @@ const MusicianProfileForm = () => {
   const [stageName, setStageName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [phoneVisibility, setPhoneVisibility] = useState("private");
   const [cityArea, setCityArea] = useState("");
   const [cityAreaOther, setCityAreaOther] = useState("");
   const [instruments, setInstruments] = useState("");
@@ -94,6 +92,8 @@ const MusicianProfileForm = () => {
   const [bio, setBio] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [tiktok, setTiktok] = useState("");
   const [youtube, setYoutube] = useState("");
   const [spotify, setSpotify] = useState("");
   const [epk, setEpk] = useState("");
@@ -120,7 +120,6 @@ const MusicianProfileForm = () => {
     stageName,
     email,
     phone,
-    phoneVisibility,
     cityArea,
     cityAreaOther,
     instruments,
@@ -132,6 +131,8 @@ const MusicianProfileForm = () => {
     bio,
     website,
     instagram,
+    facebook,
+    tiktok,
     youtube,
     spotify,
     epk,
@@ -242,7 +243,7 @@ const MusicianProfileForm = () => {
           <p className="text-gray-200 leading-relaxed">
             {usedLegacySubmit
               ? "Your profile was sent to 801 Family Studios. Subscribe below to join the roster."
-              : "Subscribe for $9/month to publish your listing. Payment is verified automatically — no manual approval step."}
+              : "Subscribe for $9/month to go live on the public roster. Everyone who completes payment is added automatically."}
           </p>
         </div>
 
@@ -332,33 +333,6 @@ const MusicianProfileForm = () => {
             />
           </div>
         </div>
-        {phone.trim() && (
-          <div className="space-y-3 pt-2">
-            <Label>Phone visibility</Label>
-            <div className="flex flex-col sm:flex-row gap-3">
-              {PHONE_VISIBILITY_OPTIONS.map((opt) => (
-                <label
-                  key={opt.value}
-                  className={`flex-1 cursor-pointer rounded-xl border px-4 py-3 text-sm transition-colors ${
-                    phoneVisibility === opt.value
-                      ? "border-teal-400 bg-teal-950/40 text-white"
-                      : "border-white/15 text-gray-300 hover:border-white/30"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="phoneVisibility"
-                    value={opt.value}
-                    checked={phoneVisibility === opt.value}
-                    onChange={() => setPhoneVisibility(opt.value)}
-                    className="sr-only"
-                  />
-                  {opt.label}
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
       </section>
 
       <section className={sectionClass}>
@@ -484,6 +458,26 @@ const MusicianProfileForm = () => {
               placeholder="@handle or full URL"
               value={instagram}
               onChange={(e) => setInstagram(e.target.value)}
+              className={fieldClass}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="facebook">Facebook</Label>
+            <Input
+              id="facebook"
+              placeholder="@page or full URL"
+              value={facebook}
+              onChange={(e) => setFacebook(e.target.value)}
+              className={fieldClass}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="tiktok">TikTok</Label>
+            <Input
+              id="tiktok"
+              placeholder="@handle or full URL"
+              value={tiktok}
+              onChange={(e) => setTiktok(e.target.value)}
               className={fieldClass}
             />
           </div>

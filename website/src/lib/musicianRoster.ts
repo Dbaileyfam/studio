@@ -88,14 +88,10 @@ export const AVAILABILITY_OPTIONS = [
   "Advance booking preferred",
 ] as const;
 
-export const PHONE_VISIBILITY_OPTIONS = [
-  { value: "public", label: "Show on public roster" },
-  { value: "private", label: "Private — contact through 801 only" },
-] as const;
-
 export const CONTACT_PREFERENCE_OPTIONS = [
   "Email",
   "Instagram",
-  "Phone (if listed publicly)",
+  "Facebook",
+  "TikTok",
   "Contact through 801 Family Studios",
 ] as const;

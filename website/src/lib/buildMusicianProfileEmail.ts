@@ -3,7 +3,6 @@ export type MusicianProfileFormData = {
   stageName: string;
   email: string;
   phone: string;
-  phoneVisibility: string;
   cityArea: string;
   cityAreaOther: string;
   instruments: string;
@@ -15,6 +14,8 @@ export type MusicianProfileFormData = {
   bio: string;
   website: string;
   instagram: string;
+  facebook: string;
+  tiktok: string;
   youtube: string;
   spotify: string;
   epk: string;
@@ -39,7 +40,6 @@ export function buildMusicianProfileEmailFields(
     "Stripe checkout session (verify in Dashboard)":
       stripeCheckoutSessionId?.trim() || "— missing — verify subscription manually",
     Phone: data.phone.trim() || "—",
-    "Phone on roster": data.phoneVisibility,
     "City / area": city,
     "Instruments / vocals": data.instruments.trim(),
     Genres: data.genres.join(", ") || "—",
@@ -50,6 +50,8 @@ export function buildMusicianProfileEmailFields(
     Bio: data.bio.trim(),
     Website: data.website.trim() || "—",
     Instagram: data.instagram.trim() || "—",
+    Facebook: data.facebook.trim() || "—",
+    TikTok: data.tiktok.trim() || "—",
     YouTube: data.youtube.trim() || "—",
     Spotify: data.spotify.trim() || "—",
     EPK: data.epk.trim() || "—",
