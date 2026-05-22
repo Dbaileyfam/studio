@@ -1,12 +1,16 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
 import { Button } from "@/components/ui/button";
-import { getServiceBySlug, getServicePath } from "@/lib/services";
+import {
+  getServiceBySlug,
+  getServicePath,
+  getServiceSlugFromPathname,
+} from "@/lib/services";
 import { SITE_NAME, SITE_URL, sitePath } from "@/lib/site";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { useEffect } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 
 const fadeIn = {
   initial: { opacity: 0, y: 16 },
@@ -18,8 +22,9 @@ const fadeIn = {
 };
 
 const ServiceDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const service = slug ? getServiceBySlug(slug) : undefined;
+  const { pathname } = useLocation();
+  const slug = getServiceSlugFromPathname(pathname);
+  const service = getServiceBySlug(slug);
 
   useEffect(() => {
     if (!service) return;
@@ -63,7 +68,7 @@ const ServiceDetail = () => {
   }, [service]);
 
   if (!service) {
-    return <Navigate to="/services" replace />;
+    return <Navigate to="/" replace />;
   }
 
   const path = getServicePath(service.slug);
@@ -86,11 +91,11 @@ const ServiceDetail = () => {
               custom={0}
             >
               <Link
-                to="/services"
+                to="/#our-services"
                 className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-8"
               >
                 <ArrowLeft className="h-4 w-4" />
-                All services
+                Back to services
               </Link>
             </motion.div>
 
@@ -242,6 +247,27 @@ const ServiceDetail = () => {
                 Questions? Contact us
               </Link>
             </motion.div>
+
+            {service.relatedPrompt && (
+              <motion.aside
+                className="mt-12 rounded-2xl border border-teal-400/30 bg-teal-500/10 px-6 py-8 text-center"
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
+                <p className="text-lg text-gray-100 font-medium mb-4">
+                  {service.relatedPrompt.text}
+                </p>
+                <Link
+                  to={service.relatedPrompt.to}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                >
+                  {service.relatedPrompt.linkLabel}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.aside>
+            )}
           </article>
         </div>
       </div>

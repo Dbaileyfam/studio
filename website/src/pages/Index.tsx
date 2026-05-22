@@ -224,7 +224,7 @@ const Index = () => {
             </div>
 
             {/* Services Section */}
-            <section className="w-full py-16 md:py-24">
+            <section id="our-services" className="w-full py-16 md:py-24 scroll-mt-24">
               <motion.div
                 className="text-center mb-16 md:mb-20"
                 variants={fadeIn}
@@ -243,10 +243,7 @@ const Index = () => {
                   Comprehensive music services designed to elevate your sound and career
                 </p>
                 <p className="text-sm md:text-base text-gray-300 mt-4">
-                  <Link to="/services" className="text-teal-300 hover:text-teal-200 hover:underline">
-                    View all services
-                  </Link>{" "}
-                  — or open a card to learn more
+                  Open a card to learn more about each service
                 </p>
               </motion.div>
 

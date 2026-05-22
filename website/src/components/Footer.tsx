@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Music, Instagram, Facebook } from "lucide-react";
+import { SERVICES, getServicePath } from "@/lib/services";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -54,18 +55,40 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
+            <h4 className="text-lg font-semibold mb-6 text-white">Services</h4>
+            <ul className="space-y-3">
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to={getServicePath(service.slug)}
+                    className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
+                  >
+                    {service.cardTitle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
             <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3">
               {[
                 { path: "/", label: "Home" },
-                { path: "/services", label: "Services" },
+                { path: "/#our-services", label: "All Services" },
                 { path: "/featured-artists", label: "Featured Artists" },
                 { path: "/upcoming-shows", label: "Upcoming Shows" },
                 { path: "/store", label: "Store" },
@@ -90,7 +113,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-semibold mb-6 text-white">Contact Info</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">Contact</h4>
             <ul className="space-y-4">
               <li className="flex items-center space-x-3 text-gray-200">
                 <Mail size={18} className="text-white/80" />

@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 
@@ -14,8 +14,9 @@ import FeaturedArtists from "./pages/FeaturedArtists";
 import UpcomingShows from "./pages/UpcomingShows";
 import Store from "./pages/Store";
 import StoreCheckout from "./pages/StoreCheckout";
-import ServicesIndex from "./pages/ServicesIndex";
 import ServiceDetail from "./pages/ServiceDetail";
+import LegacyServiceRedirect from "./pages/LegacyServiceRedirect";
+import { SERVICES, getServicePath } from "@/lib/services";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -38,8 +39,15 @@ const AnimatedRoutes = () => {
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
         <Route path="/store/checkout" element={<StoreCheckout />} />
-        <Route path="/services" element={<ServicesIndex />} />
-        <Route path="/services/:slug" element={<ServiceDetail />} />
+        {SERVICES.map((service) => (
+          <Route
+            key={service.slug}
+            path={getServicePath(service.slug)}
+            element={<ServiceDetail />}
+          />
+        ))}
+        <Route path="/services" element={<Navigate to="/#our-services" replace />} />
+        <Route path="/services/:slug" element={<LegacyServiceRedirect />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -44,9 +44,13 @@ export type Service = {
   faqs: ServiceFAQ[];
   primaryCta: { label: string; to: string };
   secondaryCta?: { label: string; href: string; external?: boolean };
+  /** Cross-promotion shown at the bottom of the service page. */
+  relatedPrompt?: { text: string; to: string; linkLabel: string };
+  /** When false, hidden from the homepage, services hub, and sitemap. */
+  published?: boolean;
 };
 
-export const SERVICES: Service[] = [
+const ALL_SERVICES: Service[] = [
   {
     slug: "recording",
     cardTitle: "Recording",
@@ -101,6 +105,11 @@ export const SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Book a session", to: "/contact" },
+    relatedPrompt: {
+      text: "Need mixing/mastering after recording?",
+      to: "/mixing-mastering",
+      linkLabel: "Mixing & mastering services",
+    },
   },
   {
     slug: "mixing-mastering",
@@ -160,6 +169,11 @@ export const SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Start a mix project", to: "/contact" },
+    relatedPrompt: {
+      text: "Need recording first?",
+      to: "/recording",
+      linkLabel: "Studio recording",
+    },
   },
   {
     slug: "websites",
@@ -242,6 +256,11 @@ export const SERVICES: Service[] = [
       href: WEB_PORTFOLIO_URL,
       external: true,
     },
+    relatedPrompt: {
+      text: "Need an EPK too?",
+      to: "/epk",
+      linkLabel: "Band EPK services",
+    },
   },
   {
     slug: "epk",
@@ -313,6 +332,11 @@ export const SERVICES: Service[] = [
       href: WEB_PORTFOLIO_URL,
       external: true,
     },
+    relatedPrompt: {
+      text: "Need a full website too?",
+      to: "/websites",
+      linkLabel: "Custom band websites",
+    },
   },
   {
     slug: "booking-management",
@@ -368,6 +392,11 @@ export const SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Request a consultation", to: "/contact" },
+    relatedPrompt: {
+      text: "Need a website/EPK before pitching venues?",
+      to: "/store?product=bundle#order-form",
+      linkLabel: "Website + EPK bundle",
+    },
   },
   {
     slug: "studio-rental",
@@ -420,6 +449,11 @@ export const SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Reserve studio time", to: "/contact" },
+    relatedPrompt: {
+      text: "Want to record your rehearsal or book a full session?",
+      to: "/recording",
+      linkLabel: "Studio recording",
+    },
   },
   {
     slug: "drum-lessons",
@@ -460,6 +494,11 @@ export const SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Ask about lessons", to: "/contact" },
+    relatedPrompt: {
+      text: "Interested in recording or performance coaching?",
+      to: "/recording",
+      linkLabel: "Studio recording",
+    },
   },
   {
     slug: "social-media",
@@ -513,10 +552,18 @@ export const SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Talk about promotion", to: "/contact" },
+    published: false,
   },
 ];
+
+/** Live on the site (social media tabled for now). */
+export const SERVICES = ALL_SERVICES.filter((service) => service.published !== false);
 
 export const getServiceBySlug = (slug: string): Service | undefined =>
   SERVICES.find((service) => service.slug === slug);
 
-export const getServicePath = (slug: ServiceSlug) => `/services/${slug}`;
+export const getServicePath = (slug: ServiceSlug) => `/${slug}`;
+
+/** Slug from a service page pathname (e.g. /websites → websites). */
+export const getServiceSlugFromPathname = (pathname: string): string =>
+  pathname.replace(/^\//, "").split("/")[0];
