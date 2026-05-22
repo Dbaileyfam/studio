@@ -6,15 +6,27 @@ const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
     if (hash) {
       const id = hash.replace(/^#/, "");
-      const target = document.getElementById(id);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
+      requestAnimationFrame(() => {
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          scrollToTop();
+        }
+      });
+      return;
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    scrollToTop();
+    requestAnimationFrame(scrollToTop);
   }, [pathname, hash]);
 
   return null;

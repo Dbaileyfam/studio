@@ -27,6 +27,12 @@ const ServiceDetail = () => {
   const service = getServiceBySlug(slug);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [slug]);
+
+  useEffect(() => {
     if (!service) return;
 
     const scriptId = "service-jsonld";

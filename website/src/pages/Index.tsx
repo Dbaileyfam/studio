@@ -276,13 +276,13 @@ const Index = () => {
                           {service.cardTitle}
                         </h3>
                         <p className="text-gray-200 leading-relaxed text-center flex-grow text-sm md:text-base">
-                          {service.cardDescription}
+                          {service.homeTeaser}
                         </p>
                         <Link
                           to={getServicePath(service.slug)}
                           className="mt-6 inline-flex items-center justify-center rounded-full border border-teal-400/40 bg-teal-500/15 px-5 py-2.5 text-sm font-semibold text-teal-300 hover:bg-teal-500/25 hover:text-teal-200 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                         >
-                          {service.navLabel} page
+                          Click for more info
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full" />

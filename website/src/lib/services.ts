@@ -39,6 +39,8 @@ export type Service = {
   gradient: string;
   borderColor: string;
   cardDescription: string;
+  /** Short homepage card copy without pricing — full details on the service page. */
+  homeTeaser: string;
   heroSubtitle: string;
   intro: string;
   sections: ServiceSection[];
@@ -71,6 +73,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-teal-400/30",
     cardDescription:
       "$60/hr. Half Day (4 hrs): $200. Full Day (8 hrs): $400. Vocal, instrument, podcast, overdub, demo, or full band sessions.",
+    homeTeaser:
+      "Vocal, instrument, podcast, overdub, demo, or full band sessions in a focused, comfortable studio.",
     heroSubtitle: "Capture your sound with room, gear, and engineers who care about the performance.",
     intro:
       "Our recording sessions are built for artists who want a focused, comfortable environment — whether you are tracking a single vocal, a full band, a podcast, or layered overdubs. We help you get takes that feel right, not just levels that look right on a meter.",
@@ -132,6 +136,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-green-400/30",
     cardDescription:
       "All services include 2 revisions. Mix: $150/song. Mastering: $50/song. Mix + Master: $175/song.",
+    homeTeaser:
+      "Professional mixing and mastering with included revisions so your music translates on every speaker.",
     heroSubtitle: "Polish your tracks with clarity, punch, and balance that translate on every speaker.",
     intro:
       "Great mixes give your music space to breathe. Our mixing and mastering services help your songs sound intentional — whether you recorded with us or at home. Every package includes two revisions so you can refine the final result with confidence.",
@@ -198,6 +204,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-orange-400/30",
     cardDescription:
       "Band Website: $300 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free.",
+    homeTeaser:
+      "Custom websites for musicians and creatives — your story, music, photos, shows, and contact in one professional home base.",
     heroSubtitle:
       "More than a template — a professional home base for your music, story, and bookings.",
     intro:
@@ -285,6 +293,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-amber-400/30",
     cardDescription:
       "Band EPK: $150 — press-ready electronic press kit with bio, photos, music/video, and booking info.",
+    homeTeaser:
+      "Press-ready electronic press kits with bio, photos, music, video, and booking info in one shareable link.",
     heroSubtitle: "One professional link for venues, press, playlists, and industry contacts.",
     intro:
       "An electronic press kit (EPK) is how bookers, bloggers, and promoters evaluate you quickly. We build press-ready EPKs that present your story, sound, visuals, and contact details in a format industry contacts expect — so you look prepared before the first email reply.",
@@ -362,6 +372,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-yellow-400/30",
     cardDescription:
       "Booking: 10% of gig income. Management: 20% of total artist revenue. Requires exclusivity agreement + in-person consultation.",
+    homeTeaser:
+      "Booking and management support for artists ready to grow — with clear terms and an in-person consultation.",
     heroSubtitle: "Strategic support for gigs, growth, and long-term career direction.",
     intro:
       "Booking and management services are for artists ready to treat their career with a business mindset. We help you pursue the right opportunities, communicate professionally, and build momentum — with clear terms and an in-person consultation before any agreement.",
@@ -423,6 +435,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-cyan-400/30",
     cardDescription:
       "$25/hr (3-hour minimum). Rehearsal space, basic setup help, and basic rehearsal mix support. Add-ons: sound tech $25/hr, rehearsal soundboard recording $20/hr.",
+    homeTeaser:
+      "Rehearsal space with basic setup help and mix support — optional sound tech and soundboard recording add-ons.",
     heroSubtitle: "A comfortable room to rehearse, experiment, and tighten your set.",
     intro:
       "Need a dedicated space to practice without volume limits or living-room logistics? Our studio rental and rehearsal packages give bands and artists a ready room with basic setup support — plus optional add-ons when you want tech help or rehearsal soundboard recording.",
@@ -480,6 +494,8 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-pink-500/20 to-rose-500/20",
     borderColor: "border-pink-400/30",
     cardDescription: "$120/month. Two 1-hour lessons per month.",
+    homeTeaser:
+      "Private drum lessons for beginners through advancing players — technique, timing, and musical confidence.",
     heroSubtitle: "Build technique, confidence, and musical feel behind the kit.",
     intro:
       "Our drum lessons are designed for students who want steady progress — whether you are picking up sticks for the first time or tightening skills you already have. Lessons take place at the studio in a focused, encouraging environment.",
@@ -527,6 +543,8 @@ const ALL_SERVICES: Service[] = [
     borderColor: "border-emerald-400/30",
     cardDescription:
       "Monthly Content Push Support: $150/month. Artist Growth Package: $500/month with posts, engagement, and content support.",
+    homeTeaser:
+      "Social media and promotional support so you stay visible while focusing on your music.",
     heroSubtitle: "Stay visible while you focus on writing, recording, and performing.",
     intro:
       "Consistency wins on social media, but most artists do not have hours every week to plan posts, write captions, and engage. Our promotion packages meet you where you are — whether you create your own content and need distribution help, or you want a fuller growth partner.",
