@@ -70,6 +70,18 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   },
 ];
 
+/** Store page & order form: EPK on top, website and bundle centered below. */
+export const STORE_PRODUCT_DISPLAY_ORDER: StoreProductId[] = [
+  "epk",
+  "website",
+  "bundle",
+];
+
+export const getStoreProductsInDisplayOrder = (): StoreProduct[] =>
+  STORE_PRODUCT_DISPLAY_ORDER.map(
+    (id) => STORE_PRODUCTS.find((item) => item.id === id)!
+  );
+
 export const WEB_PORTFOLIO_URL =
   "https://dbaileyfam.github.io/801familywebsiteportfolio/";
 

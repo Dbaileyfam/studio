@@ -4,7 +4,11 @@ import StoreOrderForm from "@/components/StoreOrderForm";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import { STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
+import {
+  getStoreProductsInDisplayOrder,
+  WEB_PORTFOLIO_URL,
+  type StoreProduct,
+} from "@/lib/storeProducts";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -15,7 +19,39 @@ const fadeIn = {
   }),
 };
 
+const ProductCard = ({ item }: { item: StoreProduct }) => (
+  <motion.div
+    className={`relative rounded-3xl border ${item.borderColor} bg-white/10 backdrop-blur-sm p-6 md:p-8 overflow-hidden h-full`}
+  >
+    <motion.div
+      className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-50 pointer-events-none`}
+    />
+    <motion.div className="relative">
+      <span className="text-4xl">{item.icon}</span>
+      <h3 className="text-2xl font-bold text-white mt-4">{item.name}</h3>
+      <p className="text-3xl font-bold text-teal-300 mt-2">${item.price}</p>
+      <p className="text-gray-300 mt-3 text-sm leading-relaxed">{item.description}</p>
+      <ul className="mt-5 space-y-2 text-sm text-gray-200">
+        {item.includes.map((line) => (
+          <li key={line} className="flex gap-2">
+            <span className="text-teal-400">✓</span>
+            {line}
+          </li>
+        ))}
+      </ul>
+      <Link
+        to={`/store?product=${item.id}#order-form`}
+        className="mt-6 inline-flex text-sm font-semibold text-teal-300 hover:text-teal-200 underline-offset-4 hover:underline"
+      >
+        Start order →
+      </Link>
+    </motion.div>
+  </motion.div>
+);
+
 const Store = () => {
+  const [epk, website, bundle] = getStoreProductsInDisplayOrder();
+
   return (
     <AnimatedPageTransition>
       <div className="page-container">
@@ -55,39 +91,14 @@ const Store = () => {
               viewport={{ once: true }}
               custom={1}
             >
-              <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {STORE_PRODUCTS.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    className={`relative rounded-3xl border ${item.borderColor} bg-white/10 backdrop-blur-sm p-6 md:p-8 overflow-hidden`}
-                  >
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-50 pointer-events-none`}
-                    />
-                    <motion.div className="relative">
-                      <span className="text-4xl">{item.icon}</span>
-                      <h3 className="text-2xl font-bold text-white mt-4">{item.name}</h3>
-                      <p className="text-3xl font-bold text-teal-300 mt-2">${item.price}</p>
-                      <p className="text-gray-300 mt-3 text-sm leading-relaxed">
-                        {item.description}
-                      </p>
-                      <ul className="mt-5 space-y-2 text-sm text-gray-200">
-                        {item.includes.map((line) => (
-                          <li key={line} className="flex gap-2">
-                            <span className="text-teal-400">✓</span>
-                            {line}
-                          </li>
-                        ))}
-                      </ul>
-                      <Link
-                        to={`/store?product=${item.id}#order-form`}
-                        className="mt-6 inline-flex text-sm font-semibold text-teal-300 hover:text-teal-200 underline-offset-4 hover:underline"
-                      >
-                        Start order →
-                      </Link>
-                    </motion.div>
-                  </motion.div>
-                ))}
+              <motion.div className="flex flex-col items-center gap-6 max-w-5xl mx-auto">
+                <div className="w-full max-w-md">
+                  <ProductCard item={epk} />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                  <ProductCard item={website} />
+                  <ProductCard item={bundle} />
+                </div>
               </motion.div>
             </motion.div>
 

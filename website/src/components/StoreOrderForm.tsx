@@ -14,8 +14,10 @@ import {
 } from "@/lib/storeOrderSession";
 import { submitStoreOrderEmail } from "@/lib/submitStoreOrderEmail";
 import {
+  getStoreProductsInDisplayOrder,
   ORDER_DELIVERY_NOTE,
   STORE_PRODUCTS,
+  type StoreProduct,
   type StoreProductId,
 } from "@/lib/storeProducts";
 
@@ -77,6 +79,31 @@ const sectionMotion = {
   viewport: { once: true },
 };
 
+const PackageOption = ({
+  item,
+  selected,
+  onSelect,
+}: {
+  item: StoreProduct;
+  selected: boolean;
+  onSelect: (id: StoreProductId) => void;
+}) => (
+  <motion.button
+    type="button"
+    onClick={() => onSelect(item.id)}
+    className={`text-left rounded-2xl border p-5 transition-all w-full ${
+      selected
+        ? "border-[var(--accent-warm)] bg-[var(--accent-warm)]/15 ring-2 ring-[var(--accent-warm)]/40"
+        : "border-white/20 bg-black/20 hover:border-white/35"
+    }`}
+  >
+    <span className="text-3xl">{item.icon}</span>
+    <p className="mt-3 text-lg font-bold text-white">{item.name}</p>
+    <p className="text-2xl font-bold text-[var(--accent-warm)] mt-1">${item.price}</p>
+    <p className="text-sm text-gray-300 mt-2">{item.tagline}</p>
+  </motion.button>
+);
+
 const StoreOrderForm = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -92,6 +119,7 @@ const StoreOrderForm = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const selected = STORE_PRODUCTS.find((item) => item.id === product)!;
+  const [epkProduct, websiteProduct, bundleProduct] = getStoreProductsInDisplayOrder();
 
   const update = (key: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -176,26 +204,26 @@ const StoreOrderForm = () => {
         <p className="text-gray-300 text-sm mb-6">
           Select what you want to order, then complete the project brief below.
         </p>
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {STORE_PRODUCTS.map((item) => (
-            <motion.button
-              key={item.id}
-              type="button"
-              onClick={() => setProduct(item.id)}
-              className={`text-left rounded-2xl border p-5 transition-all ${
-                product === item.id
-                  ? "border-[var(--accent-warm)] bg-[var(--accent-warm)]/15 ring-2 ring-[var(--accent-warm)]/40"
-                  : "border-white/20 bg-black/20 hover:border-white/35"
-              }`}
-            >
-              <span className="text-3xl">{item.icon}</span>
-              <p className="mt-3 text-lg font-bold text-white">{item.name}</p>
-              <p className="text-2xl font-bold text-[var(--accent-warm)] mt-1">
-                ${item.price}
-              </p>
-              <p className="text-sm text-gray-300 mt-2">{item.tagline}</p>
-            </motion.button>
-          ))}
+        <motion.div className="flex flex-col items-center gap-4 max-w-3xl mx-auto">
+          <div className="w-full max-w-xs">
+            <PackageOption
+              item={epkProduct}
+              selected={product === epkProduct.id}
+              onSelect={setProduct}
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+            <PackageOption
+              item={websiteProduct}
+              selected={product === websiteProduct.id}
+              onSelect={setProduct}
+            />
+            <PackageOption
+              item={bundleProduct}
+              selected={product === bundleProduct.id}
+              onSelect={setProduct}
+            />
+          </div>
         </motion.div>
         <p className="mt-6 text-sm text-gray-400">
           After your brief, you&apos;ll go to checkout to pay. Simple edits are free;
