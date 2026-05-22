@@ -1,8 +1,8 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import ArtistProfileCard from "@/components/ArtistProfileCard";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Music, Globe } from "lucide-react";
 import tribeImage from "@/assets/Tribeof1.jpg";
 import swaggerImage from "@/assets/swagger1.jpg";
 
@@ -186,9 +186,6 @@ const FeaturedArtists = () => {
     }
   ];
 
-  console.log("FeaturedArtists component rendering...");
-  console.log("Artists data:", artists);
-
   return (
     <AnimatedPageTransition>
       <div className="page-container">
@@ -218,7 +215,7 @@ const FeaturedArtists = () => {
               <div className="lg:col-span-7 xl:col-span-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   {artists.map((artist, index) => (
-                    <EnhancedArtistCard key={artist.name} artist={artist} index={index} />
+                    <ArtistProfileCard key={artist.name} artist={artist} index={index} />
                   ))}
                 </div>
               </div>
@@ -284,251 +281,4 @@ const FeaturedArtists = () => {
   );
 };
 
-// Enhanced Artist Card Component with gradient borders and morphing backgrounds
-const EnhancedArtistCard = ({ artist, index }: { artist: any; index: number }) => {
-  return (
-    <motion.div
-      className="group relative"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        whileHover={{ y: -8, scale: 1.02 }}
-    >
-      {/* Enhanced Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-teal-500/15 via-amber-500/10 to-slate-500/15 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
-      
-      {/* Morphing Background Shapes */}
-      <div className="absolute inset-0 overflow-hidden rounded-3xl">
-        {/* Morphing Circle */}
-        <motion.div
-          className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-teal-400/25 to-amber-400/15 rounded-full"
-          animate={{
-            scale: [1, 1.3, 1],
-            borderRadius: ["50%", "30%", "50%"],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-            borderRadius: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 8, repeat: Infinity, ease: "linear" }
-          }}
-        />
-        
-        {/* Morphing Triangle */}
-        <motion.div
-          className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-amber-400/20 to-teal-400/20"
-          style={{
-            clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)"
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 180, 270, 360],
-          }}
-          transition={{
-            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 10, repeat: Infinity, ease: "linear" }
-          }}
-        />
-        
-        {/* Floating Dots */}
-        {[1, 2, 3].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/30 rounded-full"
-            style={{
-              left: `${20 + i * 20}%`,
-              top: `${15 + i * 25}%`,
-            }}
-            animate={{
-              y: [0, -8, 0],
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 2 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.2,
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Artist Card with Gradient Border */}
-      <motion.div 
-        className="relative bg-white/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 h-full flex flex-col"
-        whileHover={{
-          boxShadow: "0 25px 50px -12px rgba(20, 184, 166, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.08)"
-        }}
-      >
-        {/* Animated Gradient Border */}
-        <div className="absolute inset-0 rounded-3xl p-[2px]">
-          <motion.div
-            className="absolute inset-0 rounded-3xl bg-gradient-to-r from-teal-500 via-amber-500 to-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            animate={{
-              background: [
-                "linear-gradient(45deg, #14b8a6, #f59e0b, #64748b)",
-                "linear-gradient(45deg, #64748b, #14b8a6, #f59e0b)",
-                "linear-gradient(45deg, #f59e0b, #64748b, #14b8a6)",
-                "linear-gradient(45deg, #14b8a6, #f59e0b, #64748b)",
-              ],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-                    />
-                  </div>
-        
-        {/* Card Content */}
-        <div className="relative bg-[var(--glass-surface)] backdrop-blur-md rounded-3xl overflow-hidden h-full flex flex-col z-10 border border-white/5">
-          {/* Image Container with Enhanced Effects */}
-          <div className="relative aspect-[3/2] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
-            <motion.img
-              src={artist.image}
-              alt={`${artist.name} performing`}
-              className={`w-full h-full object-center transition-all duration-700 ${artist.imageFit === "cover" ? "object-cover" : "object-contain"}`}
-              style={{ pointerEvents: 'auto' }}
-              whileHover={{ 
-                scale: 1.1,
-                filter: "brightness(1.1) contrast(1.05)"
-              }}
-              onError={(e) => {
-                console.log('Image failed to load:', artist.name);
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-            
-            {/* Enhanced Image Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-            
-            {/* Enhanced Genre Badge */}
-            <motion.div 
-              className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium border border-white/30"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              {artist.genre}
-            </motion.div>
-          </div>
-
-          {/* Content */}
-          <div className="p-6 flex-grow flex flex-col">
-            {/* Artist Name */}
-            <motion.h3 
-              className="text-2xl font-bold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              {artist.name}
-            </motion.h3>
-            
-            {/* Description */}
-            <p className="text-gray-200 leading-relaxed mb-6 flex-grow group-hover:text-gray-100 transition-colors duration-300">
-                      {artist.description}
-                    </p>
-
-            {/* Social Media Links */}
-            <div className="flex flex-wrap gap-3 justify-center">
-              {artist.social.instagram && (
-                <motion.a
-                        href={artist.social.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Instagram size={16} />
-                  Instagram
-                </motion.a>
-              )}
-              
-              {artist.social.facebook && (
-                <motion.a
-                        href={artist.social.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Facebook size={16} />
-                  Facebook
-                </motion.a>
-              )}
-              
-              {artist.social.youtube && (
-                <motion.a
-                        href={artist.social.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Youtube size={16} />
-                  YouTube
-                </motion.a>
-              )}
-              
-              {artist.social.music && (
-                <motion.a
-                        href={artist.social.music}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Music size={16} />
-                  Music
-                </motion.a>
-              )}
-              
-              {artist.social.website && (
-                <motion.a
-                  href={artist.social.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Globe size={16} />
-                  Website
-                </motion.a>
-              )}
-
-              {artist.social.epk && (
-                <motion.a
-                  href={artist.social.epk}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-700 hover:to-orange-800 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Globe size={16} />
-                  EPK
-                </motion.a>
-              )}
-            </div>
-          </div>
-
-          {/* Enhanced Hover Effect Line */}
-          <motion.div 
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent rounded-full"
-            initial={{ width: 0 }}
-            whileHover={{ width: "75%" }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          />
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-export default FeaturedArtists; 
+export default FeaturedArtists;

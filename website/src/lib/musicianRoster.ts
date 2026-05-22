@@ -1,0 +1,80 @@
+/** Stripe Payment Link — $9/month musician roster subscription */
+export const ROSTER_STRIPE_URL =
+  "https://buy.stripe.com/00wfZa1iF3MM1V5bHobZe05";
+
+export const ROSTER_FORM_EMAIL = "info@801familystudios.com";
+
+export const ROSTER_PROFILE_FORM_PATH = "/musician-profile-form";
+
+/** Use this URL in Stripe's after-payment redirect (hash URL still works via site migration). */
+export const ROSTER_STRIPE_SUCCESS_URL =
+  "https://www.801familystudios.com/musician-profile-form";
+
+export const AREA_OPTIONS = [
+  "Sandy",
+  "Salt Lake City",
+  "West Valley",
+  "Murray",
+  "Draper",
+  "Provo",
+  "Orem",
+  "Lehi",
+  "Ogden",
+  "Layton",
+  "Park City",
+  "Other Utah",
+] as const;
+
+export const GENRE_OPTIONS = [
+  "Rock",
+  "Country",
+  "Reggae",
+  "Jazz",
+  "Worship",
+  "Pop",
+  "Hip-hop",
+  "R&B",
+  "Blues",
+  "Folk",
+  "Metal",
+  "Electronic",
+  "Latin",
+  "Other",
+] as const;
+
+export const AVAILABLE_FOR_OPTIONS = [
+  "Fill-in gigs",
+  "Solo shows",
+  "Session / studio work",
+  "Private events",
+  "Weddings & corporate",
+  "Teaching / lessons",
+] as const;
+
+export const TRAVEL_OPTIONS = [
+  "Local only (my city)",
+  "Salt Lake County",
+  "Wasatch Front",
+  "Statewide (Utah)",
+  "Willing to travel further",
+] as const;
+
+export const AVAILABILITY_OPTIONS = [
+  "Weekends",
+  "Weekdays",
+  "Evenings",
+  "Short notice / last-minute",
+  "Advance booking preferred",
+] as const;
+
+export const PHONE_VISIBILITY_OPTIONS = [
+  { value: "public", label: "Show on public roster" },
+  { value: "private", label: "Private — contact through 801 only" },
+] as const;
+
+export const CONTACT_PREFERENCE_OPTIONS = [
+  "Email",
+  "Instagram",
+  "Phone (if listed publicly)",
+  "Contact through 801 Family Studios",
+] as const;

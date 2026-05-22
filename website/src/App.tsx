@@ -17,6 +17,8 @@ import Store from "./pages/Store";
 import StoreCheckout from "./pages/StoreCheckout";
 import ServiceDetail from "./pages/ServiceDetail";
 import LegacyServiceRedirect from "./pages/LegacyServiceRedirect";
+import MusicianRoster from "./pages/MusicianRoster";
+import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
 import { SERVICES, getServicePath } from "@/lib/services";
 
 // Components
@@ -41,6 +43,8 @@ const AnimatedRoutes = () => {
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
         <Route path="/store/checkout" element={<StoreCheckout />} />
+        <Route path="/musician-roster" element={<MusicianRoster />} />
+        <Route path="/musician-profile-form" element={<MusicianProfileFormPage />} />
         {SERVICES.map((service) => (
           <Route
             key={service.slug}

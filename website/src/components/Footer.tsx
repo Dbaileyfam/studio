@@ -90,6 +90,7 @@ const Footer = () => {
                 { path: "/", label: "Home" },
                 { path: "/#our-services", label: "All Services" },
                 { path: "/featured-artists", label: "Featured Artists" },
+                { path: "/musician-roster", label: "Musician Roster" },
                 { path: "/upcoming-shows", label: "Upcoming Shows" },
                 { path: "/store", label: "Store" },
                 { path: "/contact", label: "Contact" },
