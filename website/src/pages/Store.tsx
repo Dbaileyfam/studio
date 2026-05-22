@@ -50,7 +50,7 @@ const ProductCard = ({ item }: { item: StoreProduct }) => (
 );
 
 const Store = () => {
-  const [epk, website, bundle] = getStoreProductsInDisplayOrder();
+  const [bundle, website, epk] = getStoreProductsInDisplayOrder();
 
   return (
     <AnimatedPageTransition>
@@ -93,11 +93,11 @@ const Store = () => {
             >
               <motion.div className="flex flex-col items-center gap-6 max-w-5xl mx-auto">
                 <div className="w-full max-w-md">
-                  <ProductCard item={epk} />
+                  <ProductCard item={bundle} />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                   <ProductCard item={website} />
-                  <ProductCard item={bundle} />
+                  <ProductCard item={epk} />
                 </div>
               </motion.div>
             </motion.div>

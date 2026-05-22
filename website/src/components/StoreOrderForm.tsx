@@ -119,7 +119,7 @@ const StoreOrderForm = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const selected = STORE_PRODUCTS.find((item) => item.id === product)!;
-  const [epkProduct, websiteProduct, bundleProduct] = getStoreProductsInDisplayOrder();
+  const [bundleProduct, websiteProduct, epkProduct] = getStoreProductsInDisplayOrder();
 
   const update = (key: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -207,8 +207,8 @@ const StoreOrderForm = () => {
         <motion.div className="flex flex-col items-center gap-4 max-w-3xl mx-auto">
           <div className="w-full max-w-xs">
             <PackageOption
-              item={epkProduct}
-              selected={product === epkProduct.id}
+              item={bundleProduct}
+              selected={product === bundleProduct.id}
               onSelect={setProduct}
             />
           </div>
@@ -219,8 +219,8 @@ const StoreOrderForm = () => {
               onSelect={setProduct}
             />
             <PackageOption
-              item={bundleProduct}
-              selected={product === bundleProduct.id}
+              item={epkProduct}
+              selected={product === epkProduct.id}
               onSelect={setProduct}
             />
           </div>

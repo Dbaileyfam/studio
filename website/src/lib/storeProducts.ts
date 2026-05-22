@@ -70,11 +70,11 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   },
 ];
 
-/** Store page & order form: EPK on top, website and bundle centered below. */
+/** Store page & order form: bundle on top, website and EPK centered below. */
 export const STORE_PRODUCT_DISPLAY_ORDER: StoreProductId[] = [
-  "epk",
-  "website",
   "bundle",
+  "website",
+  "epk",
 ];
 
 export const getStoreProductsInDisplayOrder = (): StoreProduct[] =>
