@@ -37,7 +37,7 @@ export function buildStoreOrderEmailFields(
     Location: form.location.trim() || "—",
   };
 
-  if (product === "website") {
+  if (product === "website" || product === "bundle") {
     Object.assign(payload, {
       Bio: form.bio.trim() || "—",
       Genre: form.genre.trim() || "—",
@@ -49,7 +49,9 @@ export function buildStoreOrderEmailFields(
       "Domain notes": form.domainNotes.trim() || "—",
       "Reference sites": form.referenceSites.trim() || "—",
     });
-  } else {
+  }
+
+  if (product === "epk" || product === "bundle") {
     Object.assign(payload, {
       "Short bio": form.shortBio.trim() || form.bio.trim() || "—",
       "Full bio": form.bio.trim() || "—",

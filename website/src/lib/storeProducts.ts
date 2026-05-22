@@ -1,4 +1,4 @@
-export type StoreProductId = "website" | "epk";
+export type StoreProductId = "website" | "epk" | "bundle";
 
 /** Shown on website/EPK order forms and checkout. */
 export const ORDER_DELIVERY_NOTE =
@@ -50,6 +50,23 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     icon: "📄",
     accent: "from-amber-500/15 to-teal-500/20",
     borderColor: "border-amber-400/30",
+  },
+  {
+    id: "bundle",
+    name: "Website + EPK Bundle",
+    price: 400,
+    tagline: "Site and press kit together",
+    description:
+      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $20 per edit.",
+    includes: [
+      "Everything in the Band Website package",
+      "Everything in the Band EPK package",
+      "One brief, both deliverables",
+      "Best value for new bands",
+    ],
+    icon: "🎁",
+    accent: "from-teal-500/20 to-orange-500/20",
+    borderColor: "border-teal-400/30",
   },
 ];
 

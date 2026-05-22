@@ -20,7 +20,7 @@ import {
 } from "@/lib/storeProducts";
 
 const parseProduct = (value: string | null): StoreProductId => {
-  if (value === "epk" || value === "website") return value;
+  if (value === "epk" || value === "website" || value === "bundle") return value;
   return "website";
 };
 
@@ -176,7 +176,7 @@ const StoreOrderForm = () => {
         <p className="text-gray-300 text-sm mb-6">
           Select what you want to order, then complete the project brief below.
         </p>
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {STORE_PRODUCTS.map((item) => (
             <motion.button
               key={item.id}
@@ -273,11 +273,13 @@ const StoreOrderForm = () => {
           <p className="text-sm text-gray-300 mt-1">
             {product === "website"
               ? "Tell us everything we need to build your site."
-              : "Tell us everything we need for your press kit."}
+              : product === "epk"
+                ? "Tell us everything we need for your press kit."
+                : "Tell us everything we need for your website and press kit."}
           </p>
         </motion.div>
 
-        {product === "epk" && (
+        {(product === "epk" || product === "bundle") && (
           <motion.div className="space-y-2">
             <Label htmlFor="shortBio">Short bio (1–2 sentences for press)</Label>
             <Textarea
@@ -292,7 +294,7 @@ const StoreOrderForm = () => {
 
         <motion.div className="space-y-2">
           <Label htmlFor="bio">
-            {product === "website" ? "Band bio *" : "Full bio *"}
+            {product === "epk" ? "Full bio *" : "Band bio *"}
           </Label>
           <Textarea
             id="bio"
@@ -314,7 +316,7 @@ const StoreOrderForm = () => {
               className={fieldClass}
             />
           </motion.div>
-          {product === "epk" && (
+          {(product === "epk" || product === "bundle") && (
             <>
               <motion.div className="space-y-2">
                 <Label htmlFor="pressContact">Press contact email</Label>
@@ -366,7 +368,7 @@ const StoreOrderForm = () => {
           />
         </motion.div>
 
-        {product === "epk" && (
+        {(product === "epk" || product === "bundle") && (
           <motion.div className="space-y-2">
             <Label htmlFor="videoLinks">Video links (live performance, music videos)</Label>
             <Textarea
@@ -396,7 +398,11 @@ const StoreOrderForm = () => {
 
         <motion.div className="space-y-2">
           <Label htmlFor="showsAndEvents">
-            {product === "website" ? "Upcoming shows & events" : "Upcoming shows / press notes"}
+            {product === "website"
+              ? "Upcoming shows & events"
+              : product === "epk"
+                ? "Upcoming shows / press notes"
+                : "Upcoming shows, events & press notes"}
           </Label>
           <Textarea
             id="showsAndEvents"
@@ -407,7 +413,7 @@ const StoreOrderForm = () => {
           />
         </motion.div>
 
-        {product === "website" && (
+        {(product === "website" || product === "bundle") && (
           <>
             <motion.div className="space-y-2">
               <Label htmlFor="designNotes">Design / color preferences</Label>

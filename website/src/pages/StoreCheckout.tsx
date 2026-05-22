@@ -20,7 +20,7 @@ import {
 import { STRIPE_BUY_BUTTONS } from "@/lib/storePayment";
 
 const parseProduct = (value: string | null): StoreProductId => {
-  if (value === "epk" || value === "website") return value;
+  if (value === "epk" || value === "website" || value === "bundle") return value;
   return "website";
 };
 

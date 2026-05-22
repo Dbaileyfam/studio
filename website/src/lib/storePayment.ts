@@ -18,6 +18,9 @@ export const STRIPE_BUY_BUTTONS: Record<StoreProductId, StripeBuyButtonConfig> =
   epk: {
     buyButtonId: "buy_btn_1TYeAO33fWEaCkVCwSJcbuNE",
   },
+  bundle: {
+    buyButtonId: "buy_btn_1TZy1F33fWEaCkVCcFFtKT28",
+  },
 };
 
 export const checkoutPath = (productId: StoreProductId) =>
