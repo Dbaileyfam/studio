@@ -11,6 +11,7 @@ const asProfile = (raw: Record<string, unknown>): MusicianProfileFormData => ({
   stageName: String(raw.stageName ?? ""),
   email: "",
   phone: "",
+  homeState: String(raw.homeState ?? ""),
   cityArea: String(raw.cityArea ?? ""),
   cityAreaOther: String(raw.cityAreaOther ?? ""),
   instruments: String(raw.instruments ?? ""),

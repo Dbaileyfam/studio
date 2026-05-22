@@ -31,21 +31,6 @@ export const isRosterPaymentReturn = (params: URLSearchParams): boolean =>
   params.get("redirect_status") === "succeeded" ||
   params.get("payment") === "success";
 
-export const AREA_OPTIONS = [
-  "Sandy",
-  "Salt Lake City",
-  "West Valley",
-  "Murray",
-  "Draper",
-  "Provo",
-  "Orem",
-  "Lehi",
-  "Ogden",
-  "Layton",
-  "Park City",
-  "Other Utah",
-] as const;
-
 export const GENRE_OPTIONS = [
   "Rock",
   "Country",
@@ -73,11 +58,11 @@ export const AVAILABLE_FOR_OPTIONS = [
 ] as const;
 
 export const TRAVEL_OPTIONS = [
-  "Local only (my city)",
-  "Salt Lake County",
-  "Wasatch Front",
-  "Statewide (Utah)",
-  "Willing to travel further",
+  "Local only (my area)",
+  "Within my metro / region",
+  "Statewide",
+  "Multi-state / regional",
+  "Nationwide — willing to travel",
 ] as const;
 
 export const AVAILABILITY_OPTIONS = [

@@ -1,5 +1,6 @@
 import type { ArtistProfileCardData } from "@/components/ArtistProfileCard";
 import type { MusicianProfileFormData } from "@/lib/buildMusicianProfileEmail";
+import { formatRosterLocation } from "@/lib/rosterLocation";
 import rosterPlaceholder from "@/assets/studio2.jpg";
 
 const normalizeUrl = (value: string): string | undefined => {
@@ -48,10 +49,7 @@ export function buildRosterProfilePreview(
   data: MusicianProfileFormData,
   imageUrl: string
 ): ArtistProfileCardData {
-  const city =
-    data.cityArea === "Other Utah" && data.cityAreaOther.trim()
-      ? data.cityAreaOther.trim()
-      : data.cityArea;
+  const city = formatRosterLocation(data);
 
   const displayName = data.stageName.trim() || data.fullName.trim();
   const genre =

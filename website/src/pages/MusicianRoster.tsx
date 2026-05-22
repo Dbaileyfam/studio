@@ -31,13 +31,13 @@ const MusicianRoster = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="801 Musician Roster"
-        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events in Sandy and the Salt Lake area. 801 Family Studios does not take commission — you keep 100% of your gig pay."
+        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events anywhere in the U.S. 801 Family Studios does not take commission — you keep 100% of your gig pay."
         path="/musician-roster"
         keywords={[
-          "musician roster Utah",
-          "fill-in musician Sandy",
-          "session musicians Salt Lake",
-          "hire musicians Utah",
+          "musician roster",
+          "fill-in musician",
+          "session musicians",
+          "hire musicians",
         ]}
       />
       <div className="page-container">

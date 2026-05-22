@@ -25,7 +25,6 @@ import {
   resolveRosterProfileImage,
 } from "@/lib/rosterProfilePreview";
 import {
-  AREA_OPTIONS,
   AVAILABILITY_OPTIONS,
   AVAILABLE_FOR_OPTIONS,
   CONTACT_PREFERENCE_OPTIONS,
@@ -33,6 +32,11 @@ import {
   ROSTER_STRIPE_URL,
   TRAVEL_OPTIONS,
 } from "@/lib/musicianRoster";
+import {
+  getTerritoryOptionsForState,
+  isOtherTerritory,
+  ROSTER_STATE_OPTIONS,
+} from "@/lib/rosterLocation";
 import { createRosterCheckout, isRosterApiConfigured } from "@/lib/rosterApi";
 import { submitMusicianProfileEmail } from "@/lib/submitMusicianProfileEmail";
 
@@ -81,8 +85,10 @@ const MusicianProfileForm = () => {
   const [stageName, setStageName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [homeState, setHomeState] = useState("");
   const [cityArea, setCityArea] = useState("");
   const [cityAreaOther, setCityAreaOther] = useState("");
+  const territoryOptions = homeState ? getTerritoryOptionsForState(homeState) : [];
   const [instruments, setInstruments] = useState("");
   const [genres, setGenres] = useState<string[]>([]);
   const [availableFor, setAvailableFor] = useState<string[]>([]);
@@ -120,6 +126,7 @@ const MusicianProfileForm = () => {
     stageName,
     email,
     phone,
+    homeState,
     cityArea,
     cityAreaOther,
     instruments,
@@ -151,12 +158,16 @@ const MusicianProfileForm = () => {
       toast.error("Please enter the email you used at checkout.");
       return;
     }
-    if (!cityArea) {
-      toast.error("Please select your city / area.");
+    if (!homeState) {
+      toast.error("Please select your state or territory.");
       return;
     }
-    if (cityArea === "Other Utah" && !cityAreaOther.trim()) {
-      toast.error("Please specify your city / area.");
+    if (!cityArea) {
+      toast.error("Please select your territory / metro area.");
+      return;
+    }
+    if (isOtherTerritory(cityArea) && !cityAreaOther.trim()) {
+      toast.error("Please specify your territory / metro area.");
       return;
     }
     if (!instruments.trim()) {
@@ -339,13 +350,43 @@ const MusicianProfileForm = () => {
         <h3 className="text-lg font-bold text-white">Location & availability</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label>City / area *</Label>
-            <Select value={cityArea} onValueChange={setCityArea}>
+            <Label>State / territory *</Label>
+            <Select
+              value={homeState}
+              onValueChange={(value) => {
+                setHomeState(value);
+                setCityArea("");
+                setCityAreaOther("");
+              }}
+            >
               <SelectTrigger className={fieldClass}>
-                <SelectValue placeholder="Select area" />
+                <SelectValue placeholder="Select state or territory" />
               </SelectTrigger>
-              <SelectContent>
-                {AREA_OPTIONS.map((area) => (
+              <SelectContent className="max-h-72">
+                {ROSTER_STATE_OPTIONS.map((state) => (
+                  <SelectItem key={state} value={state}>
+                    {state}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>Territory / metro area *</Label>
+            <Select
+              value={cityArea}
+              onValueChange={setCityArea}
+              disabled={!homeState}
+            >
+              <SelectTrigger className={fieldClass}>
+                <SelectValue
+                  placeholder={
+                    homeState ? "Select territory" : "Select state first"
+                  }
+                />
+              </SelectTrigger>
+              <SelectContent className="max-h-72">
+                {territoryOptions.map((area) => (
                   <SelectItem key={area} value={area}>
                     {area}
                   </SelectItem>
@@ -353,11 +394,12 @@ const MusicianProfileForm = () => {
               </SelectContent>
             </Select>
           </div>
-          {cityArea === "Other Utah" && (
-            <div className="space-y-2">
-              <Label htmlFor="cityAreaOther">Specify city / area *</Label>
+          {isOtherTerritory(cityArea) && (
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="cityAreaOther">Specify territory / metro area *</Label>
               <Input
                 id="cityAreaOther"
+                placeholder="City, metro, or region"
                 value={cityAreaOther}
                 onChange={(e) => setCityAreaOther(e.target.value)}
                 className={fieldClass}

@@ -62,12 +62,13 @@ const MusicianRosterBrowse = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="Available Musicians"
-        description="Browse active 801 Musician Roster members available for fill-in gigs, sessions, and private events in Utah."
+        description="Browse active 801 Musician Roster members available for fill-in gigs, sessions, and private events nationwide."
         path="/musician-roster/browse"
         keywords={[
-          "hire musicians Utah",
-          "fill-in musician Salt Lake",
-          "session musicians Sandy",
+          "hire musicians",
+          "musician roster USA",
+          "fill-in musician",
+          "session musicians",
           "801 musician roster",
         ]}
       />

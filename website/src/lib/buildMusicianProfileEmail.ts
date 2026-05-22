@@ -1,8 +1,11 @@
+import { formatRosterLocation } from "@/lib/rosterLocation";
+
 export type MusicianProfileFormData = {
   fullName: string;
   stageName: string;
   email: string;
   phone: string;
+  homeState: string;
   cityArea: string;
   cityAreaOther: string;
   instruments: string;
@@ -27,10 +30,7 @@ export function buildMusicianProfileEmailFields(
   data: MusicianProfileFormData,
   stripeCheckoutSessionId?: string | null
 ): Record<string, string> {
-  const city =
-    data.cityArea === "Other Utah" && data.cityAreaOther.trim()
-      ? data.cityAreaOther.trim()
-      : data.cityArea;
+  const location = formatRosterLocation(data);
 
   return {
     _subject: "801 Musician Roster — New Profile Submission",
@@ -40,7 +40,8 @@ export function buildMusicianProfileEmailFields(
     "Stripe checkout session (verify in Dashboard)":
       stripeCheckoutSessionId?.trim() || "— missing — verify subscription manually",
     Phone: data.phone.trim() || "—",
-    "City / area": city,
+    State: data.homeState.trim() || "—",
+    Territory: location || "—",
     "Instruments / vocals": data.instruments.trim(),
     Genres: data.genres.join(", ") || "—",
     "Available for": data.availableFor.join(", ") || "—",
