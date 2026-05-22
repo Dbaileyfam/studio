@@ -422,10 +422,10 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-cyan-500/20 to-blue-500/20",
     borderColor: "border-cyan-400/30",
     cardDescription:
-      "$25/hr (3-hour minimum). Rehearsal space, basic setup help, and basic rehearsal mix support. Add-ons available.",
+      "$25/hr (3-hour minimum). Rehearsal space, basic setup help, and basic rehearsal mix support. Add-ons: sound tech $25/hr, rehearsal soundboard recording $20/hr.",
     heroSubtitle: "A comfortable room to rehearse, experiment, and tighten your set.",
     intro:
-      "Need a dedicated space to practice without volume limits or living-room logistics? Our studio rental and rehearsal packages give bands and artists a ready room with basic setup support — plus optional add-ons when you want tech help or rehearsal recording.",
+      "Need a dedicated space to practice without volume limits or living-room logistics? Our studio rental and rehearsal packages give bands and artists a ready room with basic setup support — plus optional add-ons when you want tech help or rehearsal soundboard recording.",
     sections: [
       {
         heading: "Included with rental",
@@ -441,14 +441,14 @@ const ALL_SERVICES: Service[] = [
         body: "Scale up when your session needs extra hands or capture.",
         bullets: [
           "Sound tech support — $25/hr",
-          "Rehearsal recording — $50/hr",
+          "Rehearsal soundboard recording — $20/hr",
         ],
       },
     ],
     pricing: [
       { label: "Rehearsal / rental", price: "$25/hr", note: "3-hour minimum" },
       { label: "Sound tech support", price: "$25/hr", note: "Add-on" },
-      { label: "Rehearsal recording", price: "$50/hr", note: "Add-on" },
+      { label: "Rehearsal soundboard recording", price: "$20/hr", note: "Add-on" },
     ],
     faqs: [
       {
