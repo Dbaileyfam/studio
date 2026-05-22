@@ -14,6 +14,8 @@ import FeaturedArtists from "./pages/FeaturedArtists";
 import UpcomingShows from "./pages/UpcomingShows";
 import Store from "./pages/Store";
 import StoreCheckout from "./pages/StoreCheckout";
+import ServicesIndex from "./pages/ServicesIndex";
+import ServiceDetail from "./pages/ServiceDetail";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -36,6 +38,8 @@ const AnimatedRoutes = () => {
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
         <Route path="/store/checkout" element={<StoreCheckout />} />
+        <Route path="/services" element={<ServicesIndex />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,6 +1,8 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
+import PageSEO from "@/components/PageSEO";
 import RevealWords from "@/components/RevealWords";
 import { Button } from "@/components/ui/button";
+import { SERVICES, getServicePath } from "@/lib/services";
 import { Link } from "react-router-dom";
 import {
   motion,
@@ -8,21 +10,18 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import { useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
 import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
-
-const WEB_PORTFOLIO_URL = "https://dbaileyfam.github.io/801familywebsiteportfolio/";
 const HEADLINE = "Where Artists Feel At Home";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
 
 const Index = () => {
-  const [expandedService, setExpandedService] = useState<string | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -50,6 +49,17 @@ const Index = () => {
 
   return (
     <AnimatedPageTransition>
+      <PageSEO
+        title="801 Family Studios"
+        description="801 Family Studios in Salt Lake City, Utah — recording, mixing, mastering, custom band websites, EPKs, booking, rehearsal space, and artist services."
+        path="/"
+        keywords={[
+          "801 Family Studios",
+          "recording studio Salt Lake City",
+          "band website Utah",
+          "music studio Sandy UT",
+        ]}
+      />
       <div className="page-container">
         <div className="page-content">
           <div className="container-inner flex flex-col items-center">
@@ -233,164 +243,58 @@ const Index = () => {
                   Comprehensive music services designed to elevate your sound and career
                 </p>
                 <p className="text-sm md:text-base text-gray-300 mt-4">
-                  Click a service card to view pricing
+                  <Link to="/services" className="text-teal-300 hover:text-teal-200 hover:underline">
+                    View all services
+                  </Link>{" "}
+                  — or open a card to learn more
                 </p>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-                {(() => {
-                  const services = [
-                    {
-                      title: "Recording",
-                      description: "$60/hr. Half Day (4 hrs): $200. Full Day (8 hrs): $400. Vocal, instrument, podcast, overdub, demo, or full band sessions.",
-                      icon: "🎙️",
-                      gradient: "from-teal-500/20 to-slate-500/20",
-                      borderColor: "border-teal-400/30"
-                    },
-                    {
-                      title: "Mixing & Mastering",
-                      description: "All services include 2 revisions. Mix: $150/song. Mastering: $50/song. Mix + Master: $175/song.",
-                      icon: "🎚️",
-                      gradient: "from-green-500/20 to-teal-500/20",
-                      borderColor: "border-green-400/30"
-                    },
-                    {
-                      title: "Website Services",
-                      description:
-                        "Band Website: $300 — one complete site with everything your band needs (bio, music, photos, shows, contact, and links). Simple edits are included free. More complex changes are $20 per edit.",
-                      portfolioUrl: WEB_PORTFOLIO_URL,
-                      portfolioLabel: "View website portfolio",
-                      icon: "💻",
-                      gradient: "from-orange-500/20 to-red-500/20",
-                      borderColor: "border-orange-400/30"
-                    },
-                    {
-                      title: "EPK Services",
-                      description:
-                        "Band EPK: $150 — press-ready electronic press kit with bio, photos, music/video, and booking info. Simple edits are included free. More complex changes are $20 per edit.",
-                      portfolioUrl: WEB_PORTFOLIO_URL,
-                      portfolioLabel: "View EPK & website samples",
-                      icon: "📄",
-                      gradient: "from-amber-500/15 to-teal-500/20",
-                      borderColor: "border-amber-400/30"
-                    },
-                    {
-                      title: "Booking & Management",
-                      description: "Booking: 10% of gig income. Management: 20% of total artist revenue. Requires exclusivity agreement + in-person consultation.",
-                      icon: "🎵",
-                      gradient: "from-yellow-500/20 to-orange-500/20",
-                      borderColor: "border-yellow-400/30"
-                    },
-                    {
-                      title: "Studio Rental & Rehearsal",
-                      description: "$25/hr (3-hour minimum). Includes rehearsal space, basic setup help, and basic rehearsal mix support. Add-ons: Sound Tech Support $25/hr, Rehearsal Recording $50/hr.",
-                      icon: "🎛️",
-                      gradient: "from-cyan-500/20 to-blue-500/20",
-                      borderColor: "border-cyan-400/30"
-                    },
-                    {
-                      title: "Drum Lessons",
-                      description: "$120/month. Two 1-hour lessons per month.",
-                      icon: "🥁",
-                      gradient: "from-pink-500/20 to-rose-500/20",
-                      borderColor: "border-pink-400/30"
-                    },
-                    {
-                      title: "Social Media & Promotion",
-                      description: "Monthly Content Push Support: $150/month (you make the content, we market it). Artist Growth Package: $500/month (12 posts from your media, content support and push, FB + Instagram engagement).",
-                      icon: "📣",
-                      gradient: "from-emerald-500/20 to-teal-500/20",
-                      borderColor: "border-emerald-400/30"
-                    }
-                  ];
-                  return services;
-                })().map((service, index) => (
+                {SERVICES.map((service, index) => (
                   <motion.div
-                    key={service.title}
-                    onClick={() =>
-                      setExpandedService((current) =>
-                        current === service.title ? null : service.title
-                      )
-                    }
-                    className="block h-full text-left cursor-pointer rounded-3xl"
+                    key={service.slug}
+                    className="block h-full rounded-3xl"
+                    variants={fadeIn}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    custom={index * 0.2}
                   >
-                    <motion.div
-                      className="group relative h-full"
-                      variants={fadeIn}
-                      initial="initial"
-                      whileInView="animate"
-                      viewport={{ once: true }}
-                      custom={index * 0.2}
-                      whileHover={{ y: -8 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                    <Link
+                      to={getServicePath(service.slug)}
+                      className="group relative h-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded-3xl"
                     >
-                      {/* Card Background */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                      
-                      {/* Card Content */}
-                      <div className={`relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/15 transition-all duration-500 h-full flex flex-col cursor-pointer overflow-hidden`}>
-                        {/* Top shine */}
-                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                        {/* Icon */}
-                        <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
-                          {service.icon}
+                      <motion.div
+                        className="h-full"
+                        whileHover={{ y: -8 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                          aria-hidden
+                        />
+                        <div
+                          className={`relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border ${service.borderColor} hover:border-white/40 hover:shadow-xl hover:shadow-black/15 transition-all duration-500 h-full flex flex-col overflow-hidden`}
+                        >
+                          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                          <div className="text-6xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">
+                            {service.icon}
+                          </div>
+                          <h3 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-gray-100 transition-colors duration-300">
+                            {service.cardTitle}
+                          </h3>
+                          <p className="text-gray-200 leading-relaxed text-center flex-grow text-sm md:text-base">
+                            {service.cardDescription}
+                          </p>
+                          <span className="mt-6 inline-flex items-center justify-center text-sm font-semibold text-teal-300 group-hover:text-teal-200">
+                            Learn more
+                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          </span>
+                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full" />
                         </div>
-                        
-                        {/* Title */}
-                        <h3 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-gray-100 transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        
-                        {expandedService === service.title ? (
-                          <>
-                            <p className="text-gray-200 leading-relaxed text-center flex-grow group-hover:text-gray-100 transition-colors duration-300">
-                              {service.description}
-                            </p>
-                            <div
-                              className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3 justify-center"
-                              onClick={(event) => event.stopPropagation()}
-                              onKeyDown={(event) => event.stopPropagation()}
-                            >
-                              {"portfolioUrl" in service && service.portfolioUrl && (
-                                <a
-                                  href={service.portfolioUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
-                                >
-                                  {service.portfolioLabel ?? "View portfolio"}
-                                  <ExternalLink className="h-4 w-4" />
-                                </a>
-                              )}
-                              {"portfolioUrl" in service &&
-                              (service.title === "Website Services" ||
-                                service.title === "EPK Services") ? (
-                                <Link
-                                  to={
-                                    service.title === "Website Services"
-                                      ? "/store?product=website#order-form"
-                                      : "/store?product=epk#order-form"
-                                  }
-                                  className="inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400 transition-colors"
-                                >
-                                  Order Now
-                                </Link>
-                              ) : (
-                                <Link
-                                  to="/contact"
-                                  className="inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400 transition-colors"
-                                >
-                                  Contact Us to Book
-                                </Link>
-                              )}
-                            </div>
-                          </>
-                        ) : <div className="flex-grow" />}
-                        
-                        {/* Hover Effect Line */}
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
-                      </div>
-                    </motion.div>
+                      </motion.div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
