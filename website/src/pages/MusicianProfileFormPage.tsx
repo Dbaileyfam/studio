@@ -1,6 +1,7 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import MusicianProfileForm from "@/components/MusicianProfileForm";
 import PageSEO from "@/components/PageSEO";
+import { ROSTER_NO_COMMISSION } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
 
 const fadeIn = {
@@ -39,6 +40,9 @@ const MusicianProfileFormPage = () => {
                 Thanks for joining the 801 Musician Roster. Your subscription is
                 active. Please complete your musician profile below. Profiles are
                 reviewed before being added to the public roster.
+              </p>
+              <p className="mt-4 text-sm text-teal-200/90 max-w-xl mx-auto">
+                {ROSTER_NO_COMMISSION} You keep 100% of what you earn from roster gigs.
               </p>
             </motion.div>
 

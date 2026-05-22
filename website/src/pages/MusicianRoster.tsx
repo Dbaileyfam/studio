@@ -1,9 +1,13 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
 import StripeBuyButton from "@/components/StripeBuyButton";
-import { ROSTER_STRIPE_BUY_BUTTON_ID, ROSTER_STRIPE_URL } from "@/lib/musicianRoster";
+import {
+  ROSTER_NO_COMMISSION,
+  ROSTER_STRIPE_BUY_BUTTON_ID,
+  ROSTER_STRIPE_URL,
+} from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
-import { Music2, Users } from "lucide-react";
+import { BadgePercent, Music2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const fadeIn = {
@@ -18,7 +22,7 @@ const fadeIn = {
 const perks = [
   "Listed for fill-in gigs, solo shows, studio sessions, and private events",
   "Visible to bookers and venues searching the 801 roster",
-  "You keep 100% of your gig pay — no commission to 801",
+  "Keep 100% of your gig pay — 801 Family Studios does not take commission on roster gigs",
   "Complete your profile after subscribing so we can review and publish you",
 ];
 
@@ -27,7 +31,7 @@ const MusicianRoster = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="801 Musician Roster"
-        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events in Sandy and the Salt Lake area. Keep 100% of your gig pay."
+        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events in Sandy and the Salt Lake area. 801 Family Studios does not take commission — you keep 100% of your gig pay."
         path="/musician-roster"
         keywords={[
           "musician roster Utah",
@@ -55,9 +59,28 @@ const MusicianRoster = () => {
               </h1>
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
                 Get listed as an available musician for fill-in gigs, solo performances,
-                studio work, private events, and booking opportunities. Members keep
-                100% of their gig pay — 801 Family Studios does not take commission.
+                studio work, private events, and booking opportunities.
               </p>
+              <motion.div
+                className="mt-8 max-w-xl mx-auto rounded-2xl border border-teal-500/35 bg-gradient-to-br from-teal-950/50 to-teal-900/20 px-6 py-5 text-center"
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-flex items-center justify-center gap-2 text-teal-300 mb-2">
+                  <BadgePercent className="h-5 w-5" aria-hidden />
+                  <span className="text-sm font-semibold uppercase tracking-wide">
+                    No commission on your gigs
+                  </span>
+                </div>
+                <p className="text-lg md:text-xl font-semibold text-white leading-snug">
+                  {ROSTER_NO_COMMISSION}
+                </p>
+                <p className="mt-2 text-sm text-gray-300">
+                  Your $9/month membership is for listing and visibility only — not a cut
+                  of what you earn from shows, sessions, or private events.
+                </p>
+              </motion.div>
               <div className="mt-10 max-w-sm mx-auto w-full rounded-2xl border border-white/15 bg-white/5 p-6">
                 <StripeBuyButton buyButtonId={ROSTER_STRIPE_BUY_BUTTON_ID} />
               </div>

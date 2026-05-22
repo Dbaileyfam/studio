@@ -5,6 +5,10 @@ export const ROSTER_STRIPE_URL =
 /** Stripe Buy Button embed (Dashboard → Payment Links → Buy button) */
 export const ROSTER_STRIPE_BUY_BUTTON_ID = "buy_btn_1Ta0pw33fWEaCkVCioYO1a4L";
 
+/** Core roster promise — members keep all gig pay; studio does not take a cut. */
+export const ROSTER_NO_COMMISSION =
+  "801 Family Studios does not take commission.";
+
 export const ROSTER_FORM_EMAIL = "info@801familystudios.com";
 
 export const ROSTER_PROFILE_FORM_PATH = "/musician-profile-form";
