@@ -10,8 +10,16 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { HOME_FAQS } from "@/lib/homeFaqs";
+import { SITE_NAME } from "@/lib/site";
 import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
@@ -24,6 +32,32 @@ const HEADLINE_REVEAL_END =
 const Index = () => {
   const heroRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const scriptId = "home-faq-jsonld";
+    document.getElementById(scriptId)?.remove();
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: HOME_FAQS.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    };
+
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => document.getElementById(scriptId)?.remove();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -297,10 +331,86 @@ const Index = () => {
                   </motion.div>
                 ))}
               </div>
-              <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-12 leading-relaxed">
-                Policies: Deposits may be required for booking. Cancellations may incur fees. Custom projects available upon consultation.
-              </p>
             </section>
+
+            <div className="w-full max-w-2xl mx-auto py-8" aria-hidden>
+              <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            </div>
+
+            <section className="w-full max-w-4xl mx-auto py-12 md:py-16 px-4">
+              <motion.div
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                custom={0}
+              >
+                <h2 className="text-2xl md:text-3xl font-bold text-white text-center text-balance mb-6">
+                  Serving Sandy, Salt Lake County & Utah Creatives
+                </h2>
+                <p className="text-gray-200 text-center leading-relaxed text-base md:text-lg">
+                  {SITE_NAME} is based in Sandy, Utah and works with musicians, bands, artists,
+                  creatives, and small businesses throughout the Salt Lake area and beyond.
+                  Whether you need recording, mixing, mastering, a website, an EPK, booking
+                  support, or drum lessons, we help you create a more professional presence
+                  online and in person.
+                </p>
+              </motion.div>
+            </section>
+
+            <div className="w-full max-w-2xl mx-auto py-4" aria-hidden>
+              <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            </div>
+
+            <section
+              className="w-full max-w-3xl mx-auto py-12 md:py-16 px-4"
+              aria-labelledby="home-faq-heading"
+            >
+              <motion.div
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                custom={0}
+              >
+                <h2
+                  id="home-faq-heading"
+                  className="text-2xl md:text-3xl font-bold text-white text-center mb-8"
+                >
+                  FAQ
+                </h2>
+                <Accordion type="single" collapsible className="space-y-3">
+                  {HOME_FAQS.map((faq, index) => (
+                    <AccordionItem
+                      key={faq.question}
+                      value={`faq-${index}`}
+                      className="rounded-2xl border border-white/15 bg-white/5 px-4 md:px-6 overflow-hidden"
+                    >
+                      <AccordionTrigger className="text-left text-white hover:text-teal-200 hover:no-underline py-5 text-base md:text-lg font-semibold">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-300 leading-relaxed pb-5">
+                        <p>{faq.answer}</p>
+                        {faq.link && (
+                          <Link
+                            to={faq.link.to}
+                            className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-teal-300 hover:text-teal-200"
+                          >
+                            {faq.link.label}
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </motion.div>
+            </section>
+
+            <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-8 pb-8 leading-relaxed px-4">
+              Policies: Deposits may be required for booking. Cancellations may incur fees.
+              Custom projects available upon consultation.
+            </p>
           </div>
         </div>
       </div>
