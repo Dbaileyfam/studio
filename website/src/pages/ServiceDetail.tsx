@@ -6,7 +6,7 @@ import {
   getServicePath,
   getServiceSlugFromPathname,
 } from "@/lib/services";
-import { SITE_NAME, SITE_URL, sitePath } from "@/lib/site";
+import { SITE_EMAIL, SITE_LOCATION, SITE_NAME, SITE_URL, sitePath } from "@/lib/site";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { useEffect } from "react";
@@ -126,6 +126,24 @@ const ServiceDetail = () => {
                 <p className="text-lg text-teal-200/90 mt-4 leading-relaxed">
                   {service.heroSubtitle}
                 </p>
+                <p className="text-xl font-semibold text-teal-300 mt-4">
+                  {service.startingPrice}
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                  <Button
+                    asChild
+                    className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
+                  >
+                    <Link to={service.primaryCta.to}>{service.primaryCta.label}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
+                  >
+                    <Link to="/contact">Contact us</Link>
+                  </Button>
+                </div>
               </div>
             </motion.header>
 
@@ -163,6 +181,50 @@ const ServiceDetail = () => {
                 )}
               </motion.section>
             ))}
+
+            {service.examples && service.examples.length > 0 && (
+              <motion.section
+                className="mb-10"
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
+                <h2 className="text-2xl font-bold text-white mb-5">Examples & related pages</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {service.examples.map((example) => (
+                    <li
+                      key={example.label}
+                      className="rounded-2xl border border-white/15 bg-white/5 p-5 hover:border-white/30 transition-colors"
+                    >
+                      {example.href ? (
+                        <a
+                          href={example.href}
+                          target={example.external ? "_blank" : undefined}
+                          rel={example.external ? "noopener noreferrer" : undefined}
+                          className="block group"
+                        >
+                          <p className="font-semibold text-white group-hover:text-teal-200">
+                            {example.label}
+                            {example.external && (
+                              <ExternalLink className="inline ml-2 h-4 w-4" />
+                            )}
+                          </p>
+                          <p className="text-sm text-gray-300 mt-2">{example.description}</p>
+                        </a>
+                      ) : (
+                        <Link to={example.to ?? "/contact"} className="block group">
+                          <p className="font-semibold text-white group-hover:text-teal-200">
+                            {example.label}
+                          </p>
+                          <p className="text-sm text-gray-300 mt-2">{example.description}</p>
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </motion.section>
+            )}
 
             <motion.section
               className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8 mb-10"
@@ -253,6 +315,35 @@ const ServiceDetail = () => {
                 Questions? Contact us
               </Link>
             </motion.div>
+
+            <motion.section
+              className="rounded-3xl border border-teal-400/30 bg-teal-500/10 p-6 md:p-8 mb-10 text-center"
+              variants={fadeIn}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl font-bold text-white mb-3">Ready to get started?</h2>
+              <p className="text-gray-200 mb-6 max-w-xl mx-auto">
+                {SITE_NAME} is based in {SITE_LOCATION}. Reach out to book, ask questions, or
+                request a quote for your project.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button
+                  asChild
+                  className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 px-8 font-semibold"
+                >
+                  <Link to="/contact">Contact us</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
+                >
+                  <a href={`mailto:${SITE_EMAIL}`}>Email {SITE_EMAIL}</a>
+                </Button>
+              </div>
+            </motion.section>
 
             {service.relatedPrompt && (
               <motion.aside

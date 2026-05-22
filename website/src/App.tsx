@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { LEGACY_PATH_REDIRECTS } from "@/lib/legacyRoutes";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 
@@ -47,6 +48,13 @@ const AnimatedRoutes = () => {
             element={<ServiceDetail />}
           />
         ))}
+        {Object.entries(LEGACY_PATH_REDIRECTS).map(([oldPath, slug]) => (
+          <Route
+            key={oldPath}
+            path={`/${oldPath}`}
+            element={<Navigate to={getServicePath(slug)} replace />}
+          />
+        ))}
         <Route path="/services" element={<Navigate to="/#our-services" replace />} />
         <Route path="/services/:slug" element={<LegacyServiceRedirect />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
@@ -62,7 +70,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <HashRouter>
+        <BrowserRouter>
         <ScrollToTop />
         <InteractiveBackground />
         <MusicalNoteTrail />
@@ -73,7 +81,7 @@ const App = () => (
           </main>
           <Footer />
         </div>
-      </HashRouter>
+      </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>

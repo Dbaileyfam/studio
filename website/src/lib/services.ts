@@ -1,14 +1,22 @@
 import { WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 
 export type ServiceSlug =
-  | "recording"
-  | "mixing-mastering"
-  | "websites"
-  | "epk"
+  | "recording-studio-sandy-utah"
+  | "mixing-mastering-services"
+  | "websites-for-musicians"
+  | "epk-design-for-musicians"
   | "booking-management"
   | "studio-rental"
-  | "drum-lessons"
+  | "drum-lessons-sandy-utah"
   | "social-media";
+
+export type ServiceExample = {
+  label: string;
+  description: string;
+  to?: string;
+  href?: string;
+  external?: boolean;
+};
 
 export type ServicePricing = {
   label: string;
@@ -42,7 +50,10 @@ export type Service = {
   /** Short homepage card copy without pricing — full details on the service page. */
   homeTeaser: string;
   heroSubtitle: string;
+  /** Shown in the page hero (e.g. "Starting at $60/hr"). */
+  startingPrice: string;
   intro: string;
+  examples?: ServiceExample[];
   sections: ServiceSection[];
   pricing: ServicePricing[];
   faqs: ServiceFAQ[];
@@ -56,17 +67,17 @@ export type Service = {
 
 const ALL_SERVICES: Service[] = [
   {
-    slug: "recording",
+    slug: "recording-studio-sandy-utah",
     cardTitle: "Recording",
     navLabel: "Recording",
-    title: "Studio Recording in Salt Lake City",
+    title: "Recording Studio Sandy Utah",
     metaDescription:
-      "Professional studio recording in Sandy, Utah — vocals, bands, podcasts, and demos. Half-day and full-day session rates at 801 Family Studios.",
+      "Recording studio in Sandy, Utah for bands, vocals, podcasts, and demos. Hourly, half-day, and full-day rates at 801 Family Studios near Salt Lake City.",
     keywords: [
-      "studio recording Salt Lake City",
+      "recording studio Sandy Utah",
+      "recording studio Salt Lake City",
       "band recording Utah",
-      "vocal recording studio",
-      "podcast recording Sandy UT",
+      "vocal recording studio Sandy",
     ],
     icon: "🎙️",
     gradient: "from-teal-500/20 to-slate-500/20",
@@ -76,8 +87,21 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Vocal, instrument, podcast, overdub, demo, or full band sessions in a focused, comfortable studio.",
     heroSubtitle: "Capture your sound with room, gear, and engineers who care about the performance.",
+    startingPrice: "Starting at $60/hr · Half day $200 · Full day $400",
     intro:
       "Our recording sessions are built for artists who want a focused, comfortable environment — whether you are tracking a single vocal, a full band, a podcast, or layered overdubs. We help you get takes that feel right, not just levels that look right on a meter.",
+    examples: [
+      {
+        label: "Featured artists",
+        description: "Hear bands and artists who have recorded and released work with our studio.",
+        to: "/featured-artists",
+      },
+      {
+        label: "Upcoming shows",
+        description: "See who is playing out from the 801 Family Studios community.",
+        to: "/upcoming-shows",
+      },
+    ],
     sections: [
       {
         heading: "What we record",
@@ -111,25 +135,25 @@ const ALL_SERVICES: Service[] = [
         answer: "Yes. Hourly blocks work well for demos, overdubs, and quick vocal captures.",
       },
     ],
-    primaryCta: { label: "Book a session", to: "/contact" },
+    primaryCta: { label: "Book a recording session", to: "/contact" },
     relatedPrompt: {
       text: "Need mixing/mastering after recording?",
-      to: "/mixing-mastering",
+      to: "/mixing-mastering-services",
       linkLabel: "Mixing & mastering services",
     },
   },
   {
-    slug: "mixing-mastering",
+    slug: "mixing-mastering-services",
     cardTitle: "Mixing & Mastering",
     navLabel: "Mix & Master",
-    title: "Mixing & Mastering Services",
+    title: "Mixing and Mastering Services",
     metaDescription:
-      "Professional mixing and mastering in Utah — $150/song mix, $50/song master, or $175 combined. Two revisions included at 801 Family Studios.",
+      "Mixing and mastering services in Utah — $150/song mix, $50/song master, or $175 combined with two revisions included at 801 Family Studios in Sandy.",
     keywords: [
+      "mixing and mastering services",
       "mixing and mastering Utah",
       "song mixing Salt Lake City",
-      "audio mastering services",
-      "music production Sandy UT",
+      "audio mastering Sandy Utah",
     ],
     icon: "🎚️",
     gradient: "from-green-500/20 to-teal-500/20",
@@ -139,8 +163,21 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Professional mixing and mastering with included revisions so your music translates on every speaker.",
     heroSubtitle: "Polish your tracks with clarity, punch, and balance that translate on every speaker.",
+    startingPrice: "Mix $150/song · Master $50/song · Bundle $175/song",
     intro:
       "Great mixes give your music space to breathe. Our mixing and mastering services help your songs sound intentional — whether you recorded with us or at home. Every package includes two revisions so you can refine the final result with confidence.",
+    examples: [
+      {
+        label: "Recorded at our studio",
+        description: "Many mix projects start with sessions tracked in our Sandy recording room.",
+        to: "/recording-studio-sandy-utah",
+      },
+      {
+        label: "Featured artists",
+        description: "Explore artists in our community with released music.",
+        to: "/featured-artists",
+      },
+    ],
     sections: [
       {
         heading: "Mixing",
@@ -181,23 +218,22 @@ const ALL_SERVICES: Service[] = [
     primaryCta: { label: "Start a mix project", to: "/contact" },
     relatedPrompt: {
       text: "Need recording first?",
-      to: "/recording",
-      linkLabel: "Studio recording",
+      to: "/recording-studio-sandy-utah",
+      linkLabel: "Recording studio Sandy Utah",
     },
   },
   {
-    slug: "websites",
+    slug: "websites-for-musicians",
     cardTitle: "Website Services",
     navLabel: "Websites",
-    title: "Custom Band & Artist Websites",
+    title: "Websites for Musicians",
     metaDescription:
-      "Custom websites for musicians, bands, and creatives in Utah — bio, music, photos, shows, and booking. Professional band sites from $300 at 801 Family Studios.",
+      "Websites for musicians and bands in Utah — custom bio, music, photos, shows, and booking pages from $300. Mobile-first sites by 801 Family Studios.",
     keywords: [
-      "band website design",
-      "musician website Utah",
-      "custom artist website",
-      "music website Salt Lake City",
-      "small business web design musicians",
+      "websites for musicians",
+      "band website design Utah",
+      "musician website Sandy",
+      "custom artist website Salt Lake City",
     ],
     icon: "💻",
     gradient: "from-orange-500/20 to-red-500/20",
@@ -208,8 +244,22 @@ const ALL_SERVICES: Service[] = [
       "Custom websites for musicians and creatives — your story, music, photos, shows, and contact in one professional home base.",
     heroSubtitle:
       "More than a template — a professional home base for your music, story, and bookings.",
+    startingPrice: "Band website $300 · Website + EPK bundle $400",
     intro:
       "We build custom websites for musicians, bands, creatives, and small businesses who need more than a basic template. Your site becomes your professional home base — a place to show your work, tell your story, collect inquiries, share music or media, and turn visitors into customers, fans, or bookings.",
+    examples: [
+      {
+        label: "Web portfolio",
+        description: "Browse sample band and artist websites we have built.",
+        href: WEB_PORTFOLIO_URL,
+        external: true,
+      },
+      {
+        label: "Order online",
+        description: "Start your website brief and checkout in our store.",
+        to: "/store?product=website#order-form",
+      },
+    ],
     sections: [
       {
         heading: "Who this is for",
@@ -271,22 +321,22 @@ const ALL_SERVICES: Service[] = [
     },
     relatedPrompt: {
       text: "Need an EPK too?",
-      to: "/epk",
-      linkLabel: "Band EPK services",
+      to: "/epk-design-for-musicians",
+      linkLabel: "EPK design for musicians",
     },
   },
   {
-    slug: "epk",
+    slug: "epk-design-for-musicians",
     cardTitle: "EPK Services",
     navLabel: "EPK",
-    title: "Electronic Press Kits (EPK) for Artists",
+    title: "EPK Design for Musicians",
     metaDescription:
-      "Professional band EPK design in Utah — press-ready bio, photos, music, video, and booking info. Band EPK from $150 at 801 Family Studios.",
+      "EPK design for musicians and bands in Utah — press-ready bio, photos, music, video, and booking info from $150 at 801 Family Studios.",
     keywords: [
-      "band EPK",
-      "electronic press kit musician",
-      "artist press kit Utah",
-      "EPK design for bands",
+      "EPK design for musicians",
+      "band EPK Utah",
+      "electronic press kit design",
+      "artist press kit Sandy Utah",
     ],
     icon: "📄",
     gradient: "from-amber-500/15 to-teal-500/20",
@@ -296,8 +346,22 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Press-ready electronic press kits with bio, photos, music, video, and booking info in one shareable link.",
     heroSubtitle: "One professional link for venues, press, playlists, and industry contacts.",
+    startingPrice: "Band EPK $150 · Website + EPK bundle $400",
     intro:
       "An electronic press kit (EPK) is how bookers, bloggers, and promoters evaluate you quickly. We build press-ready EPKs that present your story, sound, visuals, and contact details in a format industry contacts expect — so you look prepared before the first email reply.",
+    examples: [
+      {
+        label: "EPK & website samples",
+        description: "See press kits and band sites from our portfolio.",
+        href: WEB_PORTFOLIO_URL,
+        external: true,
+      },
+      {
+        label: "Order an EPK",
+        description: "Submit your brief and order through our store.",
+        to: "/store?product=epk#order-form",
+      },
+    ],
     sections: [
       {
         heading: "What goes in your EPK",
@@ -350,22 +414,22 @@ const ALL_SERVICES: Service[] = [
     },
     relatedPrompt: {
       text: "Need a full website too?",
-      to: "/websites",
-      linkLabel: "Custom band websites",
+      to: "/websites-for-musicians",
+      linkLabel: "Websites for musicians",
     },
   },
   {
     slug: "booking-management",
     cardTitle: "Booking & Management",
     navLabel: "Booking",
-    title: "Artist Booking & Management",
+    title: "Music Booking & Management Utah",
     metaDescription:
-      "Artist booking and music management in Utah — gig booking and career management with transparent commission structure at 801 Family Studios.",
+      "Music booking services in Utah — gig booking and artist management with transparent commissions. In-person consultation at 801 Family Studios.",
     keywords: [
+      "music booking services Utah",
       "artist management Utah",
       "music booking agent Salt Lake City",
-      "band management services",
-      "music career management",
+      "band management Sandy Utah",
     ],
     icon: "🎵",
     gradient: "from-yellow-500/20 to-orange-500/20",
@@ -375,8 +439,21 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Booking and management support for artists ready to grow — with clear terms and an in-person consultation.",
     heroSubtitle: "Strategic support for gigs, growth, and long-term career direction.",
+    startingPrice: "Booking 10% of gig income · Management 20% of revenue",
     intro:
       "Booking and management services are for artists ready to treat their career with a business mindset. We help you pursue the right opportunities, communicate professionally, and build momentum — with clear terms and an in-person consultation before any agreement.",
+    examples: [
+      {
+        label: "Upcoming shows",
+        description: "See artists currently playing out from our community.",
+        to: "/upcoming-shows",
+      },
+      {
+        label: "Featured artists",
+        description: "Meet bands and artists we work with in Utah.",
+        to: "/featured-artists",
+      },
+    ],
     sections: [
       {
         heading: "Booking",
@@ -421,14 +498,14 @@ const ALL_SERVICES: Service[] = [
     slug: "studio-rental",
     cardTitle: "Studio Rental & Rehearsal",
     navLabel: "Studio Rental",
-    title: "Studio Rental & Rehearsal Space",
+    title: "Studio Rental Sandy Utah",
     metaDescription:
-      "Affordable rehearsal and studio rental in Sandy, Utah — $25/hr with 3-hour minimum. Basic setup help and optional recording at 801 Family Studios.",
+      "Studio rental in Sandy, Utah — rehearsal space from $25/hr with 3-hour minimum, setup help, and optional soundboard recording at 801 Family Studios.",
     keywords: [
+      "studio rental Sandy Utah",
       "rehearsal space Salt Lake City",
       "studio rental Utah",
       "band rehearsal room Sandy",
-      "music rehearsal studio",
     ],
     icon: "🎛️",
     gradient: "from-cyan-500/20 to-blue-500/20",
@@ -438,8 +515,16 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Rehearsal space with basic setup help and mix support — optional sound tech and soundboard recording add-ons.",
     heroSubtitle: "A comfortable room to rehearse, experiment, and tighten your set.",
+    startingPrice: "Rehearsal $25/hr (3-hr min) · Soundboard recording add-on $20/hr",
     intro:
       "Need a dedicated space to practice without volume limits or living-room logistics? Our studio rental and rehearsal packages give bands and artists a ready room with basic setup support — plus optional add-ons when you want tech help or rehearsal soundboard recording.",
+    examples: [
+      {
+        label: "Full recording sessions",
+        description: "Ready to track demos or releases? Book our recording studio.",
+        to: "/recording-studio-sandy-utah",
+      },
+    ],
     sections: [
       {
         heading: "Included with rental",
@@ -473,21 +558,21 @@ const ALL_SERVICES: Service[] = [
     primaryCta: { label: "Reserve studio time", to: "/contact" },
     relatedPrompt: {
       text: "Want to record your rehearsal or book a full session?",
-      to: "/recording",
-      linkLabel: "Studio recording",
+      to: "/recording-studio-sandy-utah",
+      linkLabel: "Recording studio Sandy Utah",
     },
   },
   {
-    slug: "drum-lessons",
+    slug: "drum-lessons-sandy-utah",
     cardTitle: "Drum Lessons",
     navLabel: "Drum Lessons",
-    title: "Drum Lessons in Sandy, Utah",
+    title: "Drum Lessons Sandy Utah",
     metaDescription:
-      "Private drum lessons in Sandy, UT — $120/month for two 1-hour lessons. Learn technique, timing, and musicality at 801 Family Studios.",
+      "Drum lessons in Sandy, Utah — $120/month for two 1-hour private lessons. Technique, timing, and confidence at 801 Family Studios.",
     keywords: [
       "drum lessons Sandy Utah",
-      "drum teacher Salt Lake City",
-      "private drum lessons",
+      "drum teacher Sandy UT",
+      "private drum lessons Salt Lake City",
       "beginner drum lessons Utah",
     ],
     icon: "🥁",
@@ -497,8 +582,16 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Private drum lessons for beginners through advancing players — technique, timing, and musical confidence.",
     heroSubtitle: "Build technique, confidence, and musical feel behind the kit.",
+    startingPrice: "$120/month — two 1-hour lessons",
     intro:
       "Our drum lessons are designed for students who want steady progress — whether you are picking up sticks for the first time or tightening skills you already have. Lessons take place at the studio in a focused, encouraging environment.",
+    examples: [
+      {
+        label: "Studio rental",
+        description: "Bands can rehearse in our room between lessons and shows.",
+        to: "/studio-rental",
+      },
+    ],
     sections: [
       {
         heading: "What you will work on",
@@ -521,8 +614,8 @@ const ALL_SERVICES: Service[] = [
     primaryCta: { label: "Ask about lessons", to: "/contact" },
     relatedPrompt: {
       text: "Interested in recording or performance coaching?",
-      to: "/recording",
-      linkLabel: "Studio recording",
+      to: "/recording-studio-sandy-utah",
+      linkLabel: "Recording studio Sandy Utah",
     },
   },
   {
@@ -546,6 +639,7 @@ const ALL_SERVICES: Service[] = [
     homeTeaser:
       "Social media and promotional support so you stay visible while focusing on your music.",
     heroSubtitle: "Stay visible while you focus on writing, recording, and performing.",
+    startingPrice: "From $150/month",
     intro:
       "Consistency wins on social media, but most artists do not have hours every week to plan posts, write captions, and engage. Our promotion packages meet you where you are — whether you create your own content and need distribution help, or you want a fuller growth partner.",
     sections: [

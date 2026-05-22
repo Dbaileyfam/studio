@@ -70,9 +70,8 @@
   <body>
     <script>
       (function() {
-        var path = location.pathname.replace(/^\//, '').replace(/\/$/, '');
-        if (path && path !== 'index.html' && !location.hash) {
-          location.replace(location.origin + '/#/' + path);
+        if (location.hash && location.hash.indexOf("#/") === 0) {
+          location.replace(location.pathname + location.hash.slice(1));
         }
       })();
     </script>
@@ -80,15 +79,15 @@
       <nav aria-label="Site navigation" style="padding:1rem;font-family:system-ui,sans-serif;background:#07090d;color:#fff;">
         <p><strong>801 Family Studios</strong> — enable JavaScript for the full site, or use these links:</p>
         <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;">
-          <li><a href="./#/recording" style="color:#5eead4">Recording</a></li>
-          <li><a href="./#/mixing-mastering" style="color:#5eead4">Mix &amp; Master</a></li>
-          <li><a href="./#/websites" style="color:#5eead4">Websites</a></li>
-          <li><a href="./#/epk" style="color:#5eead4">EPK</a></li>
-          <li><a href="./#/booking-management" style="color:#5eead4">Booking</a></li>
-          <li><a href="./#/studio-rental" style="color:#5eead4">Studio Rental</a></li>
-          <li><a href="./#/drum-lessons" style="color:#5eead4">Drum Lessons</a></li>
-          <li><a href="./#/store" style="color:#5eead4">Store</a></li>
-          <li><a href="./#/contact" style="color:#5eead4">Contact</a></li>
+          <li><a href="/recording-studio-sandy-utah" style="color:#5eead4">Recording</a></li>
+          <li><a href="/mixing-mastering-services" style="color:#5eead4">Mix &amp; Master</a></li>
+          <li><a href="/websites-for-musicians" style="color:#5eead4">Websites</a></li>
+          <li><a href="/epk-design-for-musicians" style="color:#5eead4">EPK</a></li>
+          <li><a href="/booking-management" style="color:#5eead4">Booking</a></li>
+          <li><a href="/studio-rental" style="color:#5eead4">Studio Rental</a></li>
+          <li><a href="/drum-lessons-sandy-utah" style="color:#5eead4">Drum Lessons</a></li>
+          <li><a href="/store" style="color:#5eead4">Store</a></li>
+          <li><a href="/contact" style="color:#5eead4">Contact</a></li>
         </ul>
       </nav>
     </noscript>
