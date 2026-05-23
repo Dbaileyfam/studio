@@ -17,6 +17,8 @@ export const ROSTER_THANK_YOU_PATH = "/musician-roster/thank-you";
 
 export const ROSTER_BROWSE_PATH = "/musician-roster/browse";
 
+export const ROSTER_EDIT_PATH = "/musician-roster/edit";
+
 /**
  * Set this as the Payment Link “After payment” URL in Stripe Dashboard
  * (Payment Links → your roster link → After payment → Redirect to your website).

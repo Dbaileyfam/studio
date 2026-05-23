@@ -30,6 +30,7 @@ const MusicianRosterThankYou = () => {
   const sessionId = searchParams.get("session_id");
   const [status, setStatus] = useState<PageStatus>("loading");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [editUrl, setEditUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isRosterApiConfigured()) {
@@ -50,6 +51,7 @@ const MusicianRosterThankYou = () => {
           if (cancelled) return true;
           if (activated.status === "active") {
             setStatus("active");
+            if (activated.editUrl) setEditUrl(activated.editUrl);
             return true;
           }
         } else if (sessionId && !validSession) {
@@ -70,6 +72,7 @@ const MusicianRosterThankYou = () => {
         if (cancelled) return true;
         const active = result.status === "active";
         setStatus(active ? "active" : "pending");
+        if (active && result.editUrl) setEditUrl(result.editUrl);
         return active;
       } catch (err) {
         if (cancelled) return true;
@@ -157,6 +160,15 @@ const MusicianRosterThankYou = () => {
                       Browse musicians (see your listing)
                     </Link>
                   </Button>
+                  {editUrl && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-teal-500/40 text-teal-200 hover:bg-teal-950/40"
+                    >
+                      <a href={editUrl}>Edit your profile</a>
+                    </Button>
+                  )}
                   <Button
                     asChild
                     variant="outline"
@@ -165,6 +177,12 @@ const MusicianRosterThankYou = () => {
                     <Link to="/musician-roster">Musician Roster</Link>
                   </Button>
                 </div>
+                {editUrl && (
+                  <p className="text-sm text-gray-400 mb-4 max-w-md mx-auto">
+                    Bookmark your private edit link to update your photo, bio, links, and
+                    availability anytime while subscribed.
+                  </p>
+                )}
               </>
             )}
 

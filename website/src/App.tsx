@@ -21,6 +21,7 @@ import MusicianRoster from "./pages/MusicianRoster";
 import MusicianRosterThankYou from "./pages/MusicianRosterThankYou";
 import MusicianRosterBrowse from "./pages/MusicianRosterBrowse";
 import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
+import MusicianRosterEditPage from "./pages/MusicianRosterEditPage";
 import { SERVICES, getServicePath } from "@/lib/services";
 
 // Components
@@ -49,6 +50,7 @@ const AnimatedRoutes = () => {
         <Route path="/musician-roster/thank-you" element={<MusicianRosterThankYou />} />
         <Route path="/musician-roster/browse" element={<MusicianRosterBrowse />} />
         <Route path="/musician-profile-form" element={<MusicianProfileFormPage />} />
+        <Route path="/musician-roster/edit" element={<MusicianRosterEditPage />} />
         {SERVICES.map((service) => (
           <Route
             key={service.slug}

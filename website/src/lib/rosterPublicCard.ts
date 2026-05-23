@@ -1,9 +1,7 @@
-import type { ArtistProfileCardData } from "@/components/ArtistProfileCard";
 import type { MusicianProfileFormData } from "@/lib/buildMusicianProfileEmail";
-import {
-  buildRosterProfilePreview,
-  rosterPlaceholder,
-} from "@/lib/rosterProfilePreview";
+import { buildRosterMusicianCard } from "@/lib/rosterCardData";
+import type { RosterMusicianCardData } from "@/lib/rosterCardData";
+import { rosterPlaceholder } from "@/lib/rosterProfilePreview";
 import type { PublicRosterProfile } from "@/lib/rosterApi";
 
 const asProfile = (raw: Record<string, unknown>): MusicianProfileFormData => ({
@@ -32,10 +30,10 @@ const asProfile = (raw: Record<string, unknown>): MusicianProfileFormData => ({
   publicContactPreference: String(raw.publicContactPreference ?? ""),
 });
 
-export function publicRosterToCard(entry: PublicRosterProfile): ArtistProfileCardData {
+export function publicRosterToCard(entry: PublicRosterProfile): RosterMusicianCardData {
   const data = asProfile(entry.profile);
   const photoLink = data.profilePhotoLink.trim();
   const image =
     photoLink && /^https?:\/\//i.test(photoLink) ? photoLink : rosterPlaceholder;
-  return buildRosterProfilePreview(data, image);
+  return buildRosterMusicianCard(data, image);
 }

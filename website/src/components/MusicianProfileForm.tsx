@@ -1,4 +1,6 @@
-import ArtistProfileCard, { type ArtistProfileCardData } from "@/components/ArtistProfileCard";
+import RosterMusicianCard from "@/components/RosterMusicianCard";
+import { buildRosterMusicianCard } from "@/lib/rosterCardData";
+import type { RosterMusicianCardData } from "@/lib/rosterCardData";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -20,10 +22,7 @@ import {
   buildMusicianProfileEmailFields,
   type MusicianProfileFormData,
 } from "@/lib/buildMusicianProfileEmail";
-import {
-  buildRosterProfilePreview,
-  resolveRosterProfileImage,
-} from "@/lib/rosterProfilePreview";
+import { resolveRosterProfileImage } from "@/lib/rosterProfilePreview";
 import {
   AVAILABILITY_OPTIONS,
   AVAILABLE_FOR_OPTIONS,
@@ -37,7 +36,13 @@ import {
   isOtherTerritory,
   ROSTER_STATE_OPTIONS,
 } from "@/lib/rosterLocation";
-import { createRosterCheckout, isRosterApiConfigured } from "@/lib/rosterApi";
+import {
+  createRosterCheckout,
+  isRosterApiConfigured,
+  updateRosterProfile,
+} from "@/lib/rosterApi";
+import { ROSTER_BROWSE_PATH } from "@/lib/musicianRoster";
+import { Link } from "react-router-dom";
 import { submitMusicianProfileEmail } from "@/lib/submitMusicianProfileEmail";
 
 const fieldClass =
@@ -77,7 +82,18 @@ const CheckboxGroup = ({
   </div>
 );
 
-const MusicianProfileForm = () => {
+export type MusicianProfileFormProps = {
+  mode?: "create" | "edit";
+  editToken?: string;
+  initialData?: MusicianProfileFormData;
+};
+
+const MusicianProfileForm = ({
+  mode = "create",
+  editToken = "",
+  initialData,
+}: MusicianProfileFormProps) => {
+  const isEdit = mode === "edit";
   const [searchParams] = useSearchParams();
   const submittedFromRedirect = searchParams.get("submitted") === "1";
 
@@ -108,7 +124,8 @@ const MusicianProfileForm = () => {
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(submittedFromRedirect);
-  const [previewCard, setPreviewCard] = useState<ArtistProfileCardData | null>(null);
+  const [previewCard, setPreviewCard] = useState<RosterMusicianCardData | null>(null);
+  const [editSaved, setEditSaved] = useState(false);
   const [previewImageRevoke, setPreviewImageRevoke] = useState<string | undefined>();
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [usedLegacySubmit, setUsedLegacySubmit] = useState(false);
@@ -120,6 +137,33 @@ const MusicianProfileForm = () => {
       if (previewImageRevoke) URL.revokeObjectURL(previewImageRevoke);
     };
   }, [previewImageRevoke]);
+
+  useEffect(() => {
+    if (!initialData) return;
+    setFullName(initialData.fullName);
+    setStageName(initialData.stageName);
+    setEmail(initialData.email);
+    setPhone(initialData.phone);
+    setHomeState(initialData.homeState);
+    setCityArea(initialData.cityArea);
+    setCityAreaOther(initialData.cityAreaOther);
+    setInstruments(initialData.instruments);
+    setGenres(initialData.genres);
+    setAvailableFor(initialData.availableFor);
+    setTravelDistance(initialData.travelDistance);
+    setMinimumGigRate(initialData.minimumGigRate);
+    setAvailability(initialData.availability);
+    setBio(initialData.bio);
+    setWebsite(initialData.website);
+    setInstagram(initialData.instagram);
+    setFacebook(initialData.facebook);
+    setTiktok(initialData.tiktok);
+    setYoutube(initialData.youtube);
+    setSpotify(initialData.spotify);
+    setEpk(initialData.epk);
+    setProfilePhotoLink(initialData.profilePhotoLink);
+    setPublicContactPreference(initialData.publicContactPreference);
+  }, [initialData]);
 
   const getFormSnapshot = (): MusicianProfileFormData => ({
     fullName,
@@ -210,7 +254,21 @@ const MusicianProfileForm = () => {
     if (previewImageRevoke) URL.revokeObjectURL(previewImageRevoke);
     if (revoke) setPreviewImageRevoke(revoke);
 
-    setPreviewCard(buildRosterProfilePreview(snapshot, imageUrl));
+    setPreviewCard(buildRosterMusicianCard(snapshot, imageUrl));
+
+    if (isEdit && editToken) {
+      try {
+        await updateRosterProfile(editToken, snapshot);
+        setEditSaved(true);
+        toast.success("Your public listing has been updated.");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Could not save changes";
+        toast.error(message);
+      }
+      setSubmitting(false);
+      return;
+    }
 
     try {
       if (!isRosterApiConfigured()) {
@@ -246,6 +304,34 @@ const MusicianProfileForm = () => {
       return;
     }
   };
+
+  if (editSaved) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-8 text-center max-w-xl mx-auto"
+      >
+        <h2 className="text-2xl font-bold text-white">Profile updated</h2>
+        <p className="text-gray-200 leading-relaxed">
+          Your changes are live on the public musician roster.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button asChild className="bg-teal-600 hover:bg-teal-500 text-white">
+            <Link to={ROSTER_BROWSE_PATH}>View browse page</Link>
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            className="border-white/25 text-white"
+            onClick={() => setEditSaved(false)}
+          >
+            Edit again
+          </Button>
+        </div>
+      </motion.div>
+    );
+  }
 
   if (submitted) {
     return (
@@ -289,7 +375,7 @@ const MusicianProfileForm = () => {
               Preview — how your listing may appear on the roster
             </p>
             <div className="max-w-md mx-auto">
-              <ArtistProfileCard artist={previewCard} index={0} />
+              <RosterMusicianCard musician={previewCard} index={0} />
             </div>
           </div>
         ) : (
@@ -625,6 +711,8 @@ const MusicianProfileForm = () => {
             <Loader2 className="mr-2 h-5 w-5 animate-spin" />
             Submitting…
           </>
+        ) : isEdit ? (
+          "Save changes to my listing"
         ) : (
           "Submit musician profile"
         )}

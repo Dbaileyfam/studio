@@ -23,6 +23,7 @@ export type RosterProfileStatus = {
   status: "pending_payment" | "active" | "cancelled";
   email: string;
   fullName: string;
+  editUrl?: string;
 };
 
 /** True when the Vercel roster API URL is available (env or rosterApiBase fallback). */
@@ -85,6 +86,14 @@ export type ActivateRosterResult = {
   profileId: string;
   status: "active" | "pending_payment";
   message?: string;
+  editUrl?: string;
+};
+
+export type RosterProfileForEdit = {
+  profileId: string;
+  email: string;
+  fullName: string;
+  profile: MusicianProfileFormData;
 };
 
 /** After Stripe Checkout, confirm payment and publish the profile (webhook backup). */
@@ -112,7 +121,49 @@ export async function activateRosterFromCheckout(
     profileId: data.profileId,
     status: data.status === "active" ? "active" : "pending_payment",
     message: data.message,
+    editUrl: data.editUrl,
   };
+}
+
+export async function fetchRosterProfileForEdit(
+  token: string
+): Promise<RosterProfileForEdit> {
+  const url = apiBase
+    ? `${apiBase}/api/roster-profile-edit?token=${encodeURIComponent(token)}`
+    : `/api/roster-profile-edit?token=${encodeURIComponent(token)}`;
+
+  const res = await fetch(url);
+  const data = await parseJson<RosterProfileForEdit & { error?: string }>(res);
+  return data;
+}
+
+export async function updateRosterProfile(
+  token: string,
+  profile: MusicianProfileFormData
+): Promise<void> {
+  const url = apiBase ? `${apiBase}/api/roster-update` : "/api/roster-update";
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token, profile }),
+  });
+  await parseJson<{ ok: boolean; error?: string }>(res);
+}
+
+export async function requestRosterEditLink(
+  email: string
+): Promise<{ message: string; sent?: boolean }> {
+  const url = apiBase
+    ? `${apiBase}/api/roster-request-edit-link`
+    : "/api/roster-request-edit-link";
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email.trim() }),
+  });
+
+  return parseJson<{ message: string; sent?: boolean }>(res);
 }
 
 export async function fetchRosterProfileStatus(

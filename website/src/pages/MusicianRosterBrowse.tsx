@@ -1,5 +1,6 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
-import ArtistProfileCard, { type ArtistProfileCardData } from "@/components/ArtistProfileCard";
+import RosterMusicianCard from "@/components/RosterMusicianCard";
+import type { RosterMusicianCardData } from "@/lib/rosterCardData";
 import PageSEO from "@/components/PageSEO";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,7 @@ import { publicRosterToCard } from "@/lib/rosterPublicCard";
 import { motion } from "framer-motion";
 import { Loader2, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ROSTER_EDIT_PATH } from "@/lib/musicianRoster";
 import { Link } from "react-router-dom";
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -22,7 +24,7 @@ const fadeIn = {
 
 type LoadState =
   | { status: "loading" }
-  | { status: "ready"; cards: ArtistProfileCardData[] }
+  | { status: "ready"; cards: RosterMusicianCardData[] }
   | { status: "error"; message: string }
   | { status: "unconfigured" };
 
@@ -94,13 +96,20 @@ const MusicianRosterBrowse = () => {
                 solo shows, studio work, and private events. Contact through links on
                 each profile or reach out to 801 Family Studios.
               </p>
-              <p className="mt-6">
+              <p className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Button
                   asChild
                   variant="outline"
                   className="border-teal-500/40 text-teal-200 hover:bg-teal-950/40"
                 >
                   <Link to="/musician-roster">Join the roster</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="ghost"
+                  className="text-teal-300 hover:text-teal-200 hover:bg-teal-950/30"
+                >
+                  <Link to={ROSTER_EDIT_PATH}>Edit your listing</Link>
                 </Button>
               </p>
             </motion.div>
@@ -161,8 +170,12 @@ const MusicianRosterBrowse = () => {
 
             {state.status === "ready" && state.cards.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                {state.cards.map((artist, index) => (
-                  <ArtistProfileCard key={`${artist.name}-${index}`} artist={artist} index={index} />
+                {state.cards.map((musician, index) => (
+                  <RosterMusicianCard
+                    key={`${musician.name}-${index}`}
+                    musician={musician}
+                    index={index}
+                  />
                 ))}
               </div>
             )}

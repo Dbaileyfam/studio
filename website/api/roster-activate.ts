@@ -1,4 +1,5 @@
 import { corsHeaders, jsonResponse } from "./lib/cors.js";
+import { ensureRosterEditToken, rosterEditUrl } from "./lib/rosterEditToken.js";
 import { activateRosterProfile, isCheckoutSessionPaid, profileIdFromSession } from "./lib/rosterActivate.js";
 import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
 import { getStripe } from "./lib/stripe.js";
@@ -26,7 +27,7 @@ async function handleActivate(request: Request) {
       const supabase = getSupabaseAdmin();
       const { data: row } = await supabase
         .from("roster_profiles")
-        .select("id, status, stripe_checkout_session_id")
+        .select("id, status, stripe_checkout_session_id, edit_token")
         .eq("id", profileId)
         .maybeSingle();
 
@@ -35,10 +36,15 @@ async function handleActivate(request: Request) {
       }
 
       if (row.status === "active") {
+        let token = row.edit_token as string | undefined;
+        if (!token) {
+          token = (await ensureRosterEditToken(supabase, row.id as string)) ?? undefined;
+        }
         return jsonResponse(request, {
           profileId: row.id as string,
           status: "active",
           message: "Your profile is already live on the roster.",
+          editUrl: token ? rosterEditUrl(token) : undefined,
         });
       }
 
@@ -111,10 +117,24 @@ async function handleActivate(request: Request) {
       return jsonResponse(request, { error: result.error ?? "Activation failed" }, 500);
     }
 
+    const supabase = getSupabaseAdmin();
+    const { data: tokenRow } = await supabase
+      .from("roster_profiles")
+      .select("edit_token")
+      .eq("id", profileId)
+      .maybeSingle();
+
+    let editToken = tokenRow?.edit_token as string | undefined;
+    if (!editToken) {
+      editToken = (await ensureRosterEditToken(supabase, profileId)) ?? undefined;
+    }
+    const editUrl = editToken ? rosterEditUrl(editToken) : undefined;
+
     return jsonResponse(request, {
       profileId,
       status: "active",
       message: "Your profile is live on the public musician roster.",
+      editUrl,
     });
   } catch (err) {
     console.error(err);

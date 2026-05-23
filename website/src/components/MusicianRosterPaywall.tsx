@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ROSTER_STRIPE_URL } from "@/lib/musicianRoster";
+import { ROSTER_EDIT_PATH, ROSTER_STRIPE_URL } from "@/lib/musicianRoster";
 import { CreditCard, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,11 @@ const MusicianRosterPaywall = () => (
       <Link to="/musician-roster">Join the roster — $9/month</Link>
     </Button>
     <p className="mt-6 text-sm text-gray-400">
-      Already paid but seeing this message?{" "}
+      Already on the roster?{" "}
+      <Link to={ROSTER_EDIT_PATH} className="text-teal-300 hover:text-teal-200 underline">
+        Get your edit link
+      </Link>
+      . Already paid but seeing this message?{" "}
       <a
         href={ROSTER_STRIPE_URL}
         target="_blank"
@@ -35,8 +39,8 @@ const MusicianRosterPaywall = () => (
       >
         <Mail className="h-4 w-4" />
         info@801familystudios.com
-      </a>{" "}
-      with the email you used at checkout.
+      </a>
+      .
     </p>
   </div>
 );

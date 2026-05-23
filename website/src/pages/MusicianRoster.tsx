@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   ROSTER_NO_COMMISSION,
   ROSTER_BROWSE_PATH,
+  ROSTER_EDIT_PATH,
   ROSTER_PROFILE_FORM_PATH,
 } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
@@ -104,6 +105,14 @@ const MusicianRoster = () => {
               <p className="mt-4 text-sm text-gray-400 max-w-md text-center">
                 Step 1: profile · Step 2: $9/month on Stripe · Listing activates
                 automatically after payment
+              </p>
+              <p className="mt-3 text-sm text-center">
+                <Link
+                  to={ROSTER_EDIT_PATH}
+                  className="text-teal-300 underline hover:text-teal-200"
+                >
+                  Already listed? Edit your profile
+                </Link>
               </p>
             </motion.div>
 

@@ -36,6 +36,7 @@ export async function POST(request: Request) {
       );
     }
 
+    const editToken = crypto.randomUUID();
     const supabase = getSupabaseAdmin();
     const { data: row, error: insertError } = await supabase
       .from("roster_profiles")
@@ -44,8 +45,9 @@ export async function POST(request: Request) {
         full_name: fullName,
         profile,
         status: "pending_payment",
+        edit_token: editToken,
       })
-      .select("id")
+      .select("id, edit_token")
       .single();
 
     if (insertError || !row) {
