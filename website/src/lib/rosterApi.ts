@@ -92,8 +92,12 @@ export async function activateRosterFromCheckout(
   sessionId: string,
   profileId?: string | null
 ): Promise<ActivateRosterResult> {
-  const params = new URLSearchParams({ session_id: sessionId });
+  const params = new URLSearchParams();
+  if (sessionId.trim()) params.set("session_id", sessionId.trim());
   if (profileId?.trim()) params.set("profile_id", profileId.trim());
+  if (!params.toString()) {
+    throw new Error("Missing session_id and profile_id");
+  }
 
   const url = apiBase
     ? `${apiBase}/api/roster-activate?${params}`
@@ -101,6 +105,9 @@ export async function activateRosterFromCheckout(
 
   const res = await fetch(url);
   const data = await parseJson<ActivateRosterResult & { error?: string }>(res);
+  if (!res.ok && data.error) {
+    throw new Error(data.error);
+  }
   return {
     profileId: data.profileId,
     status: data.status === "active" ? "active" : "pending_payment",

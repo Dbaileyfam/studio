@@ -18,6 +18,12 @@ import { Link, useSearchParams } from "react-router-dom";
 
 type PageStatus = "loading" | "active" | "pending" | "unlinked" | "error";
 
+const isStripeSessionId = (value: string | null): boolean => {
+  if (!value?.trim()) return false;
+  const id = value.trim();
+  return id.startsWith("cs_") && !/YOUR_|CHECKOUT_SESSION/i.test(id);
+};
+
 const MusicianRosterThankYou = () => {
   const [searchParams] = useSearchParams();
   const profileId = searchParams.get("profile_id");
@@ -35,18 +41,28 @@ const MusicianRosterThankYou = () => {
 
     const sync = async (): Promise<boolean> => {
       try {
-        if (sessionId) {
-          const activated = await activateRosterFromCheckout(sessionId, profileId);
+        const validSession = isStripeSessionId(sessionId);
+        if (validSession || profileId) {
+          const activated = await activateRosterFromCheckout(
+            validSession ? sessionId! : "",
+            profileId
+          );
           if (cancelled) return true;
           if (activated.status === "active") {
             setStatus("active");
             return true;
           }
+        } else if (sessionId && !validSession) {
+          setErrorMessage(
+            "This page needs the real thank-you link from Stripe after payment — not placeholder text in the URL."
+          );
+          setStatus("error");
+          return true;
         }
 
         const id = profileId ?? null;
         if (!id) {
-          setStatus(sessionId ? "pending" : "unlinked");
+          setStatus(validSession || sessionId ? "pending" : "unlinked");
           return false;
         }
 

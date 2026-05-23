@@ -1,6 +1,12 @@
 import { corsHeaders, jsonResponse } from "./lib/cors.js";
 import { activateRosterProfile, isCheckoutSessionPaid, profileIdFromSession } from "./lib/rosterActivate.js";
+import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
 import { getStripe } from "./lib/stripe.js";
+
+function isStripeSessionId(value: string): boolean {
+  const id = value.trim();
+  return id.startsWith("cs_") && id.length > 10 && !/YOUR_|CHECKOUT_SESSION/i.test(id);
+}
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });
@@ -9,17 +15,78 @@ export async function OPTIONS(request: Request) {
 async function handleActivate(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const sessionId = searchParams.get("session_id")?.trim();
+    const sessionIdRaw = searchParams.get("session_id")?.trim() ?? "";
     const profileIdParam = searchParams.get("profile_id")?.trim();
+    const stripe = getStripe();
 
-    if (!sessionId) {
-      return jsonResponse(request, { error: "session_id is required" }, 400);
+    let sessionId = isStripeSessionId(sessionIdRaw) ? sessionIdRaw : "";
+    let profileId = profileIdParam ?? null;
+
+    if (!sessionId && profileId) {
+      const supabase = getSupabaseAdmin();
+      const { data: row } = await supabase
+        .from("roster_profiles")
+        .select("id, status, stripe_checkout_session_id")
+        .eq("id", profileId)
+        .maybeSingle();
+
+      if (!row) {
+        return jsonResponse(request, { error: "Profile not found. Submit the profile form again." }, 404);
+      }
+
+      if (row.status === "active") {
+        return jsonResponse(request, {
+          profileId: row.id as string,
+          status: "active",
+          message: "Your profile is already live on the roster.",
+        });
+      }
+
+      const stored = String(row.stripe_checkout_session_id ?? "");
+      if (isStripeSessionId(stored)) sessionId = stored;
     }
 
-    const stripe = getStripe();
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (!sessionId) {
+      if (sessionIdRaw && !isStripeSessionId(sessionIdRaw)) {
+        return jsonResponse(
+          request,
+          {
+            error:
+              "Invalid checkout link. After paying on Stripe, use the full thank-you URL Stripe sends you — do not replace session_id with placeholder text.",
+          },
+          400
+        );
+      }
+      return jsonResponse(
+        request,
+        {
+          error: profileId
+            ? "No Stripe checkout found for this profile yet. Complete payment from the profile form, or wait a minute and refresh."
+            : "session_id or profile_id is required",
+        },
+        400
+      );
+    }
 
-    const profileId = profileIdFromSession(session) ?? profileIdParam;
+    let session;
+    try {
+      session = await stripe.checkout.sessions.retrieve(sessionId);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Invalid checkout session";
+      if (/no such checkout\.session/i.test(msg)) {
+        return jsonResponse(
+          request,
+          {
+            error:
+              "That checkout session was not found in Stripe. Use the thank-you link from your browser right after payment, or submit your profile and pay again from the form.",
+          },
+          404
+        );
+      }
+      throw err;
+    }
+
+    profileId = profileIdFromSession(session) ?? profileId;
     if (!profileId) {
       return jsonResponse(
         request,
