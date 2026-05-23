@@ -4,7 +4,7 @@ import PageSEO from "@/components/PageSEO";
 import { Button } from "@/components/ui/button";
 import {
   fetchPublicRoster,
-  isRosterApiConfigured,
+  isRosterBrowseConfigured,
 } from "@/lib/rosterApi";
 import { publicRosterToCard } from "@/lib/rosterPublicCard";
 import { motion } from "framer-motion";
@@ -30,7 +30,7 @@ const MusicianRosterBrowse = () => {
   const [state, setState] = useState<LoadState>({ status: "loading" });
 
   useEffect(() => {
-    if (!isRosterApiConfigured()) {
+    if (!isRosterBrowseConfigured()) {
       setState({ status: "unconfigured" });
       return;
     }
@@ -113,12 +113,20 @@ const MusicianRosterBrowse = () => {
             )}
 
             {state.status === "unconfigured" && (
-              <div className="rounded-2xl border border-white/15 bg-white/5 p-10 text-center max-w-lg mx-auto">
+              <div className="rounded-2xl border border-white/15 bg-white/5 p-10 text-center max-w-xl mx-auto space-y-4">
                 <p className="text-gray-200 leading-relaxed">
-                  Public roster listings will appear here once the roster API is
-                  connected (Vercel + Supabase). Musicians can still join via the{" "}
+                  Public listings are not live yet. Profiles and subscriptions are
+                  still being collected — they will show here automatically once the
+                  roster database is connected.
+                </p>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  If you just joined and paid, your profile is on file. The browse
+                  page will update as soon as setup is complete (usually same day).
+                </p>
+                <p className="text-sm text-gray-300">
+                  Want to join?{" "}
                   <Link to="/musician-roster" className="text-teal-300 underline">
-                    signup page
+                    Sign up for the roster
                   </Link>
                   .
                 </p>

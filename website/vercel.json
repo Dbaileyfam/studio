@@ -1,8 +1,16 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/api/roster/list", "destination": "/api/roster-list" },
+    { "source": "/api/roster/create-checkout", "destination": "/api/roster-create-checkout" },
+    { "source": "/api/roster/status", "destination": "/api/roster-status" },
+    { "source": "/api/stripe/webhook", "destination": "/api/stripe-webhook" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

@@ -1,5 +1,5 @@
-import { corsHeaders, jsonResponse } from "../lib/cors";
-import { getSupabaseAdmin } from "../lib/supabaseAdmin";
+import { corsHeaders, jsonResponse } from "./lib/cors.js";
+import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });

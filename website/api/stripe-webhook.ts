@@ -1,6 +1,6 @@
 import Stripe from "stripe";
-import { getSupabaseAdmin } from "../lib/supabaseAdmin";
-import { getStripe } from "../lib/stripe";
+import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
+import { getStripe } from "./lib/stripe.js";
 
 async function activateProfile(profileId: string, session: Stripe.Checkout.Session) {
   const supabase = getSupabaseAdmin();
