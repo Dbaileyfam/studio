@@ -3,13 +3,6 @@
 name: Deploy roster API to Vercel
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "website/api/**"
-      - "website/vercel.json"
-      - "vercel.json"
-      - ".github/workflows/vercel-roster-api.yml"
   workflow_dispatch:
 
 jobs:
