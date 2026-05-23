@@ -81,6 +81,33 @@ export async function fetchPublicRoster(): Promise<PublicRosterProfile[]> {
   throw new Error("Roster browse is not configured");
 }
 
+export type ActivateRosterResult = {
+  profileId: string;
+  status: "active" | "pending_payment";
+  message?: string;
+};
+
+/** After Stripe Checkout, confirm payment and publish the profile (webhook backup). */
+export async function activateRosterFromCheckout(
+  sessionId: string,
+  profileId?: string | null
+): Promise<ActivateRosterResult> {
+  const params = new URLSearchParams({ session_id: sessionId });
+  if (profileId?.trim()) params.set("profile_id", profileId.trim());
+
+  const url = apiBase
+    ? `${apiBase}/api/roster-activate?${params}`
+    : `/api/roster-activate?${params}`;
+
+  const res = await fetch(url);
+  const data = await parseJson<ActivateRosterResult & { error?: string }>(res);
+  return {
+    profileId: data.profileId,
+    status: data.status === "active" ? "active" : "pending_payment",
+    message: data.message,
+  };
+}
+
 export async function fetchRosterProfileStatus(
   profileId: string
 ): Promise<RosterProfileStatus> {

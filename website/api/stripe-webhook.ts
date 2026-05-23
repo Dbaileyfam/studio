@@ -1,24 +1,11 @@
 import Stripe from "stripe";
+import {
+  activateRosterProfile,
+  isCheckoutSessionPaid,
+  profileIdFromSession,
+} from "./lib/rosterActivate.js";
 import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
 import { getStripe } from "./lib/stripe.js";
-
-async function activateProfile(profileId: string, session: Stripe.Checkout.Session) {
-  const supabase = getSupabaseAdmin();
-  await supabase
-    .from("roster_profiles")
-    .update({
-      status: "active",
-      stripe_checkout_session_id: session.id,
-      stripe_customer_id:
-        typeof session.customer === "string" ? session.customer : session.customer?.id ?? null,
-      stripe_subscription_id:
-        typeof session.subscription === "string"
-          ? session.subscription
-          : session.subscription?.id ?? null,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", profileId);
-}
 
 async function notifyAdmin(profileId: string) {
   const email = process.env.ROSTER_FORM_EMAIL ?? "info@801familystudios.com";
@@ -72,12 +59,31 @@ export async function POST(request: Request) {
   try {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
-      const profileId =
-        session.metadata?.profile_id ?? session.client_reference_id ?? null;
+      const profileId = profileIdFromSession(session);
 
-      if (profileId && session.payment_status === "paid") {
-        await activateProfile(profileId, session);
+      if (profileId && isCheckoutSessionPaid(session)) {
+        await activateRosterProfile(profileId, session);
         await notifyAdmin(profileId);
+      }
+    }
+
+    if (event.type === "customer.subscription.created") {
+      const subscription = event.data.object as Stripe.Subscription;
+      const profileId = subscription.metadata?.profile_id?.trim();
+      if (profileId && subscription.status === "active") {
+        const supabase = getSupabaseAdmin();
+        await supabase
+          .from("roster_profiles")
+          .update({
+            status: "active",
+            stripe_subscription_id: subscription.id,
+            stripe_customer_id:
+              typeof subscription.customer === "string"
+                ? subscription.customer
+                : subscription.customer?.id ?? null,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", profileId);
       }
     }
 

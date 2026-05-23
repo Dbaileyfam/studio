@@ -215,13 +215,11 @@ const MusicianProfileForm = () => {
     try {
       if (isRosterApiConfigured()) {
         const { checkoutUrl: url } = await createRosterCheckout(snapshot);
-        setCheckoutUrl(url);
-        setUsedLegacySubmit(false);
-        setSubmitted(true);
-        toast.success("Profile saved — subscribe to publish your listing.");
-      } else {
-        throw new Error("API not configured");
+        toast.success("Profile saved — redirecting to secure checkout…");
+        window.location.href = url;
+        return;
       }
+      throw new Error("API not configured");
     } catch {
       const fields = buildMusicianProfileEmailFields(snapshot, null);
       submitMusicianProfileEmail(fields, photoFile);
