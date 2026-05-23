@@ -62,7 +62,7 @@ const MusicianRosterEditPage = () => {
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
                 {showRequestLink
-                  ? "Use the email from your subscription to get a private edit link, or open the link we sent you after signup."
+                  ? "Enter your subscription email to get your private edit link on this page. Bookmark that link to update your listing anytime."
                   : "Changes save instantly to the public browse page. Bookmark this page — it is your private edit link."}
               </p>
             </div>

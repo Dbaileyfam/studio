@@ -150,9 +150,16 @@ export async function updateRosterProfile(
   await parseJson<{ ok: boolean; error?: string }>(res);
 }
 
+export type RequestRosterEditLinkResult = {
+  ok: boolean;
+  message: string;
+  editUrl?: string;
+  emailSent?: boolean;
+};
+
 export async function requestRosterEditLink(
   email: string
-): Promise<{ message: string; sent?: boolean }> {
+): Promise<RequestRosterEditLinkResult> {
   const url = apiBase
     ? `${apiBase}/api/roster-request-edit-link`
     : "/api/roster-request-edit-link";
@@ -163,7 +170,7 @@ export async function requestRosterEditLink(
     body: JSON.stringify({ email: email.trim() }),
   });
 
-  return parseJson<{ message: string; sent?: boolean }>(res);
+  return parseJson<RequestRosterEditLinkResult>(res);
 }
 
 export async function fetchRosterProfileStatus(
