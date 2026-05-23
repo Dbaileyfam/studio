@@ -2,7 +2,7 @@
  * When true, roster signup/browse/edit pages show a pause screen and nav links are hidden.
  * Set to false when you are ready to reopen the Musician Roster.
  */
-export const ROSTER_PUBLICLY_DISABLED = true;
+export const ROSTER_PUBLICLY_DISABLED = false;
 
 const ROSTER_PUBLIC_PREFIXES = ["/musician-roster", "/musician-profile-form"] as const;
 

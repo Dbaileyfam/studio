@@ -1,8 +1,8 @@
-import { corsHeaders, jsonResponse } from "./lib/cors.js";
-import { ensureRosterEditToken, rosterEditUrl } from "./lib/rosterEditToken.js";
-import { activateRosterProfile, isCheckoutSessionPaid, profileIdFromSession } from "./lib/rosterActivate.js";
-import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
-import { getStripe } from "./lib/stripe.js";
+import { corsHeaders, jsonResponse } from "../roster-server/cors.js";
+import { ensureRosterEditToken, rosterEditUrl } from "../roster-server/rosterEditToken.js";
+import { activateRosterProfile, isCheckoutSessionPaid, profileIdFromSession } from "../roster-server/rosterActivate.js";
+import { getSupabaseAdmin } from "../roster-server/supabaseAdmin.js";
+import { getStripe } from "../roster-server/stripe.js";
 
 function isStripeSessionId(value: string): boolean {
   const id = value.trim();

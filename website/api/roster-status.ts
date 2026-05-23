@@ -1,7 +1,7 @@
-import { corsHeaders, jsonResponse } from "./lib/cors.js";
-import { ensureRosterEditToken, rosterEditUrl } from "./lib/rosterEditToken.js";
-import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
-import { syncRosterProfileSubscription } from "./lib/rosterSubscriptionSync.js";
+import { corsHeaders, jsonResponse } from "../roster-server/cors.js";
+import { ensureRosterEditToken, rosterEditUrl } from "../roster-server/rosterEditToken.js";
+import { getSupabaseAdmin } from "../roster-server/supabaseAdmin.js";
+import { syncRosterProfileSubscription } from "../roster-server/rosterSubscriptionSync.js";
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });

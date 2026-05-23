@@ -3,14 +3,14 @@ import {
   activateRosterProfile,
   isCheckoutSessionPaid,
   profileIdFromSession,
-} from "./lib/rosterActivate.js";
+} from "../roster-server/rosterActivate.js";
 import {
   applySubscriptionEvent,
   resolveProfileIdFromSubscription,
   setRosterProfileStatus,
-} from "./lib/rosterSubscriptionSync.js";
-import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
-import { getStripe } from "./lib/stripe.js";
+} from "../roster-server/rosterSubscriptionSync.js";
+import { getSupabaseAdmin } from "../roster-server/supabaseAdmin.js";
+import { getStripe } from "../roster-server/stripe.js";
 
 async function notifyAdmin(profileId: string) {
   const email = process.env.ROSTER_FORM_EMAIL ?? "info@801familystudios.com";

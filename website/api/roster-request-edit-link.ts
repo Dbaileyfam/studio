@@ -1,9 +1,9 @@
-import { SUBSCRIPTION_INACTIVE_LOOKUP_MESSAGE } from "./lib/rosterAccess.js";
-import { corsHeaders, jsonResponse } from "./lib/cors.js";
-import { sendRosterEditLinkEmail } from "./lib/rosterEditLinkEmail.js";
-import { ensureRosterEditToken, rosterEditUrl } from "./lib/rosterEditToken.js";
-import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
-import { syncRosterProfileSubscription } from "./lib/rosterSubscriptionSync.js";
+import { SUBSCRIPTION_INACTIVE_LOOKUP_MESSAGE } from "../roster-server/rosterAccess.js";
+import { corsHeaders, jsonResponse } from "../roster-server/cors.js";
+import { sendRosterEditLinkEmail } from "../roster-server/rosterEditLinkEmail.js";
+import { ensureRosterEditToken, rosterEditUrl } from "../roster-server/rosterEditToken.js";
+import { getSupabaseAdmin } from "../roster-server/supabaseAdmin.js";
+import { syncRosterProfileSubscription } from "../roster-server/rosterSubscriptionSync.js";
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });

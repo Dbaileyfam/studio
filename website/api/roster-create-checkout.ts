@@ -1,6 +1,6 @@
-import { corsHeaders, jsonResponse } from "./lib/cors.js";
-import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
-import { getStripe, siteUrl } from "./lib/stripe.js";
+import { corsHeaders, jsonResponse } from "../roster-server/cors.js";
+import { getSupabaseAdmin } from "../roster-server/supabaseAdmin.js";
+import { getStripe, siteUrl } from "../roster-server/stripe.js";
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });

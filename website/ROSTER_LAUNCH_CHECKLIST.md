@@ -6,26 +6,26 @@ Work through these in order. Check each box when done.
 
 ## Step 1 — Fix Vercel API (`/api/health` returns JSON)
 
-### A. Push the config fix
+**Cause (fixed in repo):** Vercel Hobby allows **12 serverless functions max**. Files under `api/lib/` were counted as separate functions (19 total → deploy failed or static-only). Shared code now lives in `website/roster-server/`. Builds use **`vite-plugin-vercel`** so `/api/*` routes deploy with the Vite build.
 
-From repo root:
+### A. Push + Vercel settings
 
 ```bash
 cd website
-git add vercel.json
-git commit -m "Fix Vercel API: drop legacy builds, use native api functions"
+git add package.json package-lock.json vite.config.ts vercel.json api/ roster-server/
+git commit -m "Fix Vercel roster API: vite-plugin-vercel and move server lib out of api/"
 git push origin main
 ```
 
-### B. Vercel project settings
-
-[vercel.com/dashboard](https://vercel.com/dashboard) → **studio-theta-gules** (or your roster project):
+[vercel.com/dashboard](https://vercel.com/dashboard) → project **studio** (`studio-theta-gules.vercel.app`):
 
 | Setting | Where | Value |
 |--------|--------|--------|
-| Root Directory | Settings → Build and Deployment | `website` |
-| Framework | Settings → Build and Deployment | **Other** |
+| Root Directory | Settings → Build and Deployment | **`website`** |
+| Framework | Settings → Build and Deployment | **Vite** (works with `vite-plugin-vercel`) |
 | Production branch | Settings → Environments → Production | **`main`** |
+
+**Git auto-deploy:** If Root Directory is still empty, Git builds only static files from repo root and `/api/*` stays `NOT_FOUND`. Set **`website`** or run the GitHub Action (`.github/workflows/vercel-roster-api.yml`) with `working-directory: website`.
 
 ### C. Redeploy
 
