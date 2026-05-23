@@ -21,10 +21,10 @@
 1. **Product** — $9/month subscription (you may already have this).
 2. Copy the **Price ID** (`price_...`) → `STRIPE_ROSTER_PRICE_ID`.
 3. **Developers → API keys** — Secret key → `STRIPE_SECRET_KEY`.
-4. **Developers → Webhooks → Add endpoint**
+4. **Stripe webhook** — see **`STRIPE_WEBHOOK_SETUP.md`** for screenshots-style steps.
    - URL: `https://YOUR-VERCEL-DEPLOYMENT.vercel.app/api/stripe-webhook`
    - Events: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
-   - Copy signing secret → `STRIPE_WEBHOOK_SECRET`.
+   - Copy signing secret → Vercel env `STRIPE_WEBHOOK_SECRET`, then **redeploy**.
 
 You do **not** need a Payment Link redirect URL anymore; Checkout is created by the API after the profile is saved.
 
@@ -56,7 +56,7 @@ The live site on GitHub Pages was built **without** `VITE_ROSTER_API_BASE`, so p
 
 1. **Supabase** — create project, run `supabase/roster_profiles.sql`, then `supabase/roster_profiles_public_read.sql`.
 2. **Vercel** — import the `website` folder, add server env vars from `.env.example`, deploy. Copy the deployment URL.
-3. **Stripe webhook** — point to `https://YOUR-VERCEL-URL.vercel.app/api/stripe/webhook` (`checkout.session.completed`, `customer.subscription.deleted`).
+3. **Stripe webhook** — `STRIPE_WEBHOOK_SETUP.md` (`/api/stripe-webhook` on Vercel).
 4. **Rebuild the frontend** with the API URL baked in:
    ```bash
    cd website
