@@ -1,21 +1,26 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "functions": {
-    "api/**/*.ts": {
-      "maxDuration": 30
+  "builds": [
+    { "src": "api/*.ts", "use": "@vercel/node" },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     }
-  },
-  "rewrites": [
-    { "source": "/api/roster/list", "destination": "/api/roster-list" },
-    { "source": "/api/roster/create-checkout", "destination": "/api/roster-create-checkout" },
-    { "source": "/api/roster/status", "destination": "/api/roster-status" },
-    { "source": "/api/roster/activate", "destination": "/api/roster-activate" },
-    { "source": "/api/roster/profile-edit", "destination": "/api/roster-profile-edit" },
-    { "source": "/api/roster/update", "destination": "/api/roster-update" },
-    { "source": "/api/roster/request-edit-link", "destination": "/api/roster-request-edit-link" },
-    { "source": "/api/stripe/webhook", "destination": "/api/stripe-webhook" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
+  "routes": [
+    { "src": "/api/roster/list", "dest": "/api/roster-list.ts" },
+    { "src": "/api/roster/create-checkout", "dest": "/api/roster-create-checkout.ts" },
+    { "src": "/api/roster/status", "dest": "/api/roster-status.ts" },
+    { "src": "/api/roster/activate", "dest": "/api/roster-activate.ts" },
+    { "src": "/api/roster/profile-edit", "dest": "/api/roster-profile-edit.ts" },
+    { "src": "/api/roster/update", "dest": "/api/roster-update.ts" },
+    { "src": "/api/roster/request-edit-link", "dest": "/api/roster-request-edit-link.ts" },
+    { "src": "/api/stripe/webhook", "dest": "/api/stripe-webhook.ts" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

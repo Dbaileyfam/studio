@@ -14,13 +14,24 @@ Do **not** set Root Directory to empty while using the `website` folder layout.
 
 Do **not** build from branch **`gh-pages`** (no `api/` folder there).
 
-## Build and Deployment (should match `website/vercel.json`)
+## Build and Deployment
+
+Settings are driven by `website/vercel.json` (hybrid static site + `/api` serverless).
 
 | Field | Value |
 |--------|--------|
-| Build Command | `npm run build` |
-| Output Directory | `dist` |
-| Install Command | `npm install` |
+| Root Directory | `website` |
+| Framework Preset | **Other** |
+| Build Command | *(from vercel.json)* `npm run build` |
+| Output Directory | *(from vercel.json)* `dist` via static-build |
+
+## `NOT_FOUND` on `/api/health` or `/api/*`
+
+That plain-text `NOT_FOUND` with an id like `sfo1::...` means **Vercel has no serverless function** at that path (static-only deploy).
+
+1. Confirm **Root Directory** = `website`.
+2. Redeploy latest `main` after the `vercel.json` **builds** + `@vercel/node` fix.
+3. Test: `https://studio-theta-gules.vercel.app/api/health` → JSON, not `NOT_FOUND`.
 
 ## If you see: `website/api/**/*.ts` doesn't match any Serverless Functions
 
