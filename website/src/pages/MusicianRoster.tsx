@@ -3,6 +3,7 @@ import PageSEO from "@/components/PageSEO";
 import { Button } from "@/components/ui/button";
 import {
   ROSTER_NO_COMMISSION,
+  ROSTER_COMMISSION_DISCLAIMER,
   ROSTER_BROWSE_PATH,
   ROSTER_EDIT_PATH,
   ROSTER_PROFILE_FORM_PATH,
@@ -32,7 +33,7 @@ const MusicianRoster = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="801 Musician Roster"
-        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events anywhere in the U.S. 801 Family Studios does not take commission — you keep 100% of your gig pay."
+        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events anywhere in the U.S. No commission on roster gigs — you keep 100% of gig pay from roster listings. Booking and management services are separate."
         path="/musician-roster"
         keywords={[
           "musician roster",
@@ -71,7 +72,7 @@ const MusicianRoster = () => {
                 <div className="inline-flex items-center justify-center gap-2 text-teal-300 mb-2">
                   <BadgePercent className="h-5 w-5" aria-hidden />
                   <span className="text-sm font-semibold uppercase tracking-wide">
-                    No commission on your gigs
+                    No commission on roster gigs
                   </span>
                 </div>
                 <p className="text-lg md:text-xl font-semibold text-white leading-snug">
@@ -79,7 +80,11 @@ const MusicianRoster = () => {
                 </p>
                 <p className="mt-2 text-sm text-gray-300">
                   Your $9/month membership is for listing and visibility only — not a cut
-                  of what you earn from shows, sessions, or private events.
+                  of what you earn from roster gigs, sessions, or private events booked
+                  through your listing.
+                </p>
+                <p className="mt-2 text-xs text-gray-400">
+                  {ROSTER_COMMISSION_DISCLAIMER}
                 </p>
               </motion.div>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -1,7 +1,7 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import MusicianProfileForm from "@/components/MusicianProfileForm";
 import PageSEO from "@/components/PageSEO";
-import { ROSTER_NO_COMMISSION } from "@/lib/musicianRoster";
+import { ROSTER_NO_COMMISSION, ROSTER_COMMISSION_DISCLAIMER } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -56,7 +56,10 @@ const MusicianProfileFormPage = () => {
                 automatically.
               </p>
               <p className="mt-4 text-sm text-teal-200/90 max-w-xl mx-auto">
-                {ROSTER_NO_COMMISSION} You keep 100% of what you earn from roster gigs.
+                {ROSTER_NO_COMMISSION}
+              </p>
+              <p className="mt-2 text-xs text-gray-400 max-w-xl mx-auto">
+                {ROSTER_COMMISSION_DISCLAIMER}
               </p>
             </motion.div>
 
