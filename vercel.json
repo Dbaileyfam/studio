@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd website && npm install && npm run build",
+  "installCommand": "cd website && npm install",
+  "outputDirectory": "website/dist",
+  "functions": {
+    "website/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/roster/list", "destination": "/api/roster-list" },
+    { "source": "/api/roster/create-checkout", "destination": "/api/roster-create-checkout" },
+    { "source": "/api/roster/status", "destination": "/api/roster-status" },
+    { "source": "/api/roster/activate", "destination": "/api/roster-activate" },
+    { "source": "/api/roster/profile-edit", "destination": "/api/roster-profile-edit" },
+    { "source": "/api/roster/update", "destination": "/api/roster-update" },
+    { "source": "/api/roster/request-edit-link", "destination": "/api/roster-request-edit-link" },
+    { "source": "/api/stripe/webhook", "destination": "/api/stripe-webhook" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
