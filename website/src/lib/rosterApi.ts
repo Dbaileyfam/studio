@@ -155,6 +155,8 @@ export type RequestRosterEditLinkResult = {
   message: string;
   editUrl?: string;
   emailSent?: boolean;
+  subscriptionActive?: boolean;
+  apiVersion?: number;
 };
 
 export async function requestRosterEditLink(

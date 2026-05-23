@@ -4,6 +4,11 @@ import {
   isCheckoutSessionPaid,
   profileIdFromSession,
 } from "./lib/rosterActivate.js";
+import {
+  applySubscriptionEvent,
+  resolveProfileIdFromSubscription,
+  setRosterProfileStatus,
+} from "./lib/rosterSubscriptionSync.js";
 import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
 import { getStripe } from "./lib/stripe.js";
 
@@ -74,35 +79,35 @@ export async function POST(request: Request) {
       }
     }
 
-    if (event.type === "customer.subscription.created") {
+    if (
+      event.type === "customer.subscription.created" ||
+      event.type === "customer.subscription.updated"
+    ) {
       const subscription = event.data.object as Stripe.Subscription;
-      const profileId = subscription.metadata?.profile_id?.trim();
-      if (profileId && subscription.status === "active") {
-        const supabase = getSupabaseAdmin();
-        await supabase
-          .from("roster_profiles")
-          .update({
-            status: "active",
-            stripe_subscription_id: subscription.id,
-            stripe_customer_id:
-              typeof subscription.customer === "string"
-                ? subscription.customer
-                : subscription.customer?.id ?? null,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("id", profileId);
-      }
+      await applySubscriptionEvent(subscription);
     }
 
     if (event.type === "customer.subscription.deleted") {
       const subscription = event.data.object as Stripe.Subscription;
-      const profileId = subscription.metadata?.profile_id;
+      const profileId = await resolveProfileIdFromSubscription(subscription);
       if (profileId) {
-        const supabase = getSupabaseAdmin();
-        await supabase
-          .from("roster_profiles")
-          .update({ status: "cancelled", updated_at: new Date().toISOString() })
-          .eq("id", profileId);
+        await setRosterProfileStatus(profileId, "cancelled", {
+          subscriptionId: subscription.id,
+          customerId:
+            typeof subscription.customer === "string"
+              ? subscription.customer
+              : subscription.customer?.id ?? null,
+        });
+      }
+    }
+
+    if (event.type === "invoice.payment_failed") {
+      const invoice = event.data.object as Stripe.Invoice;
+      const subRef = invoice.subscription;
+      const subId = typeof subRef === "string" ? subRef : subRef?.id;
+      if (subId) {
+        const subscription = await stripe.subscriptions.retrieve(subId);
+        await applySubscriptionEvent(subscription);
       }
     }
 

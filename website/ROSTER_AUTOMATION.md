@@ -6,7 +6,8 @@
 2. API saves the profile in Supabase as `pending_payment`.
 3. Browser redirects to Stripe Checkout ($9/month).
 4. Stripe webhook marks the profile `active` automatically — no manual approval to *start* the profile.
-5. You still receive an email when a subscription goes active.
+5. When the subscription ends or fails, the webhook sets status `cancelled` — the profile **disappears from browse** and **cannot be edited** until they resubscribe.
+6. You still receive an email when a subscription goes active.
 
 ## One-time setup
 
@@ -22,7 +23,7 @@
 3. **Developers → API keys** — Secret key → `STRIPE_SECRET_KEY`.
 4. **Developers → Webhooks → Add endpoint**
    - URL: `https://YOUR-VERCEL-DEPLOYMENT.vercel.app/api/stripe-webhook`
-   - Events: `checkout.session.completed`, `customer.subscription.deleted`
+   - Events: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
    - Copy signing secret → `STRIPE_WEBHOOK_SECRET`.
 
 You do **not** need a Payment Link redirect URL anymore; Checkout is created by the API after the profile is saved.

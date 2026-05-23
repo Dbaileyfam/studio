@@ -41,7 +41,7 @@ import {
   isRosterApiConfigured,
   updateRosterProfile,
 } from "@/lib/rosterApi";
-import { ROSTER_BROWSE_PATH } from "@/lib/musicianRoster";
+import { ROSTER_BROWSE_PATH, ROSTER_PROFILE_FORM_PATH } from "@/lib/musicianRoster";
 import { Link } from "react-router-dom";
 import { submitMusicianProfileEmail } from "@/lib/submitMusicianProfileEmail";
 
@@ -126,6 +126,7 @@ const MusicianProfileForm = ({
   const [submitted, setSubmitted] = useState(submittedFromRedirect);
   const [previewCard, setPreviewCard] = useState<RosterMusicianCardData | null>(null);
   const [editSaved, setEditSaved] = useState(false);
+  const [editBlocked, setEditBlocked] = useState<string | null>(null);
   const [previewImageRevoke, setPreviewImageRevoke] = useState<string | undefined>();
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [usedLegacySubmit, setUsedLegacySubmit] = useState(false);
@@ -258,12 +259,16 @@ const MusicianProfileForm = ({
 
     if (isEdit && editToken) {
       try {
+        setEditBlocked(null);
         await updateRosterProfile(editToken, snapshot);
         setEditSaved(true);
         toast.success("Your public listing has been updated.");
         window.scrollTo({ top: 0, behavior: "smooth" });
       } catch (err) {
         const message = err instanceof Error ? err.message : "Could not save changes";
+        if (/subscription is not active|hidden from the public/i.test(message)) {
+          setEditBlocked(message);
+        }
         toast.error(message);
       }
       setSubmitting(false);
@@ -393,6 +398,17 @@ const MusicianProfileForm = ({
       onSubmit={handleSubmit}
       className="space-y-8 scroll-mt-28"
     >
+      {editBlocked && (
+        <div className="rounded-2xl border border-amber-500/35 bg-amber-950/25 p-6 space-y-4">
+          <p className="text-gray-200 text-sm leading-relaxed">{editBlocked}</p>
+          <Button
+            asChild
+            className="bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white"
+          >
+            <Link to={ROSTER_PROFILE_FORM_PATH}>Resubscribe to restore your listing</Link>
+          </Button>
+        </div>
+      )}
       <section className={sectionClass}>
         <h3 className="text-lg font-bold text-white">Basic info</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

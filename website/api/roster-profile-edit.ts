@@ -1,3 +1,4 @@
+import { ensureProfileEditable } from "./lib/rosterAccess.js";
 import { corsHeaders, jsonResponse } from "./lib/cors.js";
 import { ensureRosterEditToken } from "./lib/rosterEditToken.js";
 import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
@@ -30,12 +31,9 @@ export async function GET(request: Request) {
       return jsonResponse(request, { error: "Invalid or expired edit link" }, 404);
     }
 
-    if (data.status !== "active") {
-      return jsonResponse(
-        request,
-        { error: "Your subscription must be active before you can edit your public listing." },
-        403
-      );
+    const access = await ensureProfileEditable(data.id as string);
+    if (!access.allowed) {
+      return jsonResponse(request, { error: access.message }, 403);
     }
 
     if (!data.edit_token) {

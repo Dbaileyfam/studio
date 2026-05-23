@@ -1,7 +1,9 @@
+import { SUBSCRIPTION_INACTIVE_LOOKUP_MESSAGE } from "./lib/rosterAccess.js";
 import { corsHeaders, jsonResponse } from "./lib/cors.js";
 import { sendRosterEditLinkEmail } from "./lib/rosterEditLinkEmail.js";
 import { ensureRosterEditToken, rosterEditUrl } from "./lib/rosterEditToken.js";
 import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
+import { syncRosterProfileSubscription } from "./lib/rosterSubscriptionSync.js";
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });
@@ -22,7 +24,6 @@ export async function POST(request: Request) {
       .from("roster_profiles")
       .select("id, status, email, full_name, edit_token")
       .eq("email", email)
-      .eq("status", "active")
       .order("updated_at", { ascending: false })
       .limit(1);
 
@@ -45,7 +46,16 @@ export async function POST(request: Request) {
       return jsonResponse(request, {
         ok: false,
         message:
-          "No active Musician Roster profile found for that email. Use the same email you used for Stripe checkout, or contact 801 Family Studios.",
+          "No Musician Roster profile found for that email. Use the same email you used for Stripe checkout, or contact 801 Family Studios.",
+      });
+    }
+
+    const status = await syncRosterProfileSubscription(row.id as string);
+    if (status !== "active") {
+      return jsonResponse(request, {
+        ok: false,
+        message: SUBSCRIPTION_INACTIVE_LOOKUP_MESSAGE,
+        subscriptionActive: false,
       });
     }
 
@@ -79,6 +89,7 @@ export async function POST(request: Request) {
       editUrl,
       emailSent,
       apiVersion: 2,
+      subscriptionActive: true,
       message: emailSent
         ? "Your edit link is below. We also emailed a copy — check spam if you do not see it."
         : "Your private edit link is below. Bookmark it to update your listing anytime.",

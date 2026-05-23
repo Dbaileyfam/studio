@@ -1,6 +1,7 @@
 import { corsHeaders, jsonResponse } from "./lib/cors.js";
 import { ensureRosterEditToken, rosterEditUrl } from "./lib/rosterEditToken.js";
 import { getSupabaseAdmin } from "./lib/supabaseAdmin.js";
+import { syncRosterProfileSubscription } from "./lib/rosterSubscriptionSync.js";
 
 export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });
@@ -31,16 +32,17 @@ export async function GET(request: Request) {
       return jsonResponse(request, { error: "Profile not found" }, 404);
     }
 
+    const status = await syncRosterProfileSubscription(data.id as string);
+
     let editToken = data.edit_token as string | undefined;
-    if (data.status === "active" && !editToken) {
+    if (status === "active" && !editToken) {
       editToken = (await ensureRosterEditToken(supabase, data.id as string)) ?? undefined;
     }
-    const editUrl =
-      data.status === "active" && editToken ? rosterEditUrl(editToken) : undefined;
+    const editUrl = status === "active" && editToken ? rosterEditUrl(editToken) : undefined;
 
     return jsonResponse(request, {
       profileId: data.id,
-      status: data.status,
+      status,
       email: data.email,
       fullName: data.full_name,
       editUrl,
