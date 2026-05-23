@@ -213,29 +213,38 @@ const MusicianProfileForm = () => {
     setPreviewCard(buildRosterProfilePreview(snapshot, imageUrl));
 
     try {
-      if (isRosterApiConfigured()) {
-        const { checkoutUrl } = await createRosterCheckout(snapshot);
-        if (!checkoutUrl?.includes("stripe.com")) {
-          throw new Error("Invalid checkout URL from server");
-        }
-        toast.success("Profile saved — redirecting to secure checkout…");
-        window.location.assign(checkoutUrl);
-        return;
+      if (!isRosterApiConfigured()) {
+        throw new Error("Roster API is not configured on this site build.");
       }
-      throw new Error("API not configured");
-    } catch {
-      const fields = buildMusicianProfileEmailFields(snapshot, null);
-      submitMusicianProfileEmail(fields, photoFile);
-      setCheckoutUrl(ROSTER_STRIPE_URL);
-      setUsedLegacySubmit(true);
-      setSubmitted(true);
-      toast.message(
-        "Profile emailed to 801 — use the button below to subscribe on Stripe."
-      );
-    }
 
-    setSubmitting(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+      const { checkoutUrl } = await createRosterCheckout(snapshot);
+      if (!checkoutUrl?.includes("stripe.com")) {
+        throw new Error("Invalid checkout URL from server");
+      }
+      toast.success("Profile saved — redirecting to secure checkout…");
+      window.location.assign(checkoutUrl);
+      return;
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Could not save your profile online";
+
+      if (!isRosterApiConfigured()) {
+        const fields = buildMusicianProfileEmailFields(snapshot, null);
+        submitMusicianProfileEmail(fields, photoFile);
+        setCheckoutUrl(ROSTER_STRIPE_URL);
+        setUsedLegacySubmit(true);
+        setSubmitted(true);
+        toast.message(
+          "Profile emailed to 801 — use the button below to subscribe on Stripe."
+        );
+      } else {
+        toast.error(
+          `${message} Your profile was not saved to the roster database. Please try again or contact 801 Family Studios.`
+        );
+      }
+      setSubmitting(false);
+      return;
+    }
   };
 
   if (submitted) {
