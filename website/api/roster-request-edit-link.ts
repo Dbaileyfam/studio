@@ -78,6 +78,7 @@ export async function POST(request: Request) {
       ok: true,
       editUrl,
       emailSent,
+      apiVersion: 2,
       message: emailSent
         ? "Your edit link is below. We also emailed a copy — check spam if you do not see it."
         : "Your private edit link is below. Bookmark it to update your listing anytime.",
