@@ -1,3 +1,17 @@
+/**
+ * When true, roster signup/browse/edit pages show a pause screen and nav links are hidden.
+ * Set to false when you are ready to reopen the Musician Roster.
+ */
+export const ROSTER_PUBLICLY_DISABLED = true;
+
+const ROSTER_PUBLIC_PREFIXES = ["/musician-roster", "/musician-profile-form"] as const;
+
+export function isRosterPublicPath(pathname: string): boolean {
+  return ROSTER_PUBLIC_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+}
+
 /** Stripe Payment Link — $9/month musician roster subscription */
 export const ROSTER_STRIPE_URL =
   "https://buy.stripe.com/00wfZa1iF3MM1V5bHobZe05";

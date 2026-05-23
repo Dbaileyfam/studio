@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { isRosterPublicPath, ROSTER_PUBLICLY_DISABLED } from "@/lib/musicianRoster";
 import { Mail, MapPin, Phone, Music, Instagram, Facebook } from "lucide-react";
 import { SERVICES, getServicePath } from "@/lib/services";
 
@@ -95,7 +96,11 @@ const Footer = () => {
                 { path: "/upcoming-shows", label: "Upcoming Shows" },
                 { path: "/store", label: "Store" },
                 { path: "/contact", label: "Contact" },
-              ].map((link) => (
+              ]
+                .filter(
+                  (link) => !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(link.path))
+                )
+                .map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}

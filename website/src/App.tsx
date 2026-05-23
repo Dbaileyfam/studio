@@ -22,6 +22,7 @@ import MusicianRosterThankYou from "./pages/MusicianRosterThankYou";
 import MusicianRosterBrowse from "./pages/MusicianRosterBrowse";
 import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
 import MusicianRosterEditPage from "./pages/MusicianRosterEditPage";
+import RosterPublicGate from "./components/RosterPublicGate";
 import { SERVICES, getServicePath } from "@/lib/services";
 
 // Components
@@ -46,11 +47,46 @@ const AnimatedRoutes = () => {
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
         <Route path="/store/checkout" element={<StoreCheckout />} />
-        <Route path="/musician-roster" element={<MusicianRoster />} />
-        <Route path="/musician-roster/thank-you" element={<MusicianRosterThankYou />} />
-        <Route path="/musician-roster/browse" element={<MusicianRosterBrowse />} />
-        <Route path="/musician-profile-form" element={<MusicianProfileFormPage />} />
-        <Route path="/musician-roster/edit" element={<MusicianRosterEditPage />} />
+        <Route
+          path="/musician-roster"
+          element={
+            <RosterPublicGate>
+              <MusicianRoster />
+            </RosterPublicGate>
+          }
+        />
+        <Route
+          path="/musician-roster/thank-you"
+          element={
+            <RosterPublicGate>
+              <MusicianRosterThankYou />
+            </RosterPublicGate>
+          }
+        />
+        <Route
+          path="/musician-roster/browse"
+          element={
+            <RosterPublicGate>
+              <MusicianRosterBrowse />
+            </RosterPublicGate>
+          }
+        />
+        <Route
+          path="/musician-profile-form"
+          element={
+            <RosterPublicGate>
+              <MusicianProfileFormPage />
+            </RosterPublicGate>
+          }
+        />
+        <Route
+          path="/musician-roster/edit"
+          element={
+            <RosterPublicGate>
+              <MusicianRosterEditPage />
+            </RosterPublicGate>
+          }
+        />
         {SERVICES.map((service) => (
           <Route
             key={service.slug}

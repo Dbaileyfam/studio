@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { isRosterPublicPath, ROSTER_PUBLICLY_DISABLED } from "@/lib/musicianRoster";
 import { SERVICES, getServicePath, type ServiceSlug } from "@/lib/services";
 
 const Navbar = () => {
@@ -43,7 +44,7 @@ const Navbar = () => {
     { path: "/upcoming-shows", label: "Upcoming Shows" },
     { path: "/store", label: "Store" },
     { path: "/contact", label: "Contact" },
-  ];
+  ].filter((item) => !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(item.path)));
 
   const isPathActive = (path: string) => {
     if (path === "/") return location.pathname === "/";
