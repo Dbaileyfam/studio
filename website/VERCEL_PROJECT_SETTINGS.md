@@ -1,31 +1,40 @@
-# Vercel build fix — “Root Directory website does not exist”
+# Vercel project settings (801 roster API)
 
-The roster API lives in the **`website`** folder on the **`main`** branch.
+Use **one** setup only. The repo has `vercel.json` inside the **`website`** folder (not the repo root).
 
-The **`gh-pages`** branch only contains the built static site (`index.html`, `assets/`) — it has **no** `website/` folder. If Vercel builds `gh-pages` with Root Directory `website`, the build fails.
+## Required settings
 
-## Fix in Vercel (pick one setup)
+| Setting | Value |
+|--------|--------|
+| **Root Directory** | `website` |
+| **Production branch** | `main` (Settings → Environments → Production → Branch tracking) |
+| **Framework Preset** | **Other** (not Next.js) — Vite site + `/api` serverless functions |
 
-### Option A — Recommended (monorepo, root `vercel.json`)
+Do **not** set Root Directory to empty while using the `website` folder layout.
 
-1. [Vercel Dashboard](https://vercel.com/dashboard) → your project (e.g. `studio-theta-gules`) → **Settings** → **General**
-2. **Root Directory** → leave **empty** (or click **Edit** → clear the field → **Save**)
-3. **Settings** → **Git** → **Production Branch** → **`main`** (not `gh-pages`)
-4. **Deployments** → **Redeploy** latest `main`
+Do **not** build from branch **`gh-pages`** (no `api/` folder there).
 
-The repo root `vercel.json` runs `cd website && npm run build` and deploys `website/api` functions.
+## Build and Deployment (should match `website/vercel.json`)
 
-### Option B — Subfolder root
+| Field | Value |
+|--------|--------|
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Install Command | `npm install` |
 
-1. **Root Directory** → **`website`**
-2. **Production Branch** → **`main`**
-3. Redeploy
+## If you see: `website/api/**/*.ts` doesn't match any Serverless Functions
 
-Do **not** use Root Directory `website` with branch `gh-pages`.
+That means Vercel is using an **old root-level `vercel.json`** or Root Directory is wrong.
+
+1. **Root Directory** must be **`website`** (Settings → Build and Deployment).
+2. There must be **no** `vercel.json` at the **repo root** (`studio/vercel.json`) — only `website/vercel.json`.
+3. Redeploy from **`main`**.
+
+With Root Directory = `website`, functions live at `api/**/*.ts` (e.g. `api/health.ts`, `api/stripe-webhook.ts`).
 
 ## After a successful deploy
 
-- Health: `https://YOUR-PROJECT.vercel.app/api/health`
-- Roster list: `https://YOUR-PROJECT.vercel.app/api/roster-list`
+- `https://studio-theta-gules.vercel.app/api/health`
+- `https://studio-theta-gules.vercel.app/api/stripe-webhook` (GET shows plain-text OK message)
 
-GitHub Pages (`npm run deploy`) stays on **`gh-pages`** for www.801familystudios.com — that is separate from Vercel (API only).
+GitHub Pages (`npm run deploy`) is separate — www.801familystudios.com for the frontend only.
