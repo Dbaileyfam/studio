@@ -137,6 +137,25 @@ export async function fetchRosterProfileForEdit(
   return data;
 }
 
+export async function uploadRosterProfilePhoto(
+  token: string,
+  file: File
+): Promise<string> {
+  const url = apiBase
+    ? `${apiBase}/api/roster-upload-photo`
+    : "/api/roster-upload-photo";
+  const form = new FormData();
+  form.append("token", token);
+  form.append("file", file);
+
+  const res = await fetch(url, { method: "POST", body: form });
+  const data = await parseJson<{ ok: boolean; url: string; error?: string }>(res);
+  if (!data.url) {
+    throw new Error(data.error ?? "Photo upload failed");
+  }
+  return data.url;
+}
+
 export async function updateRosterProfile(
   token: string,
   profile: MusicianProfileFormData

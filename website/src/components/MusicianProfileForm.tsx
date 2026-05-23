@@ -40,6 +40,7 @@ import {
   createRosterCheckout,
   isRosterApiConfigured,
   updateRosterProfile,
+  uploadRosterProfilePhoto,
 } from "@/lib/rosterApi";
 import { ROSTER_BROWSE_PATH, ROSTER_PROFILE_FORM_PATH } from "@/lib/musicianRoster";
 import { Link } from "react-router-dom";
@@ -245,11 +246,28 @@ const MusicianProfileForm = ({
     }
 
     setSubmitting(true);
-    const snapshot = getFormSnapshot();
+    let snapshot = getFormSnapshot();
     const photoFile = profilePhoto ?? fileInputRef.current?.files?.[0] ?? null;
+
+    if (isEdit && editToken && photoFile) {
+      try {
+        setEditBlocked(null);
+        const uploadedUrl = await uploadRosterProfilePhoto(editToken, photoFile);
+        snapshot = { ...snapshot, profilePhotoLink: uploadedUrl };
+        setProfilePhotoLink(uploadedUrl);
+        setProfilePhoto(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Could not upload photo";
+        toast.error(message);
+        setSubmitting(false);
+        return;
+      }
+    }
+
     const { url: imageUrl, revoke } = resolveRosterProfileImage(
       photoFile,
-      profilePhotoLink
+      snapshot.profilePhotoLink
     );
 
     if (previewImageRevoke) URL.revokeObjectURL(previewImageRevoke);
@@ -689,7 +707,23 @@ const MusicianProfileForm = ({
               className={`${fieldClass} file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-4 file:py-2 file:text-sm file:text-white`}
               onChange={(e) => setProfilePhoto(e.target.files?.[0] ?? null)}
             />
-            <p className="text-xs text-gray-400">JPG or PNG, max 5 MB. You can also paste a link above.</p>
+            <p className="text-xs text-gray-400">
+              JPG or PNG, max 5 MB. Uploads save when you click &quot;Save changes.&quot; Or paste a
+              direct image URL above.
+            </p>
+            {isEdit && profilePhotoLink && !profilePhoto && (
+              <div className="mt-2 flex items-center gap-3 rounded-lg border border-white/10 bg-black/20 p-3">
+                <img
+                  src={profilePhotoLink}
+                  alt="Current profile"
+                  className="h-16 w-16 rounded-lg object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+                <p className="text-xs text-gray-400">Current photo on your listing</p>
+              </div>
+            )}
           </div>
         </div>
       </section>

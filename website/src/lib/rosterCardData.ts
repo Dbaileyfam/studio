@@ -4,6 +4,8 @@ import rosterPlaceholder from "@/assets/studio2.jpg";
 
 export type RosterMusicianCardData = {
   name: string;
+  stageName: string;
+  fullName: string;
   location: string;
   instruments: string;
   genres: string[];
@@ -12,6 +14,7 @@ export type RosterMusicianCardData = {
   travelDistance: string;
   minimumGigRate: string;
   availability: string[];
+  publicContactPreference: string;
   image: string;
   social: {
     instagram?: string;
@@ -70,6 +73,8 @@ export function buildRosterMusicianCard(
 ): RosterMusicianCardData {
   return {
     name: data.stageName.trim() || data.fullName.trim(),
+    stageName: data.stageName.trim(),
+    fullName: data.fullName.trim(),
     location: formatRosterLocation(data),
     instruments: data.instruments.trim(),
     genres: data.genres.slice(0, 5),
@@ -78,6 +83,7 @@ export function buildRosterMusicianCard(
     travelDistance: data.travelDistance,
     minimumGigRate: data.minimumGigRate.trim(),
     availability: data.availability,
+    publicContactPreference: data.publicContactPreference.trim(),
     image: imageUrl || rosterPlaceholder,
     social: {
       instagram: normalizeInstagram(data.instagram),
