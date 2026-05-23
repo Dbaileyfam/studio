@@ -16,7 +16,11 @@ export async function GET(request: Request) {
 
     if (error) {
       console.error(error);
-      return jsonResponse(request, { error: "Could not load roster" }, 500);
+      return jsonResponse(
+        request,
+        { error: "Could not load roster", detail: error.message },
+        500
+      );
     }
 
     const profiles = (data ?? []).map((row) => ({
