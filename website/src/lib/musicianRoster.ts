@@ -27,6 +27,10 @@ export const ROSTER_NO_COMMISSION =
 export const ROSTER_COMMISSION_DISCLAIMER =
   "This applies to the Musician Roster membership only. Our separate booking and artist management services may include commission as outlined in those agreements.";
 
+/** Membership pricing and charges. */
+export const ROSTER_TAXES_FEES_NOTE =
+  "Applicable taxes and fees apply to your roster membership and related charges.";
+
 export const ROSTER_FORM_EMAIL = "info@801familystudios.com";
 
 export const ROSTER_PROFILE_FORM_PATH = "/musician-profile-form";

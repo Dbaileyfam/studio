@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   ROSTER_BROWSE_PATH,
   ROSTER_COMMISSION_DISCLAIMER,
+  ROSTER_TAXES_FEES_NOTE,
   ROSTER_NO_COMMISSION,
   ROSTER_PROFILE_FORM_PATH,
 } from "@/lib/musicianRoster";
@@ -150,7 +151,9 @@ const MusicianRosterThankYou = () => {
                   musician roster — bookers can find you on the browse page now.
                 </p>
                 <p className="text-sm text-teal-200/90 mb-2">{ROSTER_NO_COMMISSION}</p>
-                <p className="text-xs text-gray-400 mb-8">{ROSTER_COMMISSION_DISCLAIMER}</p>
+                <p className="text-xs text-gray-400 mb-8">
+                  {ROSTER_COMMISSION_DISCLAIMER} {ROSTER_TAXES_FEES_NOTE}
+                </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
                   <Button
                     asChild
@@ -195,7 +198,9 @@ const MusicianRosterThankYou = () => {
                   takes less than a minute. This page will update automatically.
                 </p>
                 <p className="text-sm text-teal-200/90 mb-2">{ROSTER_NO_COMMISSION}</p>
-                <p className="text-xs text-gray-400 mb-8">{ROSTER_COMMISSION_DISCLAIMER}</p>
+                <p className="text-xs text-gray-400 mb-8">
+                  {ROSTER_COMMISSION_DISCLAIMER} {ROSTER_TAXES_FEES_NOTE}
+                </p>
                 <Button
                   asChild
                   variant="outline"

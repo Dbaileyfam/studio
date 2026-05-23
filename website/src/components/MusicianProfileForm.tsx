@@ -42,7 +42,7 @@ import {
   updateRosterProfile,
   uploadRosterProfilePhoto,
 } from "@/lib/rosterApi";
-import { ROSTER_BROWSE_PATH, ROSTER_PROFILE_FORM_PATH } from "@/lib/musicianRoster";
+import { ROSTER_BROWSE_PATH, ROSTER_PROFILE_FORM_PATH, ROSTER_TAXES_FEES_NOTE } from "@/lib/musicianRoster";
 import { Link } from "react-router-dom";
 import { submitMusicianProfileEmail } from "@/lib/submitMusicianProfileEmail";
 
@@ -375,6 +375,7 @@ const MusicianProfileForm = ({
               ? "Your profile was sent to 801 Family Studios. Subscribe below to join the roster."
               : "Subscribe for $9/month to go live on the public roster. Everyone who completes payment is added automatically."}
           </p>
+          <p className="mt-2 text-xs text-gray-400">{ROSTER_TAXES_FEES_NOTE}</p>
         </div>
 
         {checkoutUrl && (

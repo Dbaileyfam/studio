@@ -1,7 +1,7 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import MusicianProfileForm from "@/components/MusicianProfileForm";
 import PageSEO from "@/components/PageSEO";
-import { ROSTER_NO_COMMISSION, ROSTER_COMMISSION_DISCLAIMER } from "@/lib/musicianRoster";
+import { ROSTER_NO_COMMISSION, ROSTER_COMMISSION_DISCLAIMER, ROSTER_TAXES_FEES_NOTE } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -52,14 +52,14 @@ const MusicianProfileFormPage = () => {
               </h1>
               <p className="text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto">
                 Fill out your profile first. After you submit, subscribe for $9/month on
-                Stripe — everyone who pays is added to the public musician roster
-                automatically.
+                Stripe (plus applicable taxes and fees) — everyone who pays is added to the
+                public musician roster automatically.
               </p>
               <p className="mt-4 text-sm text-teal-200/90 max-w-xl mx-auto">
                 {ROSTER_NO_COMMISSION}
               </p>
               <p className="mt-2 text-xs text-gray-400 max-w-xl mx-auto">
-                {ROSTER_COMMISSION_DISCLAIMER}
+                {ROSTER_COMMISSION_DISCLAIMER} {ROSTER_TAXES_FEES_NOTE}
               </p>
             </motion.div>
 

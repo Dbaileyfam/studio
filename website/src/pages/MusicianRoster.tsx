@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   ROSTER_NO_COMMISSION,
   ROSTER_COMMISSION_DISCLAIMER,
+  ROSTER_TAXES_FEES_NOTE,
   ROSTER_BROWSE_PATH,
   ROSTER_EDIT_PATH,
   ROSTER_PROFILE_FORM_PATH,
@@ -33,7 +34,7 @@ const MusicianRoster = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="801 Musician Roster"
-        description="Join the 801 Musician Roster for $9/month. Get listed for fill-in gigs, solo performances, studio work, and private events anywhere in the U.S. No commission on roster gigs — you keep 100% of gig pay from roster listings. Booking and management services are separate."
+        description="Join the 801 Musician Roster for $9/month (plus applicable taxes and fees). Get listed for fill-in gigs, solo performances, studio work, and private events anywhere in the U.S. No commission on roster gigs — you keep 100% of gig pay from roster listings. Booking and management services are separate."
         path="/musician-roster"
         keywords={[
           "musician roster",
@@ -84,7 +85,7 @@ const MusicianRoster = () => {
                   through your listing.
                 </p>
                 <p className="mt-2 text-xs text-gray-400">
-                  {ROSTER_COMMISSION_DISCLAIMER}
+                  {ROSTER_COMMISSION_DISCLAIMER} {ROSTER_TAXES_FEES_NOTE}
                 </p>
               </motion.div>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -108,8 +109,8 @@ const MusicianRoster = () => {
                 </Button>
               </div>
               <p className="mt-4 text-sm text-gray-400 max-w-md text-center">
-                Step 1: profile · Step 2: $9/month on Stripe · Listing activates
-                automatically after payment
+                Step 1: profile · Step 2: $9/month on Stripe (taxes and fees may apply) · Listing
+                activates automatically after payment
               </p>
               <p className="mt-3 text-sm text-center">
                 <Link
