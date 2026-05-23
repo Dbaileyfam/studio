@@ -6,6 +6,11 @@ export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });
 }
 
+/** Browsers must not open this URL directly — use the profile form on 801familystudios.com. */
+export async function GET() {
+  return Response.redirect("https://www.801familystudios.com/musician-profile-form", 302);
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {

@@ -214,9 +214,12 @@ const MusicianProfileForm = () => {
 
     try {
       if (isRosterApiConfigured()) {
-        const { checkoutUrl: url } = await createRosterCheckout(snapshot);
+        const { checkoutUrl } = await createRosterCheckout(snapshot);
+        if (!checkoutUrl?.includes("stripe.com")) {
+          throw new Error("Invalid checkout URL from server");
+        }
         toast.success("Profile saved — redirecting to secure checkout…");
-        window.location.href = url;
+        window.location.assign(checkoutUrl);
         return;
       }
       throw new Error("API not configured");

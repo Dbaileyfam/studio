@@ -6,11 +6,7 @@ export async function OPTIONS(request: Request) {
   return new Response(null, { status: 204, headers: corsHeaders(request) });
 }
 
-/**
- * Confirms Stripe Checkout after payment and marks the profile active.
- * Used on the thank-you page when the webhook is slow or not configured yet.
- */
-export async function GET(request: Request) {
+async function handleActivate(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const sessionId = searchParams.get("session_id")?.trim();
@@ -58,4 +54,16 @@ export async function GET(request: Request) {
     const message = err instanceof Error ? err.message : "Server error";
     return jsonResponse(request, { error: message }, 500);
   }
+}
+
+/**
+ * Confirms Stripe Checkout after payment and marks the profile active.
+ * Used on the thank-you page when the webhook is slow or not configured yet.
+ */
+export async function GET(request: Request) {
+  return handleActivate(request);
+}
+
+export async function POST(request: Request) {
+  return handleActivate(request);
 }

@@ -34,6 +34,13 @@ async function notifyAdmin(profileId: string) {
   }).catch((err) => console.error("Admin notify failed", err));
 }
 
+export async function GET() {
+  return new Response(
+    "Stripe webhook endpoint (POST only). Configure this URL in Stripe Dashboard → Webhooks.",
+    { status: 200, headers: { "Content-Type": "text/plain" } }
+  );
+}
+
 export async function POST(request: Request) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
