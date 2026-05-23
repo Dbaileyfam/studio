@@ -57,7 +57,16 @@ const MusicianRosterThankYou = () => {
         return active;
       } catch (err) {
         if (cancelled) return true;
-        setErrorMessage(err instanceof Error ? err.message : "Could not confirm payment");
+        const msg = err instanceof Error ? err.message : "Could not confirm payment";
+        const blocked =
+          msg.includes("NetworkError") ||
+          msg.includes("Failed to fetch") ||
+          msg.includes("Load failed");
+        setErrorMessage(
+          blocked
+            ? "We could not reach the roster server from your browser. Wait a minute and open Browse Musicians — your payment may still have gone through."
+            : msg
+        );
         setStatus("error");
         return true;
       }
