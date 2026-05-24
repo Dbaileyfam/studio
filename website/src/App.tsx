@@ -22,7 +22,8 @@ import MusicianRosterThankYou from "./pages/MusicianRosterThankYou";
 import MusicianRosterBrowse from "./pages/MusicianRosterBrowse";
 import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
 import MusicianRosterEditPage from "./pages/MusicianRosterEditPage";
-import RosterPublicGate from "./components/RosterPublicGate";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { SERVICES, getServicePath } from "@/lib/services";
 
 // Components
@@ -43,6 +44,8 @@ const AnimatedRoutes = () => {
       <Routes location={location}>
         <Route path="/" element={<Index />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/featured-artists" element={<FeaturedArtists />} />
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />

@@ -2,7 +2,7 @@ import RosterMusicianCard from "@/components/RosterMusicianCard";
 import { buildRosterMusicianCard } from "@/lib/rosterCardData";
 import type { RosterMusicianCardData } from "@/lib/rosterCardData";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -750,6 +750,18 @@ const MusicianProfileForm = ({
           </Select>
         </div>
       </section>
+
+      <p className="text-xs text-gray-400 leading-relaxed max-w-2xl">
+        By submitting, you agree to our{" "}
+        <Link to="/terms" className="text-teal-300 underline hover:text-teal-200">
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link to="/privacy" className="text-teal-300 underline hover:text-teal-200">
+          Privacy Policy
+        </Link>
+        , including that the roster is a connection service only and does not guarantee gigs.
+      </p>
 
       <Button
         type="submit"

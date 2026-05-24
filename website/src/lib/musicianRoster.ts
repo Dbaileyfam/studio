@@ -31,6 +31,10 @@ export const ROSTER_COMMISSION_DISCLAIMER =
 export const ROSTER_TAXES_FEES_NOTE =
   "Applicable taxes and fees apply to your roster membership and related charges.";
 
+/** Roster is a directory/connection service — not employment or guaranteed bookings. */
+export const ROSTER_PLATFORM_DISCLAIMER =
+  "The Musician Roster is a listing and connection service only. 801 Family Studios does not guarantee gigs, bookings, or income. We are not responsible for the conduct, safety, contracts, or actions of musicians, venues, bookers, or other third parties — arrangements are between those parties.";
+
 export const ROSTER_FORM_EMAIL = "info@801familystudios.com";
 
 export const ROSTER_PROFILE_FORM_PATH = "/musician-profile-form";

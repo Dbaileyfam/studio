@@ -1,5 +1,6 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
+import RosterLegalNotice from "@/components/RosterLegalNotice";
 import { Button } from "@/components/ui/button";
 import {
   ROSTER_NO_COMMISSION,
@@ -143,6 +144,8 @@ const MusicianRoster = () => {
                 ))}
               </ul>
             </motion.div>
+
+            <RosterLegalNotice className="mt-8" />
 
             <motion.p
               variants={fadeIn}

@@ -11,6 +11,7 @@ import { publicRosterToCard } from "@/lib/rosterPublicCard";
 import { motion } from "framer-motion";
 import { Loader2, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import RosterLegalNotice from "@/components/RosterLegalNotice";
 import { ROSTER_EDIT_PATH } from "@/lib/musicianRoster";
 import { Link } from "react-router-dom";
 const fadeIn = {
@@ -179,6 +180,8 @@ const MusicianRosterBrowse = () => {
                 ))}
               </div>
             )}
+
+            <RosterLegalNotice variant="compact" className="mt-10 max-w-2xl mx-auto text-center" />
 
             <motion.div
               className="text-center mt-16 pt-8 border-t border-white/10"

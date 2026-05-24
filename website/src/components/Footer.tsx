@@ -168,10 +168,19 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-gray-300">
+          <p className="text-gray-300 mb-2">
             © {currentYear} 801 Family Studios. All rights reserved. | Made with{" "}
             <Music className="inline-block w-4 h-4 text-pink-400 mx-1" />
             for music lovers
+          </p>
+          <p className="text-sm text-gray-400">
+            <Link to="/terms" className="hover:text-white underline underline-offset-2">
+              Terms of Service
+            </Link>
+            {" · "}
+            <Link to="/privacy" className="hover:text-white underline underline-offset-2">
+              Privacy Policy
+            </Link>
           </p>
         </motion.div>
       </div>

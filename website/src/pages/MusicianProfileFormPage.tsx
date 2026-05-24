@@ -1,6 +1,7 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import MusicianProfileForm from "@/components/MusicianProfileForm";
 import PageSEO from "@/components/PageSEO";
+import RosterLegalNotice from "@/components/RosterLegalNotice";
 import { ROSTER_NO_COMMISSION, ROSTER_COMMISSION_DISCLAIMER, ROSTER_TAXES_FEES_NOTE } from "@/lib/musicianRoster";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
@@ -62,6 +63,8 @@ const MusicianProfileFormPage = () => {
                 {ROSTER_COMMISSION_DISCLAIMER} {ROSTER_TAXES_FEES_NOTE}
               </p>
             </motion.div>
+
+            <RosterLegalNotice className="mb-8" />
 
             <motion.div
               variants={fadeIn}
