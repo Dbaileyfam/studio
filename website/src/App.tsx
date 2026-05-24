@@ -22,6 +22,7 @@ import MusicianRosterThankYou from "./pages/MusicianRosterThankYou";
 import MusicianRosterBrowse from "./pages/MusicianRosterBrowse";
 import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
 import MusicianRosterEditPage from "./pages/MusicianRosterEditPage";
+import RosterPublicGate from "./components/RosterPublicGate";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { SERVICES, getServicePath } from "@/lib/services";
