@@ -24,7 +24,7 @@ import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
-const HEADLINE = "Recording, Websites, EPKs & Artist Support in Sandy, Utah";
+const HEADLINE = "Recording, Websites, EPKs & Artist Support in Salt Lake City (Sandy), Utah";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -85,7 +85,7 @@ const Index = () => {
     <AnimatedPageTransition>
       <PageSEO
         title="801 Family Studios"
-        description="801 Family Studios in Sandy, Utah — recording, mixing, mastering, custom websites, EPKs, booking support, studio rental, drum lessons, and artist services."
+        description="801 Family Studios in the Salt Lake City area (Sandy, Utah) — recording, mixing, mastering, custom websites, EPKs, booking support, studio rental, drum lessons, and artist services."
         path="/"
         keywords={[
           "801 Family Studios",
@@ -349,7 +349,7 @@ const Index = () => {
                   Serving Sandy, Salt Lake County & Utah Creatives
                 </h2>
                 <p className="text-gray-200 text-center leading-relaxed text-base md:text-lg">
-                  {SITE_NAME} is based in Sandy, Utah and works with musicians, bands, artists,
+                  {SITE_NAME} is based in Sandy, Utah (Salt Lake City area) and works with musicians, bands, artists,
                   creatives, and small businesses throughout the Salt Lake area and beyond.
                   Whether you need recording, mixing, mastering, a website, an EPK, booking
                   support, or drum lessons, we help you create a more professional presence
