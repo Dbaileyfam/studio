@@ -1,9 +1,9 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
-import MerchProductGrid from "@/components/MerchProductGrid";
 import StoreOrderForm from "@/components/StoreOrderForm";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Shirt } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MERCH_SHOP_URL } from "@/lib/siteNav";
 import { STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 
 const fadeIn = {
@@ -30,11 +30,11 @@ const Store = () => {
               custom={0}
             >
               <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 text-balance">
-                Websites, EPKs & Merch
+                Websites & EPKs
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Order a custom band Website or press kit below, or shop studio apparel on
-                Shopify.
+                Order a custom band website or electronic press kit. Pick a package, complete
+                the brief, and pay securely with Stripe.
               </p>
               <a
                 href={WEB_PORTFOLIO_URL}
@@ -93,7 +93,28 @@ const Store = () => {
 
             <StoreOrderForm />
 
-            <MerchProductGrid />
+            <motion.div
+              className="mt-14 rounded-2xl border border-white/15 bg-white/5 px-6 py-5 text-center max-w-xl mx-auto"
+              variants={fadeIn}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              custom={2}
+            >
+              <p className="text-gray-200 text-sm leading-relaxed flex flex-wrap items-center justify-center gap-2">
+                <Shirt className="h-4 w-4 text-teal-300 shrink-0" aria-hidden />
+                <span>Looking for studio apparel?</span>
+                <a
+                  href={MERCH_SHOP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-teal-300 hover:text-teal-200 font-medium"
+                >
+                  Shop merch on Shopify
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </p>
+            </motion.div>
 
             <motion.p
               className="text-center text-sm text-gray-400 mt-10"

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { isRosterPublicPath, ROSTER_PUBLICLY_DISABLED } from "@/lib/musicianRoster";
 import { Mail, MapPin, Phone, Music, Instagram, Facebook } from "lucide-react";
 import { SERVICES, getServicePath } from "@/lib/services";
+import { SITE_NAV_LINKS } from "@/lib/siteNav";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -88,26 +89,34 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3">
               {[
-                { path: "/", label: "Home" },
-                { path: "/#our-services", label: "All Services" },
-                { path: "/featured-artists", label: "Featured Artists" },
-                { path: "/musician-roster", label: "Musician Roster" },
-                { path: "/musician-roster/browse", label: "Browse Musicians" },
-                { path: "/upcoming-shows", label: "Upcoming Shows" },
-                { path: "/store", label: "Store" },
-                { path: "/contact", label: "Contact" },
+                { type: "internal" as const, path: "/", label: "Home" },
+                { type: "internal" as const, path: "/#our-services", label: "All Services" },
+                ...SITE_NAV_LINKS,
               ]
                 .filter(
-                  (link) => !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(link.path))
+                  (link) =>
+                    link.type === "external" ||
+                    !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(link.path))
                 )
                 .map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
-                  >
-                    {link.label}
-                  </Link>
+                <li key={link.type === "external" ? link.href : link.path}>
+                  {link.type === "external" ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-gray-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

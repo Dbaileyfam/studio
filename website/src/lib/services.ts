@@ -256,7 +256,7 @@ const ALL_SERVICES: Service[] = [
       },
       {
         label: "Order online",
-        description: "Start your website brief and checkout in our store.",
+        description: "Start your website brief and checkout on our order page.",
         to: "/store?product=website#order-form",
       },
     ],
@@ -358,7 +358,7 @@ const ALL_SERVICES: Service[] = [
       },
       {
         label: "Order an EPK",
-        description: "Submit your brief and order through our store.",
+        description: "Submit your brief and order on our Websites & EPKs page.",
         to: "/store?product=epk#order-form",
       },
     ],

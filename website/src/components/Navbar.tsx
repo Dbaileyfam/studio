@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { isRosterPublicPath, ROSTER_PUBLICLY_DISABLED } from "@/lib/musicianRoster";
 import { SERVICES, getServicePath, type ServiceSlug } from "@/lib/services";
+import { SITE_NAV_LINKS, type SiteNavLink } from "@/lib/siteNav";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,15 +37,32 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/featured-artists", label: "Featured Artists" },
-    { path: "/musician-roster", label: "Musician Roster" },
-    { path: "/musician-roster/browse", label: "Browse Musicians" },
-    { path: "/upcoming-shows", label: "Upcoming Shows" },
-    { path: "/store", label: "Store" },
-    { path: "/contact", label: "Contact" },
-  ].filter((item) => !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(item.path)));
+  const navItems = SITE_NAV_LINKS.filter(
+    (item) =>
+      item.type === "external" ||
+      !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(item.path))
+  );
+
+  const renderNavLink = (item: SiteNavLink, className: string, onNavigate?: () => void) => {
+    if (item.type === "external") {
+      return (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+          onClick={onNavigate}
+        >
+          {item.label}
+        </a>
+      );
+    }
+    return (
+      <Link to={item.path} className={className} onClick={onNavigate}>
+        {item.label}
+      </Link>
+    );
+  };
 
   const isPathActive = (path: string) => {
     if (path === "/") return location.pathname === "/";
@@ -162,11 +180,16 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {navItems.slice(1).map((item) => (
-                <motion.div key={item.path} className="flex items-center" whileHover={{ y: -2 }}>
-                  <Link to={item.path} className={linkClass(isPathActive(item.path))}>
-                    {item.label}
-                  </Link>
+              {navItems.map((item) => (
+                <motion.div
+                  key={item.type === "external" ? item.href : item.path}
+                  className="flex items-center"
+                  whileHover={{ y: -2 }}
+                >
+                  {renderNavLink(
+                    item,
+                    linkClass(item.type === "internal" && isPathActive(item.path))
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -272,20 +295,18 @@ const Navbar = () => {
                 </motion.div>
               ))}
 
-              {navItems.slice(1).map((item, index) => (
+              {navItems.map((item, index) => (
                 <motion.div
-                  key={item.path}
+                  key={item.type === "external" ? item.href : item.path}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: (SERVICES.length + index) * 0.04 }}
                 >
-                  <Link
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className={mobileLinkClass(isPathActive(item.path))}
-                  >
-                    {item.label}
-                  </Link>
+                  {renderNavLink(
+                    item,
+                    mobileLinkClass(item.type === "internal" && isPathActive(item.path)),
+                    () => setIsOpen(false)
+                  )}
                 </motion.div>
               ))}
             </motion.div>
