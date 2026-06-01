@@ -14,20 +14,6 @@ const UpcomingShows = () => {
 
   const events = [
     {
-      id: "random-precision-may30",
-      title: "Random Precision",
-      subtitle: "A Pink Floyd Tribute • Redemption Bar & Grill",
-      imageSrc: "/images/upcoming/random-precision-may30-redemption.png",
-      imageAlt:
-        "Flyer: Random Precision, a Pink Floyd tribute, at Redemption Bar & Grill on Saturday, May 30 — $10 tickets",
-      date: "Saturday, May 30, 2026",
-      venue: "Redemption Bar & Grill",
-      address: "Salt Lake City, UT",
-      time: "See flyer for show time",
-      note: "$10 tickets. Prism-era tribute night — details on the flyer.",
-      accent: "from-indigo-500/30 to-amber-500/30",
-    },
-    {
       id: "tribe-alleykats-june4",
       title: "Tribe of I & The Alley Kats",
       subtitle: "Hog Wallow Pub • Salt Lake City, UT",
