@@ -25,7 +25,9 @@ import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
 const HEADLINE =
-  "Recording Studio Serving Salt Lake City Artists & Musicians";
+  "Salt Lake City-Area Music Studio for Recording, EPKs, Websites & Artist Booking";
+const SUBHEADLINE =
+  "801 Family Studios helps musicians, bands, and performers record music, build professional websites and EPKs, get booked, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -85,8 +87,8 @@ const Index = () => {
   return (
     <AnimatedPageTransition>
       <PageSEO
-        title="Recording Studio Serving Salt Lake City Artists & Musicians"
-        description="801 Family Studios in the Salt Lake City area (Sandy, Utah) — recording, mixing, mastering, custom websites, EPKs, booking support, studio rental, drum lessons, and artist services."
+        title="Salt Lake City-Area Music Studio for Recording, EPKs, Websites & Artist Booking"
+        description={SUBHEADLINE}
         path="/"
         keywords={[
           "801 Family Studios",
@@ -181,10 +183,7 @@ const Index = () => {
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
-                    801 Family Studios helps musicians, bands, creatives, and small businesses
-                    build their sound, brand, and online presence through recording, mixing,
-                    mastering, custom websites, electronic press kits, booking support, studio
-                    rental, and drum lessons.
+                    {SUBHEADLINE}
                   </motion.p>
                   <motion.div
                     className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
