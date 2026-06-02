@@ -18,9 +18,9 @@ import {
 } from "@/components/ui/accordion";
 import { HOME_FAQS } from "@/lib/homeFaqs";
 import { SITE_NAME } from "@/lib/site";
+import HeroLogo from "@/components/HeroLogo";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
-import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
@@ -113,9 +113,9 @@ const Index = () => {
               <motion.div
                 className="text-center max-w-3xl mx-auto px-4 relative z-10"
               >
-                <motion.div
-                  className="w-96 md:w-[32rem] h-96 md:h-[32rem] mx-auto mb-8 origin-center"
-                  style={
+                <HeroLogo
+                  reduceMotion={reduceMotion}
+                  scrollStyle={
                     reduceMotion
                       ? undefined
                       : {
@@ -124,30 +124,7 @@ const Index = () => {
                           y: logoY,
                         }
                   }
-                  whileHover={
-                    reduceMotion
-                      ? undefined
-                      : {
-                          scale: 1.02,
-                          boxShadow:
-                            "0 25px 50px -12px rgba(0,0,0,0.3), 0 0 40px -10px rgba(255,255,255,0.15)",
-                        }
-                  }
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.div
-                    className="w-full h-full surface-glass rounded-3xl flex items-center justify-center shadow-2xl ring-2 ring-teal-400/30 ring-offset-4 ring-offset-[var(--bg-base)]"
-                    initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <img
-                      src={logo}
-                      alt="801 Family Studios Logo"
-                      className="w-4/5 h-4/5 object-contain drop-shadow-lg"
-                    />
-                  </motion.div>
-                </motion.div>
+                />
 
                 <motion.div
                   style={
