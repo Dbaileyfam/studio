@@ -1,6 +1,8 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
+import StudioGallery from "@/components/StudioGallery";
 import { Button } from "@/components/ui/button";
+import { serviceHasStudioGallery } from "@/lib/studioGallery";
 import {
   getServiceBySlug,
   getServicePath,
@@ -156,6 +158,18 @@ const ServiceDetail = () => {
             >
               {service.intro}
             </motion.p>
+
+            {serviceHasStudioGallery(service.slug) && (
+              <motion.section
+                className="mb-10 rounded-3xl border border-white/15 bg-white/5 p-6 md:p-8"
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
+                <StudioGallery />
+              </motion.section>
+            )}
 
             {service.sections.map((section, index) => (
               <motion.section
