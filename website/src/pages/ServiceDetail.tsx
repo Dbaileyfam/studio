@@ -164,8 +164,8 @@ const ServiceDetail = () => {
                 className="mb-10 rounded-3xl border border-white/15 bg-white/5 p-6 md:p-8"
                 variants={fadeIn}
                 initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
+                animate="animate"
+                custom={2.5}
               >
                 <StudioGallery />
               </motion.section>
