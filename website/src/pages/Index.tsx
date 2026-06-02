@@ -24,7 +24,8 @@ import logo from "@/assets/locologo.png";
 import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
-const HEADLINE = "Recording, Websites, EPKs & Artist Support in Salt Lake City (Sandy), Utah";
+const HEADLINE =
+  "Recording Studio Serving Salt Lake City Artists & Musicians";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -84,7 +85,7 @@ const Index = () => {
   return (
     <AnimatedPageTransition>
       <PageSEO
-        title="801 Family Studios"
+        title="Recording Studio Serving Salt Lake City Artists & Musicians"
         description="801 Family Studios in the Salt Lake City area (Sandy, Utah) — recording, mixing, mastering, custom websites, EPKs, booking support, studio rental, drum lessons, and artist services."
         path="/"
         keywords={[
@@ -407,9 +408,12 @@ const Index = () => {
               </motion.div>
             </section>
 
-            <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-8 pb-8 leading-relaxed px-4">
+            <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-8 leading-relaxed px-4">
               Policies: Deposits may be required for booking. Cancellations may incur fees.
               Custom projects available upon consultation.
+            </p>
+            <p className="text-sm md:text-base text-gray-400 max-w-4xl mx-auto text-center mt-6 pb-10 leading-relaxed px-4">
+              Our studio is based in Sandy, just south of Salt Lake City.
             </p>
           </div>
         </div>
