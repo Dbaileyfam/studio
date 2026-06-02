@@ -17,8 +17,7 @@ type NoteParticle = {
   rotate: number;
 };
 
-const SYMBOLS = ["♪", "♫", "♬", "♩"];
-const COLORS = ["#5eead4", "#2dd4bf", "#fbbf24", "#f59e0b", "#fde68a"];
+import { randomNoteColor, randomNoteSymbol } from "@/lib/musicalNotes";
 
 const MIN_MOVE_PX = 16;
 const MIN_MOVE_MS = 18;
@@ -76,8 +75,8 @@ const MusicalNoteTrail = () => {
         y: event.clientY + (Math.random() * 18 - 9),
         size: 14 + Math.random() * 12,
         delayMs: i * 35,
-        symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)] ?? "♪",
-        color: COLORS[Math.floor(Math.random() * COLORS.length)] ?? "#2dd4bf",
+        symbol: randomNoteSymbol(),
+        color: randomNoteColor(),
         rotate: (Math.random() - 0.5) * 70,
       }));
 

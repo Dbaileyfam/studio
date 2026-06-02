@@ -1,21 +1,32 @@
 import logo from "@/assets/locologo.png";
-import { cn } from "@/lib/utils";
+import {
+  randomNoteColor,
+  randomNoteSymbol,
+} from "@/lib/musicalNotes";
 import {
   motion,
-  useMotionTemplate,
-  useMotionValue,
   useSpring,
   useTransform,
+  useMotionValue,
   type MotionStyle,
 } from "framer-motion";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
-const ORBIT_NOTES = [
-  { symbol: "♪", duration: 18, radius: "46%", delay: 0, color: "text-teal-300" },
-  { symbol: "♫", duration: 24, radius: "52%", delay: 0.25, color: "text-amber-300" },
-  { symbol: "♬", duration: 21, radius: "48%", delay: 0.5, color: "text-teal-200" },
-  { symbol: "♩", duration: 27, radius: "44%", delay: 0.75, color: "text-amber-200" },
-];
+type FloatingNote = {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  delayMs: number;
+  symbol: string;
+  color: string;
+  rotate: number;
+};
+
+const MAX_NOTES = 28;
+const AMBIENT_INTERVAL_MS = 420;
+const HOVER_NOTES_PER_MOVE = 2;
+const MIN_HOVER_MOVE_PX = 14;
 
 type HeroLogoProps = {
   reduceMotion: boolean | null;
@@ -24,128 +35,133 @@ type HeroLogoProps = {
 
 const HeroLogo = ({ reduceMotion, scrollStyle }: HeroLogoProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const idRef = useRef(0);
+  const lastHoverRef = useRef({ x: 0, y: 0 });
+  const [notes, setNotes] = useState<FloatingNote[]>([]);
+
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
+  const tiltX = useSpring(useTransform(pointerY, [-0.5, 0.5], [6, -6]), {
+    stiffness: 180,
+    damping: 22,
+  });
+  const tiltY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-6, 6]), {
+    stiffness: 180,
+    damping: 22,
+  });
 
-  const tiltX = useSpring(useTransform(pointerY, [-0.5, 0.5], [10, -10]), {
-    stiffness: 180,
-    damping: 22,
-  });
-  const tiltY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-10, 10]), {
-    stiffness: 180,
-    damping: 22,
-  });
-  const glareX = useSpring(useTransform(pointerX, [-0.5, 0.5], [30, 70]), {
-    stiffness: 120,
-    damping: 24,
-  });
-  const glareY = useSpring(useTransform(pointerY, [-0.5, 0.5], [25, 75]), {
-    stiffness: 120,
-    damping: 24,
-  });
-  const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.22) 0%, transparent 55%)`;
+  const spawnNote = useCallback((x: number, y: number, delayMs = 0) => {
+    const note: FloatingNote = {
+      id: idRef.current++,
+      x,
+      y,
+      size: 16 + Math.random() * 14,
+      delayMs,
+      symbol: randomNoteSymbol(),
+      color: randomNoteColor(),
+      rotate: (Math.random() - 0.5) * 70,
+    };
+    setNotes((current) => [...current.slice(-(MAX_NOTES - 1)), note]);
+  }, []);
+
+  const spawnAroundLogo = useCallback(() => {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 38 + Math.random() * 14;
+    const x = 50 + Math.cos(angle) * radius;
+    const y = 50 + Math.sin(angle) * radius;
+    spawnNote(x, y, Math.random() * 80);
+  }, [spawnNote]);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const timer = window.setInterval(spawnAroundLogo, AMBIENT_INTERVAL_MS);
+    return () => window.clearInterval(timer);
+  }, [reduceMotion, spawnAroundLogo]);
+
+  const removeNote = (id: number) => {
+    setNotes((current) => current.filter((note) => note.id !== id));
+  };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (reduceMotion || !containerRef.current) return;
+
     const rect = containerRef.current.getBoundingClientRect();
-    pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
-    pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
+    const localX = (event.clientX - rect.left) / rect.width - 0.5;
+    const localY = (event.clientY - rect.top) / rect.height - 0.5;
+    pointerX.set(localX);
+    pointerY.set(localY);
+
+    const xPct = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPct = ((event.clientY - rect.top) / rect.height) * 100;
+    const dx = xPct - lastHoverRef.current.x;
+    const dy = yPct - lastHoverRef.current.y;
+    if (Math.hypot(dx, dy) < MIN_HOVER_MOVE_PX) return;
+
+    lastHoverRef.current = { x: xPct, y: yPct };
+    for (let i = 0; i < HOVER_NOTES_PER_MOVE; i++) {
+      spawnNote(
+        xPct + (Math.random() * 10 - 5),
+        yPct + (Math.random() * 10 - 5),
+        i * 35,
+      );
+    }
   };
 
   const resetTilt = () => {
     pointerX.set(0);
     pointerY.set(0);
+    lastHoverRef.current = { x: 0, y: 0 };
   };
 
   return (
     <motion.div
       ref={containerRef}
-      className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[32rem] md:h-[32rem] mx-auto mb-8 origin-center"
+      className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] mx-auto mb-8 origin-center"
       style={reduceMotion ? undefined : scrollStyle}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetTilt}
-      whileHover={
-        reduceMotion
-          ? undefined
-          : { scale: 1.02, transition: { type: "spring", stiffness: 300 } }
-      }
     >
-      {/* Ambient pulse behind the stage */}
       {!reduceMotion && (
         <motion.div
-          className="absolute inset-6 rounded-[2rem] bg-gradient-to-br from-teal-500/30 via-transparent to-amber-500/25 blur-3xl"
+          className="absolute inset-[12%] rounded-full bg-gradient-to-br from-teal-500/25 via-transparent to-amber-500/20 blur-3xl pointer-events-none"
           aria-hidden
-          animate={{ opacity: [0.45, 0.75, 0.45], scale: [0.95, 1.05, 0.95] }}
+          animate={{ opacity: [0.4, 0.65, 0.4], scale: [0.95, 1.05, 0.95] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
       )}
 
-      {/* Expanding sound-wave rings */}
       {!reduceMotion &&
-        [0, 1.2, 2.4].map((delay) => (
-          <motion.div
-            key={delay}
-            className="absolute inset-4 rounded-[1.75rem] border border-teal-400/25"
+        notes.map((note) => (
+          <span
+            key={note.id}
+            className="cursor-note-glitter absolute z-20 pointer-events-none"
+            style={
+              {
+                left: `${note.x}%`,
+                top: `${note.y}%`,
+                fontSize: note.size,
+                color: note.color,
+                animationDelay: `${note.delayMs}ms`,
+                "--note-rotate": `${note.rotate}deg`,
+              } as CSSProperties
+            }
+            onAnimationEnd={() => removeNote(note.id)}
             aria-hidden
-            initial={{ scale: 0.92, opacity: 0.5 }}
-            animate={{ scale: [0.92, 1.12, 0.92], opacity: [0.45, 0, 0.45] }}
-            transition={{
-              duration: 3.6,
-              delay,
-              repeat: Infinity,
-              ease: "easeOut",
-            }}
-          />
-        ))}
-
-      {/* Orbiting music notes */}
-      {!reduceMotion &&
-        ORBIT_NOTES.map((note) => (
-          <motion.div
-            key={note.symbol + note.duration}
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: note.duration,
-              repeat: Infinity,
-              ease: "linear",
-              delay: note.delay,
-            }}
           >
-            <span
-              className={cn(
-                "absolute left-1/2 -translate-x-1/2 text-2xl md:text-3xl drop-shadow-[0_0_12px_rgba(45,212,191,0.6)]",
-                note.color,
-              )}
-              style={{ top: `calc(50% - ${note.radius})` }}
-            >
-              {note.symbol}
-            </span>
-          </motion.div>
+            {note.symbol}
+          </span>
         ))}
 
-      {/* Rotating gradient ring */}
-      {!reduceMotion && (
-        <motion.div
-          className="absolute -inset-[3px] rounded-[1.65rem] p-[3px] hero-logo-ring"
-          aria-hidden
-          animate={{ rotate: 360 }}
-          transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="w-full h-full rounded-[1.55rem] bg-[var(--bg-base)]" />
-        </motion.div>
-      )}
-
-      {/* Main logo card */}
       <motion.div
-        className="relative w-full h-full [perspective:1200px]"
-        initial={reduceMotion ? false : { opacity: 0, scale: 0.88, rotateZ: -4 }}
-        animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-        transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 flex h-full w-full items-center justify-center [perspective:1000px]"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.div
-          className="relative w-full h-full"
+        <motion.img
+          src={logo}
+          alt="801 Family Studios Logo"
+          className="w-[88%] max-w-md object-contain drop-shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
           style={
             reduceMotion
               ? undefined
@@ -155,50 +171,27 @@ const HeroLogo = ({ reduceMotion, scrollStyle }: HeroLogoProps) => {
                   transformStyle: "preserve-3d",
                 }
           }
-        >
-        <motion.div
-          className={cn(
-            "relative w-full h-full surface-glass rounded-3xl flex items-center justify-center",
-            "shadow-2xl ring-2 ring-teal-400/30 ring-offset-4 ring-offset-[var(--bg-base)] overflow-hidden",
-            !reduceMotion && "hero-logo-shimmer",
-          )}
-          animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  y: [0, -8, 0],
+                  filter: [
+                    "drop-shadow(0 0 24px rgba(45, 212, 191, 0.3))",
+                    "drop-shadow(0 0 40px rgba(245, 158, 11, 0.35))",
+                    "drop-shadow(0 0 24px rgba(45, 212, 191, 0.3))",
+                  ],
+                }
+          }
           transition={
             reduceMotion
               ? undefined
-              : { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+              : {
+                  y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" },
+                  filter: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                }
           }
-        >
-          {!reduceMotion && (
-            <motion.div
-              className="absolute inset-0 pointer-events-none mix-blend-overlay"
-              style={{ background: glare }}
-              aria-hidden
-            />
-          )}
-          <motion.img
-            src={logo}
-            alt="801 Family Studios Logo"
-            className="relative z-10 w-4/5 h-4/5 object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.45)]"
-            animate={
-              reduceMotion
-                ? undefined
-                : {
-                    filter: [
-                      "drop-shadow(0 0 20px rgba(45, 212, 191, 0.25))",
-                      "drop-shadow(0 0 36px rgba(245, 158, 11, 0.35))",
-                      "drop-shadow(0 0 20px rgba(45, 212, 191, 0.25))",
-                    ],
-                  }
-            }
-            transition={
-              reduceMotion
-                ? undefined
-                : { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }
-          />
-        </motion.div>
-        </motion.div>
+        />
       </motion.div>
     </motion.div>
   );
