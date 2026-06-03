@@ -6,13 +6,27 @@ Use **one** setup only. The repo has `vercel.json` inside the **`website`** fold
 
 | Setting | Value |
 |--------|--------|
-| **Root Directory** | `website` |
-| **Production branch** | `main` (Settings → Environments → Production → Branch tracking) |
+| **Root Directory** | **`website`** (no leading slash — exactly `website`) |
+| **Production branch** | **`main`** (Settings → Environments → Production → Branch tracking) |
 | **Framework Preset** | **Other** (not Next.js) — Vite site + `/api` serverless functions |
 
 Do **not** set Root Directory to empty while using the `website` folder layout.
 
-Do **not** build from branch **`gh-pages`** (no `api/` folder there).
+Do **not** build from branch **`gh-pages`** — that branch is static-only (built `dist/`). It has **no `website/` folder**, which causes:
+
+> The specified Root Directory "website" does not exist.
+
+## Fix: Root Directory "website" does not exist
+
+1. Vercel → your project → **Settings** → **Git**
+2. Set **Production Branch** to **`main`** (not `gh-pages`).
+3. **Settings** → **Build and Deployment** → **Root Directory** = **`website`**
+4. Click **Save**, then **Deployments** → **Redeploy** latest `main`.
+
+If Production Branch is already `main` and you still see the error:
+
+- Confirm the Git repo is **`Dbaileyfam/studio`** (monorepo with a `website/` folder on `main`), not a separate repo that only contains the app at the root.
+- If the app lives at the **repo root** (no `website/` folder), set Root Directory to **empty** instead — but then `/api/*` must live at `api/` in that repo layout (this project expects `website/api/`).
 
 ## Build and Deployment
 
