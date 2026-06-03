@@ -6,7 +6,7 @@ Use **one** setup only. The repo has `vercel.json` inside the **`website`** fold
 
 | Setting | Value |
 |--------|--------|
-| **Root Directory** | **`website`** (no leading slash — exactly `website`) |
+| **Root Directory** | **Leave empty** (repo root) — build runs via `/vercel.json` → `cd website && …` |
 | **Production branch** | **`main`** (Settings → Environments → Production → Branch tracking) |
 | **Framework Preset** | **Other** (not Next.js) — Vite site + `/api` serverless functions |
 
@@ -18,10 +18,42 @@ Do **not** build from branch **`gh-pages`** — that branch is static-only (buil
 
 ## Fix: Root Directory "website" does not exist
 
-1. Vercel → your project → **Settings** → **Git**
-2. Set **Production Branch** to **`main`** (not `gh-pages`).
-3. **Settings** → **Build and Deployment** → **Root Directory** = **`website`**
-4. Click **Save**, then **Deployments** → **Redeploy** latest `main`.
+Do these in order. **Branch is not under Git anymore** in the current Vercel dashboard.
+
+### Step 1 — Production branch (`main`, not `gh-pages`)
+
+1. [vercel.com](https://vercel.com) → open your project (e.g. `studio-theta-gules`)
+2. Top tabs: **Settings** (not Deployments)
+3. **Left sidebar** → **Environments** (under “Build and Deployment” or its own item)
+4. Click the **Production** row/card (not Preview)
+5. Find **Branch Tracking** (or “Branch”)
+6. Change the branch name to **`main`** → **Save**
+
+If you do not see **Environments** in the sidebar, use the Settings search box and type `branch` or `production`.
+
+### Step 2 — Root Directory (leave empty)
+
+If saving **`website`** as Root Directory fails even on **`main`**, use the repo-root `vercel.json` instead:
+
+1. **Settings** → **Build and Deployment** → **Root Directory**
+2. **Clear the field** (empty / `.` — not `website`) → **Save**
+3. Builds use `/vercel.json` at the repo root, which runs `cd website && npm run build`
+
+**Why `website` might fail:** the connected repo in Vercel must be **`Dbaileyfam/studio`** (monorepo). If the project was linked to a copy of the app without a `website/` folder, or Root Directory is set to `website` when the app is already at the repo root, validation fails.
+
+**Optional (monorepo layout):** Root Directory = `website` also works when Git shows `Dbaileyfam/studio` and you can save it without error. Do not use both — pick empty + root `vercel.json` **or** `website` as root, not both.
+
+### Step 3 — Redeploy
+
+1. **Deployments** tab
+2. Open the latest deployment from branch **`main`**
+3. **⋯** menu → **Redeploy**
+
+Or push any commit to `main` to trigger a new build.
+
+### What the Git page is for
+
+**Settings → Git** only shows the connected repo (GitHub), deploy hooks, and PR comments — **not** production branch or root directory.
 
 If Production Branch is already `main` and you still see the error:
 
