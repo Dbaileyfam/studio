@@ -27,3 +27,4 @@ node_modules
 
 # One Heart Orchestra — standalone repo (github.com/Dbaileyfam/OneHeartOrchestra)
 OneHeartOrchestra/
+.vercel

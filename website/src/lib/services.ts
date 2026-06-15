@@ -620,65 +620,212 @@ const ALL_SERVICES: Service[] = [
   },
   {
     slug: "social-media",
-    cardTitle: "Social Media & Promotion",
+    cardTitle: "Social Media",
     navLabel: "Social Media",
-    title: "Social Media & Artist Promotion",
+    title: "Social Media Management & Promotion",
     metaDescription:
-      "Music marketing and social media support for Utah artists — content push from $150/mo or full artist growth package at $500/mo from 801 Family Studios.",
+      "Social media management for bands, artists, and local businesses in Utah — monthly packages from $125/mo with finished posts, reels, captions, and scheduling at 801 Family Studios.",
     keywords: [
+      "social media management Utah",
+      "social media for bands",
+      "Instagram management Sandy Utah",
+      "local business social media Salt Lake City",
       "music marketing Utah",
-      "artist social media management",
-      "music promotion services",
-      "Instagram marketing for musicians",
     ],
     icon: "📣",
     gradient: "from-emerald-500/20 to-teal-500/20",
     borderColor: "border-emerald-400/30",
     cardDescription:
-      "Monthly Content Push Support: $150/month. Artist Growth Package: $500/month with posts, engagement, and content support.",
+      "Monthly packages from $125/mo. Finished posts, reels, captions, scheduling, and strategy for bands, artists, and local businesses.",
     homeTeaser:
-      "Social media and promotional support so you stay visible while focusing on your music.",
-    heroSubtitle: "Stay visible while you focus on writing, recording, and performing.",
-    startingPrice: "From $150/month",
+      "Consistent, professional content that keeps your page active, polished, and easy to book or buy from.",
+    heroSubtitle:
+      "Consistent, professional content that keeps your page active, polished, and easy to book or buy from.",
+    startingPrice: "From $125/month · Full-service from $1,200/month",
     intro:
-      "Consistency wins on social media, but most artists do not have hours every week to plan posts, write captions, and engage. Our promotion packages meet you where you are — whether you create your own content and need distribution help, or you want a fuller growth partner.",
+      "Social media packages for bands, solo artists, and local businesses who want a consistent online presence without spending hours each week on captions, graphics, and scheduling. You provide the raw content and details — we turn it into polished, ready-to-publish posts.",
+    examples: [
+      {
+        label: "Featured artists",
+        description: "See bands and businesses in our community keeping active online.",
+        to: "/featured-artists",
+      },
+      {
+        label: "Websites for musicians",
+        description: "Pair social media with a professional website or link-in-bio hub.",
+        to: "/websites-for-musicians",
+      },
+    ],
     sections: [
       {
-        heading: "Monthly Content Push — $150/mo",
-        body: "You create the content. We help market and push it so it actually gets seen.",
+        heading: "Who this is for",
+        body: "Whether you need a simple consistent presence or full campaign support, there is a package built for your goals.",
         bullets: [
-          "Distribution and promotional support",
-          "Ideal if you already film and post",
-          "Keeps your release cycle active",
+          "Bands and solo artists promoting shows, releases, and booking",
+          "Venues, studios, and service businesses with regular events or offerings",
+          "Clients who create their own content but want direction and scheduling support",
+          "Businesses ready for growth with reels, engagement, and analytics",
         ],
       },
       {
-        heading: "Artist Growth Package — $500/mo",
-        body: "A fuller monthly partnership for artists ready to invest in presence.",
+        heading: "What \"finished posts\" means",
+        body: "We create each post using your photos, videos, event info, announcements, music links, reviews, services, prices, logos, or updates.",
         bullets: [
-          "Up to 12 posts from your existing media",
-          "Content support and promotional push",
-          "Facebook and Instagram engagement",
+          "Caption, simple graphic or layout, hashtags, and location tags",
+          "Account tagging and scheduled or live posting",
+          "Client provides raw content; we deliver polished, ready-to-publish posts",
+        ],
+      },
+      {
+        heading: "What you provide vs. what we handle",
+        body: "Clear roles keep your feed active without overwhelming your schedule.",
+        bullets: [
+          "You provide: photos, videos, event dates, service details, logos, links, prices, promotions, and timely approvals",
+          "We provide: content planning, captions, simple design, scheduling/posting, hashtags, tags, local positioning, and monthly performance notes",
+        ],
+      },
+      {
+        heading: "Example content for bands",
+        body: "Posts we create to keep your band visible and bookable.",
+        bullets: [
+          "Upcoming show announcement, reminder, and after-show recap",
+          "Live or rehearsal clip and band member spotlight",
+          "Song, album, or EPK promo and booking call-to-action",
+          "Behind-the-scenes studio content",
+        ],
+      },
+      {
+        heading: "Example content for businesses",
+        body: "Posts that build trust and drive inquiries for local businesses.",
+        bullets: [
+          "Service spotlight, customer testimonial, and before/after post",
+          "Behind-the-scenes post, promo or special, and educational tip",
+          "Staff or owner spotlight and call-to-action post",
         ],
       },
     ],
     pricing: [
-      { label: "Content Push Support", price: "$150/month" },
-      { label: "Artist Growth Package", price: "$500/month" },
+      {
+        label: "Content Direction Only",
+        price: "$125/month",
+        note: "8 post ideas, caption drafts, suggested schedule, hashtags, and content prompts — you create and post",
+      },
+      {
+        label: "Social Starter",
+        price: "$250/month",
+        note: "8 finished posts/month — Facebook + Instagram, captions, simple graphics, hashtags, scheduling, basic monthly summary",
+      },
+      {
+        label: "Consistent Presence",
+        price: "$450/month",
+        note: "12–16 finished posts/month, 4 reels/short videos from your footage, content calendar, light comment/message monitoring, monthly performance notes",
+      },
+      {
+        label: "Business / Band Builder",
+        price: "$650/month",
+        note: "16 finished posts/month, 6 reels/short videos, testimonials, service/show promos, call-to-action posts, light engagement, monthly report",
+      },
+      {
+        label: "Growth Package",
+        price: "$750/month",
+        note: "20 finished posts/month, 8 reels/short videos, Facebook + Instagram + one extra platform, strategy call, community engagement, analytics report",
+      },
+      {
+        label: "Full-Service Local Promo",
+        price: "From $1,200/month",
+        note: "25–30 posts/month, 10–12 reels/short videos, weekly check-in, campaign planning, website/link-in-bio updates, basic ad management — ad spend not included",
+      },
+      {
+        label: "Single flyer or social graphic",
+        price: "$25–$50",
+        note: "One-time add-on",
+      },
+      {
+        label: "Reel edit from provided footage",
+        price: "$40–$75",
+        note: "One-time add-on",
+      },
+      {
+        label: "Event promo campaign",
+        price: "$100–$250",
+        note: "One-time add-on",
+      },
+      {
+        label: "EPK refresh",
+        price: "$100–$250",
+        note: "One-time add-on",
+      },
+      {
+        label: "Website update tied to campaign",
+        price: "$50–$150",
+        note: "One-time add-on",
+      },
+      {
+        label: "Content shoot (1–2 hours)",
+        price: "$150–$300",
+        note: "One-time add-on",
+      },
+      {
+        label: "Paid ad setup",
+        price: "$100–$250",
+        note: "One-time add-on — ad spend not included",
+      },
+      {
+        label: "Extra platform",
+        price: "+$75–$150/month",
+        note: "Add-on to any monthly package",
+      },
+      {
+        label: "Extra reel or video",
+        price: "+$40–$75 each",
+        note: "Add-on to any monthly package",
+      },
     ],
     faqs: [
       {
-        question: "Do you create video and photo content?",
+        question: "What content do I need to provide and when?",
         answer:
-          "The Content Push plan assumes you supply media. The Growth Package includes support shaping and scheduling posts from what you provide.",
+          "Submit client-provided content at least 7 days before the scheduled post date. Rush posts requested with less than 48 hours notice may be billed separately.",
+      },
+      {
+        question: "Are revisions included?",
+        answer:
+          "One revision round is included per post before publishing when approval is required.",
+      },
+      {
+        question: "Is paid ad spend included?",
+        answer:
+          "No. Paid ad setup is available as an add-on, but ad spend is not included in any package.",
+      },
+      {
+        question: "Do packages guarantee followers, bookings, or sales?",
+        answer:
+          "No. Packages do not guarantee followers, bookings, sales, or viral posts — but consistent, professional content gives you a stronger foundation to grow from.",
+      },
+      {
+        question: "Do unused posts roll over?",
+        answer: "Unused posts do not roll over unless agreed in writing.",
+      },
+      {
+        question: "Can I cancel my monthly package?",
+        answer: "Monthly packages may be cancelled with 14 days notice.",
+      },
+      {
+        question: "Need a custom plan?",
+        answer:
+          "We can build a package around your show schedule, launch, business goals, or content volume. Contact us to discuss a custom plan.",
       },
     ],
-    primaryCta: { label: "Talk about promotion", to: "/contact" },
-    published: false,
+    primaryCta: { label: "Talk about social media", to: "/contact" },
+    relatedPrompt: {
+      text: "Need a website or EPK to pair with your social presence?",
+      to: "/websites-for-musicians",
+      linkLabel: "Websites for musicians",
+    },
   },
 ];
 
-/** Live on the site (social media tabled for now). */
+/** Live on the site. */
 export const SERVICES = ALL_SERVICES.filter((service) => service.published !== false);
 
 export const getServiceBySlug = (slug: string): Service | undefined =>
