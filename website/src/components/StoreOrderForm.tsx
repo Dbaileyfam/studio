@@ -218,7 +218,7 @@ const StoreOrderForm = () => {
         </motion.div>
         <p className="mt-6 text-sm text-gray-400">
           After your brief, you&apos;ll go to checkout to pay. Simple edits are free;
-          complex changes are $20 per edit.
+          complex changes are $25/hr.
         </p>
         <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>

@@ -279,7 +279,7 @@ const ALL_SERVICES: Service[] = [
           "Bio, music players, photos, and video embeds",
           "Show dates, contact forms, and social links",
           "Mobile-first layout and fast loading",
-          "Simple content edits included; complex changes $20 per edit",
+          "Simple content edits included; complex changes $25/hr",
         ],
       },
       {
