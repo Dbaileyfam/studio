@@ -216,16 +216,17 @@ const StoreOrderForm = () => {
             <p className="font-semibold text-white mb-3">Venmo</p>
             <img
               src={VENMO_QR_SRC}
-              alt="Venmo QR code for 50% deposit"
+              alt="801 Family Studios Venmo QR code for website and EPK deposits"
               className="mx-auto w-44 h-44 rounded-xl bg-white p-2 object-contain"
             />
+            <p className="text-sm text-gray-300 mt-3">801 Family Studios</p>
             <a
               href={VENMO_PROFILE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-teal-300 hover:text-teal-200 font-medium mt-3"
+              className="inline-flex items-center gap-1.5 text-sm text-teal-300 hover:text-teal-200 font-medium mt-1"
             >
-              @Desiree-Bailey-3
+              Open Venmo
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </div>

@@ -2,7 +2,7 @@ import RosterMusicianCard from "@/components/RosterMusicianCard";
 import { buildRosterMusicianCard } from "@/lib/rosterCardData";
 import type { RosterMusicianCardData } from "@/lib/rosterCardData";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -43,7 +43,6 @@ import {
   uploadRosterProfilePhoto,
 } from "@/lib/rosterApi";
 import { ROSTER_BROWSE_PATH, ROSTER_PROFILE_FORM_PATH, ROSTER_TAXES_FEES_NOTE } from "@/lib/musicianRoster";
-import { Link } from "react-router-dom";
 import { submitMusicianProfileEmail } from "@/lib/submitMusicianProfileEmail";
 
 const fieldClass =
