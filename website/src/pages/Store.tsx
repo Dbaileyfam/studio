@@ -33,8 +33,8 @@ const Store = () => {
                 Websites & EPKs
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Order a custom band website or electronic press kit. Pick a package, complete
-                the brief, and pay securely with Stripe.
+                Order a custom band website or electronic press kit. Pick a package, email
+                your completed brief, and send a 50% deposit via PayPal or Venmo.
               </p>
               <a
                 href={WEB_PORTFOLIO_URL}
@@ -68,6 +68,9 @@ const Store = () => {
                       <span className="text-4xl">{item.icon}</span>
                       <h3 className="text-2xl font-bold text-white mt-4">{item.name}</h3>
                       <p className="text-3xl font-bold text-teal-300 mt-2">${item.price}</p>
+                      <p className="text-sm text-gray-400 mt-1">
+                        50% deposit: ${Math.round(item.price / 2)}
+                      </p>
                       <p className="text-gray-300 mt-3 text-sm leading-relaxed">
                         {item.description}
                       </p>

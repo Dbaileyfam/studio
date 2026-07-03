@@ -1,8 +1,16 @@
 export type StoreProductId = "website" | "epk" | "bundle";
 
-/** Shown on website/EPK order forms and checkout. */
+/** Shown on website/EPK order instructions. */
 export const ORDER_DELIVERY_NOTE =
-  "Your finished website or EPK is delivered by email. Please allow 3–5 days after payment and your completed brief.";
+  "Your finished website or EPK is delivered by email. Please allow 7–14 days after your 50% deposit and completed brief.";
+
+/** Google Doc brief — open and make a copy, fill it out, then email it to us. */
+export const ORDER_BRIEF_FORM_URL =
+  "https://docs.google.com/document/d/1rhV5WO6LOe0U_e_yFEx_IAnK8kzA7iUa7sjBhU05jsI/copy";
+
+export const VENMO_PROFILE_URL = "https://venmo.com/u/Desiree-Bailey-3";
+export const PAYPAL_QR_SRC = "/payments/paypal-qr.png";
+export const VENMO_QR_SRC = "/payments/venmo-qr.png";
 
 export type StoreProduct = {
   id: StoreProductId;
@@ -76,6 +84,8 @@ export const STORE_PACKAGE_PICKER_ORDER: StoreProductId[] = [
   "epk",
   "bundle",
 ];
+
+export const depositAmount = (price: number) => Math.round(price / 2);
 
 export const WEB_PORTFOLIO_URL =
   "https://dbaileyfam.github.io/801familywebsiteportfolio/";

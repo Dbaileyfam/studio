@@ -38,7 +38,7 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "How do I start a project with 801 Family Studios?",
     answer:
-      "Pick a service from the menu or the section above, review pricing on that page, then contact us or order a website or EPK from Websites & EPKs in the nav. We will walk you through the project brief after you reach out.",
+      "Pick a service from the menu or the section above, review pricing on that page, then contact us. For websites and EPKs, email your completed brief and send a 50% deposit via PayPal or Venmo from the Websites & EPKs page.",
     link: { to: "/contact", label: "Contact us" },
   },
 ];

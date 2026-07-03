@@ -255,8 +255,8 @@ const ALL_SERVICES: Service[] = [
         external: true,
       },
       {
-        label: "Order online",
-        description: "Start your website brief and checkout on our order page.",
+        label: "How to order",
+        description: "Email your completed brief and send a 50% deposit via PayPal or Venmo.",
         to: "/store?product=website#order-form",
       },
     ],
@@ -289,11 +289,15 @@ const ALL_SERVICES: Service[] = [
       },
     ],
     pricing: [
-      { label: "Band Website", price: "$300", note: "One complete site — simple edits free" },
+      {
+        label: "Band Website",
+        price: "$300",
+        note: "50% deposit ($150) to start — simple edits free",
+      },
       {
         label: "Website + EPK Bundle",
         price: "$400",
-        note: "Save $50 vs ordering separately",
+        note: "50% deposit ($200) to start — save $50 vs ordering separately",
       },
     ],
     faqs: [
@@ -305,7 +309,12 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How long does a website take?",
         answer:
-          "After payment and your completed brief, allow 3–5 days for delivery by email.",
+          "After your 50% deposit and completed brief, allow 7–14 days for delivery by email.",
+      },
+      {
+        question: "How do I pay?",
+        answer:
+          "Email your completed brief to info@801familystudios.com and send a 50% deposit through PayPal or Venmo. The balance is due when your site is ready.",
       },
       {
         question: "Can you help with a domain name?",
@@ -357,8 +366,8 @@ const ALL_SERVICES: Service[] = [
         external: true,
       },
       {
-        label: "Order an EPK",
-        description: "Submit your brief and order on our Websites & EPKs page.",
+        label: "How to order",
+        description: "Email your completed brief and send a 50% deposit via PayPal or Venmo.",
         to: "/store?product=epk#order-form",
       },
     ],
@@ -387,11 +396,15 @@ const ALL_SERVICES: Service[] = [
       },
     ],
     pricing: [
-      { label: "Band EPK", price: "$150", note: "Simple edits included free" },
+      {
+        label: "Band EPK",
+        price: "$150",
+        note: "50% deposit ($75) to start — simple edits included free",
+      },
       {
         label: "Website + EPK Bundle",
         price: "$400",
-        note: "Best value for new bands",
+        note: "50% deposit ($200) to start — best value for new bands",
       },
     ],
     faqs: [
@@ -404,6 +417,11 @@ const ALL_SERVICES: Service[] = [
         question: "What assets do I need to send?",
         answer:
           "Bio text, photos, music links, video links, and booking or press contacts. We will walk you through it in the order brief.",
+      },
+      {
+        question: "How do I order and pay?",
+        answer:
+          "Fill out our brief form, email it to info@801familystudios.com, and send a 50% deposit through PayPal or Venmo. The balance is due when your EPK is ready.",
       },
     ],
     primaryCta: { label: "Order a band EPK", to: "/store?product=epk#order-form" },

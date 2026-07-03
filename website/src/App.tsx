@@ -14,7 +14,6 @@ import NotFound from "./pages/NotFound";
 import FeaturedArtists from "./pages/FeaturedArtists";
 import UpcomingShows from "./pages/UpcomingShows";
 import Store from "./pages/Store";
-import StoreCheckout from "./pages/StoreCheckout";
 import ServiceDetail from "./pages/ServiceDetail";
 import LegacyServiceRedirect from "./pages/LegacyServiceRedirect";
 import MusicianRoster from "./pages/MusicianRoster";
@@ -50,7 +49,7 @@ const AnimatedRoutes = () => {
         <Route path="/featured-artists" element={<FeaturedArtists />} />
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/store/checkout" element={<StoreCheckout />} />
+        <Route path="/store/checkout" element={<Navigate to="/store#order-form" replace />} />
         <Route
           path="/musician-roster"
           element={
