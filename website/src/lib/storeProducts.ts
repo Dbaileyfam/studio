@@ -90,4 +90,4 @@ export const depositAmount = (price: number) => Math.round(price / 2);
 export const WEB_PORTFOLIO_URL =
   "https://dbaileyfam.github.io/801familywebsiteportfolio/";
 
-export const STORE_FORM_EMAIL = "info@801familystudios.com";
+export const STORE_FORM_EMAIL = "websites@801familystudios.com";

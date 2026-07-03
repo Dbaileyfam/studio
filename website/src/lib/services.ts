@@ -314,7 +314,7 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How do I pay?",
         answer:
-          "Email your completed brief to info@801familystudios.com and send a 50% deposit through PayPal or Venmo. The balance is due when your site is ready.",
+          "Email your completed brief to websites@801familystudios.com and send a 50% deposit through PayPal or Venmo. The balance is due when your site is ready.",
       },
       {
         question: "Can you help with a domain name?",
@@ -421,7 +421,7 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How do I order and pay?",
         answer:
-          "Fill out our brief form, email it to info@801familystudios.com, and send a 50% deposit through PayPal or Venmo. The balance is due when your EPK is ready.",
+          "Fill out our brief form, email it to websites@801familystudios.com, and send a 50% deposit through PayPal or Venmo. The balance is due when your EPK is ready.",
       },
     ],
     primaryCta: { label: "Order a band EPK", to: "/store?product=epk#order-form" },
