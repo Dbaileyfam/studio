@@ -65,16 +65,18 @@
         flex-direction: column;
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-B7ngyuCM.js"></script>
+    <script type="module" crossorigin src="/assets/index-DWMIQEZL.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-hRs5SL1K.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DV7YUMsr.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-B_p_xfCD.css">
   </head>
 
   <body>
     <script>
       (function() {
+        // Migrate legacy hash routes (/#/store) to path routes (/store).
+        // Do not prepend pathname — "/" + "/store" becomes "//store" (host "store").
         if (location.hash && location.hash.indexOf("#/") === 0) {
-          location.replace(location.pathname + location.hash.slice(1));
+          location.replace(location.hash.slice(1) + location.search);
         }
       })();
     </script>

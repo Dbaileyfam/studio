@@ -12,6 +12,11 @@ export const VENMO_PROFILE_URL = "https://venmo.com/u/Desiree-Bailey-3";
 export const PAYPAL_QR_SRC = "/payments/paypal-qr.png";
 export const VENMO_QR_SRC = "/payments/venmo-qr.png";
 
+/** Stripe Pricing Table embed for website / EPK deposits (Websites & EPKs payment step). */
+export const STRIPE_PRICING_TABLE_ID = "prctbl_1Tvlhs33fWEaCkVCIOMQKCAr";
+export const STRIPE_PUBLISHABLE_KEY =
+  "pk_live_51TYdlt33fWEaCkVCA8K0XNczLwzwmrjQjvuWKCitcZmM0B8IcBLkyHXuUuzQh9knJbkrchEwAiPiv0q9H6mNjpQM00nu5GXqVq";
+
 export type StoreProduct = {
   id: StoreProductId;
   name: string;

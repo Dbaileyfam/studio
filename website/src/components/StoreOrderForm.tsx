@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, FileText, Mail, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import StripePricingTable from "@/components/StripePricingTable";
 import {
   ORDER_BRIEF_FORM_URL,
   ORDER_DELIVERY_NOTE,
@@ -82,7 +83,7 @@ const StoreOrderForm = () => {
   const mailtoHref = `mailto:${STORE_FORM_EMAIL}?subject=${encodeURIComponent(
     `${selected.name} order — completed brief`
   )}&body=${encodeURIComponent(
-    `Hi,\n\nI'd like to order the ${selected.name} ($${selected.price}).\n\nI've attached / linked my completed Band Website / EPK Information form and sent a $${deposit} deposit (50%) via PayPal or Venmo.\n\nArtist / band name:\nContact name:\nPhone:\n\nThanks!`
+    `Hi,\n\nI'd like to order the ${selected.name} ($${selected.price}).\n\nI've attached / linked my completed Band Website / EPK Information form and sent a $${deposit} deposit (50%) via Stripe, PayPal, or Venmo.\n\nArtist / band name:\nContact name:\nPhone:\n\nThanks!`
   )}`;
 
   return (
@@ -93,7 +94,7 @@ const StoreOrderForm = () => {
         </h2>
         <p className="text-gray-300 leading-relaxed">
           Pick a package, fill out our brief, email it to us, and send a 50% deposit
-          through PayPal or Venmo. We start once we have both.
+          through Stripe, PayPal, or Venmo. We start once we have both.
         </p>
         <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>
@@ -194,41 +195,54 @@ const StoreOrderForm = () => {
             </p>
             <p className="text-gray-200 mt-2 leading-relaxed">
               For{" "}
-              <span className="text-white font-medium">{selected.name}</span>, send a{" "}
-              <span className="text-teal-200 font-semibold">${deposit}</span> deposit
-              (50% of ${selected.price}) via PayPal or Venmo. Note your band or artist
-              name in the payment memo.
+              <span className="text-white font-medium">{selected.name}</span>, the
+              deposit is{" "}
+              <span className="text-teal-200 font-semibold">${deposit}</span> (50% of $
+              {selected.price}). Pay securely with Stripe below, or use PayPal / Venmo
+              and note your band or artist name in the payment memo.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-center">
-            <p className="font-semibold text-white mb-3">PayPal</p>
-            <img
-              src={PAYPAL_QR_SRC}
-              alt="PayPal QR code for 50% deposit"
-              className="mx-auto w-44 h-44 rounded-xl bg-white p-2 object-contain"
-            />
-            <p className="text-sm text-gray-300 mt-3">Scan to pay with PayPal</p>
-          </div>
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-center">
-            <p className="font-semibold text-white mb-3">Venmo</p>
-            <img
-              src={VENMO_QR_SRC}
-              alt="801 Family Studios Venmo QR code for website and EPK deposits"
-              className="mx-auto w-44 h-44 rounded-xl bg-white p-2 object-contain"
-            />
-            <p className="text-sm text-gray-300 mt-3">801 Family Studios</p>
-            <a
-              href={VENMO_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-teal-300 hover:text-teal-200 font-medium mt-1"
-            >
-              Open Venmo
-              <ExternalLink className="h-3.5 w-3.5" />
-            </a>
+        <div className="mt-6">
+          <p className="font-semibold text-white mb-3 text-center sm:text-left">
+            Pay with Stripe
+          </p>
+          <StripePricingTable />
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-white/15">
+          <p className="font-semibold text-white mb-4 text-center sm:text-left">
+            Or pay with PayPal / Venmo
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-center">
+              <p className="font-semibold text-white mb-3">PayPal</p>
+              <img
+                src={PAYPAL_QR_SRC}
+                alt="PayPal QR code for 50% deposit"
+                className="mx-auto w-44 h-44 rounded-xl bg-white p-2 object-contain"
+              />
+              <p className="text-sm text-gray-300 mt-3">Scan to pay with PayPal</p>
+            </div>
+            <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-center">
+              <p className="font-semibold text-white mb-3">Venmo</p>
+              <img
+                src={VENMO_QR_SRC}
+                alt="801 Family Studios Venmo QR code for website and EPK deposits"
+                className="mx-auto w-44 h-44 rounded-xl bg-white p-2 object-contain"
+              />
+              <p className="text-sm text-gray-300 mt-3">801 Family Studios</p>
+              <a
+                href={VENMO_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-teal-300 hover:text-teal-200 font-medium mt-1"
+              >
+                Open Venmo
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </div>
         </div>
 
