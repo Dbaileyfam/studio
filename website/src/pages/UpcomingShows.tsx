@@ -55,6 +55,44 @@ const UpcomingShows = () => {
       note: "Closing night of the June trio — see the flyer for full info.",
       accent: "from-teal-500/30 to-orange-500/30",
     },
+    {
+      id: "magi-one-heart-aug22",
+      title: "MAGI & the One Heart Orchestra",
+      subtitle: "Fenceline Cider • Mancos, CO",
+      imageSrc: "/images/upcoming/magi-one-heart-aug22-fenceline-cider.png",
+      imageAlt:
+        "Flyer: MAGI and the One Heart Orchestra at Fenceline Cider on August 22, 2026 in Mancos, CO",
+      date: "Saturday, August 22, 2026",
+      venue: "Fenceline Cider",
+      address: "141 South Main Street, Mancos, CO",
+      time: "6 PM – 9 PM",
+      note: "Original roots reggae — live music at Fenceline Cider.",
+      accent: "from-green-500/30 to-yellow-500/25",
+      primaryCta: {
+        label: "Band website",
+        href: "https://oneheartorchestra.com",
+        icon: "external" as const,
+      },
+    },
+    {
+      id: "magi-one-heart-sept26",
+      title: "MAGI & the One Heart Orchestra",
+      subtitle: "Stateline Bar & Grill • Dove Creek, CO",
+      imageSrc: "/images/upcoming/magi-one-heart-sept26-stateline.png",
+      imageAlt:
+        "Flyer: MAGI and the One Heart Orchestra at Stateline Bar & Grill on September 26, 2026 in Dove Creek, CO",
+      date: "Saturday, September 26, 2026",
+      venue: "Stateline Bar & Grill",
+      address: "69576 US-491, Dove Creek, CO 81324",
+      time: "6 PM – 9 PM",
+      note: "Live roots reggae — Four Corners local music. Call 970-677-2649 for venue info.",
+      accent: "from-red-500/25 to-green-500/30",
+      primaryCta: {
+        label: "Band website",
+        href: "https://oneheartorchestra.com",
+        icon: "external" as const,
+      },
+    },
   ];
 
   return (
