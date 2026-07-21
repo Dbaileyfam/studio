@@ -5,6 +5,7 @@ export type ServiceSlug =
   | "mixing-mastering-services"
   | "websites-for-musicians"
   | "epk-design-for-musicians"
+  | "graphic-design-for-bands"
   | "booking-management"
   | "studio-rental"
   | "drum-lessons-sandy-utah"
@@ -432,6 +433,171 @@ const ALL_SERVICES: Service[] = [
     },
     relatedPrompt: {
       text: "Need a full website too?",
+      to: "/websites-for-musicians",
+      linkLabel: "Websites for musicians",
+    },
+  },
+  {
+    slug: "graphic-design-for-bands",
+    cardTitle: "Graphic Design",
+    navLabel: "Graphic Design",
+    title: "Graphic Design for Bands",
+    metaDescription:
+      "Graphic design for bands in Utah — show flyers $50, logos $100, album covers, merch art, and branding packages from $100 at 801 Family Studios.",
+    keywords: [
+      "graphic design for bands",
+      "band flyer design Utah",
+      "album cover design Salt Lake City",
+      "band logo design Utah",
+      "show poster design",
+    ],
+    icon: "🎨",
+    gradient: "from-amber-500/20 to-rose-500/20",
+    borderColor: "border-amber-400/30",
+    cardDescription:
+      "Show flyers $50, logos $100, album covers, merch art, and branding packages from $100. Cohesive graphics that match your sound.",
+    homeTeaser:
+      "Professional, cohesive graphics for shows, socials, streaming, merch, and your full visual identity.",
+    heroSubtitle:
+      "Polished designs that match your band’s sound, personality, and image — ready for social, streaming, merch, and promo.",
+    startingPrice: "Individual pieces $30–$100 · Packages from $100",
+    intro:
+      "Professional, cohesive graphics designed to match your band’s sound, personality, and image. Whether you need artwork for one upcoming show or a complete visual identity, we’ll create polished designs you can use across social media, streaming platforms, merchandise, and promotional materials.",
+    examples: [
+      {
+        label: "Upcoming shows",
+        description: "See flyers and posters from shows connected with our studio community.",
+        to: "/upcoming-shows",
+      },
+      {
+        label: "Websites & EPKs",
+        description: "Pair your new graphics with a band website or press kit.",
+        to: "/store",
+      },
+    ],
+    sections: [
+      {
+        heading: "Who this is for",
+        body: "From a single show poster to a full rebrand, we design for working bands and solo artists who need visuals that look intentional everywhere they show up.",
+        bullets: [
+          "Bands promoting upcoming shows or tours",
+          "Artists releasing singles or albums",
+          "New bands building a first visual identity",
+          "Acts refreshing logos, merch, and social presence",
+        ],
+      },
+      {
+        heading: "Band Launch Package — $225",
+        body: "A coordinated visual package for a new band, release, or rebrand.",
+        bullets: [
+          "Band logo or wordmark",
+          "Album or single cover",
+          "Social media profile image",
+          "Social media banner",
+          "Two promotional graphics",
+          "Two revision rounds",
+        ],
+      },
+      {
+        heading: "Show Promotion Package — $100",
+        body: "Everything needed to promote an upcoming performance.",
+        bullets: [
+          "Main show flyer",
+          "Square Instagram/Facebook version",
+          "Story-sized version",
+          "Event cover image",
+          "One revision round",
+        ],
+      },
+      {
+        heading: "Complete Artist Branding Package — $350",
+        body: "A full visual identity for your website, EPK, social media, and merchandise.",
+        bullets: [
+          "Primary logo",
+          "Alternate logo or simplified mark",
+          "Color palette",
+          "Font recommendations",
+          "Social media profile image and banner",
+          "Three reusable promotional graphics",
+          "Basic brand guide",
+          "Two revision rounds",
+        ],
+      },
+    ],
+    pricing: [
+      {
+        label: "Show flyer or event poster",
+        price: "$50",
+      },
+      {
+        label: "Social media graphic",
+        price: "$30",
+      },
+      {
+        label: "Album or single cover",
+        price: "$75",
+      },
+      {
+        label: "Band logo or wordmark",
+        price: "$100",
+      },
+      {
+        label: "Tour poster",
+        price: "$75",
+      },
+      {
+        label: "Merch or T-shirt design",
+        price: "$75",
+      },
+      {
+        label: "Social media banner/header",
+        price: "$40",
+      },
+      {
+        label: "EPK or one-sheet layout",
+        price: "$75",
+      },
+      {
+        label: "Band Launch Package",
+        price: "$225",
+        note: "Logo, cover, social profile + banner, two promo graphics, two revision rounds",
+      },
+      {
+        label: "Show Promotion Package",
+        price: "$100",
+        note: "Main flyer, square + story versions, event cover, one revision round",
+      },
+      {
+        label: "Complete Artist Branding Package",
+        price: "$350",
+        note: "Primary + alternate logos, palette, fonts, social assets, three promo graphics, brand guide, two revision rounds",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I order a single graphic, or do I need a package?",
+        answer:
+          "Either works. Individual pieces are $30–$100 depending on the deliverable. Packages are the best value when you need several coordinated assets for a launch, show, or rebrand.",
+      },
+      {
+        question: "What do I need to provide?",
+        answer:
+          "Share your band name, show or release details, any existing logos or photos, preferred colors or reference art, and where the design will be used (print, Instagram, Spotify, merch, etc.).",
+      },
+      {
+        question: "How many revisions are included?",
+        answer:
+          "Show Promotion includes one revision round. Band Launch and Complete Artist Branding include two. Extra revisions can be quoted if you need more rounds.",
+      },
+      {
+        question: "How do I get started?",
+        answer:
+          "Contact us with the project type (flyer, logo, package, etc.), your deadline, and any reference images. We’ll confirm scope, pricing, and a start date.",
+      },
+    ],
+    primaryCta: { label: "Request graphic design", to: "/contact" },
+    relatedPrompt: {
+      text: "Need a website or EPK to match your new look?",
       to: "/websites-for-musicians",
       linkLabel: "Websites for musicians",
     },

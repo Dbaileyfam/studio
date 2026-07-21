@@ -7,6 +7,7 @@ export const LEGACY_PATH_REDIRECTS: Record<string, ServiceSlug> = {
   "mixing-mastering": "mixing-mastering-services",
   websites: "websites-for-musicians",
   epk: "epk-design-for-musicians",
+  "graphic-design": "graphic-design-for-bands",
   "drum-lessons": "drum-lessons-sandy-utah",
 };
 
