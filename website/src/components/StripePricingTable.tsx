@@ -22,7 +22,7 @@ const StripePricingTable = () => {
   }, []);
 
   return (
-    <div className="stripe-pricing-table-wrap w-full overflow-hidden rounded-2xl bg-white/95 p-2 sm:p-4">
+    <div className="stripe-pricing-table-wrap w-full min-h-[280px]">
       <stripe-pricing-table
         pricing-table-id={STRIPE_PRICING_TABLE_ID}
         publishable-key={STRIPE_PUBLISHABLE_KEY}
