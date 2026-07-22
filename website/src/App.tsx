@@ -25,6 +25,7 @@ import RosterPublicGate from "./components/RosterPublicGate";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { SERVICES, getServicePath } from "@/lib/services";
+import { STORE_PATH } from "@/lib/siteNav";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -48,8 +49,9 @@ const AnimatedRoutes = () => {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/featured-artists" element={<FeaturedArtists />} />
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
-        <Route path="/store" element={<Store />} />
-        <Route path="/store/checkout" element={<Navigate to="/store#order-form" replace />} />
+        <Route path={STORE_PATH} element={<Store />} />
+        <Route path="/store" element={<Navigate to={STORE_PATH} replace />} />
+        <Route path="/store/checkout" element={<Navigate to={`${STORE_PATH}#order-form`} replace />} />
         <Route
           path="/musician-roster"
           element={

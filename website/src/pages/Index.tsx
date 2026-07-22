@@ -185,7 +185,7 @@ const Index = () => {
                       variant="outline"
                       className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     >
-                      <Link to="/store?product=bundle#order-form">
+                      <Link to="/websites-and-epks?product=bundle#order-form">
                         I need a Website / EPK
                       </Link>
                     </Button>

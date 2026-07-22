@@ -27,7 +27,7 @@ export const HOME_FAQS: HomeFaq[] = [
     question: "Can you help with both a website and an EPK?",
     answer:
       "Yes. Our Website + EPK bundle includes both deliverables from one project brief and saves $50 compared with ordering them separately.",
-    link: { to: "/store?product=bundle#order-form", label: "Website + EPK bundle" },
+    link: { to: "/websites-and-epks?product=bundle#order-form", label: "Website + EPK bundle" },
   },
   {
     question: "Do you work with small businesses outside of music?",

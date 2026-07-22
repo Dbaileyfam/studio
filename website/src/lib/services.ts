@@ -258,7 +258,7 @@ const ALL_SERVICES: Service[] = [
       {
         label: "How to order",
         description: "Email your completed brief and send a 50% deposit via PayPal or Venmo.",
-        to: "/store?product=website#order-form",
+        to: "/websites-and-epks?product=website#order-form",
       },
     ],
     sections: [
@@ -323,7 +323,7 @@ const ALL_SERVICES: Service[] = [
           "Yes. Tell us whether you already own a domain or need help choosing one in your project brief.",
       },
     ],
-    primaryCta: { label: "Order a band website", to: "/store?product=website#order-form" },
+    primaryCta: { label: "Order a band website", to: "/websites-and-epks?product=website#order-form" },
     secondaryCta: {
       label: "View website portfolio",
       href: WEB_PORTFOLIO_URL,
@@ -369,7 +369,7 @@ const ALL_SERVICES: Service[] = [
       {
         label: "How to order",
         description: "Email your completed brief and send a 50% deposit via PayPal or Venmo.",
-        to: "/store?product=epk#order-form",
+        to: "/websites-and-epks?product=epk#order-form",
       },
     ],
     sections: [
@@ -425,7 +425,7 @@ const ALL_SERVICES: Service[] = [
           "Fill out our brief form, email it to websites@801familystudios.com, and send a 50% deposit through PayPal or Venmo. The balance is due when your EPK is ready.",
       },
     ],
-    primaryCta: { label: "Order a band EPK", to: "/store?product=epk#order-form" },
+    primaryCta: { label: "Order a band EPK", to: "/websites-and-epks?product=epk#order-form" },
     secondaryCta: {
       label: "View EPK & website samples",
       href: WEB_PORTFOLIO_URL,
@@ -472,7 +472,7 @@ const ALL_SERVICES: Service[] = [
       {
         label: "Websites & EPKs",
         description: "Pair your new graphics with a band website or press kit.",
-        to: "/store",
+        to: "/websites-and-epks",
       },
     ],
     sections: [
@@ -674,7 +674,7 @@ const ALL_SERVICES: Service[] = [
     primaryCta: { label: "Request a consultation", to: "/contact" },
     relatedPrompt: {
       text: "Need a website/EPK before pitching venues?",
-      to: "/store?product=bundle#order-form",
+      to: "/websites-and-epks?product=bundle#order-form",
       linkLabel: "Website + EPK bundle",
     },
   },

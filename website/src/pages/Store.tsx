@@ -5,6 +5,7 @@ import { ExternalLink, Shirt } from "lucide-react";
 import { Link } from "react-router-dom";
 import { MERCH_SHOP_URL } from "@/lib/siteNav";
 import { STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
+import { STORE_PATH } from "@/lib/siteNav";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -83,7 +84,7 @@ const Store = () => {
                         ))}
                       </ul>
                       <Link
-                        to={`/store?product=${item.id}#order-form`}
+                        to={`${STORE_PATH}?product=${item.id}#order-form`}
                         className="mt-6 inline-flex text-sm font-semibold text-teal-300 hover:text-teal-200 underline-offset-4 hover:underline"
                       >
                         Start order →

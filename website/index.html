@@ -70,10 +70,14 @@
   <body>
     <script>
       (function() {
-        // Migrate legacy hash routes (/#/store) to path routes (/store).
+        // Migrate legacy hash routes (/#/…) to path routes.
         // Do not prepend pathname — "/" + "/store" becomes "//store" (host "store").
         if (location.hash && location.hash.indexOf("#/") === 0) {
-          location.replace(location.hash.slice(1) + location.search);
+          var path = location.hash.slice(1) + location.search;
+          if (path === "/store" || path.indexOf("/store?") === 0 || path.indexOf("/store/") === 0) {
+            path = path.replace(/^\/store/, "/websites-and-epks");
+          }
+          location.replace(path);
         }
       })();
     </script>
@@ -90,7 +94,7 @@
           <li><a href="/drum-lessons-sandy-utah" style="color:#5eead4">Drum Lessons</a></li>
           <li><a href="/musician-roster" style="color:#5eead4">Musician Roster</a></li>
           <li><a href="/musician-roster/browse" style="color:#5eead4">Browse Musicians</a></li>
-          <li><a href="/store" style="color:#5eead4">Websites &amp; EPKs</a></li>
+          <li><a href="/websites-and-epks" style="color:#5eead4">Websites &amp; EPKs</a></li>
           <li><a href="https://801familymerch.myshopify.com" style="color:#5eead4">Merch</a></li>
           <li><a href="/contact" style="color:#5eead4">Contact</a></li>
         </ul>
