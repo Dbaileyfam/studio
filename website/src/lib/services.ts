@@ -477,7 +477,7 @@ const ALL_SERVICES: Service[] = [
       "Professional, cohesive graphics for shows, socials, streaming, merch, and your full visual identity.",
     heroSubtitle:
       "Polished designs that match your band’s sound, personality, and image — ready for social, streaming, merch, and promo.",
-    startingPrice: "Individual pieces $30–$100 · Packages from $100",
+    startingPrice: "Single designs $30–$100 · Packages from $100",
     intro:
       "Professional, cohesive graphics designed to match your band’s sound, personality, and image. Whether you need artwork for one upcoming show or a complete visual identity, we’ll create polished designs you can use across social media, streaming platforms, merchandise, and promotional materials.",
     examples: [
@@ -597,7 +597,7 @@ const ALL_SERVICES: Service[] = [
       {
         question: "Can I order a single graphic, or do I need a package?",
         answer:
-          "Either works. Individual pieces are $30–$100 depending on the deliverable. Packages are the best value when you need several coordinated assets for a launch, show, or rebrand.",
+          "Either works. Single designs are $30–$100 depending on the deliverable. Packages are the best value when you need several coordinated assets for a launch, show, or rebrand.",
       },
       {
         question: "What do I need to provide?",
