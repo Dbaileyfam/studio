@@ -23,6 +23,14 @@ export type ServicePricing = {
   label: string;
   price: string;
   note?: string;
+  /** When set, shows an Add to cart control that opens this link (usually mailto). */
+  cartHref?: string;
+};
+
+export type ServiceHeroExtraCta = {
+  label: string;
+  /** In-page hash (e.g. #packages) or internal path */
+  to: string;
 };
 
 export type ServiceSection = {
@@ -60,11 +68,20 @@ export type Service = {
   faqs: ServiceFAQ[];
   primaryCta: { label: string; to: string };
   secondaryCta?: { label: string; href: string; external?: boolean };
+  /** Extra hero buttons shown next to the primary CTA and Contact us. */
+  heroExtraCtas?: ServiceHeroExtraCta[];
   /** Cross-promotion shown at the bottom of the service page. */
   relatedPrompt?: { text: string; to: string; linkLabel: string };
   /** When false, hidden from the homepage, services hub, and sitemap. */
   published?: boolean;
 };
+
+const graphicDesignCartMailto = (packageName: string, price: string) =>
+  `mailto:info@801familystudios.com?subject=${encodeURIComponent(
+    `Add to cart: ${packageName}`
+  )}&body=${encodeURIComponent(
+    `Hi,\n\nI'd like to order the ${packageName} (${price}).\n\nBand / artist name:\nDeadline:\nNotes / reference links:\n\nThanks!`
+  )}`;
 
 const ALL_SERVICES: Service[] = [
   {
@@ -561,16 +578,19 @@ const ALL_SERVICES: Service[] = [
         label: "Band Launch Package",
         price: "$225",
         note: "Logo, cover, social profile + banner, two promo graphics, two revision rounds",
+        cartHref: graphicDesignCartMailto("Band Launch Package", "$225"),
       },
       {
         label: "Show Promotion Package",
         price: "$100",
         note: "Main flyer, square + story versions, event cover, one revision round",
+        cartHref: graphicDesignCartMailto("Show Promotion Package", "$100"),
       },
       {
         label: "Complete Artist Branding Package",
         price: "$350",
         note: "Primary + alternate logos, palette, fonts, social assets, three promo graphics, brand guide, two revision rounds",
+        cartHref: graphicDesignCartMailto("Complete Artist Branding Package", "$350"),
       },
     ],
     faqs: [
@@ -596,6 +616,10 @@ const ALL_SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Request graphic design", to: "/contact" },
+    heroExtraCtas: [
+      { label: "Packages", to: "#packages" },
+      { label: "Add to cart", to: "#packages" },
+    ],
     relatedPrompt: {
       text: "Need a website or EPK to match your new look?",
       to: "/websites-for-musicians",

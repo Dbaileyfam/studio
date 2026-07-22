@@ -29,6 +29,13 @@ const ServiceDetail = () => {
   const service = getServiceBySlug(slug);
 
   useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      });
+      return;
+    }
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -131,7 +138,7 @@ const ServiceDetail = () => {
                 <p className="text-xl font-semibold text-teal-300 mt-4">
                   {service.startingPrice}
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
                   <Button
                     asChild
                     className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
@@ -145,6 +152,20 @@ const ServiceDetail = () => {
                   >
                     <Link to="/contact">Contact us</Link>
                   </Button>
+                  {service.heroExtraCtas?.map((cta) => (
+                    <Button
+                      key={cta.label}
+                      asChild
+                      variant="outline"
+                      className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
+                    >
+                      {cta.to.startsWith("#") ? (
+                        <a href={cta.to}>{cta.label}</a>
+                      ) : (
+                        <Link to={cta.to}>{cta.label}</Link>
+                      )}
+                    </Button>
+                  ))}
                 </div>
               </div>
             </motion.header>
@@ -241,7 +262,8 @@ const ServiceDetail = () => {
             )}
 
             <motion.section
-              className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8 mb-10"
+              id="packages"
+              className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8 mb-10 scroll-mt-28"
               variants={fadeIn}
               initial="initial"
               whileInView="animate"
@@ -252,13 +274,26 @@ const ServiceDetail = () => {
                 {service.pricing.map((tier) => (
                   <li
                     key={tier.label}
-                    className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 border-b border-white/10 pb-4 last:border-0 last:pb-0"
+                    className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-white/10 pb-4 last:border-0 last:pb-0"
                   >
                     <span className="text-white font-medium">{tier.label}</span>
-                    <span className="text-teal-300 font-bold text-xl">{tier.price}</span>
+                    <span className="text-teal-300 font-bold text-xl sm:text-right">
+                      {tier.price}
+                    </span>
                     {tier.note && (
                       <span className="text-sm text-gray-400 sm:basis-full sm:order-3">
                         {tier.note}
+                      </span>
+                    )}
+                    {tier.cartHref && (
+                      <span className="sm:basis-full sm:order-4">
+                        <Button
+                          asChild
+                          size="sm"
+                          className="mt-1 rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
+                        >
+                          <a href={tier.cartHref}>Add to cart</a>
+                        </Button>
                       </span>
                     )}
                   </li>
@@ -342,13 +377,27 @@ const ServiceDetail = () => {
                 {SITE_NAME} is based in {SITE_LOCATION}. Reach out to book, ask questions, or
                 request a quote for your project.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
                 <Button
                   asChild
                   className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 px-8 font-semibold"
                 >
                   <Link to="/contact">Contact us</Link>
                 </Button>
+                {service.heroExtraCtas?.map((cta) => (
+                  <Button
+                    key={`ready-${cta.label}`}
+                    asChild
+                    variant="outline"
+                    className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
+                  >
+                    {cta.to.startsWith("#") ? (
+                      <a href={cta.to}>{cta.label}</a>
+                    ) : (
+                      <Link to={cta.to}>{cta.label}</Link>
+                    )}
+                  </Button>
+                ))}
                 <Button
                   asChild
                   variant="outline"
