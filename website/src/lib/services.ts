@@ -78,13 +78,6 @@ export type Service = {
   published?: boolean;
 };
 
-const graphicDesignCartMailto = (packageName: string, price: string) =>
-  `mailto:info@801familystudios.com?subject=${encodeURIComponent(
-    `Add to cart: ${packageName}`
-  )}&body=${encodeURIComponent(
-    `Hi,\n\nI'd like to order the ${packageName} (${price}).\n\nBand / artist name:\nDeadline:\nNotes / reference links:\n\nThanks!`
-  )}`;
-
 const ALL_SERVICES: Service[] = [
   {
     slug: "recording-studio-sandy-utah",
@@ -548,70 +541,59 @@ const ALL_SERVICES: Service[] = [
         label: "Show flyer or event poster",
         price: "$50",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Show flyer or event poster", "$50"),
       },
       {
         label: "Social media graphic",
         price: "$30",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Social media graphic", "$30"),
       },
       {
         label: "Album or single cover",
         price: "$75",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Album or single cover", "$75"),
       },
       {
         label: "Band logo or wordmark",
         price: "$100",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Band logo or wordmark", "$100"),
       },
       {
         label: "Tour poster",
         price: "$75",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Tour poster", "$75"),
       },
       {
         label: "Merch or T-shirt design",
         price: "$75",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Merch or T-shirt design", "$75"),
       },
       {
         label: "Social media banner/header",
         price: "$40",
         group: "singles",
-        cartHref: graphicDesignCartMailto("Social media banner/header", "$40"),
       },
       {
         label: "EPK or one-sheet layout",
         price: "$75",
         group: "singles",
-        cartHref: graphicDesignCartMailto("EPK or one-sheet layout", "$75"),
       },
       {
         label: "Band Launch Package",
         price: "$225",
         group: "packages",
         note: "Logo, cover, social profile + banner, two promo graphics, two revision rounds",
-        cartHref: graphicDesignCartMailto("Band Launch Package", "$225"),
       },
       {
         label: "Show Promotion Package",
         price: "$100",
         group: "packages",
         note: "Main flyer, square + story versions, event cover, one revision round",
-        cartHref: graphicDesignCartMailto("Show Promotion Package", "$100"),
       },
       {
         label: "Complete Artist Branding Package",
         price: "$350",
         group: "packages",
         note: "Primary + alternate logos, palette, fonts, social assets, three promo graphics, brand guide, two revision rounds",
-        cartHref: graphicDesignCartMailto("Complete Artist Branding Package", "$350"),
       },
     ],
     faqs: [
