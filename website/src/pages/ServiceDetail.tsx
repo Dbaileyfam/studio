@@ -7,6 +7,7 @@ import {
   getServiceBySlug,
   getServicePath,
   getServiceSlugFromPathname,
+  type ServicePricing,
 } from "@/lib/services";
 import { SITE_EMAIL, SITE_LOCATION, SITE_NAME, SITE_URL, sitePath } from "@/lib/site";
 import { motion } from "framer-motion";
@@ -22,6 +23,34 @@ const fadeIn = {
     transition: { delay: custom * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   }),
 };
+
+const PricingTierList = ({ tiers }: { tiers: ServicePricing[] }) => (
+  <ul className="space-y-4">
+    {tiers.map((tier) => (
+      <li
+        key={tier.label}
+        className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-white/10 pb-4 last:border-0 last:pb-0"
+      >
+        <span className="text-white font-medium">{tier.label}</span>
+        <span className="text-teal-300 font-bold text-xl sm:text-right">{tier.price}</span>
+        {tier.note && (
+          <span className="text-sm text-gray-400 sm:basis-full sm:order-3">{tier.note}</span>
+        )}
+        {tier.cartHref && (
+          <span className="sm:basis-full sm:order-4">
+            <Button
+              asChild
+              size="sm"
+              className="mt-1 rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
+            >
+              <a href={tier.cartHref}>Add to cart</a>
+            </Button>
+          </span>
+        )}
+      </li>
+    ))}
+  </ul>
+);
 
 const ServiceDetail = () => {
   const { pathname } = useLocation();
@@ -262,43 +291,37 @@ const ServiceDetail = () => {
             )}
 
             <motion.section
-              id="packages"
-              className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8 mb-10 scroll-mt-28"
+              className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8 mb-10"
               variants={fadeIn}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
             >
               <h2 className="text-2xl font-bold text-white mb-5">Pricing</h2>
-              <ul className="space-y-4">
-                {service.pricing.map((tier) => (
-                  <li
-                    key={tier.label}
-                    className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-white/10 pb-4 last:border-0 last:pb-0"
-                  >
-                    <span className="text-white font-medium">{tier.label}</span>
-                    <span className="text-teal-300 font-bold text-xl sm:text-right">
-                      {tier.price}
-                    </span>
-                    {tier.note && (
-                      <span className="text-sm text-gray-400 sm:basis-full sm:order-3">
-                        {tier.note}
-                      </span>
-                    )}
-                    {tier.cartHref && (
-                      <span className="sm:basis-full sm:order-4">
-                        <Button
-                          asChild
-                          size="sm"
-                          className="mt-1 rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
-                        >
-                          <a href={tier.cartHref}>Add to cart</a>
-                        </Button>
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
+              {service.pricing.some((tier) => tier.group) ? (
+                <div className="space-y-8">
+                  {service.pricing.some((tier) => tier.group === "singles") && (
+                    <div id="single-designs" className="scroll-mt-28">
+                      <h3 className="text-lg font-semibold text-teal-200 mb-4">
+                        Single designs
+                      </h3>
+                      <PricingTierList
+                        tiers={service.pricing.filter((tier) => tier.group === "singles")}
+                      />
+                    </div>
+                  )}
+                  {service.pricing.some((tier) => tier.group === "packages") && (
+                    <div id="packages" className="scroll-mt-28">
+                      <h3 className="text-lg font-semibold text-teal-200 mb-4">Packages</h3>
+                      <PricingTierList
+                        tiers={service.pricing.filter((tier) => tier.group === "packages")}
+                      />
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <PricingTierList tiers={service.pricing} />
+              )}
             </motion.section>
 
             {service.faqs.length > 0 && (
