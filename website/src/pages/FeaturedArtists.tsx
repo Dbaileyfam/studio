@@ -16,6 +16,7 @@ import djNapoImage from "@/assets/djnapo.jpg";
 import niceAndSwellImage from "@/assets/niceandswell.JPG";
 import masterKennedyImage from "@/assets/masterkennedy-qzdRC3be.jpg";
 import belleroseImage from "@/assets/IMG_0710.jpg";
+import bigElectricImage from "@/assets/big-electric.jpg";
 const FeaturedArtists = () => {
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -55,6 +56,19 @@ const FeaturedArtists = () => {
         website: "https://bellerosemusic.com/",
         epk: "https://kellybellerosethebelleroseband.bandzoogle.com/home"
       }
+    },
+    {
+      name: "Big Electric",
+      genre: "Rock / Funk / Party Covers",
+      description:
+        "Park City’s high-voltage cover band — throwbacks and deep-cut bangers from the ’60s to the 2000s, blended with rock, funk, and jam-infused interludes that keep the party going. Seasoned players from Salt Lake City, New York, the West Coast, and Europe plug in and light up the night.",
+      image: bigElectricImage,
+      social: {
+        instagram: "https://www.instagram.com/big_electric_band/",
+        facebook: "",
+        youtube: "",
+        music: "",
+      },
     },
     {
       name: "DJ Napo",
