@@ -181,6 +181,26 @@ const ServiceDetail = () => {
                   >
                     <Link to="/contact">Contact us</Link>
                   </Button>
+                  {service.secondaryCta && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
+                    >
+                      <a
+                        href={service.secondaryCta.href}
+                        target={service.secondaryCta.external ? "_blank" : undefined}
+                        rel={
+                          service.secondaryCta.external ? "noopener noreferrer" : undefined
+                        }
+                      >
+                        {service.secondaryCta.label}
+                        {service.secondaryCta.external && (
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        )}
+                      </a>
+                    </Button>
+                  )}
                   {service.heroExtraCtas?.map((cta) => (
                     <Button
                       key={cta.label}

@@ -477,6 +477,12 @@ const ALL_SERVICES: Service[] = [
       "Professional, cohesive graphics designed to match your band’s sound, personality, and image. Whether you need artwork for one upcoming show or a complete visual identity, we’ll create polished designs you can use across social media, streaming platforms, merchandise, and promotional materials.",
     examples: [
       {
+        label: "Design portfolio",
+        description: "Browse show posters, flyers, and graphic design work from our portfolio.",
+        href: `${WEB_PORTFOLIO_URL}#posters`,
+        external: true,
+      },
+      {
         label: "Upcoming shows",
         description: "See flyers and posters from shows connected with our studio community.",
         to: "/upcoming-shows",
@@ -619,6 +625,11 @@ const ALL_SERVICES: Service[] = [
       },
     ],
     primaryCta: { label: "Request graphic design", to: "/contact" },
+    secondaryCta: {
+      label: "View design portfolio",
+      href: `${WEB_PORTFOLIO_URL}#posters`,
+      external: true,
+    },
     heroExtraCtas: [
       { label: "Packages", to: "#packages" },
       { label: "Single designs", to: "#single-designs" },

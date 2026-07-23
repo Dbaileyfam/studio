@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { LEGACY_PATH_REDIRECTS } from "@/lib/legacyRoutes";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "next-themes";
+import { Analytics } from "@vercel/analytics/react";
 
 // Pages
 import Index from "./pages/Index";
@@ -133,6 +134,7 @@ const App = () => (
           <Footer />
         </div>
       </BrowserRouter>
+      <Analytics />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
