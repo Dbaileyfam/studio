@@ -58,9 +58,12 @@ export type WebsiteBriefField = {
   label: string;
   placeholder?: string;
   required?: boolean;
-  type?: "text" | "email" | "tel" | "textarea";
+  type?: "text" | "email" | "tel" | "textarea" | "dropOrLink";
   rows?: number;
   hint?: string;
+  /** For dropOrLink fields: file input accept attribute */
+  accept?: string;
+  dropLabel?: string;
 };
 
 export type WebsiteBriefSection = {
@@ -145,12 +148,14 @@ export const WEBSITE_BRIEF_SECTIONS: WebsiteBriefSection[] = [
     fields: [
       {
         key: "photoLinks",
-        label: "Photo / logo / artwork links",
-        type: "textarea",
-        rows: 4,
+        label: "Photos / logo / artwork",
+        type: "dropOrLink",
+        rows: 3,
         required: true,
-        hint: "Paste Google Drive or direct image links for promo photos, live shots, logo, and album art.",
-        placeholder: "https://…",
+        accept: "image/*,.pdf",
+        dropLabel: "Drop images here or browse",
+        hint: "Upload files and/or paste Google Drive or direct image links.",
+        placeholder: "https://… (Google Drive or direct image links)",
       },
     ],
   },
@@ -159,10 +164,14 @@ export const WEBSITE_BRIEF_SECTIONS: WebsiteBriefSection[] = [
     fields: [
       {
         key: "musicLinks",
-        label: "Music links",
-        type: "textarea",
+        label: "Music",
+        type: "dropOrLink",
         rows: 3,
-        placeholder: "Spotify, Apple Music, Bandcamp, SoundCloud, etc.",
+        required: true,
+        accept: "audio/*,.mp3,.wav,.m4a,.flac,.aiff,.aif",
+        dropLabel: "Drop audio files here or browse",
+        hint: "Upload tracks and/or paste Spotify, Apple Music, Bandcamp, SoundCloud, or Google Drive links.",
+        placeholder: "https://… (streaming or Google Drive links)",
       },
       {
         key: "videoLinks",
@@ -277,9 +286,14 @@ export function packageLabel(productId: StoreProductId): string {
   return STORE_PRODUCTS.find((p) => p.id === productId)?.name ?? productId;
 }
 
+export type WebsiteBriefFiles = Partial<
+  Record<keyof WebsiteBriefFormData, File[]>
+>;
+
 export function formatWebsiteBriefEmailBody(
   productId: StoreProductId,
-  data: WebsiteBriefFormData
+  data: WebsiteBriefFormData,
+  files?: WebsiteBriefFiles
 ): string {
   const lines: string[] = [
     `Package: ${packageLabel(productId)}`,
@@ -291,9 +305,16 @@ export function formatWebsiteBriefEmailBody(
   for (const section of WEBSITE_BRIEF_SECTIONS) {
     lines.push(section.title.toUpperCase());
     for (const field of section.fields) {
-      const value = data[field.key].trim() || "(not provided)";
+      const value = data[field.key].trim();
+      const attached = files?.[field.key] ?? [];
       lines.push(`${FIELD_LABELS[field.key]}:`);
-      lines.push(value);
+      if (value) lines.push(value);
+      if (attached.length) {
+        lines.push(
+          `Attached files (${attached.length}): ${attached.map((f) => f.name).join(", ")}`
+        );
+      }
+      if (!value && !attached.length) lines.push("(not provided)");
       lines.push("");
     }
   }
@@ -304,20 +325,30 @@ export function formatWebsiteBriefEmailBody(
 export function websiteBriefMailtoHref(
   toEmail: string,
   productId: StoreProductId,
-  data: WebsiteBriefFormData
+  data: WebsiteBriefFormData,
+  files?: WebsiteBriefFiles
 ): string {
   const subject = `${packageLabel(productId)} brief — ${data.bandName.trim() || "new order"}`;
-  const body = formatWebsiteBriefEmailBody(productId, data);
+  const body = formatWebsiteBriefEmailBody(productId, data, files);
   return `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export function validateWebsiteBrief(
-  data: WebsiteBriefFormData
+  data: WebsiteBriefFormData,
+  files?: WebsiteBriefFiles
 ): string | null {
   for (const section of WEBSITE_BRIEF_SECTIONS) {
     for (const field of section.fields) {
       if (!field.required) continue;
-      if (!data[field.key].trim()) {
+      const hasText = Boolean(data[field.key].trim());
+      const hasFiles = (files?.[field.key]?.length ?? 0) > 0;
+      if (field.type === "dropOrLink") {
+        if (!hasText && !hasFiles) {
+          return `Please add a link or upload files for: ${field.label}`;
+        }
+        continue;
+      }
+      if (!hasText) {
         return `Please fill in: ${field.label}`;
       }
     }

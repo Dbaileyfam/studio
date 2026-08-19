@@ -3,36 +3,52 @@ import { STORE_FORM_EMAIL } from "@/lib/storeProducts";
 import {
   formatWebsiteBriefEmailBody,
   packageLabel,
+  type WebsiteBriefFiles,
   type WebsiteBriefFormData,
 } from "@/lib/websiteBriefForm";
 
-/** Sends the website/EPK brief to websites@ via FormSubmit AJAX. */
+const MAX_TOTAL_UPLOAD_BYTES = 9 * 1024 * 1024; // FormSubmit ~10MB limit
+
+/** Sends the website/EPK brief to websites@ via FormSubmit AJAX (supports file attachments). */
 export async function submitWebsiteBriefEmail(
   productId: StoreProductId,
-  data: WebsiteBriefFormData
+  data: WebsiteBriefFormData,
+  files: WebsiteBriefFiles = {}
 ): Promise<void> {
   const subject = `${packageLabel(productId)} brief — ${data.bandName.trim()}`;
-  const message = formatWebsiteBriefEmailBody(productId, data);
+  const message = formatWebsiteBriefEmailBody(productId, data, files);
+
+  const allFiles = Object.values(files).flat();
+  const totalBytes = allFiles.reduce((sum, file) => sum + file.size, 0);
+  if (totalBytes > MAX_TOTAL_UPLOAD_BYTES) {
+    throw new Error(
+      "Uploads are too large (max about 9MB total). Use Google Drive links for bigger files."
+    );
+  }
+
+  const form = new FormData();
+  form.append("_subject", subject);
+  form.append("_template", "table");
+  form.append("_replyto", data.email.trim());
+  form.append("package", packageLabel(productId));
+  form.append("band_artist_name", data.bandName.trim());
+  form.append("contact_name", data.contactName.trim());
+  form.append("email", data.email.trim());
+  form.append("phone", data.phone.trim());
+  form.append("message", message);
+
+  for (const [key, list] of Object.entries(files)) {
+    list?.forEach((file, index) => {
+      form.append(`${key}_${index + 1}`, file, file.name);
+    });
+  }
 
   const res = await fetch(
     `https://formsubmit.co/ajax/${encodeURIComponent(STORE_FORM_EMAIL)}`,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        _subject: subject,
-        _template: "table",
-        _replyto: data.email.trim(),
-        package: packageLabel(productId),
-        band_artist_name: data.bandName.trim(),
-        contact_name: data.contactName.trim(),
-        email: data.email.trim(),
-        phone: data.phone.trim(),
-        message,
-      }),
+      headers: { Accept: "application/json" },
+      body: form,
     }
   );
 

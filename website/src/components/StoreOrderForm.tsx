@@ -1,7 +1,16 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle2, ExternalLink, FileText, Loader2, Mail, Wallet } from "lucide-react";
+import {
+  CheckCircle2,
+  ExternalLink,
+  FileText,
+  Loader2,
+  Mail,
+  Upload,
+  Wallet,
+  X,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +35,8 @@ import {
   WEBSITE_BRIEF_SECTIONS,
   validateWebsiteBrief,
   websiteBriefMailtoHref,
+  type WebsiteBriefField,
+  type WebsiteBriefFiles,
   type WebsiteBriefFormData,
 } from "@/lib/websiteBriefForm";
 
@@ -41,6 +52,153 @@ const sectionMotion = {
   initial: { opacity: 0, y: 12 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
+};
+
+const formatFileSize = (bytes: number) => {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+};
+
+const DropOrLinkField = ({
+  field,
+  value,
+  files,
+  onValueChange,
+  onFilesChange,
+}: {
+  field: WebsiteBriefField;
+  value: string;
+  files: File[];
+  onValueChange: (value: string) => void;
+  onFilesChange: (files: File[]) => void;
+}) => {
+  const inputId = useId();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [dragging, setDragging] = useState(false);
+
+  const addFiles = (incoming: FileList | File[]) => {
+    const next = Array.from(incoming);
+    if (!next.length) return;
+    const merged = [...files];
+    for (const file of next) {
+      if (
+        merged.some(
+          (existing) =>
+            existing.name === file.name &&
+            existing.size === file.size &&
+            existing.lastModified === file.lastModified
+        )
+      ) {
+        continue;
+      }
+      merged.push(file);
+    }
+    onFilesChange(merged);
+  };
+
+  const removeFile = (index: number) => {
+    onFilesChange(files.filter((_, i) => i !== index));
+  };
+
+  return (
+    <div className="space-y-3 md:col-span-2">
+      <Label htmlFor={`brief-${field.key}`} className="text-gray-200">
+        {field.label}
+        {field.required ? <span className="text-amber-300 ml-1">*</span> : null}
+      </Label>
+      {field.hint && (
+        <p className="text-xs text-gray-400 leading-relaxed">{field.hint}</p>
+      )}
+
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            fileInputRef.current?.click();
+          }
+        }}
+        onClick={() => fileInputRef.current?.click()}
+        onDragEnter={(e) => {
+          e.preventDefault();
+          setDragging(true);
+        }}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragging(true);
+        }}
+        onDragLeave={(e) => {
+          e.preventDefault();
+          setDragging(false);
+        }}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDragging(false);
+          addFiles(e.dataTransfer.files);
+        }}
+        className={`rounded-2xl border border-dashed px-4 py-8 text-center cursor-pointer transition-colors ${
+          dragging
+            ? "border-teal-400 bg-teal-500/15"
+            : "border-white/25 bg-black/25 hover:border-white/40"
+        }`}
+      >
+        <Upload className="mx-auto h-7 w-7 text-teal-300 mb-3" aria-hidden />
+        <p className="text-sm text-gray-200 font-medium">
+          {field.dropLabel ?? "Drop files here or browse"}
+        </p>
+        <p className="text-xs text-gray-400 mt-1">
+          Or paste links below — either upload or link is fine
+        </p>
+        <input
+          ref={fileInputRef}
+          id={inputId}
+          type="file"
+          multiple
+          accept={field.accept}
+          className="sr-only"
+          onChange={(e) => {
+            if (e.target.files) addFiles(e.target.files);
+            e.target.value = "";
+          }}
+        />
+      </div>
+
+      {files.length > 0 && (
+        <ul className="space-y-2">
+          {files.map((file, index) => (
+            <li
+              key={`${file.name}-${file.size}-${file.lastModified}`}
+              className="flex items-center justify-between gap-3 rounded-xl border border-white/15 bg-white/5 px-3 py-2"
+            >
+              <span className="text-sm text-gray-200 truncate">
+                {file.name}{" "}
+                <span className="text-gray-400">({formatFileSize(file.size)})</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => removeFile(index)}
+                className="text-gray-400 hover:text-white shrink-0"
+                aria-label={`Remove ${file.name}`}
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <Textarea
+        id={`brief-${field.key}`}
+        value={value}
+        onChange={(e) => onValueChange(e.target.value)}
+        placeholder={field.placeholder}
+        rows={field.rows ?? 3}
+        className={fieldClass}
+      />
+    </div>
+  );
 };
 
 const PackageOption = ({
@@ -78,6 +236,7 @@ const StoreOrderForm = () => {
     parseProduct(searchParams.get("product"))
   );
   const [brief, setBrief] = useState<WebsiteBriefFormData>(EMPTY_WEBSITE_BRIEF);
+  const [briefFiles, setBriefFiles] = useState<WebsiteBriefFiles>({});
   const [sending, setSending] = useState(false);
   const [briefSent, setBriefSent] = useState(false);
 
@@ -105,9 +264,14 @@ const StoreOrderForm = () => {
     setBriefSent(false);
   };
 
+  const updateFiles = (key: keyof WebsiteBriefFormData, files: File[]) => {
+    setBriefFiles((prev) => ({ ...prev, [key]: files }));
+    setBriefSent(false);
+  };
+
   const handleSendBrief = async (event: FormEvent) => {
     event.preventDefault();
-    const error = validateWebsiteBrief(brief);
+    const error = validateWebsiteBrief(brief, briefFiles);
     if (error) {
       toast.error(error);
       return;
@@ -115,7 +279,7 @@ const StoreOrderForm = () => {
 
     setSending(true);
     try {
-      await submitWebsiteBriefEmail(product, brief);
+      await submitWebsiteBriefEmail(product, brief, briefFiles);
       setBriefSent(true);
       toast.success("Brief sent — we'll reply from websites@801familystudios.com");
       document.getElementById("order-deposit")?.scrollIntoView({
@@ -124,14 +288,24 @@ const StoreOrderForm = () => {
       });
     } catch (err) {
       console.error(err);
-      toast.error(
-        "Couldn't send from the browser. Opening your email app with the brief instead."
-      );
-      window.location.href = websiteBriefMailtoHref(
-        STORE_FORM_EMAIL,
-        product,
-        brief
-      );
+      const message =
+        err instanceof Error ? err.message : "Could not send brief";
+      const hasUploads = Object.values(briefFiles).some((list) => list?.length);
+      if (hasUploads) {
+        toast.error(
+          `${message} Uploaded files can't go through the email app — use Send brief or paste Drive links.`
+        );
+      } else {
+        toast.error(
+          "Couldn't send from the browser. Opening your email app with the brief instead."
+        );
+        window.location.href = websiteBriefMailtoHref(
+          STORE_FORM_EMAIL,
+          product,
+          brief,
+          briefFiles
+        );
+      }
     } finally {
       setSending(false);
     }
@@ -186,8 +360,8 @@ const StoreOrderForm = () => {
               Fill this out for your{" "}
               <span className="text-white font-medium">{selected.name}</span>. Hit
               Send brief and it goes straight to{" "}
-              <span className="text-teal-200">{STORE_FORM_EMAIL}</span>. Photo and file
-              uploads can be Google Drive or direct image links.
+              <span className="text-teal-200">{STORE_FORM_EMAIL}</span>. For artwork
+              and music, drop files or paste Google Drive / streaming links.
             </p>
           </div>
         </div>
@@ -208,6 +382,19 @@ const StoreOrderForm = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {section.fields.map((field) => {
+                  if (field.type === "dropOrLink") {
+                    return (
+                      <DropOrLinkField
+                        key={field.key}
+                        field={field}
+                        value={brief[field.key]}
+                        files={briefFiles[field.key] ?? []}
+                        onValueChange={(value) => updateField(field.key, value)}
+                        onFilesChange={(files) => updateFiles(field.key, files)}
+                      />
+                    );
+                  }
+
                   const wide =
                     field.type === "textarea" ||
                     field.key === "bandName" ||
@@ -290,15 +477,21 @@ const StoreOrderForm = () => {
               variant="outline"
               className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
               onClick={() => {
-                const error = validateWebsiteBrief(brief);
+                const error = validateWebsiteBrief(brief, briefFiles);
                 if (error) {
                   toast.error(error);
                   return;
                 }
+                if (Object.values(briefFiles).some((list) => list?.length)) {
+                  toast.message(
+                    "Email app can't attach your uploads — paste Drive links, or use Send brief."
+                  );
+                }
                 window.location.href = websiteBriefMailtoHref(
                   STORE_FORM_EMAIL,
                   product,
-                  brief
+                  brief,
+                  briefFiles
                 );
               }}
             >
