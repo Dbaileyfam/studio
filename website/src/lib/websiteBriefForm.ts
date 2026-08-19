@@ -121,6 +121,7 @@ export const WEBSITE_BRIEF_SECTIONS: WebsiteBriefSection[] = [
         label: "Short bio",
         type: "textarea",
         rows: 3,
+        required: true,
         placeholder: "1–2 sentences",
       },
       {
@@ -147,6 +148,7 @@ export const WEBSITE_BRIEF_SECTIONS: WebsiteBriefSection[] = [
         label: "Photo / logo / artwork links",
         type: "textarea",
         rows: 4,
+        required: true,
         hint: "Paste Google Drive or direct image links for promo photos, live shots, logo, and album art.",
         placeholder: "https://…",
       },
@@ -174,6 +176,7 @@ export const WEBSITE_BRIEF_SECTIONS: WebsiteBriefSection[] = [
         label: "Social media links",
         type: "textarea",
         rows: 3,
+        required: true,
         placeholder: "Instagram, Facebook, TikTok, YouTube, etc.",
       },
     ],
