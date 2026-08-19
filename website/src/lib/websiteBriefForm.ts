@@ -147,7 +147,7 @@ export const WEBSITE_BRIEF_SECTIONS: WebsiteBriefSection[] = [
         label: "Photo / logo / artwork links",
         type: "textarea",
         rows: 4,
-        hint: "Paste Google Drive, Dropbox, or direct image links for promo photos, live shots, logo, and album art.",
+        hint: "Paste Google Drive or direct image links for promo photos, live shots, logo, and album art.",
         placeholder: "https://…",
       },
     ],

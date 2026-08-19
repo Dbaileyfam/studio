@@ -187,7 +187,7 @@ const StoreOrderForm = () => {
               <span className="text-white font-medium">{selected.name}</span>. Hit
               Send brief and it goes straight to{" "}
               <span className="text-teal-200">{STORE_FORM_EMAIL}</span>. Photo and file
-              uploads can be Drive/Dropbox links.
+              uploads can be Google Drive or direct image links.
             </p>
           </div>
         </div>
