@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ExternalLink, FileText, Mail, Wallet } from "lucide-react";
+import { CheckCircle2, ExternalLink, FileText, Loader2, Mail, Wallet } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import StripePricingTable from "@/components/StripePricingTable";
 import {
-  ORDER_BRIEF_FORM_URL,
   ORDER_DELIVERY_NOTE,
   PAYPAL_QR_SRC,
   STORE_FORM_EMAIL,
@@ -17,6 +20,17 @@ import {
   type StoreProduct,
   type StoreProductId,
 } from "@/lib/storeProducts";
+import { submitWebsiteBriefEmail } from "@/lib/submitWebsiteBriefEmail";
+import {
+  EMPTY_WEBSITE_BRIEF,
+  WEBSITE_BRIEF_SECTIONS,
+  validateWebsiteBrief,
+  websiteBriefMailtoHref,
+  type WebsiteBriefFormData,
+} from "@/lib/websiteBriefForm";
+
+const fieldClass =
+  "bg-[var(--bg-elevated)] border-white/20 text-white placeholder:text-gray-500";
 
 const parseProduct = (value: string | null): StoreProductId => {
   if (value === "epk" || value === "website" || value === "bundle") return value;
@@ -63,6 +77,9 @@ const StoreOrderForm = () => {
   const [product, setProduct] = useState<StoreProductId>(() =>
     parseProduct(searchParams.get("product"))
   );
+  const [brief, setBrief] = useState<WebsiteBriefFormData>(EMPTY_WEBSITE_BRIEF);
+  const [sending, setSending] = useState(false);
+  const [briefSent, setBriefSent] = useState(false);
 
   useEffect(() => {
     const fromUrl = parseProduct(searchParams.get("product"));
@@ -80,11 +97,45 @@ const StoreOrderForm = () => {
     (id) => STORE_PRODUCTS.find((p) => p.id === id)!
   );
 
-  const mailtoHref = `mailto:${STORE_FORM_EMAIL}?subject=${encodeURIComponent(
-    `${selected.name} order — completed brief`
-  )}&body=${encodeURIComponent(
-    `Hi,\n\nI'd like to order the ${selected.name} ($${selected.price}).\n\nI've attached / linked my completed Band Website / EPK Information form and sent a $${deposit} deposit (50%) via Stripe, PayPal, or Venmo.\n\nArtist / band name:\nContact name:\nPhone:\n\nThanks!`
-  )}`;
+  const updateField = <K extends keyof WebsiteBriefFormData>(
+    key: K,
+    value: WebsiteBriefFormData[K]
+  ) => {
+    setBrief((prev) => ({ ...prev, [key]: value }));
+    setBriefSent(false);
+  };
+
+  const handleSendBrief = async (event: FormEvent) => {
+    event.preventDefault();
+    const error = validateWebsiteBrief(brief);
+    if (error) {
+      toast.error(error);
+      return;
+    }
+
+    setSending(true);
+    try {
+      await submitWebsiteBriefEmail(product, brief);
+      setBriefSent(true);
+      toast.success("Brief sent — we'll reply from websites@801familystudios.com");
+      document.getElementById("order-deposit")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error(
+        "Couldn't send from the browser. Opening your email app with the brief instead."
+      );
+      window.location.href = websiteBriefMailtoHref(
+        STORE_FORM_EMAIL,
+        product,
+        brief
+      );
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div id="order-form" className="scroll-mt-24 space-y-8">
@@ -93,8 +144,8 @@ const StoreOrderForm = () => {
           How to order
         </h2>
         <p className="text-gray-300 leading-relaxed">
-          Pick a package, fill out our brief, email it to us, and send a 50% deposit
-          through Stripe, PayPal, or Venmo. We start once we have both.
+          Pick a package, fill out the brief below, send it to us, and pay your 50%
+          deposit. We start once we have both.
         </p>
         <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>
@@ -125,73 +176,148 @@ const StoreOrderForm = () => {
         {...sectionMotion}
         className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8"
       >
-        <div className="flex items-start gap-3 mb-4">
+        <div className="flex items-start gap-3 mb-6">
           <FileText className="h-6 w-6 text-teal-300 shrink-0 mt-0.5" aria-hidden />
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-teal-300">
-              Step 2 — Complete the brief
+              Step 2 — Complete & send the brief
             </p>
             <p className="text-gray-200 mt-2 leading-relaxed">
-              Open the Google Doc, make a copy, and fill in your band or artist details,
-              links, and assets for your{" "}
-              <span className="text-white font-medium">{selected.name}</span>.
+              Fill this out for your{" "}
+              <span className="text-white font-medium">{selected.name}</span>. Hit
+              Send brief and it goes straight to{" "}
+              <span className="text-teal-200">{STORE_FORM_EMAIL}</span>. Photo and file
+              uploads can be Drive/Dropbox links.
             </p>
           </div>
         </div>
-        <Button
-          asChild
-          className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
-        >
-          <a href={ORDER_BRIEF_FORM_URL} target="_blank" rel="noopener noreferrer">
-            Open brief form
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </a>
-        </Button>
-      </motion.div>
 
-      <motion.div
-        {...sectionMotion}
-        className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-sm p-6 md:p-8"
-      >
-        <div className="flex items-start gap-3 mb-4">
-          <Mail className="h-6 w-6 text-teal-300 shrink-0 mt-0.5" aria-hidden />
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-teal-300">
-              Step 3 — Email your completed form
-            </p>
-            <p className="text-gray-200 mt-2 leading-relaxed">
-              Send the completed brief (or a share link to your copy) to{" "}
-              <a
-                href={`mailto:${STORE_FORM_EMAIL}`}
-                className="text-teal-300 hover:underline font-medium"
-              >
-                {STORE_FORM_EMAIL}
-              </a>
-              . Include your package name and contact info.
-            </p>
+        <form onSubmit={handleSendBrief} className="space-y-8">
+          {WEBSITE_BRIEF_SECTIONS.map((section) => (
+            <div
+              key={section.title}
+              className="space-y-4 rounded-2xl border border-white/15 bg-black/20 p-5 md:p-6"
+            >
+              <div>
+                <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                {section.description && (
+                  <p className="text-sm text-gray-400 mt-1 leading-relaxed">
+                    {section.description}
+                  </p>
+                )}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {section.fields.map((field) => {
+                  const wide =
+                    field.type === "textarea" ||
+                    field.key === "bandName" ||
+                    field.key === "mainGoal" ||
+                    field.key === "websitePages";
+                  return (
+                    <div
+                      key={field.key}
+                      className={`space-y-2 ${wide ? "md:col-span-2" : ""}`}
+                    >
+                      <Label htmlFor={`brief-${field.key}`} className="text-gray-200">
+                        {field.label}
+                        {field.required ? (
+                          <span className="text-amber-300 ml-1">*</span>
+                        ) : null}
+                      </Label>
+                      {field.hint && (
+                        <p className="text-xs text-gray-400 leading-relaxed">
+                          {field.hint}
+                        </p>
+                      )}
+                      {field.type === "textarea" ? (
+                        <Textarea
+                          id={`brief-${field.key}`}
+                          value={brief[field.key]}
+                          onChange={(e) => updateField(field.key, e.target.value)}
+                          placeholder={field.placeholder}
+                          rows={field.rows ?? 3}
+                          required={field.required}
+                          className={fieldClass}
+                        />
+                      ) : (
+                        <Input
+                          id={`brief-${field.key}`}
+                          type={field.type ?? "text"}
+                          value={brief[field.key]}
+                          onChange={(e) => updateField(field.key, e.target.value)}
+                          placeholder={field.placeholder}
+                          required={field.required}
+                          className={fieldClass}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+          {briefSent && (
+            <div className="flex items-start gap-3 rounded-2xl border border-teal-400/30 bg-teal-500/10 p-4">
+              <CheckCircle2 className="h-5 w-5 text-teal-300 shrink-0 mt-0.5" aria-hidden />
+              <p className="text-sm text-teal-100 leading-relaxed">
+                Brief sent. Next, pay your ${deposit} deposit below so we can start your{" "}
+                {selected.name}.
+              </p>
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+            <Button
+              type="submit"
+              disabled={sending}
+              className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
+            >
+              {sending ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  <Mail className="mr-2 h-4 w-4" />
+                  Send brief to {STORE_FORM_EMAIL}
+                </>
+              )}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
+              onClick={() => {
+                const error = validateWebsiteBrief(brief);
+                if (error) {
+                  toast.error(error);
+                  return;
+                }
+                window.location.href = websiteBriefMailtoHref(
+                  STORE_FORM_EMAIL,
+                  product,
+                  brief
+                );
+              }}
+            >
+              Open in email app instead
+            </Button>
           </div>
-        </div>
-        <Button
-          asChild
-          variant="outline"
-          className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold"
-        >
-          <a href={mailtoHref}>
-            Email {STORE_FORM_EMAIL}
-            <Mail className="ml-2 h-4 w-4" />
-          </a>
-        </Button>
+        </form>
       </motion.div>
 
       <motion.div
+        id="order-deposit"
         {...sectionMotion}
-        className="rounded-3xl border border-teal-400/30 bg-teal-500/10 p-6 md:p-8"
+        className="scroll-mt-24 rounded-3xl border border-teal-400/30 bg-teal-500/10 p-6 md:p-8"
       >
         <div className="flex items-start gap-3 mb-4">
           <Wallet className="h-6 w-6 text-teal-300 shrink-0 mt-0.5" aria-hidden />
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-teal-300">
-              Step 4 — Pay your 50% deposit
+              Step 3 — Pay your 50% deposit
             </p>
             <p className="text-gray-200 mt-2 leading-relaxed">
               For{" "}

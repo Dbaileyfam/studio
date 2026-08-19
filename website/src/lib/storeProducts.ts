@@ -4,10 +4,6 @@ export type StoreProductId = "website" | "epk" | "bundle";
 export const ORDER_DELIVERY_NOTE =
   "Your finished website or EPK is delivered by email. Please allow 7–14 days after your 50% deposit and completed brief.";
 
-/** Google Doc brief — open and make a copy, fill it out, then email it to us. */
-export const ORDER_BRIEF_FORM_URL =
-  "https://docs.google.com/document/d/1rhV5WO6LOe0U_e_yFEx_IAnK8kzA7iUa7sjBhU05jsI/copy";
-
 export const VENMO_PROFILE_URL = "https://venmo.com/u/Desiree-Bailey-3";
 export const PAYPAL_QR_SRC = "/payments/paypal-qr.png";
 export const VENMO_QR_SRC = "/payments/venmo-qr.png";

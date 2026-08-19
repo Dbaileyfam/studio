@@ -34,8 +34,9 @@ const Store = () => {
                 Websites & EPKs
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Order a custom band website or electronic press kit. Pick a package, email
-                your completed brief, and send a 50% deposit via Stripe, PayPal, or Venmo.
+                Order a custom band website or electronic press kit. Pick a package, fill
+                out the brief on this page, send it to us, and pay a 50% deposit via Stripe,
+                PayPal, or Venmo.
               </p>
               <a
                 href={WEB_PORTFOLIO_URL}

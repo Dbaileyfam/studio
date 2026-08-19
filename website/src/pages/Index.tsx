@@ -27,7 +27,7 @@ const STUDIO_REEL_SRC = "/studio.MOV";
 const HEADLINE =
   "Salt Lake City-Area Music Studio for Recording, EPKs, Websites & Artist Booking";
 const SUBHEADLINE =
-  "801 Family Studios helps musicians, bands, and performers record music, build professional websites and EPKs, get booked, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
+  "Based in the Salt Lake City area · remote services for artists everywhere. We help musicians record, get mixed and mastered, build websites and EPKs, grow on social, and get booked — in studio or online.";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -95,6 +95,8 @@ const Index = () => {
           "recording studio Salt Lake City",
           "band website Utah",
           "music studio Sandy UT",
+          "remote mixing mastering",
+          "online EPK design",
         ]}
       />
       <div className="page-container">
@@ -323,14 +325,13 @@ const Index = () => {
                 custom={0}
               >
                 <h2 className="text-2xl md:text-3xl font-bold text-white text-center text-balance mb-6">
-                  Serving Sandy, Salt Lake County & Utah Creatives
+                  Serving Sandy, Salt Lake County & Artists Everywhere
                 </h2>
                 <p className="text-gray-200 text-center leading-relaxed text-base md:text-lg">
-                  {SITE_NAME} is based in Sandy, Utah (Salt Lake City area) and works with musicians, bands, artists,
-                  creatives, and small businesses throughout the Salt Lake area and beyond.
-                  Whether you need recording, mixing, mastering, a website, an EPK, booking
-                  support, or drum lessons, we help you create a more professional presence
-                  online and in person.
+                  {SITE_NAME} is based in Sandy, Utah (Salt Lake City area). Come in for recording,
+                  studio rental, lessons, and local booking support — or work with us remotely for
+                  websites, EPKs, mixing and mastering, graphic design, and social media, wherever
+                  you are.
                 </p>
               </motion.div>
             </section>
@@ -389,7 +390,8 @@ const Index = () => {
               Custom projects available upon consultation.
             </p>
             <p className="text-sm md:text-base text-gray-400 max-w-4xl mx-auto text-center mt-6 pb-10 leading-relaxed px-4">
-              Our studio is based in Sandy, just south of Salt Lake City.
+              Our studio is based in Sandy, just south of Salt Lake City — with remote creative
+              services available nationwide.
             </p>
           </div>
         </div>

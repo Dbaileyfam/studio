@@ -36,9 +36,15 @@ export const HOME_FAQS: HomeFaq[] = [
     link: { to: "/websites-for-musicians", label: "Learn about our websites" },
   },
   {
+    question: "Can I hire you if I'm not in Salt Lake City?",
+    answer:
+      "Yes. Recording and in-studio work are based in Sandy, Utah, but websites, EPKs, mixing and mastering, graphic design, and social media can be done fully remote for artists nationwide.",
+    link: { to: "/contact", label: "Ask about remote services" },
+  },
+  {
     question: "How do I start a project with 801 Family Studios?",
     answer:
-      "Pick a service from the menu or the section above, review pricing on that page, then contact us. For websites and EPKs, email your completed brief and send a 50% deposit via PayPal or Venmo from the Websites & EPKs page.",
+      "Pick a service from the menu or the section above, review pricing on that page, then contact us. For websites and EPKs, fill out the brief on the Websites & EPKs page and send a 50% deposit via Stripe, PayPal, or Venmo.",
     link: { to: "/contact", label: "Contact us" },
   },
 ];
