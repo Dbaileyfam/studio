@@ -5,7 +5,6 @@ export type ServiceSlug =
   | "mixing-mastering-services"
   | "websites-for-musicians"
   | "epk-design-for-musicians"
-  | "booking-management"
   | "studio-rental"
   | "drum-lessons-sandy-utah"
   | "social-media";
@@ -434,82 +433,6 @@ const ALL_SERVICES: Service[] = [
       text: "Need a full website too?",
       to: "/websites-for-musicians",
       linkLabel: "Websites for musicians",
-    },
-  },
-  {
-    slug: "booking-management",
-    cardTitle: "Booking & Management",
-    navLabel: "Booking",
-    title: "Music Booking & Management Utah",
-    metaDescription:
-      "Music booking services in Utah — gig booking and artist management with transparent commissions. In-person consultation at 801 Family Studios.",
-    keywords: [
-      "music booking services Utah",
-      "artist management Utah",
-      "music booking agent Salt Lake City",
-      "band management Sandy Utah",
-    ],
-    icon: "🎵",
-    gradient: "from-yellow-500/20 to-orange-500/20",
-    borderColor: "border-yellow-400/30",
-    cardDescription:
-      "Booking: 10% of gig income. Management: 20% of total artist revenue. Requires exclusivity agreement + in-person consultation.",
-    homeTeaser:
-      "Booking and management support for artists ready to grow — with clear terms and an in-person consultation.",
-    heroSubtitle: "Strategic support for gigs, growth, and long-term career direction.",
-    startingPrice: "Booking 10% of gig income · Management 20% of revenue",
-    intro:
-      "Booking and management services are for artists ready to treat their career with a business mindset. We help you pursue the right opportunities, communicate professionally, and build momentum — with clear terms and an in-person consultation before any agreement.",
-    examples: [
-      {
-        label: "Upcoming shows",
-        description: "See artists currently playing out from our community.",
-        to: "/upcoming-shows",
-      },
-      {
-        label: "Featured artists",
-        description: "Meet bands and artists we work with in Utah.",
-        to: "/featured-artists",
-      },
-    ],
-    sections: [
-      {
-        heading: "Booking",
-        body: "We pursue and coordinate live opportunities that fit your goals, genre, and schedule.",
-        bullets: [
-          "Venue and promoter outreach",
-          "Show coordination and communication",
-          "10% commission on gig income",
-        ],
-      },
-      {
-        heading: "Management",
-        body: "Management covers broader career strategy beyond a single show.",
-        bullets: [
-          "Release, brand, and growth planning",
-          "Coordination across services and partners",
-          "20% of total artist revenue",
-          "Exclusivity agreement required",
-        ],
-      },
-    ],
-    pricing: [
-      { label: "Booking", price: "10% of gig income" },
-      { label: "Management", price: "20% of total artist revenue" },
-      { label: "Consultation", price: "Required", note: "In-person before agreement" },
-    ],
-    faqs: [
-      {
-        question: "Who qualifies for management?",
-        answer:
-          "We work with artists who are committed to growth and can meet in person for an initial consultation. Reach out with your goals and current activity.",
-      },
-    ],
-    primaryCta: { label: "Request a consultation", to: "/contact" },
-    relatedPrompt: {
-      text: "Need a website/EPK before pitching venues?",
-      to: "/store?product=bundle#order-form",
-      linkLabel: "Website + EPK bundle",
     },
   },
   {

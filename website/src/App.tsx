@@ -104,6 +104,7 @@ const AnimatedRoutes = () => {
             element={<Navigate to={getServicePath(slug)} replace />}
           />
         ))}
+        <Route path="/booking-management" element={<Navigate to="/" replace />} />
         <Route path="/services" element={<Navigate to="/#our-services" replace />} />
         <Route path="/services/:slug" element={<LegacyServiceRedirect />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

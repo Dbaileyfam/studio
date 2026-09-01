@@ -19,13 +19,13 @@ export const ROSTER_STRIPE_URL =
 /** Stripe Buy Button embed (Dashboard → Payment Links → Buy button) */
 export const ROSTER_STRIPE_BUY_BUTTON_ID = "buy_btn_1Ta0pw33fWEaCkVCioYO1a4L";
 
-/** Roster listing only — not booking or artist management services. */
+/** Roster listing only — not a booking or management agency. */
 export const ROSTER_NO_COMMISSION =
   "No commission on roster gigs — you keep 100% of what you earn from bookings made through your roster listing.";
 
-/** Clarifies roster vs. separate booking/management services. */
+/** Clarifies roster membership vs. other studio services. */
 export const ROSTER_COMMISSION_DISCLAIMER =
-  "This applies to the Musician Roster membership only. Our separate booking and artist management services may include commission as outlined in those agreements.";
+  "This applies to the Musician Roster membership only."
 
 /** Membership pricing and charges. */
 export const ROSTER_TAXES_FEES_NOTE =

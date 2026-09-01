@@ -25,9 +25,9 @@ import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
 const HEADLINE =
-  "Salt Lake City-Area Music Studio for Recording, EPKs, Websites & Artist Booking";
+  "Salt Lake City-Area Music Studio for Recording, EPKs & Websites";
 const SUBHEADLINE =
-  "801 Family Studios helps musicians, bands, and performers record music, build professional websites and EPKs, get booked, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
+  "801 Family Studios helps musicians, bands, and performers record music, build professional websites and EPKs, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -87,7 +87,7 @@ const Index = () => {
   return (
     <AnimatedPageTransition>
       <PageSEO
-        title="Salt Lake City-Area Music Studio for Recording, EPKs, Websites & Artist Booking"
+        title="Salt Lake City-Area Music Studio for Recording, EPKs & Websites"
         description={SUBHEADLINE}
         path="/"
         keywords={[
@@ -254,7 +254,7 @@ const Index = () => {
                   Our Services
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-white mb-6">
-                  Recording and management services in one convenient location
+                  Recording and music services in one convenient location
                 </h2>
                 <p className="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
                   Comprehensive music services designed to elevate your sound and career
@@ -328,8 +328,8 @@ const Index = () => {
                 <p className="text-gray-200 text-center leading-relaxed text-base md:text-lg">
                   {SITE_NAME} is based in Sandy, Utah (Salt Lake City area) and works with musicians, bands, artists,
                   creatives, and small businesses throughout the Salt Lake area and beyond.
-                  Whether you need recording, mixing, mastering, a website, an EPK, booking
-                  support, or drum lessons, we help you create a more professional presence
+                  Whether you need recording, mixing, mastering, a website, an EPK,
+                  or drum lessons, we help you create a more professional presence
                   online and in person.
                 </p>
               </motion.div>
@@ -385,7 +385,7 @@ const Index = () => {
             </section>
 
             <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-8 leading-relaxed px-4">
-              Policies: Deposits may be required for booking. Cancellations may incur fees.
+              Policies: Deposits may be required to reserve studio time. Cancellations may incur fees.
               Custom projects available upon consultation.
             </p>
             <p className="text-sm md:text-base text-gray-400 max-w-4xl mx-auto text-center mt-6 pb-10 leading-relaxed px-4">

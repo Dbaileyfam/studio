@@ -31,7 +31,7 @@ const Footer = () => {
               </h3>
             </Link>
             <p className="text-gray-200 leading-relaxed mb-6 max-w-md">
-              Your home for all your music management needs. Professional services to help you organize, produce, and succeed in your musical journey.
+              Professional recording, websites, EPKs, and music services to help you produce and succeed in your musical journey.
             </p>
             <div className="flex space-x-4">
               <motion.a

@@ -18,7 +18,7 @@ const TermsOfService = () => {
             <h1 className="text-3xl md:text-4xl font-display font-bold text-white mb-2">
               Terms of Service
             </h1>
-            <p className="text-sm text-gray-400 mb-10">Last updated: May 23, 2026</p>
+            <p className="text-sm text-gray-400 mb-10">Last updated: August 31, 2026</p>
 
             <p className="text-gray-300 text-sm border border-amber-500/30 bg-amber-950/20 rounded-lg px-4 py-3 mb-8">
               This page is provided for general business purposes and is not legal advice. Have a
@@ -30,8 +30,8 @@ const TermsOfService = () => {
               <p>
                 These Terms of Service (&quot;Terms&quot;) govern your use of the website and
                 services operated by 801 Family Studios (&quot;we,&quot; &quot;us,&quot;
-                &quot;our&quot;), including studio services, booking and management offerings, and
-                the Musician Roster. By using our site or services, you agree to these Terms.
+                &quot;our&quot;), including studio services and the Musician Roster. By using our
+                site or services, you agree to these Terms.
               </p>
             </section>
 
@@ -62,10 +62,6 @@ const TermsOfService = () => {
                   separate signed agreement, we do not take commission on gigs booked solely
                   through roster listings.
                 </li>
-                <li>
-                  Separate booking and artist management services may include commission or other
-                  fees as outlined in those service agreements.
-                </li>
                 <li>Applicable taxes and fees may apply to membership and related charges.</li>
               </ul>
             </section>
@@ -94,7 +90,7 @@ const TermsOfService = () => {
             <section className={sectionClass}>
               <h2 className="text-xl font-bold text-white mt-8 mb-2">5. Other services</h2>
               <p>
-                Studio, booking, management, and other services may be governed by separate quotes,
+                Studio and other services may be governed by separate quotes,
                 contracts, or agreements. If there is a conflict between those agreements and these
                 Terms, the separate agreement controls for that service.
               </p>
