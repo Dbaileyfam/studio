@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, FileText, Mail, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import StoreOrderBriefForm from "@/components/StoreOrderBriefForm";
 import StripePricingTable from "@/components/StripePricingTable";
 import {
   ORDER_BRIEF_FORM_URL,
@@ -93,8 +94,9 @@ const StoreOrderForm = () => {
           How to order
         </h2>
         <p className="text-gray-300 leading-relaxed">
-          Pick a package, fill out our brief, email it to us, and send a 50% deposit
-          through Stripe, PayPal, or Venmo. We start once we have both.
+          Pick a package, complete the brief (Google Doc or the on-page form), email it
+          if needed, and send a 50% deposit through Stripe, PayPal, or Venmo. We start
+          once we have both.
         </p>
         <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>
@@ -134,7 +136,8 @@ const StoreOrderForm = () => {
             <p className="text-gray-200 mt-2 leading-relaxed">
               Open the Google Doc, make a copy, and fill in your band or artist details,
               links, and assets for your{" "}
-              <span className="text-white font-medium">{selected.name}</span>.
+              <span className="text-white font-medium">{selected.name}</span>. Or expand
+              the on-page form below if you prefer to fill it out here.
             </p>
           </div>
         </div>
@@ -143,10 +146,11 @@ const StoreOrderForm = () => {
           className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
         >
           <a href={ORDER_BRIEF_FORM_URL} target="_blank" rel="noopener noreferrer">
-            Open brief form
+            Open Google Doc brief
             <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>
+        <StoreOrderBriefForm product={product} selected={selected} />
       </motion.div>
 
       <motion.div
@@ -157,17 +161,18 @@ const StoreOrderForm = () => {
           <Mail className="h-6 w-6 text-teal-300 shrink-0 mt-0.5" aria-hidden />
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-teal-300">
-              Step 3 — Email your completed form
+              Step 3 — Email your completed brief
             </p>
             <p className="text-gray-200 mt-2 leading-relaxed">
-              Send the completed brief (or a share link to your copy) to{" "}
+              If you used the Google Doc, send the completed brief (or a share link) to{" "}
               <a
                 href={`mailto:${STORE_FORM_EMAIL}`}
                 className="text-teal-300 hover:underline font-medium"
               >
                 {STORE_FORM_EMAIL}
               </a>
-              . Include your package name and contact info.
+              . If you submitted the on-page form, we already received it — skip ahead to
+              the deposit.
             </p>
           </div>
         </div>
@@ -184,8 +189,9 @@ const StoreOrderForm = () => {
       </motion.div>
 
       <motion.div
+        id="order-deposit"
         {...sectionMotion}
-        className="rounded-3xl border border-teal-400/30 bg-teal-500/10 p-6 md:p-8"
+        className="scroll-mt-24 rounded-3xl border border-teal-400/30 bg-teal-500/10 p-6 md:p-8"
       >
         <div className="flex items-start gap-3 mb-4">
           <Wallet className="h-6 w-6 text-teal-300 shrink-0 mt-0.5" aria-hidden />
