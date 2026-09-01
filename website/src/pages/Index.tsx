@@ -25,7 +25,7 @@ import studioImage from "@/assets/studio2.jpg";
 
 const STUDIO_REEL_SRC = "/studio.MOV";
 const HEADLINE =
-  "Salt Lake City-Area Music Studio for Recording, EPKs & Websites";
+  "Salt Lake City-Area Music Studio for Artist Growth";
 const SUBHEADLINE =
   "801 Family Studios helps musicians, bands, and performers record music, build professional websites and EPKs, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
 const HEADLINE_STAGGER = 0.07;
@@ -87,7 +87,7 @@ const Index = () => {
   return (
     <AnimatedPageTransition>
       <PageSEO
-        title="Salt Lake City-Area Music Studio for Recording, EPKs & Websites"
+        title="Salt Lake City-Area Music Studio for Artist Growth"
         description={SUBHEADLINE}
         path="/"
         keywords={[
