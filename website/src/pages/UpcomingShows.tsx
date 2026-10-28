@@ -2,6 +2,22 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ExternalLink, MapPin, Ticket } from "lucide-react";
 
+type UpcomingShow = {
+  id: string;
+  title: string;
+  subtitle: string;
+  imageSrc: string;
+  imageAlt: string;
+  date: string;
+  venue: string;
+  address: string;
+  time: string;
+  note: string;
+  accent: string;
+  primaryCta?: { href: string; label: string; icon?: "ticket" | "link" };
+  secondaryCta?: { href: string; label: string };
+};
+
 const UpcomingShows = () => {
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -12,36 +28,7 @@ const UpcomingShows = () => {
     }),
   };
 
-  const events = [
-    {
-      id: "pearl-rock-night-sept11",
-      title: "The Pearl on Main Presents: Rock Night",
-      subtitle: "Cover Me Badd · The Unaffected · That.Sound.In.Your.Head · Ella Kenning",
-      imageSrc: "/images/upcoming/pearl-rock-night-sept11.png",
-      imageAlt:
-        "Flyer: Rock Night at The Pearl on Main on September 11, 2026 in Midvale with Cover Me Badd, The Unaffected, That.Sound.In.Your.Head, and Ella Kenning",
-      date: "Friday, September 11, 2026",
-      venue: "The Pearl on Main",
-      address: "7711 S. Main Street, Midvale, UT",
-      time: "Doors 7:00 PM · Music 8:00 PM · Presale $15 · At doors $20 · All ages",
-      note: "Support local bands — real music, no filter, all heart.",
-      accent: "from-red-500/30 to-amber-500/25",
-    },
-    {
-      id: "random-precision-sept11-dlc",
-      title: "Random Precision",
-      subtitle: "Featuring the music of Pink Floyd • The DLC • Salt Lake City, UT",
-      imageSrc: "/images/upcoming/random-precision-sept11-dlc.png",
-      imageAlt:
-        "Flyer: Random Precision featuring the music of Pink Floyd at The DLC on September 11, 2026 in Salt Lake City",
-      date: "Friday, September 11, 2026",
-      venue: "The DLC",
-      address: "5 E 400 S, Salt Lake City, UT 84111",
-      time: "8:00 PM · 21 & over",
-      note: "Pink Floyd tribute night at The DLC.",
-      accent: "from-blue-500/30 to-purple-500/30",
-    },
-  ];
+  const events: UpcomingShow[] = [];
 
   return (
     <AnimatedPageTransition>
@@ -65,6 +52,18 @@ const UpcomingShows = () => {
               </p>
             </motion.div>
 
+            {events.length === 0 ? (
+              <motion.p
+                className="text-center text-lg text-gray-200 max-w-xl mx-auto"
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                custom={0.2}
+              >
+                No upcoming shows right now. Check back soon.
+              </motion.p>
+            ) : (
             <div className="space-y-12 max-w-5xl mx-auto">
               {events.map((event, index) => (
                 <motion.div
@@ -159,6 +158,7 @@ const UpcomingShows = () => {
                 </motion.div>
               ))}
             </div>
+            )}
           </div>
         </div>
       </div>
