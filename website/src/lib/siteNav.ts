@@ -12,8 +12,6 @@ export type SiteNavLink =
 /** Nav items after Home (roster paths may be filtered by RosterPublicGate). */
 export const SITE_NAV_LINKS: SiteNavLink[] = [
   { type: "internal", path: "/featured-artists", label: "Featured Artists" },
-  { type: "internal", path: "/musician-roster", label: "Musician Roster" },
-  { type: "internal", path: "/musician-roster/browse", label: "Browse Musicians" },
   { type: "internal", path: "/upcoming-shows", label: "Upcoming Shows" },
   { type: "internal", path: STORE_PATH, label: STORE_NAV_LABEL },
   { type: "external", href: MERCH_SHOP_URL, label: MERCH_NAV_LABEL },

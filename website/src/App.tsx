@@ -16,9 +16,7 @@ import UpcomingShows from "./pages/UpcomingShows";
 import Store from "./pages/Store";
 import ServiceDetail from "./pages/ServiceDetail";
 import LegacyServiceRedirect from "./pages/LegacyServiceRedirect";
-import MusicianRoster from "./pages/MusicianRoster";
 import MusicianRosterThankYou from "./pages/MusicianRosterThankYou";
-import MusicianRosterBrowse from "./pages/MusicianRosterBrowse";
 import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
 import MusicianRosterEditPage from "./pages/MusicianRosterEditPage";
 import RosterPublicGate from "./components/RosterPublicGate";
@@ -50,14 +48,7 @@ const AnimatedRoutes = () => {
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
         <Route path="/store/checkout" element={<Navigate to="/store#order-form" replace />} />
-        <Route
-          path="/musician-roster"
-          element={
-            <RosterPublicGate>
-              <MusicianRoster />
-            </RosterPublicGate>
-          }
-        />
+        <Route path="/musician-roster" element={<Navigate to="/" replace />} />
         <Route
           path="/musician-roster/thank-you"
           element={
@@ -66,14 +57,7 @@ const AnimatedRoutes = () => {
             </RosterPublicGate>
           }
         />
-        <Route
-          path="/musician-roster/browse"
-          element={
-            <RosterPublicGate>
-              <MusicianRosterBrowse />
-            </RosterPublicGate>
-          }
-        />
+        <Route path="/musician-roster/browse" element={<Navigate to="/" replace />} />
         <Route
           path="/musician-profile-form"
           element={
