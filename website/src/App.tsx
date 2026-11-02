@@ -16,10 +16,6 @@ import UpcomingShows from "./pages/UpcomingShows";
 import Store from "./pages/Store";
 import ServiceDetail from "./pages/ServiceDetail";
 import LegacyServiceRedirect from "./pages/LegacyServiceRedirect";
-import MusicianRosterThankYou from "./pages/MusicianRosterThankYou";
-import MusicianProfileFormPage from "./pages/MusicianProfileFormPage";
-import MusicianRosterEditPage from "./pages/MusicianRosterEditPage";
-import RosterPublicGate from "./components/RosterPublicGate";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { SERVICES, getServicePath } from "@/lib/services";
@@ -50,31 +46,8 @@ const AnimatedRoutes = () => {
         <Route path="/websites-and-epks" element={<Navigate to="/websites-for-musicians" replace />} />
         <Route path="/store/checkout" element={<Navigate to="/store#order-form" replace />} />
         <Route path="/musician-roster" element={<Navigate to="/" replace />} />
-        <Route
-          path="/musician-roster/thank-you"
-          element={
-            <RosterPublicGate>
-              <MusicianRosterThankYou />
-            </RosterPublicGate>
-          }
-        />
-        <Route path="/musician-roster/browse" element={<Navigate to="/" replace />} />
-        <Route
-          path="/musician-profile-form"
-          element={
-            <RosterPublicGate>
-              <MusicianProfileFormPage />
-            </RosterPublicGate>
-          }
-        />
-        <Route
-          path="/musician-roster/edit"
-          element={
-            <RosterPublicGate>
-              <MusicianRosterEditPage />
-            </RosterPublicGate>
-          }
-        />
+        <Route path="/musician-roster/*" element={<Navigate to="/" replace />} />
+        <Route path="/musician-profile-form" element={<Navigate to="/" replace />} />
         {SERVICES.map((service) => (
           <Route
             key={service.slug}

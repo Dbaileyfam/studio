@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "gh-pages": false
+    }
+  },
   "rewrites": [
     { "source": "/api/stripe/webhook", "destination": "/api/stripe-webhook" },
     { "source": "/api/roster/list", "destination": "/api/roster-list" },
