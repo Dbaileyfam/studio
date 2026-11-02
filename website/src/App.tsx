@@ -47,6 +47,7 @@ const AnimatedRoutes = () => {
         <Route path="/featured-artists" element={<FeaturedArtists />} />
         <Route path="/upcoming-shows" element={<UpcomingShows />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/websites-and-epks" element={<Navigate to="/websites-for-musicians" replace />} />
         <Route path="/store/checkout" element={<Navigate to="/store#order-form" replace />} />
         <Route path="/musician-roster" element={<Navigate to="/" replace />} />
         <Route

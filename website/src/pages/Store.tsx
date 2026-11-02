@@ -32,19 +32,20 @@ const Store = () => {
               <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 text-balance">
                 Websites & EPKs
               </h1>
-              <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Order a custom band website or electronic press kit. Pick a package,
-                complete the brief, and send a 50% deposit via Stripe, PayPal, or Venmo.
-              </p>
               <a
                 href={WEB_PORTFOLIO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-6 text-teal-300 hover:text-teal-200 text-sm font-medium"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
               >
-                View our web portfolio
+                See samples
                 <ExternalLink className="h-4 w-4" />
               </a>
+              <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
+                Band website $300, EPK $150, or both for $400. Pick a package,
+                complete the brief, and send a 50% deposit via Stripe, PayPal, or Venmo.
+                Delivery is 7–14 days after the deposit and your brief.
+              </p>
             </motion.div>
 
             <motion.div

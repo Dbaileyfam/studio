@@ -128,7 +128,20 @@ const ServiceDetail = () => {
                 <p className="text-lg text-teal-200/90 mt-4 leading-relaxed">
                   {service.heroSubtitle}
                 </p>
-                <p className="text-xl font-semibold text-teal-300 mt-4">
+                {service.secondaryCta && (
+                  <a
+                    href={service.secondaryCta.href}
+                    target={service.secondaryCta.external ? "_blank" : undefined}
+                    rel={
+                      service.secondaryCta.external ? "noopener noreferrer" : undefined
+                    }
+                    className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
+                  >
+                    {service.secondaryCta.label}
+                    {service.secondaryCta.external && <ExternalLink className="h-4 w-4" />}
+                  </a>
+                )}
+                <p className="text-xl font-semibold text-teal-300 mt-6">
                   {service.startingPrice}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -252,14 +265,14 @@ const ServiceDetail = () => {
                 {service.pricing.map((tier) => (
                   <li
                     key={tier.label}
-                    className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 border-b border-white/10 pb-4 last:border-0 last:pb-0"
+                    className="border-b border-white/10 pb-4 last:border-0 last:pb-0"
                   >
-                    <span className="text-white font-medium">{tier.label}</span>
-                    <span className="text-teal-300 font-bold text-xl">{tier.price}</span>
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="text-white font-medium">{tier.label}</span>
+                      <span className="text-teal-300 font-bold text-xl shrink-0">{tier.price}</span>
+                    </div>
                     {tier.note && (
-                      <span className="text-sm text-gray-400 sm:basis-full sm:order-3">
-                        {tier.note}
-                      </span>
+                      <p className="text-sm text-gray-400 mt-1">{tier.note}</p>
                     )}
                   </li>
                 ))}

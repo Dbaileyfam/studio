@@ -4,6 +4,7 @@ export type ServiceSlug =
   | "recording-studio-sandy-utah"
   | "mixing-mastering-services"
   | "websites-for-musicians"
+  | "small-business-websites"
   | "epk-design-for-musicians"
   | "studio-rental"
   | "drum-lessons-sandy-utah"
@@ -223,14 +224,14 @@ const ALL_SERVICES: Service[] = [
   },
   {
     slug: "websites-for-musicians",
-    cardTitle: "Website Services",
-    navLabel: "Websites",
-    title: "Websites for Musicians",
+    cardTitle: "Band Websites",
+    navLabel: "Band Websites",
+    title: "Band Websites",
     metaDescription:
-      "Websites for musicians and bands in Utah — custom bio, music, photos, shows, and booking pages from $300. Mobile-first sites by 801 Family Studios.",
+      "Band websites in Utah from $300 — custom bio, music, photos, shows, and booking pages. Mobile-first sites by 801 Family Studios in Sandy.",
     keywords: [
-      "websites for musicians",
       "band website design Utah",
+      "websites for musicians",
       "musician website Sandy",
       "custom artist website Salt Lake City",
     ],
@@ -238,14 +239,14 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-orange-500/20 to-red-500/20",
     borderColor: "border-orange-400/30",
     cardDescription:
-      "Band Website: $300 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free.",
+      "Band Website: $300 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
     homeTeaser:
-      "Custom websites for musicians and creatives — your story, music, photos, shows, and contact in one professional home base.",
+      "Band website $300 — bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
     heroSubtitle:
-      "More than a template — a professional home base for your music, story, and bookings.",
+      "A professional home base for your music, story, shows, and bookings.",
     startingPrice: "Band website $300 · Website + EPK bundle $400",
     intro:
-      "We build custom websites for musicians, bands, creatives, and small businesses who need more than a basic template. Your site becomes your professional home base — a place to show your work, tell your story, collect inquiries, share music or media, and turn visitors into customers, fans, or bookings.",
+      "We build custom websites for bands and solo artists who need more than a link-in-bio or a generic template. Your site is the place fans, bookers, and press go for your story, music, photos, and upcoming shows.",
     examples: [
       {
         label: "Web portfolio",
@@ -255,19 +256,23 @@ const ALL_SERVICES: Service[] = [
       },
       {
         label: "How to order",
-        description: "Email your completed brief and send a 50% deposit via PayPal or Venmo.",
+        description: "Complete the brief and send a 50% deposit via Stripe, PayPal, or Venmo.",
         to: "/store?product=website#order-form",
+      },
+      {
+        label: "Small business websites",
+        description: "Need a site for a shop or service business instead of a band?",
+        to: "/small-business-websites",
       },
     ],
     sections: [
       {
         heading: "Who this is for",
-        body: "If you are outgrowing social-only presence or a generic builder template, a custom site gives you control and credibility.",
+        body: "If social profiles are doing the job of a homepage, a band site gives you one link you control.",
         bullets: [
-          "Bands and solo artists launching or rebranding",
-          "Creatives showcasing portfolios and media",
-          "Small businesses that need a clear, trustworthy web presence",
-          "Artists who want one link for press, fans, and bookers",
+          "Bands launching or replacing an outdated site",
+          "Solo artists who want bio, music, and dates in one place",
+          "Artists who need one link for press, fans, and bookers",
         ],
       },
       {
@@ -276,27 +281,33 @@ const ALL_SERVICES: Service[] = [
         bullets: [
           "Custom design aligned with your brand",
           "Bio, music players, photos, and video embeds",
-          "Show dates, contact forms, and social links",
+          "Show dates, contact, and social links",
           "Mobile-first layout and fast loading",
-          "Simple content edits included; complex changes $25/hr",
+          "Simple content edits included free",
+          "More complex changes at $25/hr",
         ],
       },
       {
         heading: "Why a custom site matters",
         body:
-          "Streaming links and social profiles are great for discovery, but your website is where you own the experience. You decide the layout, the story, and the call to action — whether that is booking a show, joining a mailing list, or buying merch.",
+          "Streaming links and social profiles help people find you. Your website is where you own the layout, the story, and the next step — booking a show, joining a mailing list, or buying merch.",
       },
     ],
     pricing: [
       {
         label: "Band Website",
         price: "$300",
-        note: "50% deposit ($150) to start — simple edits free",
+        note: "One complete site. 50% deposit ($150) to start. Simple edits included free.",
       },
       {
         label: "Website + EPK Bundle",
         price: "$400",
-        note: "50% deposit ($200) to start — save $50 vs ordering separately",
+        note: "50% deposit ($200) to start. Save $50 vs ordering the site and EPK separately.",
+      },
+      {
+        label: "Complex edits",
+        price: "$25/hr",
+        note: "Simple content edits stay free after delivery.",
       },
     ],
     faqs: [
@@ -323,7 +334,7 @@ const ALL_SERVICES: Service[] = [
     ],
     primaryCta: { label: "Order a band website", to: "/store?product=website#order-form" },
     secondaryCta: {
-      label: "View website portfolio",
+      label: "See samples",
       href: WEB_PORTFOLIO_URL,
       external: true,
     },
@@ -331,6 +342,128 @@ const ALL_SERVICES: Service[] = [
       text: "Need an EPK too?",
       to: "/epk-design-for-musicians",
       linkLabel: "EPK design for musicians",
+    },
+  },
+  {
+    slug: "small-business-websites",
+    cardTitle: "Small Business Websites",
+    navLabel: "Small Business Sites",
+    title: "Small Business Websites",
+    metaDescription:
+      "Small business websites in Utah from $300 — services, hours, photos, location, and contact on a mobile-first site by 801 Family Studios in Sandy.",
+    keywords: [
+      "small business website Utah",
+      "small business web design Salt Lake City",
+      "local business website Sandy Utah",
+      "custom small business website",
+    ],
+    icon: "🏢",
+    gradient: "from-sky-500/20 to-teal-500/20",
+    borderColor: "border-sky-400/30",
+    cardDescription:
+      "Small Business Website: $300 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
+    homeTeaser:
+      "Small business website $300 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
+    heroSubtitle:
+      "A clear, trustworthy site so customers can find what you offer and get in touch.",
+    startingPrice: "Small business website $300 · Complex edits $25/hr",
+    intro:
+      "We build custom websites for small businesses that need a professional home online. Your site explains what you do, where you are, and how to hire you, in a layout that works on a phone.",
+    examples: [
+      {
+        label: "Web portfolio",
+        description: "Browse sample websites we have built.",
+        href: WEB_PORTFOLIO_URL,
+        external: true,
+      },
+      {
+        label: "Band websites",
+        description: "Looking for a site with music, shows, and an EPK instead?",
+        to: "/websites-for-musicians",
+      },
+    ],
+    sections: [
+      {
+        heading: "Who this is for",
+        body: "Local businesses that have outgrown a social page or a builder template and want one place customers can trust.",
+        bullets: [
+          "Shops, studios, and service businesses",
+          "Owners who need hours, services, and contact in one link",
+          "Teams replacing an outdated or hard-to-update site",
+        ],
+      },
+      {
+        heading: "What your site includes",
+        body: "A small business website is organized around how customers decide to call, visit, or book.",
+        bullets: [
+          "Custom design aligned with your brand",
+          "Home, about, services, and contact pages",
+          "Hours, location, photos, and social links",
+          "Mobile-first layout and fast loading",
+          "Simple content edits included free",
+          "More complex changes at $25/hr",
+        ],
+      },
+      {
+        heading: "How ordering works",
+        body:
+          "Tell us about the business, send your logo, photos, and the details you want on the site, and pay a 50% deposit to start. We deliver the finished site by email. The balance is due when it is ready. Larger sites with extra pages or custom features are quoted before we start.",
+      },
+    ],
+    pricing: [
+      {
+        label: "Small Business Website",
+        price: "$300",
+        note: "One complete site. 50% deposit ($150) to start. Simple edits included free. Delivery in 7–14 days after the deposit and your content.",
+      },
+      {
+        label: "Complex edits",
+        price: "$25/hr",
+        note: "Simple content edits stay free after delivery.",
+      },
+      {
+        label: "Larger custom sites",
+        price: "Quoted",
+        note: "Extra pages, booking tools, or custom features are priced after a short consult.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What do I need to send?",
+        answer:
+          "Business name, a short description, services, hours, location, photos, logo, and any links you want included. The more you send up front, the faster we can build.",
+      },
+      {
+        question: "How long does a website take?",
+        answer:
+          "After your 50% deposit and completed content, allow 7–14 days for delivery by email.",
+      },
+      {
+        question: "How do I pay?",
+        answer:
+          "Contact us to start. A 50% deposit ($150) is due before we begin, through Stripe, PayPal, or Venmo. The balance is due when your site is ready.",
+      },
+      {
+        question: "Can you help with a domain name?",
+        answer:
+          "Yes. Tell us whether you already own a domain or need help choosing one when you reach out.",
+      },
+      {
+        question: "Is this the same as a band website?",
+        answer:
+          "The price for a standard site is the same. A band site is built around music, photos, shows, and booking. A small business site is built around services, hours, location, and customer contact.",
+      },
+    ],
+    primaryCta: { label: "Start a small business website", to: "/contact" },
+    secondaryCta: {
+      label: "See samples",
+      href: WEB_PORTFOLIO_URL,
+      external: true,
+    },
+    relatedPrompt: {
+      text: "In a band instead?",
+      to: "/websites-for-musicians",
+      linkLabel: "Band websites",
     },
   },
   {
@@ -425,14 +558,14 @@ const ALL_SERVICES: Service[] = [
     ],
     primaryCta: { label: "Order a band EPK", to: "/store?product=epk#order-form" },
     secondaryCta: {
-      label: "View EPK & website samples",
+      label: "See samples",
       href: WEB_PORTFOLIO_URL,
       external: true,
     },
     relatedPrompt: {
       text: "Need a full website too?",
       to: "/websites-for-musicians",
-      linkLabel: "Websites for musicians",
+      linkLabel: "Band websites",
     },
   },
   {
@@ -592,9 +725,14 @@ const ALL_SERVICES: Service[] = [
         to: "/featured-artists",
       },
       {
-        label: "Websites for musicians",
-        description: "Pair social media with a professional website or link-in-bio hub.",
+        label: "Band websites",
+        description: "Pair social media with a band site for music, shows, and contact.",
         to: "/websites-for-musicians",
+      },
+      {
+        label: "Small business websites",
+        description: "A $300 site for services, hours, photos, and customer contact.",
+        to: "/small-business-websites",
       },
     ],
     sections: [
@@ -761,7 +899,7 @@ const ALL_SERVICES: Service[] = [
     relatedPrompt: {
       text: "Need a website or EPK to pair with your social presence?",
       to: "/websites-for-musicians",
-      linkLabel: "Websites for musicians",
+      linkLabel: "Band websites",
     },
   },
 ];

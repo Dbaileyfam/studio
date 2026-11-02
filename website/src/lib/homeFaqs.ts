@@ -9,7 +9,7 @@ export const HOME_FAQS: HomeFaq[] = [
     question: "Do you build websites for musicians and bands?",
     answer:
       "Yes. We design custom websites for musicians and bands with bio, music, photos, show listings, contact forms, and social links — built for how artists actually use the web, not a generic template.",
-    link: { to: "/websites-for-musicians", label: "Websites for musicians" },
+    link: { to: "/websites-for-musicians", label: "Band websites" },
   },
   {
     question: "What is an EPK and why does a musician need one?",
@@ -32,8 +32,8 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "Do you work with small businesses outside of music?",
     answer:
-      "Yes. We build custom websites for creatives and small businesses that need a clear, professional online presence — not only bands and solo artists.",
-    link: { to: "/websites-for-musicians", label: "Learn about our websites" },
+      "Yes. A small business website is $300 and includes services, hours, photos, location, and contact. Simple edits are included free. Complex changes are $25/hr.",
+    link: { to: "/small-business-websites", label: "Small business websites" },
   },
   {
     question: "How do I start a project with 801 Family Studios?",
