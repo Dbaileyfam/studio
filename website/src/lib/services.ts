@@ -257,7 +257,7 @@ const ALL_SERVICES: Service[] = [
       {
         label: "How to order",
         description: "Complete the brief and send a 50% deposit via Stripe, PayPal, or Venmo.",
-        to: "/store?product=website#order-form",
+        to: "/store?product=website#order-brief",
       },
       {
         label: "Small business websites",
@@ -332,7 +332,7 @@ const ALL_SERVICES: Service[] = [
           "Yes. Tell us whether you already own a domain or need help choosing one in your project brief.",
       },
     ],
-    primaryCta: { label: "Order a band website", to: "/store?product=website#order-form" },
+    primaryCta: { label: "Order a band website", to: "/store?product=website#order-brief" },
     secondaryCta: {
       label: "See samples",
       href: WEB_PORTFOLIO_URL,
@@ -500,7 +500,7 @@ const ALL_SERVICES: Service[] = [
       {
         label: "How to order",
         description: "Email your completed brief and send a 50% deposit via PayPal or Venmo.",
-        to: "/store?product=epk#order-form",
+        to: "/store?product=epk#order-brief",
       },
     ],
     sections: [
@@ -556,7 +556,7 @@ const ALL_SERVICES: Service[] = [
           "Fill out our brief form, email it to websites@801familystudios.com, and send a 50% deposit through PayPal or Venmo. The balance is due when your EPK is ready.",
       },
     ],
-    primaryCta: { label: "Order a band EPK", to: "/store?product=epk#order-form" },
+    primaryCta: { label: "Order a band EPK", to: "/store?product=epk#order-brief" },
     secondaryCta: {
       label: "See samples",
       href: WEB_PORTFOLIO_URL,

@@ -42,9 +42,9 @@ const Store = () => {
                 <ExternalLink className="h-4 w-4" />
               </a>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
-                Band website $300, EPK $150, or both for $400. Pick a package,
-                complete the brief, and send a 50% deposit via Stripe, PayPal, or Venmo.
-                Delivery is 7–14 days after the deposit and your brief.
+                Band website $300, EPK $150, or both for $400. Open the order form,
+                then send a 50% deposit via Stripe, PayPal, or Venmo.
+                Delivery is 7–14 days after the deposit and your form.
               </p>
             </motion.div>
 
@@ -84,7 +84,7 @@ const Store = () => {
                         ))}
                       </ul>
                       <Link
-                        to={`/store?product=${item.id}#order-form`}
+                        to={`/store?product=${item.id}#order-brief`}
                         className="mt-6 inline-flex text-sm font-semibold text-teal-300 hover:text-teal-200 underline-offset-4 hover:underline"
                       >
                         Start order →

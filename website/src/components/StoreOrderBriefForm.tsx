@@ -1,5 +1,6 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ChevronDown, Loader2 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,11 +16,7 @@ import {
   type StoreOrderFormFields,
 } from "@/lib/buildStoreOrderEmail";
 import { submitStoreOrderEmail } from "@/lib/submitStoreOrderEmail";
-import {
-  depositAmount,
-  type StoreProduct,
-  type StoreProductId,
-} from "@/lib/storeProducts";
+import { depositAmount, type StoreProduct, type StoreProductId } from "@/lib/storeProducts";
 import { cn } from "@/lib/utils";
 
 const emptyForm: StoreOrderFormFields = {
@@ -27,21 +24,8 @@ const emptyForm: StoreOrderFormFields = {
   contactName: "",
   email: "",
   phone: "",
-  location: "",
-  bio: "",
-  genre: "",
-  socialLinks: "",
-  musicLinks: "",
-  photosAndAssets: "",
-  showsAndEvents: "",
-  designNotes: "",
-  domainNotes: "",
-  referenceSites: "",
-  shortBio: "",
-  pressContact: "",
-  bookingContact: "",
-  videoLinks: "",
-  additionalNotes: "",
+  links: "",
+  projectNotes: "",
 };
 
 const fieldClass =
@@ -53,10 +37,17 @@ type StoreOrderBriefFormProps = {
 };
 
 const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) => {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<StoreOrderFormFields>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const deposit = depositAmount(selected.price);
+
+  useEffect(() => {
+    if (location.hash === "#order-brief" || location.hash === "#order-form") {
+      setOpen(true);
+    }
+  }, [location.hash, location.search]);
 
   const update = (key: keyof StoreOrderFormFields, value: string) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -74,7 +65,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
     event.preventDefault();
 
     if (!form.artistOrBandName.trim()) {
-      toast.error("Please enter your artist / band name.");
+      toast.error("Please enter the artist, band, or business name.");
       focusField("artistOrBandName");
       return;
     }
@@ -83,19 +74,9 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
       focusField("contactName");
       return;
     }
-    if (!form.email.trim()) {
+    if (!form.email.trim() || !form.email.includes("@")) {
       toast.error("Please enter your email.");
       focusField("email");
-      return;
-    }
-    if (!form.bio.trim()) {
-      toast.error("Please add your band bio.");
-      focusField("bio");
-      return;
-    }
-    if (!form.photosAndAssets.trim()) {
-      toast.error("Please add a photos & assets link (Google Drive, social media, etc.).");
-      focusField("photosAndAssets");
       return;
     }
 
@@ -106,7 +87,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
       submitStoreOrderEmail(emailFields);
       setForm(emptyForm);
       toast.success(
-        `Brief sent for ${selected.name}. Next, pay your $${deposit} deposit below.`
+        `Got it. Next, pay your $${deposit} deposit below.`
       );
       document.getElementById("order-deposit")?.scrollIntoView({
         behavior: "smooth",
@@ -114,25 +95,26 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
       });
       setOpen(false);
     } catch {
-      toast.error("Could not send the form. Please try again or email your brief.");
+      toast.error("Could not send the form. Please try again or email us.");
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <Collapsible open={open} onOpenChange={setOpen} className="mt-6">
+    <Collapsible open={open} onOpenChange={setOpen} className="mt-2">
       <CollapsibleTrigger asChild>
         <button
+          id="order-brief"
           type="button"
-          className="flex w-full items-center justify-between gap-3 rounded-2xl border border-white/20 bg-black/25 px-5 py-4 text-left transition-colors hover:border-white/35 hover:bg-black/35"
+          className="flex w-full items-center justify-between gap-3 rounded-2xl border border-[var(--accent-warm)]/50 bg-[var(--accent-warm)]/10 px-5 py-4 text-left transition-colors hover:bg-[var(--accent-warm)]/20 scroll-mt-28"
         >
           <span>
-            <span className="block text-sm font-semibold uppercase tracking-wide text-teal-300">
-              Prefer the on-page form?
+            <span className="block text-base font-semibold text-white">
+              {open ? "Order form" : "Fill out the order form"}
             </span>
             <span className="mt-1 block text-sm text-gray-200">
-              Fill it out here instead of the Google Doc — tucked away until you need it.
+              Name, email, and your links. Takes a couple of minutes.
             </span>
           </span>
           <ChevronDown
@@ -149,17 +131,20 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="mt-4 space-y-6 rounded-2xl border border-white/15 bg-black/20 p-5 md:p-6"
+          className="mt-4 space-y-5 rounded-2xl border border-white/15 bg-black/20 p-5 md:p-6"
         >
           <p className="text-sm text-gray-300 leading-relaxed">
-            Complete this brief for your{" "}
-            <span className="text-white font-medium">{selected.name}</span>. When you
-            submit, we receive it by email — then pay your ${deposit} deposit in Step 4.
+            This is for your{" "}
+            <span className="text-white font-medium">{selected.name}</span> ($
+            {selected.price}, ${deposit} deposit). Submit it here and we get the email.
+            Then pay the deposit in the next step.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="artistOrBandName">Artist / band name *</Label>
+              <Label htmlFor="artistOrBandName" className="text-gray-100">
+                Artist, band, or business name *
+              </Label>
               <Input
                 id="artistOrBandName"
                 value={form.artistOrBandName}
@@ -168,7 +153,9 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contactName">Your name *</Label>
+              <Label htmlFor="contactName" className="text-gray-100">
+                Your name *
+              </Label>
               <Input
                 id="contactName"
                 value={form.contactName}
@@ -177,216 +164,64 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
+              <Label htmlFor="email" className="text-gray-100">
+                Email *
+              </Label>
               <Input
                 id="email"
                 type="email"
+                autoComplete="email"
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
                 className={fieldClass}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="phone" className="text-gray-100">
+                Phone
+              </Label>
               <Input
                 id="phone"
                 type="tel"
+                autoComplete="tel"
                 value={form.phone}
                 onChange={(e) => update("phone", e.target.value)}
                 className={fieldClass}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="location">City / state</Label>
-              <Input
-                id="location"
-                value={form.location}
-                onChange={(e) => update("location", e.target.value)}
-                placeholder="e.g. Salt Lake City, UT"
-                className={fieldClass}
-              />
-            </div>
-          </div>
-
-          {(product === "epk" || product === "bundle") && (
-            <div className="space-y-2">
-              <Label htmlFor="shortBio">Short bio (1–2 sentences for press)</Label>
-              <Textarea
-                id="shortBio"
-                rows={3}
-                value={form.shortBio}
-                onChange={(e) => update("shortBio", e.target.value)}
-                className={fieldClass}
-              />
-            </div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="bio">{product === "epk" ? "Full bio *" : "Band bio *"}</Label>
-            <Textarea
-              id="bio"
-              rows={5}
-              value={form.bio}
-              onChange={(e) => update("bio", e.target.value)}
-              placeholder="Your story, sound, and what makes you unique..."
-              className={fieldClass}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="space-y-2">
-              <Label htmlFor="genre">Genre / style</Label>
-              <Input
-                id="genre"
-                value={form.genre}
-                onChange={(e) => update("genre", e.target.value)}
-                className={fieldClass}
-              />
-            </div>
-            {(product === "epk" || product === "bundle") && (
-              <>
-                <div className="space-y-2">
-                  <Label htmlFor="pressContact">Press contact email</Label>
-                  <Input
-                    id="pressContact"
-                    type="email"
-                    value={form.pressContact}
-                    onChange={(e) => update("pressContact", e.target.value)}
-                    className={fieldClass}
-                  />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <Label htmlFor="bookingContact">Booking contact</Label>
-                  <Input
-                    id="bookingContact"
-                    value={form.bookingContact}
-                    onChange={(e) => update("bookingContact", e.target.value)}
-                    placeholder="Email, phone, or booking agent"
-                    className={fieldClass}
-                  />
-                </div>
-              </>
-            )}
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="socialLinks">Social media links</Label>
-            <Textarea
-              id="socialLinks"
-              rows={3}
-              value={form.socialLinks}
-              onChange={(e) => update("socialLinks", e.target.value)}
-              placeholder="Instagram, Facebook, TikTok, YouTube, etc."
-              className={fieldClass}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="musicLinks">
-              {product === "website" ? "Music links" : "Music & video links"}
+            <Label htmlFor="links" className="text-gray-100">
+              Links
             </Label>
             <Textarea
-              id="musicLinks"
+              id="links"
               rows={3}
-              value={form.musicLinks}
-              onChange={(e) => update("musicLinks", e.target.value)}
-              placeholder="Spotify, Apple Music, SoundCloud, YouTube..."
-              className={fieldClass}
-            />
-          </div>
-
-          {(product === "epk" || product === "bundle") && (
-            <div className="space-y-2">
-              <Label htmlFor="videoLinks">Video links (live performance, music videos)</Label>
-              <Textarea
-                id="videoLinks"
-                rows={2}
-                value={form.videoLinks}
-                onChange={(e) => update("videoLinks", e.target.value)}
-                className={fieldClass}
-              />
-            </div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="photosAndAssets">Photos & assets link *</Label>
-            <Textarea
-              id="photosAndAssets"
-              rows={3}
-              value={form.photosAndAssets}
-              onChange={(e) => update("photosAndAssets", e.target.value)}
-              placeholder="Paste links to your photos and assets — Google Drive, Instagram, Facebook, etc."
+              value={form.links}
+              onChange={(e) => update("links", e.target.value)}
+              placeholder="Music, social, photos, or a Drive folder. One link per line is fine."
               className={fieldClass}
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="showsAndEvents">
-              {product === "website"
-                ? "Upcoming shows & events"
-                : product === "epk"
-                  ? "Upcoming shows / press notes"
-                  : "Upcoming shows, events & press notes"}
+            <Label htmlFor="projectNotes" className="text-gray-100">
+              Project notes
             </Label>
             <Textarea
-              id="showsAndEvents"
-              rows={3}
-              value={form.showsAndEvents}
-              onChange={(e) => update("showsAndEvents", e.target.value)}
+              id="projectNotes"
+              rows={4}
+              value={form.projectNotes}
+              onChange={(e) => update("projectNotes", e.target.value)}
+              placeholder="A short bio, colors you like, upcoming shows, or whether you need a domain. Short is fine."
               className={fieldClass}
             />
           </div>
 
-          {(product === "website" || product === "bundle") && (
-            <>
-              <div className="space-y-2">
-                <Label htmlFor="designNotes">Design / color preferences</Label>
-                <Textarea
-                  id="designNotes"
-                  rows={3}
-                  value={form.designNotes}
-                  onChange={(e) => update("designNotes", e.target.value)}
-                  placeholder="Colors, mood, fonts, or sites you like..."
-                  className={fieldClass}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="domainNotes">Domain name</Label>
-                <Input
-                  id="domainNotes"
-                  value={form.domainNotes}
-                  onChange={(e) => update("domainNotes", e.target.value)}
-                  placeholder="Do you already own one, or need help choosing?"
-                  className={fieldClass}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="referenceSites">Reference websites you like</Label>
-                <Textarea
-                  id="referenceSites"
-                  rows={2}
-                  value={form.referenceSites}
-                  onChange={(e) => update("referenceSites", e.target.value)}
-                  className={fieldClass}
-                />
-              </div>
-            </>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="additionalNotes">Anything else we should know?</Label>
-            <Textarea
-              id="additionalNotes"
-              rows={3}
-              value={form.additionalNotes}
-              onChange={(e) => update("additionalNotes", e.target.value)}
-              className={fieldClass}
-            />
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between pt-2">
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between pt-1">
             <p className="text-sm text-gray-300">
-              Submitting:{" "}
+              Sending:{" "}
               <span className="text-white font-semibold">{selected.name}</span>
             </p>
             <Button
@@ -400,7 +235,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
                   Sending…
                 </>
               ) : (
-                "Submit brief"
+                "Send order form"
               )}
             </Button>
           </div>
