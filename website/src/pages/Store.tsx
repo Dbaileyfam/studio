@@ -47,10 +47,10 @@ const Store = () => {
                 <ExternalLink className="h-4 w-4" />
               </a>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
-                Band websites start at $500, EPKs at $200, or both for $650. Open
-                the order form, send the bios, photos, music, and show details, then
-                pay a 50% deposit via Stripe, PayPal, or Venmo. Delivery is 7–14 days
-                after the deposit and your form.
+                Band websites start at $500 with a $250 deposit. EPKs start at $200
+                with a $100 deposit. Both are $650 with a $325 deposit. Small business
+                sites start at $2,000, and that deposit is invoiced — it starts at
+                $1,000.
               </p>
             </motion.div>
 
@@ -62,7 +62,7 @@ const Store = () => {
               viewport={{ once: true }}
               custom={1}
             >
-              <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {STORE_PRODUCTS.map((item) => (
                   <motion.div
                     key={item.id}
@@ -101,6 +101,44 @@ const Store = () => {
                     </motion.div>
                   </motion.div>
                 ))}
+                <motion.div className="relative rounded-3xl border border-sky-400/30 bg-white/10 backdrop-blur-sm p-6 md:p-8 overflow-hidden">
+                  <motion.div className="absolute inset-0 bg-gradient-to-br from-sky-500/20 to-teal-500/20 opacity-50 pointer-events-none" />
+                  <motion.div className="relative">
+                    <span className="text-4xl">🏢</span>
+                    <h3 className="text-2xl font-bold text-white mt-4">Small Business Website</h3>
+                    <p className="text-sm uppercase tracking-wide text-gray-400 mt-2">
+                      Starting at
+                    </p>
+                    <p className="text-3xl font-bold text-teal-300">$2,000</p>
+                    <p className="text-sm text-gray-400 mt-1">
+                      Deposit invoiced: from $1,000
+                    </p>
+                    <p className="text-gray-300 mt-3 text-sm leading-relaxed">
+                      A separate brief for shops and service businesses. We email an
+                      invoice for half the quoted price. Larger sites cost more.
+                    </p>
+                    <ul className="mt-5 space-y-2 text-sm text-gray-200">
+                      <li className="flex gap-2">
+                        <span className="text-teal-400">✓</span>
+                        Services, hours, photos, and contact
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-teal-400">✓</span>
+                        Your own brief, emailed to the studio
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-teal-400">✓</span>
+                        50% deposit invoiced after we review it
+                      </li>
+                    </ul>
+                    <Link
+                      to="/small-business-websites#order-brief"
+                      className="mt-6 inline-flex text-sm font-semibold text-teal-300 hover:text-teal-200 underline-offset-4 hover:underline"
+                    >
+                      Fill out the small business brief →
+                    </Link>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
