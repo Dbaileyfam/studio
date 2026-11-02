@@ -271,17 +271,28 @@ const StoreOrderForm = () => {
           </div>
         </div>
 
-        <p className="text-sm text-gray-400 mt-6 text-center leading-relaxed">
-          This deposit is ${deposit.toLocaleString()} for the {selected.name}. The
-          remaining balance is due when it is ready. A small business site starts at
-          $2,000, and that deposit is invoiced — it starts at $1,000.{" "}
-          <Link
-            to="/small-business-websites#order-brief"
-            className="text-teal-300 hover:underline"
+        <div className="mt-8 rounded-2xl border border-sky-400/30 bg-sky-500/10 px-6 py-6 text-center">
+          <p className="text-lg font-semibold text-white">Small business websites</p>
+          <p className="text-3xl font-bold text-teal-300 mt-2">$2,000</p>
+          <p className="text-sm text-gray-200 mt-2 leading-relaxed">
+            Starting price for a shop or service business. The deposit is invoiced
+            and starts at $1,000. This is a separate brief from the band order above.
+          </p>
+          <Button
+            asChild
+            className="mt-4 rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
           >
-            Fill out the small business brief
-          </Link>
-          . Questions?{" "}
+            <Link to="/small-business-websites#order-brief">
+              Fill out the small business brief
+            </Link>
+          </Button>
+        </div>
+
+        <p className="text-sm text-gray-400 mt-6 text-center leading-relaxed">
+          The buttons above are the ${deposit.toLocaleString()} deposit for the{" "}
+          {selected.name}. A band website deposit is $250, an EPK deposit is $100,
+          and the bundle deposit is $325. The small business deposit is invoiced and
+          starts at $1,000. Questions?{" "}
           <a
             href={`mailto:${STORE_FORM_EMAIL}`}
             className="text-teal-300 hover:underline"

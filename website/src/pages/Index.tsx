@@ -189,6 +189,16 @@ const Index = () => {
                         I need a Website / EPK
                       </Link>
                     </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    >
+                      <Link to="/small-business-websites#order-brief">
+                        Small business — from $2,000
+                      </Link>
+                    </Button>
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -385,6 +395,11 @@ const Index = () => {
             </section>
 
             <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-8 leading-relaxed px-4">
+              Deposits are half the starting price: $250 for a band website, $100 for an EPK, and $325
+              for both. Small business sites start at $2,000, and that deposit is invoiced — it starts
+              at $1,000.
+            </p>
+            <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-4 leading-relaxed px-4">
               Policies: Deposits may be required to reserve studio time. Cancellations may incur fees.
               Custom projects available upon consultation.
             </p>

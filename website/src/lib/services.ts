@@ -495,7 +495,7 @@ const ALL_SERVICES: Service[] = [
     cardDescription:
       "Band EPK: starting at $200 — press-ready electronic press kit with bio, photos, music/video, and booking info.",
     homeTeaser:
-      "Press-ready electronic press kits with bio, photos, music, video, and booking info in one shareable link.",
+      "EPKs start at $200 — press-ready bio, photos, music, video, and booking info in one shareable link. The deposit is $100.",
     heroSubtitle: "One professional link for venues, press, playlists, and industry contacts.",
     startingPrice: "Starting at $200 · Website + EPK bundle $650",
     intro:
