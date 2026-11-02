@@ -27,13 +27,15 @@ export type StoreProduct = {
   icon: string;
   accent: string;
   borderColor: string;
+  /** Direct Stripe Payment Link for this package's deposit. */
+  stripePaymentUrl?: string;
 };
 
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "website",
     name: "Band Website",
-    price: 300,
+    price: 500,
     tagline: "Your band's home online",
     description:
       "One complete site with bio, music, photos, shows, contact, and links. Simple edits included free; complex changes are $25/hr.",
@@ -46,11 +48,12 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     icon: "💻",
     accent: "from-orange-500/20 to-red-500/20",
     borderColor: "border-orange-400/30",
+    stripePaymentUrl: "https://buy.stripe.com/dRmfZa8L72II1V5fXEbZe08",
   },
   {
     id: "epk",
     name: "Band EPK",
-    price: 150,
+    price: 200,
     tagline: "Press & booking ready",
     description:
       "Electronic press kit with bio, photos, music/video, and booking info. Simple edits included free; complex changes are $25/hr.",
@@ -63,11 +66,12 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     icon: "📄",
     accent: "from-amber-500/15 to-teal-500/20",
     borderColor: "border-amber-400/30",
+    stripePaymentUrl: "https://buy.stripe.com/fZudR27H39767fpbHobZe07",
   },
   {
     id: "bundle",
     name: "Website + EPK Bundle",
-    price: 400,
+    price: 650,
     tagline: "Site and press kit together",
     description:
       "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $25/hr.",
@@ -80,6 +84,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     icon: "🎁",
     accent: "from-teal-500/20 to-orange-500/20",
     borderColor: "border-teal-400/30",
+    stripePaymentUrl: "https://buy.stripe.com/5kQ5kw9PberqfLVaDkbZe06",
   },
 ];
 
@@ -89,6 +94,9 @@ export const STORE_PACKAGE_PICKER_ORDER: StoreProductId[] = [
   "epk",
   "bundle",
 ];
+
+export const venmoPayUrl = (amount: number, note: string) =>
+  `${VENMO_PROFILE_URL}?txn=pay&amount=${amount}&note=${encodeURIComponent(note)}`;
 
 export const depositAmount = (price: number) => Math.round(price / 2);
 

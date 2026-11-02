@@ -2,7 +2,7 @@ import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import StoreOrderForm from "@/components/StoreOrderForm";
 import { motion } from "framer-motion";
 import { ExternalLink, Shirt } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 import { MERCH_SHOP_URL } from "@/lib/siteNav";
 import { STORE_PRODUCTS, WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 
@@ -16,6 +16,11 @@ const fadeIn = {
 };
 
 const Store = () => {
+  const [searchParams] = useSearchParams();
+  if (searchParams.get("product") === "business") {
+    return <Navigate to="/small-business-websites#order-brief" replace />;
+  }
+
   return (
     <AnimatedPageTransition>
       <div className="page-container">
@@ -42,10 +47,10 @@ const Store = () => {
                 <ExternalLink className="h-4 w-4" />
               </a>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
-                Band website $300, EPK $150, or both for $400. Open the order form
-                and send the bios, photos, music, and show details, then pay a 50%
-                deposit via Stripe, PayPal, or Venmo. Delivery is 7–14 days after
-                the deposit and your form.
+                Band websites start at $500, EPKs at $200, or both for $650. Open
+                the order form, send the bios, photos, music, and show details, then
+                pay a 50% deposit via Stripe, PayPal, or Venmo. Delivery is 7–14 days
+                after the deposit and your form.
               </p>
             </motion.div>
 
@@ -69,9 +74,12 @@ const Store = () => {
                     <motion.div className="relative">
                       <span className="text-4xl">{item.icon}</span>
                       <h3 className="text-2xl font-bold text-white mt-4">{item.name}</h3>
-                      <p className="text-3xl font-bold text-teal-300 mt-2">${item.price}</p>
+                      <p className="text-sm uppercase tracking-wide text-gray-400 mt-2">
+                        Starting at
+                      </p>
+                      <p className="text-3xl font-bold text-teal-300">${item.price.toLocaleString()}</p>
                       <p className="text-sm text-gray-400 mt-1">
-                        50% deposit: ${Math.round(item.price / 2)}
+                        50% deposit: ${Math.round(item.price / 2).toLocaleString()}
                       </p>
                       <p className="text-gray-300 mt-3 text-sm leading-relaxed">
                         {item.description}
@@ -97,6 +105,17 @@ const Store = () => {
             </motion.div>
 
             <StoreOrderForm />
+
+            <p className="text-center text-sm text-gray-300 mt-8">
+              Need a site for a shop or service business?{" "}
+              <Link
+                to="/small-business-websites#order-brief"
+                className="text-teal-300 hover:underline"
+              >
+                Fill out the small business brief
+              </Link>
+              . Those start at $2,000 and are invoiced by email.
+            </p>
 
             <motion.div
               className="mt-14 rounded-2xl border border-white/15 bg-white/5 px-6 py-5 text-center max-w-xl mx-auto"

@@ -1,5 +1,6 @@
 import AnimatedPageTransition from "@/components/AnimatedPageTransition";
 import PageSEO from "@/components/PageSEO";
+import SmallBusinessBriefForm from "@/components/SmallBusinessBriefForm";
 import StudioGallery from "@/components/StudioGallery";
 import { Button } from "@/components/ui/button";
 import { serviceHasStudioGallery } from "@/lib/studioGallery";
@@ -151,6 +152,15 @@ const ServiceDetail = () => {
                   >
                     <Link to={service.primaryCta.to}>{service.primaryCta.label}</Link>
                   </Button>
+                  {service.depositCta && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="rounded-full border-teal-300/50 text-teal-100 hover:bg-teal-400/10 font-semibold"
+                    >
+                      <Link to={service.depositCta.to}>{service.depositCta.label}</Link>
+                    </Button>
+                  )}
                   <Button
                     asChild
                     variant="outline"
@@ -171,6 +181,8 @@ const ServiceDetail = () => {
             >
               {service.intro}
             </motion.p>
+
+            {service.slug === "small-business-websites" && <SmallBusinessBriefForm />}
 
             {serviceHasStudioGallery(service.slug) && (
               <motion.section

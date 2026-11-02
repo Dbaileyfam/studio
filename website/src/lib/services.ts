@@ -58,6 +58,8 @@ export type Service = {
   pricing: ServicePricing[];
   faqs: ServiceFAQ[];
   primaryCta: { label: string; to: string };
+  /** Jumps straight to the deposit and payment step. */
+  depositCta?: { label: string; to: string };
   secondaryCta?: { label: string; href: string; external?: boolean };
   /** Cross-promotion shown at the bottom of the service page. */
   relatedPrompt?: { text: string; to: string; linkLabel: string };
@@ -228,7 +230,7 @@ const ALL_SERVICES: Service[] = [
     navLabel: "Band Websites",
     title: "Band Websites",
     metaDescription:
-      "Band websites in Utah from $300 — custom bio, music, photos, shows, and booking pages. Mobile-first sites by 801 Family Studios in Sandy.",
+      "Band websites in Utah from $500 — custom bio, music, photos, shows, and booking pages. Mobile-first sites by 801 Family Studios in Sandy.",
     keywords: [
       "band website design Utah",
       "websites for musicians",
@@ -239,12 +241,12 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-orange-500/20 to-red-500/20",
     borderColor: "border-orange-400/30",
     cardDescription:
-      "Band Website: $300 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
+      "Band Website: starting at $500 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
     homeTeaser:
-      "Band website $300 — bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
+      "Band websites start at $500 — bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
     heroSubtitle:
       "A professional home base for your music, story, shows, and bookings.",
-    startingPrice: "Band website $300 · Website + EPK bundle $400",
+    startingPrice: "Starting at $500 · Website + EPK bundle $650",
     intro:
       "We build custom websites for bands and solo artists who need more than a link-in-bio or a generic template. Your site is the place fans, bookers, and press go for your story, music, photos, and upcoming shows.",
     examples: [
@@ -296,13 +298,13 @@ const ALL_SERVICES: Service[] = [
     pricing: [
       {
         label: "Band Website",
-        price: "$300",
-        note: "One complete site. 50% deposit ($150) to start. Simple edits included free.",
+        price: "$500",
+        note: "Starting price. 50% deposit ($250) to start. Simple edits included free.",
       },
       {
         label: "Website + EPK Bundle",
-        price: "$400",
-        note: "50% deposit ($200) to start. Save $50 vs ordering the site and EPK separately.",
+        price: "$650",
+        note: "50% deposit ($325) to start. Save $50 vs ordering the site and EPK separately.",
       },
       {
         label: "Complex edits",
@@ -350,7 +352,7 @@ const ALL_SERVICES: Service[] = [
     navLabel: "Small Business Sites",
     title: "Small Business Websites",
     metaDescription:
-      "Small business websites in Utah from $300 — services, hours, photos, location, and contact on a mobile-first site by 801 Family Studios in Sandy.",
+      "Small business websites in Utah from $2,000 — services, hours, photos, location, and contact on a mobile-first site by 801 Family Studios in Sandy.",
     keywords: [
       "small business website Utah",
       "small business web design Salt Lake City",
@@ -361,12 +363,12 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-sky-500/20 to-teal-500/20",
     borderColor: "border-sky-400/30",
     cardDescription:
-      "Small Business Website: $300 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
+      "Small Business Website: starting at $2,000 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
     homeTeaser:
-      "Small business website $300 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
+      "Small business websites start at $2,000 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
     heroSubtitle:
       "A clear, trustworthy site so customers can find what you offer and get in touch.",
-    startingPrice: "Small business website $300 · Complex edits $25/hr",
+    startingPrice: "Starting at $2,000 · Deposit invoiced",
     intro:
       "We build custom websites for small businesses that need a professional home online. Your site explains what you do, where you are, and how to hire you, in a layout that works on a phone.",
     examples: [
@@ -407,14 +409,14 @@ const ALL_SERVICES: Service[] = [
       {
         heading: "How ordering works",
         body:
-          "Tell us about the business, send your logo, photos, and the details you want on the site, and pay a 50% deposit to start. We deliver the finished site by email. The balance is due when it is ready. Larger sites with extra pages or custom features are quoted before we start.",
+          "Tell us about the business in the brief on this page. It emails us your logo, photos, services, and the other details we need. Sites start at $2,000 and are often more. We email an invoice for 50% of the quoted price, and we start when that invoice is paid. The balance is invoiced when the site is ready.",
       },
     ],
     pricing: [
       {
         label: "Small Business Website",
-        price: "$300",
-        note: "One complete site. 50% deposit ($150) to start. Simple edits included free. Delivery in 7–14 days after the deposit and your content.",
+        price: "$2,000",
+        note: "Starting price. We invoice 50% after reviewing your form. Simple edits included free. Delivery in 7–14 days after the deposit and your content.",
       },
       {
         label: "Complex edits",
@@ -441,7 +443,7 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How do I pay?",
         answer:
-          "Contact us to start. A 50% deposit ($150) is due before we begin, through Stripe, PayPal, or Venmo. The balance is due when your site is ready.",
+          "Fill out the brief on this page. It emails us everything we need to quote the site. Sites start at $2,000, so the deposit starts at $1,000 and is higher when the site is larger. We email an invoice for half the quoted price, and the balance is invoiced when your site is ready.",
       },
       {
         question: "Can you help with a domain name?",
@@ -451,10 +453,13 @@ const ALL_SERVICES: Service[] = [
       {
         question: "Is this the same as a band website?",
         answer:
-          "The price for a standard site is the same. A band site is built around music, photos, shows, and booking. A small business site is built around services, hours, location, and customer contact.",
+          "A band site starts at $500 and is built around music, photos, shows, and booking. A small business site starts at $2,000 and is built around services, hours, location, and customer contact.",
       },
     ],
-    primaryCta: { label: "Start a small business website", to: "/contact" },
+    primaryCta: {
+      label: "Fill out the small business brief",
+      to: "/small-business-websites#order-brief",
+    },
     secondaryCta: {
       label: "See samples",
       href: WEB_PORTFOLIO_URL,
@@ -472,7 +477,7 @@ const ALL_SERVICES: Service[] = [
     navLabel: "EPK",
     title: "EPK Design for Musicians",
     metaDescription:
-      "EPK design for musicians and bands in Utah — press-ready bio, photos, music, video, and booking info from $150 at 801 Family Studios.",
+      "EPK design for musicians and bands in Utah — press-ready bio, photos, music, video, and booking info from $200 at 801 Family Studios.",
     keywords: [
       "EPK design for musicians",
       "band EPK Utah",
@@ -483,11 +488,11 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-amber-500/15 to-teal-500/20",
     borderColor: "border-amber-400/30",
     cardDescription:
-      "Band EPK: $150 — press-ready electronic press kit with bio, photos, music/video, and booking info.",
+      "Band EPK: starting at $200 — press-ready electronic press kit with bio, photos, music/video, and booking info.",
     homeTeaser:
       "Press-ready electronic press kits with bio, photos, music, video, and booking info in one shareable link.",
     heroSubtitle: "One professional link for venues, press, playlists, and industry contacts.",
-    startingPrice: "Band EPK $150 · Website + EPK bundle $400",
+    startingPrice: "Starting at $200 · Website + EPK bundle $650",
     intro:
       "An electronic press kit (EPK) is how bookers, bloggers, and promoters evaluate you quickly. We build press-ready EPKs that present your story, sound, visuals, and contact details in a format industry contacts expect — so you look prepared before the first email reply.",
     examples: [
@@ -530,13 +535,13 @@ const ALL_SERVICES: Service[] = [
     pricing: [
       {
         label: "Band EPK",
-        price: "$150",
-        note: "50% deposit ($75) to start — simple edits included free",
+        price: "$200",
+        note: "Starting price. 50% deposit ($100) to start — simple edits included free",
       },
       {
         label: "Website + EPK Bundle",
-        price: "$400",
-        note: "50% deposit ($200) to start — best value for new bands",
+        price: "$650",
+        note: "50% deposit ($325) to start — best value for new bands",
       },
     ],
     faqs: [
@@ -731,7 +736,7 @@ const ALL_SERVICES: Service[] = [
       },
       {
         label: "Small business websites",
-        description: "A $300 site for services, hours, photos, and customer contact.",
+        description: "Sites starting at $2,000 for services, hours, photos, and customer contact.",
         to: "/small-business-websites",
       },
     ],

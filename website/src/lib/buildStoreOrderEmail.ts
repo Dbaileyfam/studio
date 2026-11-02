@@ -34,15 +34,19 @@ export function buildStoreOrderEmailFields(
   form: StoreOrderFormFields
 ): Record<string, string> {
   const deposit = depositAmount(selected.price);
-  return {
+  const shared = {
     _subject: `Store order: ${selected.name} — ${form.artistOrBandName.trim()}`,
-    Product: `${selected.name} ($${selected.price})`,
+    Product: `${selected.name} (starting at $${selected.price})`,
     Deposit: `$${deposit} (50%)`,
-    "Artist / band name": form.artistOrBandName.trim(),
     "Contact name": form.contactName.trim(),
     Email: form.email.trim(),
     Phone: filled(form.phone),
     Location: filled(form.location),
+  };
+
+  return {
+    ...shared,
+    "Artist / band name": form.artistOrBandName.trim(),
     Genre: filled(form.genre),
     "Short bio": filled(form.shortBio),
     "Medium bio": filled(form.mediumBio),
@@ -54,7 +58,7 @@ export function buildStoreOrderEmailFields(
     "Booking info": filled(form.bookingContact),
     "Stage plot / tech rider": filled(form.stageInfo),
     "Press & credits": filled(form.pressNotes),
-    "Shows": filled(form.showsAndEvents),
+    Shows: filled(form.showsAndEvents),
     "Pages wanted": filled(form.pagesWanted),
     "Main goal": filled(form.mainGoal),
     Domain: filled(form.domainNotes),

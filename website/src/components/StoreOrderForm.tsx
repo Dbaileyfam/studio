@@ -12,9 +12,9 @@ import {
   STORE_FORM_EMAIL,
   STORE_PACKAGE_PICKER_ORDER,
   STORE_PRODUCTS,
-  VENMO_PROFILE_URL,
   VENMO_QR_SRC,
   depositAmount,
+  venmoPayUrl,
   type StoreProduct,
   type StoreProductId,
 } from "@/lib/storeProducts";
@@ -52,8 +52,9 @@ const PackageOption = ({
     >
       <span className="text-3xl">{item.icon}</span>
       <p className="text-lg font-semibold text-white mt-3">{item.name}</p>
-      <p className="text-2xl font-bold text-teal-300 mt-1">${item.price}</p>
-      <p className="text-sm text-gray-300 mt-1">50% deposit: ${deposit}</p>
+      <p className="text-xs uppercase tracking-wide text-gray-400 mt-3">Starting at</p>
+      <p className="text-2xl font-bold text-teal-300">${item.price.toLocaleString()}</p>
+      <p className="text-sm text-gray-300 mt-1">50% deposit: ${deposit.toLocaleString()}</p>
       <p className="text-sm text-gray-400 mt-2">{item.tagline}</p>
     </motion.button>
   );
@@ -84,7 +85,7 @@ const StoreOrderForm = () => {
   const mailtoHref = `mailto:${STORE_FORM_EMAIL}?subject=${encodeURIComponent(
     `${selected.name} order — completed brief`
   )}&body=${encodeURIComponent(
-    `Hi,\n\nI'd like to order the ${selected.name} ($${selected.price}).\n\nI've attached / linked my completed Band Website / EPK Information form and sent a $${deposit} deposit (50%) via Stripe, PayPal, or Venmo.\n\nArtist / band name:\nContact name:\nPhone:\n\nThanks!`
+    `Hi,\n\nI'd like to order the ${selected.name} (starting at $${selected.price}).\n\nI've attached / linked my completed brief and sent a $${deposit} deposit (50%) via Stripe, PayPal, or Venmo.\n\nArtist / band name:\nContact name:\nPhone:\n\nThanks!`
   )}`;
 
   return (
@@ -94,9 +95,8 @@ const StoreOrderForm = () => {
           How to order
         </h2>
         <p className="text-gray-300 leading-relaxed">
-          Pick a package, fill out the order form with your bios, photos, music, and
-          show details, and send a 50% deposit through Stripe, PayPal, or Venmo. We
-          start once we have both.
+          Pick a package, fill out the order form, and send a 50% deposit through
+          Stripe, PayPal, or Venmo. We start once we have both.
         </p>
         <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>
@@ -198,9 +198,10 @@ const StoreOrderForm = () => {
               For{" "}
               <span className="text-white font-medium">{selected.name}</span>, the
               deposit is{" "}
-              <span className="text-teal-200 font-semibold">${deposit}</span> (50% of $
-              {selected.price}). Pay securely with Stripe below, or use PayPal / Venmo
-              and note your band or artist name in the payment memo.
+              <span className="text-teal-200 font-semibold">${deposit.toLocaleString()}</span>{" "}
+              (50% of ${selected.price.toLocaleString()}). Pay securely with Stripe
+              below, or use PayPal / Venmo and note your band or artist name in the
+              payment memo.
             </p>
           </div>
         </div>
@@ -209,7 +210,23 @@ const StoreOrderForm = () => {
           <p className="font-semibold text-white mb-3 text-center sm:text-left">
             Pay with Stripe
           </p>
-          <StripePricingTable />
+          {selected.stripePaymentUrl ? (
+            <Button
+              asChild
+              className="rounded-full bg-[var(--accent-warm)] text-[var(--bg-base)] hover:bg-amber-400 font-semibold"
+            >
+              <a
+                href={selected.stripePaymentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Pay ${deposit.toLocaleString()} with Stripe
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          ) : (
+            <StripePricingTable />
+          )}
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/15">
@@ -218,7 +235,9 @@ const StoreOrderForm = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-center">
-              <p className="font-semibold text-white mb-3">PayPal</p>
+              <p className="font-semibold text-white mb-3">
+                Pay ${deposit.toLocaleString()} with PayPal
+              </p>
               <img
                 src={PAYPAL_QR_SRC}
                 alt="PayPal QR code for 50% deposit"
@@ -227,7 +246,9 @@ const StoreOrderForm = () => {
               <p className="text-sm text-gray-300 mt-3">Scan to pay with PayPal</p>
             </div>
             <div className="rounded-2xl border border-white/15 bg-white/5 p-5 text-center">
-              <p className="font-semibold text-white mb-3">Venmo</p>
+              <p className="font-semibold text-white mb-3">
+                Pay ${deposit.toLocaleString()} with Venmo
+              </p>
               <img
                 src={VENMO_QR_SRC}
                 alt="801 Family Studios Venmo QR code for website and EPK deposits"
@@ -235,20 +256,23 @@ const StoreOrderForm = () => {
               />
               <p className="text-sm text-gray-300 mt-3">801 Family Studios</p>
               <a
-                href={VENMO_PROFILE_URL}
+                href={venmoPayUrl(
+                  deposit,
+                  `${selected.name} deposit`
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-teal-300 hover:text-teal-200 font-medium mt-1"
+                className="mt-3 inline-flex items-center justify-center rounded-full bg-[var(--accent-warm)] px-4 py-2 text-sm font-semibold text-[var(--bg-base)] hover:bg-amber-400"
               >
-                Open Venmo
-                <ExternalLink className="h-3.5 w-3.5" />
+                Pay ${deposit.toLocaleString()} with Venmo
+                <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
               </a>
             </div>
           </div>
         </div>
 
         <p className="text-sm text-gray-400 mt-6 text-center leading-relaxed">
-          Remaining balance is due when your website or EPK is ready. Questions?{" "}
+          Remaining balance is due when your site or EPK is ready. Questions?{" "}
           <a
             href={`mailto:${STORE_FORM_EMAIL}`}
             className="text-teal-300 hover:underline"

@@ -32,7 +32,7 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "Do you work with small businesses outside of music?",
     answer:
-      "Yes. A small business website is $300 and includes services, hours, photos, location, and contact. Simple edits are included free. Complex changes are $25/hr.",
+      "Yes. Small business websites start at $2,000. Fill out the brief on that page and it emails us. We reply with an invoice for a 50% deposit. Larger sites cost more. Simple edits are included free. Complex changes are $25/hr.",
     link: { to: "/small-business-websites", label: "Small business websites" },
   },
   {

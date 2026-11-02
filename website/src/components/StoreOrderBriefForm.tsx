@@ -128,7 +128,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
     try {
       submitStoreOrderEmail(emailFields);
       setForm(emptyForm);
-      toast.success(`Got it. Next, pay your $${deposit} deposit below.`);
+      toast.success(`Got it. Next, pay your $${deposit.toLocaleString()} deposit below.`);
       document.getElementById("order-deposit")?.scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -175,8 +175,9 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
         >
           <p className="text-sm text-gray-300 leading-relaxed">
             This is the full brief for your{" "}
-            <span className="text-white font-medium">{selected.name}</span> ($
-            {selected.price}, ${deposit} deposit). Fields marked * are required.
+            <span className="text-white font-medium">{selected.name}</span> (starting
+            at ${selected.price.toLocaleString()}, ${deposit.toLocaleString()} deposit).
+            Fields marked * are required.
             Fill in the rest with what you have — a link is enough for photos and files.
           </p>
 
