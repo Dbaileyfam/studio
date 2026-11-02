@@ -42,9 +42,10 @@ const Store = () => {
                 <ExternalLink className="h-4 w-4" />
               </a>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
-                Band website $300, EPK $150, or both for $400. Open the order form,
-                then send a 50% deposit via Stripe, PayPal, or Venmo.
-                Delivery is 7–14 days after the deposit and your form.
+                Band website $300, EPK $150, or both for $400. Open the order form
+                and send the bios, photos, music, and show details, then pay a 50%
+                deposit via Stripe, PayPal, or Venmo. Delivery is 7–14 days after
+                the deposit and your form.
               </p>
             </motion.div>
 

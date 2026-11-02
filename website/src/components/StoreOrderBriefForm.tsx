@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ChevronDown, Loader2 } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
@@ -24,8 +24,25 @@ const emptyForm: StoreOrderFormFields = {
   contactName: "",
   email: "",
   phone: "",
-  links: "",
-  projectNotes: "",
+  location: "",
+  genre: "",
+  shortBio: "",
+  mediumBio: "",
+  bio: "",
+  photosAndAssets: "",
+  musicLinks: "",
+  videoLinks: "",
+  socialLinks: "",
+  bookingContact: "",
+  stageInfo: "",
+  pressNotes: "",
+  showsAndEvents: "",
+  pagesWanted: "",
+  mainGoal: "",
+  domainNotes: "",
+  designNotes: "",
+  merchNotes: "",
+  additionalNotes: "",
 };
 
 const fieldClass =
@@ -36,12 +53,22 @@ type StoreOrderBriefFormProps = {
   selected: StoreProduct;
 };
 
+const Section = ({ title, children }: { title: string; children: ReactNode }) => (
+  <fieldset className="space-y-4 border-t border-white/10 pt-5">
+    <legend className="text-sm font-semibold uppercase tracking-wide text-teal-300">
+      {title}
+    </legend>
+    {children}
+  </fieldset>
+);
+
 const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<StoreOrderFormFields>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const deposit = depositAmount(selected.price);
+  const needsSite = product === "website" || product === "bundle";
 
   useEffect(() => {
     if (location.hash === "#order-brief" || location.hash === "#order-form") {
@@ -65,7 +92,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
     event.preventDefault();
 
     if (!form.artistOrBandName.trim()) {
-      toast.error("Please enter the artist, band, or business name.");
+      toast.error("Please enter the artist or band name.");
       focusField("artistOrBandName");
       return;
     }
@@ -79,6 +106,21 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
       focusField("email");
       return;
     }
+    if (!form.shortBio.trim() && !form.bio.trim()) {
+      toast.error("Please add a short bio or a full bio.");
+      focusField("bio");
+      return;
+    }
+    if (!form.photosAndAssets.trim()) {
+      toast.error("Please add a link to photos, logo, or artwork.");
+      focusField("photosAndAssets");
+      return;
+    }
+    if (!form.musicLinks.trim()) {
+      toast.error("Please add music links.");
+      focusField("musicLinks");
+      return;
+    }
 
     setSubmitting(true);
     const emailFields = buildStoreOrderEmailFields(product, selected, form);
@@ -86,9 +128,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
     try {
       submitStoreOrderEmail(emailFields);
       setForm(emptyForm);
-      toast.success(
-        `Got it. Next, pay your $${deposit} deposit below.`
-      );
+      toast.success(`Got it. Next, pay your $${deposit} deposit below.`);
       document.getElementById("order-deposit")?.scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -114,7 +154,7 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
               {open ? "Order form" : "Fill out the order form"}
             </span>
             <span className="mt-1 block text-sm text-gray-200">
-              Name, email, and your links. Takes a couple of minutes.
+              Bios, photos, music, shows, and design. Open it when you're ready.
             </span>
           </span>
           <ChevronDown
@@ -134,87 +174,348 @@ const StoreOrderBriefForm = ({ product, selected }: StoreOrderBriefFormProps) =>
           className="mt-4 space-y-5 rounded-2xl border border-white/15 bg-black/20 p-5 md:p-6"
         >
           <p className="text-sm text-gray-300 leading-relaxed">
-            This is for your{" "}
+            This is the full brief for your{" "}
             <span className="text-white font-medium">{selected.name}</span> ($
-            {selected.price}, ${deposit} deposit). Submit it here and we get the email.
-            Then pay the deposit in the next step.
+            {selected.price}, ${deposit} deposit). Fields marked * are required.
+            Fill in the rest with what you have — a link is enough for photos and files.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="artistOrBandName" className="text-gray-100">
-                Artist, band, or business name *
+          <Section title="Who you are">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="artistOrBandName" className="text-gray-100">
+                  Artist / band name *
+                </Label>
+                <Input
+                  id="artistOrBandName"
+                  value={form.artistOrBandName}
+                  onChange={(e) => update("artistOrBandName", e.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="contactName" className="text-gray-100">
+                  Your name *
+                </Label>
+                <Input
+                  id="contactName"
+                  value={form.contactName}
+                  onChange={(e) => update("contactName", e.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-gray-100">
+                  Email *
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={(e) => update("email", e.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-gray-100">
+                  Phone
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={(e) => update("phone", e.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="location" className="text-gray-100">
+                  City / state
+                </Label>
+                <Input
+                  id="location"
+                  value={form.location}
+                  onChange={(e) => update("location", e.target.value)}
+                  placeholder="Salt Lake City, UT"
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="genre" className="text-gray-100">
+                  Genre
+                </Label>
+                <Input
+                  id="genre"
+                  value={form.genre}
+                  onChange={(e) => update("genre", e.target.value)}
+                  className={fieldClass}
+                />
+              </div>
+            </div>
+          </Section>
+
+          <Section title="Bios">
+            <div className="space-y-2">
+              <Label htmlFor="shortBio" className="text-gray-100">
+                Short bio
               </Label>
-              <Input
-                id="artistOrBandName"
-                value={form.artistOrBandName}
-                onChange={(e) => update("artistOrBandName", e.target.value)}
+              <Textarea
+                id="shortBio"
+                rows={2}
+                value={form.shortBio}
+                onChange={(e) => update("shortBio", e.target.value)}
+                placeholder="1–2 sentences for press and the top of the site."
                 className={fieldClass}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contactName" className="text-gray-100">
-                Your name *
+              <Label htmlFor="mediumBio" className="text-gray-100">
+                Medium bio
               </Label>
-              <Input
-                id="contactName"
-                value={form.contactName}
-                onChange={(e) => update("contactName", e.target.value)}
+              <Textarea
+                id="mediumBio"
+                rows={3}
+                value={form.mediumBio}
+                onChange={(e) => update("mediumBio", e.target.value)}
+                placeholder="A paragraph for the about page or EPK."
                 className={fieldClass}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-gray-100">
-                Email *
+              <Label htmlFor="bio" className="text-gray-100">
+                Full bio *
               </Label>
-              <Input
-                id="email"
-                type="email"
-                autoComplete="email"
-                value={form.email}
-                onChange={(e) => update("email", e.target.value)}
+              <Textarea
+                id="bio"
+                rows={5}
+                value={form.bio}
+                onChange={(e) => update("bio", e.target.value)}
+                placeholder="The full story. A short bio above can stand in if you don't have a long one yet."
                 className={fieldClass}
               />
             </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="phone" className="text-gray-100">
-                Phone
+          </Section>
+
+          <Section title="Photos, music, and social">
+            <div className="space-y-2">
+              <Label htmlFor="photosAndAssets" className="text-gray-100">
+                Photos, logo, and artwork *
               </Label>
-              <Input
-                id="phone"
-                type="tel"
-                autoComplete="tel"
-                value={form.phone}
-                onChange={(e) => update("phone", e.target.value)}
+              <Textarea
+                id="photosAndAssets"
+                rows={3}
+                value={form.photosAndAssets}
+                onChange={(e) => update("photosAndAssets", e.target.value)}
+                placeholder="Link to promo photos, live photos, logo, and album art. Google Drive, Dropbox, or a social profile."
                 className={fieldClass}
               />
             </div>
-          </div>
+            <div className="space-y-2">
+              <Label htmlFor="musicLinks" className="text-gray-100">
+                Music links *
+              </Label>
+              <Textarea
+                id="musicLinks"
+                rows={3}
+                value={form.musicLinks}
+                onChange={(e) => update("musicLinks", e.target.value)}
+                placeholder="Spotify, Apple Music, YouTube, Bandcamp, SoundCloud..."
+                className={fieldClass}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="videoLinks" className="text-gray-100">
+                Video links
+              </Label>
+              <Textarea
+                id="videoLinks"
+                rows={2}
+                value={form.videoLinks}
+                onChange={(e) => update("videoLinks", e.target.value)}
+                placeholder="Best live video and music videos."
+                className={fieldClass}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="socialLinks" className="text-gray-100">
+                Social links
+              </Label>
+              <Textarea
+                id="socialLinks"
+                rows={3}
+                value={form.socialLinks}
+                onChange={(e) => update("socialLinks", e.target.value)}
+                placeholder="Instagram, Facebook, TikTok, YouTube, and any others."
+                className={fieldClass}
+              />
+            </div>
+          </Section>
+
+          <Section title="Booking and shows">
+            <div className="space-y-2">
+              <Label htmlFor="bookingContact" className="text-gray-100">
+                Booking info
+              </Label>
+              <Textarea
+                id="bookingContact"
+                rows={3}
+                value={form.bookingContact}
+                onChange={(e) => update("bookingContact", e.target.value)}
+                placeholder="Booking email and phone, set lengths, travel area, and the kinds of events you play."
+                className={fieldClass}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="stageInfo" className="text-gray-100">
+                Stage plot, input list, or tech rider
+              </Label>
+              <Textarea
+                id="stageInfo"
+                rows={2}
+                value={form.stageInfo}
+                onChange={(e) => update("stageInfo", e.target.value)}
+                placeholder="Paste it here or add a link. Basic stage notes are fine."
+                className={fieldClass}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="pressNotes" className="text-gray-100">
+                Press, credits, and highlights
+              </Label>
+              <Textarea
+                id="pressNotes"
+                rows={3}
+                value={form.pressNotes}
+                onChange={(e) => update("pressNotes", e.target.value)}
+                placeholder="Quotes, reviews, festivals, notable venues, awards, or artists you've opened for."
+                className={fieldClass}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="showsAndEvents" className="text-gray-100">
+                Upcoming shows and important past shows
+              </Label>
+              <Textarea
+                id="showsAndEvents"
+                rows={3}
+                value={form.showsAndEvents}
+                onChange={(e) => update("showsAndEvents", e.target.value)}
+                className={fieldClass}
+              />
+            </div>
+          </Section>
+
+          {needsSite && (
+            <Section title="The website">
+              <div className="space-y-2">
+                <Label htmlFor="pagesWanted" className="text-gray-100">
+                  Pages you want
+                </Label>
+                <Textarea
+                  id="pagesWanted"
+                  rows={2}
+                  value={form.pagesWanted}
+                  onChange={(e) => update("pagesWanted", e.target.value)}
+                  placeholder="Home, About, Music, Shows, EPK, Contact, Store, Press, Merch..."
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="mainGoal" className="text-gray-100">
+                  Main goal
+                </Label>
+                <Textarea
+                  id="mainGoal"
+                  rows={2}
+                  value={form.mainGoal}
+                  onChange={(e) => update("mainGoal", e.target.value)}
+                  placeholder="Booking shows, streaming, tickets, merch, press, or contacting management."
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="domainNotes" className="text-gray-100">
+                  Domain or existing site
+                </Label>
+                <Input
+                  id="domainNotes"
+                  value={form.domainNotes}
+                  onChange={(e) => update("domainNotes", e.target.value)}
+                  placeholder="Domain you own, or say if you need help choosing one."
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="designNotes" className="text-gray-100">
+                  Design ideas
+                </Label>
+                <Textarea
+                  id="designNotes"
+                  rows={3}
+                  value={form.designNotes}
+                  onChange={(e) => update("designNotes", e.target.value)}
+                  placeholder="Colors, style, vibe, sites you like, and sites you don't."
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="merchNotes" className="text-gray-100">
+                  Merch or store
+                </Label>
+                <Textarea
+                  id="merchNotes"
+                  rows={2}
+                  value={form.merchNotes}
+                  onChange={(e) => update("merchNotes", e.target.value)}
+                  placeholder="Products or a store link, if you want them on the site."
+                  className={fieldClass}
+                />
+              </div>
+            </Section>
+          )}
+
+          {!needsSite && (
+            <Section title="Look and goal">
+              <div className="space-y-2">
+                <Label htmlFor="mainGoal" className="text-gray-100">
+                  Main goal
+                </Label>
+                <Textarea
+                  id="mainGoal"
+                  rows={2}
+                  value={form.mainGoal}
+                  onChange={(e) => update("mainGoal", e.target.value)}
+                  placeholder="Booking, press, playlists, or festivals."
+                  className={fieldClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="designNotes" className="text-gray-100">
+                  Design ideas
+                </Label>
+                <Textarea
+                  id="designNotes"
+                  rows={3}
+                  value={form.designNotes}
+                  onChange={(e) => update("designNotes", e.target.value)}
+                  placeholder="Colors, style, vibe, and kits you like."
+                  className={fieldClass}
+                />
+              </div>
+            </Section>
+          )}
 
           <div className="space-y-2">
-            <Label htmlFor="links" className="text-gray-100">
-              Links
+            <Label htmlFor="additionalNotes" className="text-gray-100">
+              Anything else
             </Label>
             <Textarea
-              id="links"
+              id="additionalNotes"
               rows={3}
-              value={form.links}
-              onChange={(e) => update("links", e.target.value)}
-              placeholder="Music, social, photos, or a Drive folder. One link per line is fine."
-              className={fieldClass}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="projectNotes" className="text-gray-100">
-              Project notes
-            </Label>
-            <Textarea
-              id="projectNotes"
-              rows={4}
-              value={form.projectNotes}
-              onChange={(e) => update("projectNotes", e.target.value)}
-              placeholder="A short bio, colors you like, upcoming shows, or whether you need a domain. Short is fine."
+              value={form.additionalNotes}
+              onChange={(e) => update("additionalNotes", e.target.value)}
               className={fieldClass}
             />
           </div>

@@ -94,8 +94,9 @@ const StoreOrderForm = () => {
           How to order
         </h2>
         <p className="text-gray-300 leading-relaxed">
-          Pick a package, fill out the short order form, and send a 50% deposit through
-          Stripe, PayPal, or Venmo. We start once we have both.
+          Pick a package, fill out the order form with your bios, photos, music, and
+          show details, and send a 50% deposit through Stripe, PayPal, or Venmo. We
+          start once we have both.
         </p>
         <p className="mt-3 text-sm text-teal-200/90 leading-relaxed">{ORDER_DELIVERY_NOTE}</p>
       </motion.div>
@@ -130,7 +131,7 @@ const StoreOrderForm = () => {
           Step 2 — Fill out the order form
         </p>
         <p className="text-gray-200 mb-4 leading-relaxed">
-          A few questions for your{" "}
+          The full brief for your{" "}
           <span className="text-white font-medium">{selected.name}</span>.
         </p>
         <StoreOrderBriefForm product={product} selected={selected} />
