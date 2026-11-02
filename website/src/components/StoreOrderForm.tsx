@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, Mail, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -272,7 +272,16 @@ const StoreOrderForm = () => {
         </div>
 
         <p className="text-sm text-gray-400 mt-6 text-center leading-relaxed">
-          Remaining balance is due when your site or EPK is ready. Questions?{" "}
+          This deposit is ${deposit.toLocaleString()} for the {selected.name}. The
+          remaining balance is due when it is ready. A small business site starts at
+          $2,000, and that deposit is invoiced — it starts at $1,000.{" "}
+          <Link
+            to="/small-business-websites#order-brief"
+            className="text-teal-300 hover:underline"
+          >
+            Fill out the small business brief
+          </Link>
+          . Questions?{" "}
           <a
             href={`mailto:${STORE_FORM_EMAIL}`}
             className="text-teal-300 hover:underline"

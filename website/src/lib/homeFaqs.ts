@@ -38,7 +38,7 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "How do I start a project with 801 Family Studios?",
     answer:
-      "Pick a service from the menu or the section above, review pricing on that page, then contact us. For websites and EPKs, email your completed brief and send a 50% deposit via PayPal or Venmo from the Websites & EPKs page.",
+      "Pick a service from the menu or the section above, then review pricing on that page. Band websites start at $500 ($250 deposit) and EPKs at $200 ($100 deposit), paid from the Websites & EPKs page. Small business sites start at $2,000, and that deposit is invoiced — it starts at $1,000.",
     link: { to: "/contact", label: "Contact us" },
   },
 ];

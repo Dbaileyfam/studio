@@ -307,6 +307,11 @@ const ALL_SERVICES: Service[] = [
         note: "50% deposit ($325) to start. Save $50 vs ordering the site and EPK separately.",
       },
       {
+        label: "Small business website",
+        price: "$2,000",
+        note: "Starting price for a shop or service business. The deposit is invoiced and starts at $1,000.",
+      },
+      {
         label: "Complex edits",
         price: "$25/hr",
         note: "Simple content edits stay free after delivery.",
@@ -326,7 +331,7 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How do I pay?",
         answer:
-          "Email your completed brief to websites@801familystudios.com and send a 50% deposit through PayPal or Venmo. The balance is due when your site is ready.",
+          "Email your completed brief to websites@801familystudios.com and send a 50% deposit through Stripe, PayPal, or Venmo. A band website deposit is $250. A small business site starts at $2,000, and that deposit is invoiced — it starts at $1,000. The balance is due when the site is ready.",
       },
       {
         question: "Can you help with a domain name?",

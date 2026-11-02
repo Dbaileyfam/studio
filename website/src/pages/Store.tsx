@@ -106,15 +106,16 @@ const Store = () => {
 
             <StoreOrderForm />
 
-            <p className="text-center text-sm text-gray-300 mt-8">
-              Need a site for a shop or service business?{" "}
+            <p className="text-center text-sm text-gray-300 mt-8 max-w-xl mx-auto leading-relaxed">
+              Small business websites start at $2,000 for shops and service
+              businesses.{" "}
               <Link
                 to="/small-business-websites#order-brief"
                 className="text-teal-300 hover:underline"
               >
                 Fill out the small business brief
               </Link>
-              . Those start at $2,000 and are invoiced by email.
+              . It emails us, and we invoice a 50% deposit that starts at $1,000.
             </p>
 
             <motion.div
