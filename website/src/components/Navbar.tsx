@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { isRosterPublicPath, ROSTER_PUBLICLY_DISABLED } from "@/lib/musicianRoster";
 import { SERVICES, getServicePath, type ServiceSlug } from "@/lib/services";
-import { SITE_NAV_LINKS, type SiteNavLink } from "@/lib/siteNav";
+import { SITE_NAV_LINKS, STORE_PATH, type SiteNavLink } from "@/lib/siteNav";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,10 +37,14 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const websitesLink = SITE_NAV_LINKS.find(
+    (item) => item.type === "internal" && item.path === STORE_PATH
+  );
   const navItems = SITE_NAV_LINKS.filter(
     (item) =>
-      item.type === "external" ||
-      !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(item.path))
+      !(item.type === "internal" && item.path === STORE_PATH) &&
+      (item.type === "external" ||
+        !(ROSTER_PUBLICLY_DISABLED && isRosterPublicPath(item.path)))
   );
 
   const renderNavLink = (item: SiteNavLink, className: string, onNavigate?: () => void) => {
@@ -127,6 +131,15 @@ const Navbar = () => {
                   Home
                 </Link>
               </motion.div>
+
+              {websitesLink && (
+                <motion.div className="flex items-center" whileHover={{ y: -2 }}>
+                  {renderNavLink(
+                    websitesLink,
+                    linkClass(isPathActive(STORE_PATH))
+                  )}
+                </motion.div>
+              )}
 
               <div className="relative" ref={servicesRef}>
                 <motion.button
@@ -267,6 +280,12 @@ const Navbar = () => {
               <Link to="/" onClick={() => setIsOpen(false)} className={mobileLinkClass(isPathActive("/"))}>
                 Home
               </Link>
+              {websitesLink &&
+                renderNavLink(
+                  websitesLink,
+                  mobileLinkClass(isPathActive(STORE_PATH)),
+                  () => setIsOpen(false)
+                )}
 
               <p className="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Services
