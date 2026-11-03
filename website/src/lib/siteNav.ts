@@ -1,7 +1,7 @@
 import { SHOPIFY_STORE_URL } from "@/lib/merchProducts";
 
 export const STORE_PATH = "/store";
-export const STORE_NAV_LABEL = "Websites & EPKs";
+export const STORE_NAV_LABEL = "801 Family Websites";
 export const MERCH_SHOP_URL = SHOPIFY_STORE_URL;
 export const MERCH_NAV_LABEL = "Merch";
 

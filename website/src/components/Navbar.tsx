@@ -148,7 +148,7 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-white/15 bg-[var(--nav-bg)]/95 backdrop-blur-xl shadow-xl py-2 z-50"
+                      className="absolute left-0 top-full mt-2 w-72 rounded-xl border border-white/15 bg-[var(--nav-bg)]/95 backdrop-blur-xl shadow-xl py-2 z-50"
                       role="menu"
                     >
                       <Link

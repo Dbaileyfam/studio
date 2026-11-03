@@ -28,7 +28,7 @@ const STUDIO_REEL_SRC = "/studio.MOV";
 const HEADLINE =
   "Salt Lake City-Area Music Studio for Artist Growth";
 const SUBHEADLINE =
-  "801 Family Studios helps musicians, bands, and performers record music, build professional websites and EPKs, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
+  "801 Family Studios helps musicians, bands, and performers record music, build 801 Family Websites and EPKs, and grow their presence — based just south of Salt Lake City and serving artists everywhere.";
 const HEADLINE_STAGGER = 0.07;
 const HEADLINE_REVEAL_END =
   HEADLINE.split(/\s+/).length * HEADLINE_STAGGER + 0.35;
@@ -187,7 +187,7 @@ const Index = () => {
                       className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     >
                       <Link to="/store?product=bundle#order-brief">
-                        I need a Website / EPK
+                        I need an 801 Family Website
                       </Link>
                     </Button>
                     <Button
@@ -197,7 +197,7 @@ const Index = () => {
                       className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     >
                       <Link to="/small-business-websites#order-brief">
-                        Small business website — from $2,000
+                        801 Family Website for business — from $2,000
                       </Link>
                     </Button>
                     <Button
@@ -424,7 +424,7 @@ const Index = () => {
             </section>
 
             <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto text-center mt-8 leading-relaxed px-4">
-              Deposits are half the starting price: $250 for a band website, $100 for an EPK, and $325
+              Deposits are half the starting price: $250 for an 801 Family Website, $100 for an EPK, and $325
               for both. Small business sites start at $2,000, and that deposit is invoiced — it starts
               at $1,000.
             </p>

@@ -140,9 +140,9 @@ const SmallBusinessBriefForm = () => {
     setSubmitting(true);
     try {
       submitStoreOrderEmail({
-        _subject: `Small business website brief — ${form.businessName.trim()}`,
+        _subject: `801 Family Website brief — ${form.businessName.trim()}`,
         _replyto: form.email.trim(),
-        Product: "Small Business Website (starting at $2,000)",
+        Product: "801 Family Website for Business (starting at $2,000)",
         Payment: "Invoice for 50% of the quoted price. Balance invoiced when the site is ready.",
         "Business name": form.businessName.trim(),
         "Contact name": form.contactName.trim(),

@@ -35,7 +35,7 @@ const Store = () => {
               custom={0}
             >
               <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 text-balance">
-                Websites & EPKs
+                801 Family Websites
               </h1>
               <a
                 href={WEB_PORTFOLIO_URL}
@@ -43,11 +43,11 @@ const Store = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
               >
-                See samples
+                See 801 Family Websites
                 <ExternalLink className="h-4 w-4" />
               </a>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
-                Band websites start at $500 with a $250 deposit. EPKs start at $200
+                801 Family Websites for bands start at $500 with a $250 deposit. EPKs start at $200
                 with a $100 deposit. Both are $650 with a $325 deposit. Small business
                 sites start at $2,000, and that deposit is invoiced — it starts at
                 $1,000.
@@ -105,7 +105,7 @@ const Store = () => {
                   <motion.div className="absolute inset-0 bg-gradient-to-br from-sky-500/20 to-teal-500/20 opacity-50 pointer-events-none" />
                   <motion.div className="relative">
                     <span className="text-4xl">🏢</span>
-                    <h3 className="text-2xl font-bold text-white mt-4">Small Business Website</h3>
+                    <h3 className="text-2xl font-bold text-white mt-4">801 Family Website for Business</h3>
                     <p className="text-sm uppercase tracking-wide text-gray-400 mt-2">
                       Starting at
                     </p>
@@ -145,7 +145,7 @@ const Store = () => {
             <StoreOrderForm />
 
             <p className="text-center text-sm text-gray-300 mt-8 max-w-xl mx-auto leading-relaxed">
-              Small business websites start at $2,000 for shops and service
+              801 Family Websites for businesses start at $2,000 for shops and service
               businesses.{" "}
               <Link
                 to="/small-business-websites#order-brief"

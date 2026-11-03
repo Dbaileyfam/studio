@@ -8,8 +8,8 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "Do you build websites for musicians and bands?",
     answer:
-      "Yes. We design custom websites for musicians and bands with bio, music, photos, show listings, contact forms, and social links — built for how artists actually use the web, not a generic template.",
-    link: { to: "/websites-for-musicians", label: "Band websites" },
+      "Yes. 801 Family Websites for musicians and bands include bio, music, photos, show listings, contact forms, and social links — built for how artists actually use the web, not a generic template.",
+    link: { to: "/websites-for-musicians", label: "801 Family Websites" },
   },
   {
     question: "What is an EPK and why does a musician need one?",
@@ -26,19 +26,19 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "Can you help with both a website and an EPK?",
     answer:
-      "Yes. Our Website + EPK bundle includes both deliverables from one project brief and saves $50 compared with ordering them separately.",
-    link: { to: "/store?product=bundle#order-brief", label: "Website + EPK bundle" },
+      "Yes. An 801 Family Website + EPK includes both deliverables from one project brief and saves $50 compared with ordering them separately.",
+    link: { to: "/store?product=bundle#order-brief", label: "801 Family Website + EPK" },
   },
   {
     question: "Do you work with small businesses outside of music?",
     answer:
-      "Yes. Small business websites start at $2,000. Fill out the brief on that page and it emails us. We reply with an invoice for a 50% deposit. Larger sites cost more. Simple edits are included free. Complex changes are $25/hr.",
-    link: { to: "/small-business-websites", label: "Small business websites" },
+      "Yes. 801 Family Websites for small businesses start at $2,000. Fill out the brief on that page and it emails us. We reply with an invoice for a 50% deposit. Larger sites cost more. Simple edits are included free. Complex changes are $25/hr.",
+    link: { to: "/small-business-websites", label: "801 Family Websites for business" },
   },
   {
     question: "How do I start a project with 801 Family Studios?",
     answer:
-      "Pick a service from the menu or the section above, then review pricing on that page. Band websites start at $500 ($250 deposit) and EPKs at $200 ($100 deposit), paid from the Websites & EPKs page. Small business sites start at $2,000, and that deposit is invoiced — it starts at $1,000.",
+      "Pick a service from the menu or the section above, then review pricing on that page. 801 Family Websites start at $500 ($250 deposit) and EPKs at $200 ($100 deposit), paid from the 801 Family Websites page. Small business sites start at $2,000, and that deposit is invoiced — it starts at $1,000.",
     link: { to: "/contact", label: "Contact us" },
   },
 ];

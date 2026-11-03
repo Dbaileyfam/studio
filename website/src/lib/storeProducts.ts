@@ -34,7 +34,7 @@ export type StoreProduct = {
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "website",
-    name: "Band Website",
+    name: "801 Family Website",
     price: 500,
     tagline: "Your band's home online",
     description:
@@ -70,13 +70,13 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   },
   {
     id: "bundle",
-    name: "Website + EPK Bundle",
+    name: "801 Family Website + EPK",
     price: 650,
     tagline: "Site and press kit together",
     description:
-      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $25/hr.",
+      "Full 801 Family Website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $25/hr.",
     includes: [
-      "Everything in the Band Website package",
+      "Everything in the 801 Family Website package",
       "Everything in the Band EPK package",
       "One brief, both deliverables",
       "Best value for new bands",

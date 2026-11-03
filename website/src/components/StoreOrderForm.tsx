@@ -272,7 +272,7 @@ const StoreOrderForm = () => {
         </div>
 
         <div className="mt-8 rounded-2xl border border-sky-400/30 bg-sky-500/10 px-6 py-6 text-center">
-          <p className="text-lg font-semibold text-white">Small business websites</p>
+          <p className="text-lg font-semibold text-white">801 Family Websites for business</p>
           <p className="text-3xl font-bold text-teal-300 mt-2">$2,000</p>
           <p className="text-sm text-gray-200 mt-2 leading-relaxed">
             Starting price for a shop or service business. The deposit is invoiced
@@ -290,7 +290,7 @@ const StoreOrderForm = () => {
 
         <p className="text-sm text-gray-400 mt-6 text-center leading-relaxed">
           The buttons above are the ${deposit.toLocaleString()} deposit for the{" "}
-          {selected.name}. A band website deposit is $250, an EPK deposit is $100,
+          {selected.name}. An 801 Family Website deposit is $250, an EPK deposit is $100,
           and the bundle deposit is $325. The small business deposit is invoiced and
           starts at $1,000. Questions?{" "}
           <a
