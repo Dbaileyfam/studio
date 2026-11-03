@@ -254,7 +254,7 @@ const ALL_SERVICES: Service[] = [
         label: "801 Family Websites",
         description: "Browse sample band and artist websites we have built.",
         href: WEB_PORTFOLIO_URL,
-        external: true,
+        external: false,
       },
       {
         label: "How to order",
@@ -343,7 +343,7 @@ const ALL_SERVICES: Service[] = [
     secondaryCta: {
       label: "See 801 Family Websites",
       href: WEB_PORTFOLIO_URL,
-      external: true,
+      external: false,
     },
     relatedPrompt: {
       text: "Need an EPK too?",
@@ -381,7 +381,7 @@ const ALL_SERVICES: Service[] = [
         label: "801 Family Websites",
         description: "Browse sample websites we have built.",
         href: WEB_PORTFOLIO_URL,
-        external: true,
+        external: false,
       },
       {
         label: "801 Family Websites",
@@ -468,7 +468,7 @@ const ALL_SERVICES: Service[] = [
     secondaryCta: {
       label: "See samples",
       href: WEB_PORTFOLIO_URL,
-      external: true,
+      external: false,
     },
     relatedPrompt: {
       text: "In a band instead?",
@@ -505,7 +505,7 @@ const ALL_SERVICES: Service[] = [
         label: "EPK & website samples",
         description: "See press kits and band sites from our portfolio.",
         href: WEB_PORTFOLIO_URL,
-        external: true,
+        external: false,
       },
       {
         label: "How to order",
@@ -570,7 +570,7 @@ const ALL_SERVICES: Service[] = [
     secondaryCta: {
       label: "See samples",
       href: WEB_PORTFOLIO_URL,
-      external: true,
+      external: false,
     },
     relatedPrompt: {
       text: "Need a full website too?",

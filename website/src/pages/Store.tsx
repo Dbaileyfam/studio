@@ -39,12 +39,9 @@ const Store = () => {
               </h1>
               <a
                 href={WEB_PORTFOLIO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
               >
                 See 801 Family Websites
-                <ExternalLink className="h-4 w-4" />
               </a>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed mt-6">
                 801 Family Websites for bands start at $500 with a $250 deposit. EPKs start at $200

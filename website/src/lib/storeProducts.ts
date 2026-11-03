@@ -100,7 +100,6 @@ export const venmoPayUrl = (amount: number, note: string) =>
 
 export const depositAmount = (price: number) => Math.round(price / 2);
 
-export const WEB_PORTFOLIO_URL =
-  "https://dbaileyfam.github.io/801familywebsiteportfolio/";
+export const WEB_PORTFOLIO_URL = "/portfolio/";
 
 export const STORE_FORM_EMAIL = "websites@801familystudios.com";

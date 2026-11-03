@@ -5,7 +5,9 @@
   "type": "module",
   "homepage": "https://www.801familystudios.com",
   "scripts": {
+    "predev": "node scripts/copy-portfolio.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/copy-portfolio.mjs",
     "build": "vite build",
     "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/website && printf '%s\\n' '{\"git\":{\"deploymentEnabled\":{\"gh-pages\":false}},\"ignoreCommand\":\"exit 0\"}' > dist/website/vercel.json",
     "build:dev": "vite build --mode development",

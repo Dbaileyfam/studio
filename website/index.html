@@ -72,6 +72,9 @@
       (function() {
         // Migrate legacy hash routes (/#/store) to path routes (/store).
         // Do not prepend pathname — "/" + "/store" becomes "//store" (host "store").
+        if (location.pathname === "/portfolio") {
+          location.replace("/portfolio/" + location.search + location.hash);
+        }
         if (location.hash && location.hash.indexOf("#/") === 0) {
           location.replace(location.hash.slice(1) + location.search);
         }

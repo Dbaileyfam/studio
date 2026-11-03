@@ -27,4 +27,7 @@ node_modules
 
 # One Heart Orchestra — standalone repo (github.com/Dbaileyfam/OneHeartOrchestra)
 OneHeartOrchestra/
+
+# Copied from the portfolio repo at build time and served at /portfolio
+website/public/portfolio/
 .vercel
