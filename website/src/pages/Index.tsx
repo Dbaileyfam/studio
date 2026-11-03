@@ -19,7 +19,8 @@ import {
 import { HOME_FAQS } from "@/lib/homeFaqs";
 import { SITE_NAME } from "@/lib/site";
 import HeroLogo from "@/components/HeroLogo";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { WEB_PORTFOLIO_URL } from "@/lib/storeProducts";
 import { useEffect, useRef } from "react";
 import studioImage from "@/assets/studio2.jpg";
 
@@ -312,6 +313,18 @@ const Index = () => {
                           Click for more info
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
+                        {(service.slug === "websites-for-musicians" ||
+                          service.slug === "small-business-websites") && (
+                          <a
+                            href={WEB_PORTFOLIO_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-3 inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white/80 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-full"
+                          >
+                            Website portfolio
+                            <ExternalLink className="h-3.5 w-3.5" />
+                          </a>
+                        )}
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent group-hover:w-3/4 transition-all duration-500 rounded-full" />
                       </div>
                     </motion.div>
