@@ -164,7 +164,7 @@ const Index = () => {
                     {SUBHEADLINE}
                   </motion.p>
                   <motion.div
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
+                    className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 justify-center items-center"
                     initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -197,8 +197,23 @@ const Index = () => {
                       className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     >
                       <Link to="/small-business-websites#order-brief">
-                        Small business — from $2,000
+                        Small business website — from $2,000
                       </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    >
+                      <a
+                        href={WEB_PORTFOLIO_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Website portfolio
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
                     </Button>
                   </motion.div>
                 </motion.div>
@@ -314,7 +329,8 @@ const Index = () => {
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                         {(service.slug === "websites-for-musicians" ||
-                          service.slug === "small-business-websites") && (
+                          service.slug === "small-business-websites" ||
+                          service.slug === "epk-design-for-musicians") && (
                           <a
                             href={WEB_PORTFOLIO_URL}
                             target="_blank"
