@@ -32,7 +32,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     price: 300,
     tagline: "Your band's home online",
     description:
-      "One complete site with bio, music, photos, shows, contact, and links. Simple edits included free; complex changes are $25/hr.",
+      "One complete site with bio, music, photos, shows, contact, and links. Simple edits included free; complex changes are $50/hr.",
     includes: [
       "Custom design for your band",
       "Bio, music, photos & show listings",
@@ -49,7 +49,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     price: 150,
     tagline: "Press & booking ready",
     description:
-      "Electronic press kit with bio, photos, music/video, and booking info. Simple edits included free; complex changes are $25/hr.",
+      "Electronic press kit with bio, photos, music/video, and booking info. Simple edits included free; complex changes are $50/hr.",
     includes: [
       "Press-ready bio & photos",
       "Music & video embeds",
@@ -66,7 +66,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     price: 400,
     tagline: "Site and press kit together",
     description:
-      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $25/hr.",
+      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $50/hr.",
     includes: [
       "Everything in the Band Website package",
       "Everything in the Band EPK package",

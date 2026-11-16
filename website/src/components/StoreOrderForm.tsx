@@ -342,7 +342,7 @@ const StoreOrderForm = () => {
           ))}
         </div>
         <p className="mt-5 text-sm text-gray-400">
-          Simple edits are free; complex changes are $25/hr. Balance due on delivery.
+          Simple edits are free; complex changes are $50/hr. Balance due on delivery.
         </p>
       </motion.div>
 
