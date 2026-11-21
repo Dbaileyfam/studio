@@ -8,8 +8,8 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "Do you build websites for musicians and bands?",
     answer:
-      "Yes. We design custom websites for musicians and bands with bio, music, photos, show listings, contact forms, and social links — built for how artists actually use the web, not a generic template.",
-    link: { to: "/websites-for-musicians", label: "Websites for musicians" },
+      "Yes. 801 Family Websites are custom sites for musicians and bands, with bio, music, photos, show listings, contact forms, and social links — built for how artists actually use the web, not a generic template.",
+    link: { to: "/websites-for-musicians", label: "801 Family Websites" },
   },
   {
     question: "What is an EPK and why does a musician need one?",
@@ -26,14 +26,14 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "Can you help with both a website and an EPK?",
     answer:
-      "Yes. Our Website + EPK bundle includes both deliverables from one project brief and saves $50 compared with ordering them separately.",
-    link: { to: "/websites-and-epks?product=bundle#order-form", label: "Website + EPK bundle" },
+      "Yes. An 801 Family Website + EPK includes both deliverables from one project brief and saves $50 compared with ordering them separately.",
+    link: { to: "/websites-and-epks?product=bundle#order-form", label: "801 Family Website + EPK" },
   },
   {
     question: "Do you work with small businesses outside of music?",
     answer:
-      "Yes. We build custom websites for creatives and small businesses that need a clear, professional online presence — not only bands and solo artists.",
-    link: { to: "/websites-for-musicians", label: "Learn about our websites" },
+      "Yes. 801 Family Websites for small businesses start at $2,000. Email websites@801familystudios.com with a short note about your business and what you need — we'll quote based on your pages and goals, then invoice a 50% deposit (from $1,000).",
+    link: { to: "/websites-and-epks#small-business", label: "801 Family Websites for business" },
   },
   {
     question: "Can I hire you if I'm not in Salt Lake City?",
@@ -44,7 +44,7 @@ export const HOME_FAQS: HomeFaq[] = [
   {
     question: "How do I start a project with 801 Family Studios?",
     answer:
-      "Pick a service from the menu or the section above, review pricing on that page, then contact us. For websites and EPKs, fill out the brief on the Websites & EPKs page and send a 50% deposit via Stripe, PayPal, or Venmo.",
+      "Pick a service from the menu or the section above, review pricing on that page, then contact us. For an 801 Family Website or EPK, fill out the brief on the 801 Family Websites page and send a 50% deposit via Stripe, PayPal, or Venmo. For a small business website, email websites@801familystudios.com.",
     link: { to: "/contact", label: "Contact us" },
   },
 ];

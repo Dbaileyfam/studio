@@ -237,29 +237,31 @@ const ALL_SERVICES: Service[] = [
   },
   {
     slug: "websites-for-musicians",
-    cardTitle: "Website Services",
-    navLabel: "Websites",
-    title: "Websites for Musicians",
+    cardTitle: "801 Family Websites",
+    navLabel: "801 Family Websites",
+    title: "801 Family Websites",
     metaDescription:
-      "Websites for musicians and bands in Utah — custom bio, music, photos, shows, and booking pages from $300. Mobile-first sites by 801 Family Studios.",
+      "801 Family Websites for musicians, bands, and small businesses in Utah — band sites from $500, small business sites from $2,000. Mobile-first sites by 801 Family Studios.",
     keywords: [
       "websites for musicians",
       "band website design Utah",
       "musician website Sandy",
       "custom artist website Salt Lake City",
+      "small business website Utah",
     ],
     icon: "💻",
     gradient: "from-orange-500/20 to-red-500/20",
     borderColor: "border-orange-400/30",
     cardDescription:
-      "Band Website: $300 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free.",
+      "801 Family Website: starting at $500 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $50/hr.",
     homeTeaser:
-      "Custom websites for musicians and creatives — your story, music, photos, shows, and contact in one professional home base.",
+      "801 Family Websites for musicians, creatives, and small businesses — your story, work, and contact in one professional home base.",
     heroSubtitle:
       "More than a template — a professional home base for your music, story, and bookings.",
-    startingPrice: "Band website $300 · Website + EPK bundle $400",
+    startingPrice:
+      "801 Family Website $500 · Small business from $2,000 · 801 Family Website + EPK $650",
     intro:
-      "We build custom websites for musicians, bands, creatives, and small businesses who need more than a basic template. Your site becomes your professional home base — a place to show your work, tell your story, collect inquiries, share music or media, and turn visitors into customers, fans, or bookings.",
+      "801 Family Websites are custom sites for musicians, bands, creatives, and small businesses who need more than a basic template. Your site becomes your professional home base — a place to show your work, tell your story, collect inquiries, share music or media, and turn visitors into customers, fans, or bookings.",
     examples: [
       {
         label: "Web portfolio",
@@ -271,6 +273,12 @@ const ALL_SERVICES: Service[] = [
         label: "How to order",
         description: "Fill out the on-site brief and send a 50% deposit via Stripe, PayPal, or Venmo.",
         to: "/websites-and-epks?product=website#order-form",
+      },
+      {
+        label: "801 Family Websites for business",
+        description:
+          "Starting at $2,000. Email websites@801familystudios.com — we invoice a deposit from $1,000.",
+        to: "/websites-and-epks#small-business",
       },
     ],
     sections: [
@@ -286,7 +294,7 @@ const ALL_SERVICES: Service[] = [
       },
       {
         heading: "What your site includes",
-        body: "Every band website package is built around how the music industry actually uses the web.",
+        body: "Every 801 Family Website is built around how the music industry actually uses the web.",
         bullets: [
           "Custom design aligned with your brand",
           "Bio, music players, photos, and video embeds",
@@ -300,17 +308,32 @@ const ALL_SERVICES: Service[] = [
         body:
           "Streaming links and social profiles are great for discovery, but your website is where you own the experience. You decide the layout, the story, and the call to action — whether that is booking a show, joining a mailing list, or buying merch.",
       },
+      {
+        heading: "Small business websites",
+        body:
+          "Local shops, services, and brands get a clear, trustworthy site that turns visitors into inquiries. These projects are quoted individually because every business needs different pages and features.",
+        bullets: [
+          "Starting at $2,000 for a focused multi-page site",
+          "50% deposit invoiced after we review your project (from $1,000)",
+          "Email websites@801familystudios.com to get started",
+        ],
+      },
     ],
     pricing: [
       {
-        label: "Band Website",
-        price: "$300",
-        note: "50% deposit ($150) to start — simple edits free",
+        label: "801 Family Website",
+        price: "$500",
+        note: "50% deposit ($250) to start — simple edits free",
       },
       {
-        label: "Website + EPK Bundle",
-        price: "$400",
-        note: "50% deposit ($200) to start — save $50 vs ordering separately",
+        label: "801 Family Website + EPK",
+        price: "$650",
+        note: "50% deposit ($325) to start — save $50 vs ordering separately",
+      },
+      {
+        label: "801 Family Website for Business",
+        price: "From $2,000",
+        note: "Deposit invoiced from $1,000. Email websites@801familystudios.com to get started.",
       },
     ],
     faqs: [
@@ -327,17 +350,22 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How do I pay?",
         answer:
-          "Fill out the brief on the Websites & EPKs page and send a 50% deposit through Stripe, PayPal, or Venmo. The balance is due when your site is ready.",
+          "Fill out the brief on the 801 Family Websites page and send a 50% deposit through Stripe, PayPal, or Venmo. A band website deposit is $250. A small business site starts at $2,000, and that deposit is invoiced — it starts at $1,000. The balance is due when the site is ready.",
       },
       {
         question: "Can you help with a domain name?",
         answer:
           "Yes. Tell us whether you already own a domain or need help choosing one in your project brief.",
       },
+      {
+        question: "Do you build websites for small businesses?",
+        answer:
+          "Yes. Small business websites start at $2,000. Email websites@801familystudios.com with a short note about your business and what you need — we'll reply with next steps and invoice a 50% deposit (from $1,000).",
+      },
     ],
-    primaryCta: { label: "Order a band website", to: "/websites-and-epks?product=website#order-form" },
+    primaryCta: { label: "Order an 801 Family Website", to: "/websites-and-epks?product=website#order-form" },
     secondaryCta: {
-      label: "View website portfolio",
+      label: "See 801 Family Websites",
       href: WEB_PORTFOLIO_URL,
       external: true,
     },
@@ -353,7 +381,7 @@ const ALL_SERVICES: Service[] = [
     navLabel: "EPK",
     title: "EPK Design for Musicians",
     metaDescription:
-      "EPK design for musicians and bands in Utah — press-ready bio, photos, music, video, and booking info from $150 at 801 Family Studios.",
+      "EPK design for musicians and bands in Utah — press-ready bio, photos, music, video, and booking info from $200 at 801 Family Studios.",
     keywords: [
       "EPK design for musicians",
       "band EPK Utah",
@@ -364,11 +392,11 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-amber-500/15 to-teal-500/20",
     borderColor: "border-amber-400/30",
     cardDescription:
-      "Band EPK: $150 — press-ready electronic press kit with bio, photos, music/video, and booking info.",
+      "Band EPK: $200 — press-ready electronic press kit with bio, photos, music/video, and booking info.",
     homeTeaser:
       "Press-ready electronic press kits with bio, photos, music, video, and booking info in one shareable link.",
     heroSubtitle: "One professional link for venues, press, playlists, and industry contacts.",
-    startingPrice: "Band EPK $150 · Website + EPK bundle $400",
+    startingPrice: "Band EPK $200 · 801 Family Website + EPK $650",
     intro:
       "An electronic press kit (EPK) is how bookers, bloggers, and promoters evaluate you quickly. We build press-ready EPKs that present your story, sound, visuals, and contact details in a format industry contacts expect — so you look prepared before the first email reply.",
     examples: [
@@ -404,20 +432,20 @@ const ALL_SERVICES: Service[] = [
           "Festival and venue submissions",
           "Press and blog outreach",
           "Playlist pitching and industry networking",
-          "Pair with a band website for a complete online presence",
+          "Pair with an 801 Family Website for a complete online presence",
         ],
       },
     ],
     pricing: [
       {
         label: "Band EPK",
-        price: "$150",
-        note: "50% deposit ($75) to start — simple edits included free",
+        price: "$200",
+        note: "50% deposit ($100) to start — simple edits included free",
       },
       {
-        label: "Website + EPK Bundle",
-        price: "$400",
-        note: "50% deposit ($200) to start — best value for new bands",
+        label: "801 Family Website + EPK",
+        price: "$650",
+        note: "50% deposit ($325) to start — best value for new bands",
       },
     ],
     faqs: [
@@ -434,7 +462,7 @@ const ALL_SERVICES: Service[] = [
       {
         question: "How do I order and pay?",
         answer:
-          "Fill out the brief on the Websites & EPKs page and send a 50% deposit through Stripe, PayPal, or Venmo. The balance is due when your EPK is ready.",
+          "Fill out the brief on the 801 Family Websites page and send a 50% deposit through Stripe, PayPal, or Venmo. The balance is due when your EPK is ready.",
       },
     ],
     primaryCta: { label: "Order a band EPK", to: "/websites-and-epks?product=epk#order-form" },
@@ -446,7 +474,7 @@ const ALL_SERVICES: Service[] = [
     relatedPrompt: {
       text: "Need a full website too?",
       to: "/websites-for-musicians",
-      linkLabel: "Websites for musicians",
+      linkLabel: "801 Family Websites",
     },
   },
   {
@@ -488,8 +516,8 @@ const ALL_SERVICES: Service[] = [
         to: "/upcoming-shows",
       },
       {
-        label: "Websites & EPKs",
-        description: "Pair your new graphics with a band website or press kit.",
+        label: "801 Family Websites",
+        description: "Pair your new graphics with an 801 Family Website or press kit.",
         to: "/websites-and-epks",
       },
     ],
@@ -637,11 +665,12 @@ const ALL_SERVICES: Service[] = [
     relatedPrompt: {
       text: "Need a website or EPK to match your new look?",
       to: "/websites-for-musicians",
-      linkLabel: "Websites for musicians",
+      linkLabel: "801 Family Websites",
     },
   },
   {
     slug: "booking-management",
+    published: false,
     cardTitle: "Booking & Management",
     navLabel: "Booking",
     title: "Music Booking & Management Utah",
@@ -713,7 +742,7 @@ const ALL_SERVICES: Service[] = [
     relatedPrompt: {
       text: "Need a website/EPK before pitching venues?",
       to: "/websites-and-epks?product=bundle#order-form",
-      linkLabel: "Website + EPK bundle",
+      linkLabel: "801 Family Website + EPK",
     },
   },
   {
@@ -873,8 +902,8 @@ const ALL_SERVICES: Service[] = [
         to: "/featured-artists",
       },
       {
-        label: "Websites for musicians",
-        description: "Pair social media with a professional website or link-in-bio hub.",
+        label: "801 Family Websites",
+        description: "Pair social media with an 801 Family Website or link-in-bio hub.",
         to: "/websites-for-musicians",
       },
     ],
@@ -1042,7 +1071,7 @@ const ALL_SERVICES: Service[] = [
     relatedPrompt: {
       text: "Need a website or EPK to pair with your social presence?",
       to: "/websites-for-musicians",
-      linkLabel: "Websites for musicians",
+      linkLabel: "801 Family Websites",
     },
   },
 ];

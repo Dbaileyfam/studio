@@ -28,8 +28,8 @@ export type StoreProduct = {
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "website",
-    name: "Band Website",
-    price: 300,
+    name: "801 Family Website",
+    price: 500,
     tagline: "Your band's home online",
     description:
       "One complete site with bio, music, photos, shows, contact, and links. Simple edits included free; complex changes are $50/hr.",
@@ -46,7 +46,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "epk",
     name: "Band EPK",
-    price: 150,
+    price: 200,
     tagline: "Press & booking ready",
     description:
       "Electronic press kit with bio, photos, music/video, and booking info. Simple edits included free; complex changes are $50/hr.",
@@ -62,13 +62,13 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   },
   {
     id: "bundle",
-    name: "Website + EPK Bundle",
-    price: 400,
+    name: "801 Family Website + EPK",
+    price: 650,
     tagline: "Site and press kit together",
     description:
-      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $50/hr.",
+      "Full 801 Family Website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $50/hr.",
     includes: [
-      "Everything in the Band Website package",
+      "Everything in the 801 Family Website package",
       "Everything in the Band EPK package",
       "One brief, both deliverables",
       "Best value for new bands",
@@ -92,3 +92,42 @@ export const WEB_PORTFOLIO_URL =
   "https://dbaileyfam.github.io/801familywebsiteportfolio/";
 
 export const STORE_FORM_EMAIL = "websites@801familystudios.com";
+
+/** Small business sites are quoted by email — not the musician package checkout. */
+export const SMALL_BUSINESS_STARTING_PRICE = 2000;
+export const SMALL_BUSINESS_DEPOSIT_FROM = 1000;
+
+export const SMALL_BUSINESS_INQUIRY_SUBJECT = "801 Family Website — Small Business";
+
+export const SMALL_BUSINESS_INQUIRY_BODY = `Hi,
+
+I'm interested in a website for my small business.
+
+Business name:
+What we do:
+Pages we need:
+Do we already have a domain?
+
+Thanks!`;
+
+export const SMALL_BUSINESS_INQUIRY_MAILTO = `mailto:${STORE_FORM_EMAIL}?subject=${encodeURIComponent(
+  SMALL_BUSINESS_INQUIRY_SUBJECT
+)}&body=${encodeURIComponent(SMALL_BUSINESS_INQUIRY_BODY)}`;
+
+export const SMALL_BUSINESS_WEBSITE = {
+  name: "801 Family Website for Business",
+  startingPrice: SMALL_BUSINESS_STARTING_PRICE,
+  depositFrom: SMALL_BUSINESS_DEPOSIT_FROM,
+  tagline: "A professional site for your shop or service",
+  description:
+    "Custom sites for shops, services, and local brands. Sites start at $2,000 and are often more. We email an invoice for 50% of the quoted price to start.",
+  includes: [
+    "Custom design for your business",
+    "Home, about, services & contact",
+    "Mobile-first, fast loading",
+    "50% deposit invoiced after we review your project",
+  ],
+  icon: "🏪",
+  accent: "from-sky-500/20 to-teal-500/20",
+  borderColor: "border-sky-400/30",
+};
