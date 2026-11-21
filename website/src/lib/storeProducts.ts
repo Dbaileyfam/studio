@@ -38,7 +38,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     price: 500,
     tagline: "Your band's home online",
     description:
-      "One complete site with bio, music, photos, shows, contact, and links. Simple edits included free; complex changes are $25/hr.",
+      "One complete site with bio, music, photos, shows, contact, and links. Simple edits included free; complex changes are $50/hr.",
     includes: [
       "Custom design for your band",
       "Bio, music, photos & show listings",
@@ -56,7 +56,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     price: 200,
     tagline: "Press & booking ready",
     description:
-      "Electronic press kit with bio, photos, music/video, and booking info. Simple edits included free; complex changes are $25/hr.",
+      "Electronic press kit with bio, photos, music/video, and booking info. Simple edits included free; complex changes are $50/hr.",
     includes: [
       "Press-ready bio & photos",
       "Music & video embeds",
@@ -74,7 +74,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     price: 650,
     tagline: "Site and press kit together",
     description:
-      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $25/hr.",
+      "Full band website and electronic press kit in one package. Save $50 vs ordering separately. Simple edits included free; complex changes are $50/hr.",
     includes: [
       "Everything in the Band Website package",
       "Everything in the Band EPK package",
@@ -100,7 +100,6 @@ export const venmoPayUrl = (amount: number, note: string) =>
 
 export const depositAmount = (price: number) => Math.round(price / 2);
 
-export const WEB_PORTFOLIO_URL =
-  "https://dbaileyfam.github.io/801familywebsiteportfolio/";
+export const WEB_PORTFOLIO_URL = "https://www.801familystudios.com/portfolio/";
 
 export const STORE_FORM_EMAIL = "websites@801familystudios.com";

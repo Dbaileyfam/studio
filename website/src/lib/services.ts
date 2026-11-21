@@ -241,9 +241,9 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-orange-500/20 to-red-500/20",
     borderColor: "border-orange-400/30",
     cardDescription:
-      "Band Website: starting at $500 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
+      "Band Website: starting at $500 — one complete site with bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $50/hr.",
     homeTeaser:
-      "Band websites start at $500 — bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $25/hr.",
+      "Band websites start at $500 — bio, music, photos, shows, contact, and links. Simple edits included free. Complex changes $50/hr.",
     heroSubtitle:
       "A professional home base for your music, story, shows, and bookings.",
     startingPrice: "Starting at $500 · Website + EPK bundle $650",
@@ -286,7 +286,7 @@ const ALL_SERVICES: Service[] = [
           "Show dates, contact, and social links",
           "Mobile-first layout and fast loading",
           "Simple content edits included free",
-          "More complex changes at $25/hr",
+          "More complex changes at $50/hr",
         ],
       },
       {
@@ -313,7 +313,7 @@ const ALL_SERVICES: Service[] = [
       },
       {
         label: "Complex edits",
-        price: "$25/hr",
+        price: "$50/hr",
         note: "Simple content edits stay free after delivery.",
       },
     ],
@@ -368,9 +368,9 @@ const ALL_SERVICES: Service[] = [
     gradient: "from-sky-500/20 to-teal-500/20",
     borderColor: "border-sky-400/30",
     cardDescription:
-      "Small Business Website: starting at $2,000 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
+      "Small Business Website: starting at $2,000 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $50/hr.",
     homeTeaser:
-      "Small business websites start at $2,000 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $25/hr.",
+      "Small business websites start at $2,000 — services, hours, photos, location, and contact. Simple edits included free. Complex changes $50/hr.",
     heroSubtitle:
       "A clear, trustworthy site so customers can find what you offer and get in touch.",
     startingPrice: "Starting at $2,000 · Deposit invoiced",
@@ -408,7 +408,7 @@ const ALL_SERVICES: Service[] = [
           "Hours, location, photos, and social links",
           "Mobile-first layout and fast loading",
           "Simple content edits included free",
-          "More complex changes at $25/hr",
+          "More complex changes at $50/hr",
         ],
       },
       {
@@ -425,7 +425,7 @@ const ALL_SERVICES: Service[] = [
       },
       {
         label: "Complex edits",
-        price: "$25/hr",
+        price: "$50/hr",
         note: "Simple content edits stay free after delivery.",
       },
       {
@@ -629,8 +629,8 @@ const ALL_SERVICES: Service[] = [
       },
     ],
     pricing: [
-      { label: "Rehearsal / rental", price: "$25/hr", note: "3-hour minimum" },
-      { label: "Sound tech support", price: "$25/hr", note: "Add-on" },
+      { label: "Rehearsal / rental", price: "$50/hr", note: "3-hour minimum" },
+      { label: "Sound tech support", price: "$50/hr", note: "Add-on" },
       { label: "Rehearsal soundboard recording", price: "$20/hr", note: "Add-on" },
     ],
     faqs: [
