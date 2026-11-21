@@ -88,8 +88,7 @@ export const STORE_PACKAGE_PICKER_ORDER: StoreProductId[] = [
 
 export const depositAmount = (price: number) => Math.round(price / 2);
 
-export const WEB_PORTFOLIO_URL =
-  "https://dbaileyfam.github.io/801familywebsiteportfolio/";
+export const WEB_PORTFOLIO_URL = "https://www.801familystudios.com/portfolio/";
 
 export const STORE_FORM_EMAIL = "websites@801familystudios.com";
 
